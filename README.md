@@ -49,6 +49,17 @@ Dafür braucht die App einen kleinen kostenlosen Server (Supabase). Das richtest
 
 Gruppen haben höchstens 20 Mitglieder. Wer den Gruppen-Code kennt, kann beitreten, gib ihn also nur an Freunde weiter. Der Link `days21://join/CODE` öffnet die App direkt (in manchen Chat-Apps ist er nicht anklickbar, dann den Code eintippen). Im Browser geht auch `…/index.html#join=CODE`.
 
+## Vokabel-Pack
+
+Lege über das Plus die Gewohnheit **„Vokabel-Pack“** an (oder wähle beim Start das Ziel „Wortschatz erweitern“). Jeden Tag öffnest du ein Pack mit 3 neuen, seltenen deutschen Wörtern:
+
+1. Pack gedrückt halten: Es bebt, leuchtet und reißt auf (mit Haptik und Sound, die immer stärker werden).
+2. Jede Karte baut Spannung auf, die Aura zeigt die Seltenheit an, dann wird sie umgedreht. Die dritte Karte ist öfter selten, episch oder legendär. Seltene Karten geben Münzen und glitzern, legendäre lösen ein Feuerwerk aus.
+3. Zu jedem Wort gibt es Wortart, Bedeutung und einen Beispielsatz mit hervorgehobenem Wort.
+4. Am Ende hakst du die Gewohnheit ab.
+
+Es gibt 991 Wörter (`vocab.js`). Ein Wort kommt erst wieder, wenn alle einmal dran waren (nach rund 330 Tagen). Alle gezogenen Karten stehen in der **Sammlung** (in der Detailansicht der Gewohnheit). Ohne Bewegung (Systemeinstellung „Bewegung reduzieren“) erscheinen die Karten sofort.
+
 ## Tagebuch
 
 Zu jeder Gewohnheit gibt es in der Detailansicht ein Tagebuch, und unter **Fortschritt → Journal** siehst du alle Einträge mit Filter. Fragen-Vorschläge helfen beim Start, der erste Eintrag am Tag gibt 5 Münzen und 5 XP. Das Tagebuch bleibt auf dem Gerät und ist im Backup enthalten.
