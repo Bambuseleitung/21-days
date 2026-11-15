@@ -76,7 +76,7 @@ h1,h2,h3{margin:0;line-height:1.15;font-weight:900;text-wrap:balance}
 .nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:14px;color:var(--muted);font-weight:800;font-size:0.6875rem}
 .nav button svg{width:26px;height:26px}
 .nav button[aria-current="page"]{color:var(--p);background:var(--p-soft)}
-.nav button[aria-current="page"] svg{animation:navPop .4s cubic-bezier(.2,1.8,.4,1)}
+.nav button{transition:color .2s ease,background-color .2s ease}
 @keyframes navPop{50%{transform:scale(1.25) translateY(-2px)}}
 .fab{position:fixed;z-index:35;bottom:calc(84px + var(--sab));right:max(16px,calc(50% - 224px));width:60px;height:60px;border-radius:20px;background:var(--pb);color:#fff;display:grid;place-items:center;box-shadow:0 5px 0 var(--p-dark),0 10px 24px color-mix(in srgb,var(--p) 40%,transparent)}
 .fab svg{width:30px;height:30px}
@@ -222,12 +222,12 @@ h1,h2,h3{margin:0;line-height:1.15;font-weight:900;text-wrap:balance}
 .hcheck.done{background:color-mix(in srgb,var(--hc) 74%,#000);color:#fff;box-shadow:0 4px 0 color-mix(in srgb,var(--hc) 65%,#000)}
 .hcheck.done .t,.hcheck.done .v{stroke:transparent}
 .hcheck:active{transform:scale(.92)}
-.hcheck.pop{animation:pop .45s cubic-bezier(.2,1.6,.4,1)}
+.hcheck.pop{animation:pop .4s cubic-bezier(.34,1.4,.64,1)}
 .hcheck.pop .ck path{animation:draw .45s .05s ease-out both}
 .hcheck .ck path{stroke-dasharray:24}
 .hcheck.pop::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:4px solid var(--hc);animation:ripple .65s ease-out forwards;pointer-events:none}
 .hcheck.tick{animation:tick .3s cubic-bezier(.2,1.6,.4,1)}
-@keyframes pop{0%{transform:scale(.75)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes pop{0%{transform:scale(.82)}60%{transform:scale(1.1)}100%{transform:scale(1)}}
 @keyframes tick{50%{transform:scale(1.12)}}
 @keyframes draw{from{stroke-dashoffset:24}}
 @keyframes ripple{to{inset:-22px;opacity:0}}
@@ -239,8 +239,8 @@ h1,h2,h3{margin:0;line-height:1.15;font-weight:900;text-wrap:balance}
 .empty p{color:var(--muted);font-weight:600;max-width:36ch;margin:8px auto 16px}
 
 /* Generic animation */
-.anim .enter{animation:enter .5s cubic-bezier(.2,1.2,.3,1) both;animation-delay:calc(var(--i,0) * 60ms)}
-@keyframes enter{from{transform:translateY(16px) scale(.97);opacity:.35}}
+.anim .enter{animation:enter .4s cubic-bezier(.22,1,.36,1) both;animation-delay:min(calc(var(--i,0) * 35ms),280ms)}
+@keyframes enter{from{transform:translateY(10px);opacity:0}}
 @keyframes bump{40%{transform:scale(1.3) rotate(-6deg)}100%{transform:scale(1)}}
 @keyframes flicker{0%,100%{transform:scale(1) rotate(-4deg)}50%{transform:scale(1.2) rotate(5deg)}}
 
@@ -315,7 +315,7 @@ h1,h2,h3{margin:0;line-height:1.15;font-weight:900;text-wrap:balance}
 .lb-row.me{border-color:var(--p);background:var(--p-soft)}
 .rank{font-weight:900;font-size:1.125rem;text-align:center;color:var(--muted)}
 .rank.r1{color:var(--gold-dark)}
-.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:#fff;background:var(--av)}
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:#1A1F33;background:var(--av)}
 .lb-name{min-width:0}
 .lb-name b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lb-name span{font-size:0.75rem;font-weight:700;color:var(--muted)}
@@ -347,14 +347,14 @@ h1,h2,h3{margin:0;line-height:1.15;font-weight:900;text-wrap:balance}
 /* Sheets & modals */
 .back{position:fixed;inset:0;z-index:50;background:rgba(9,12,28,.55);display:flex;align-items:flex-end;justify-content:center;animation:fade .2s}
 .back.center{align-items:center;padding:16px}
-.sheet{width:100%;max-width:480px;max-height:94%;overflow:auto;background:var(--bg);border-radius:28px 28px 0 0;padding:10px 18px 28px;animation:up .32s cubic-bezier(.2,1,.3,1)}
+.sheet{width:100%;max-width:480px;max-height:94%;overflow:auto;background:var(--bg);border-radius:28px 28px 0 0;padding:10px 18px 28px;animation:up .38s cubic-bezier(.32,.72,0,1)}
 .sheet.full{height:100%;max-height:100%;border-radius:0}
 .sheet-grip{width:44px;height:5px;border-radius:9px;background:var(--line);margin:4px auto 10px}
 .sheet-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
 .sheet-h h2{font-size:1.375rem}
 .x{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--card);border:2px solid var(--line)}
 .x svg{width:20px;height:20px}
-.modal{width:min(420px,100%);max-height:100%;overflow:auto;background:var(--card);border-radius:28px;padding:22px;text-align:center;animation:rise .3s cubic-bezier(.2,1.3,.4,1)}
+.modal{width:min(420px,100%);max-height:100%;overflow:auto;background:var(--card);border-radius:28px;padding:22px;text-align:center;animation:rise .32s cubic-bezier(.32,.72,0,1)}
 @keyframes fade{from{opacity:0}}
 @keyframes up{from{transform:translateY(100%)}}
 @keyframes rise{from{transform:translateY(20px) scale(.95);opacity:0}}
@@ -474,6 +474,34 @@ textarea{min-height:70px;resize:vertical}
 .seg.scroll{overflow-x:auto}
 .seg.scroll button{flex:1 0 auto;padding:8px 14px;white-space:nowrap}
 
+/* Group */
+.qr{width:min(240px,70vw);margin:8px auto 0;padding:10px;background:#fff;border-radius:16px;line-height:0}
+.qr svg{display:block;width:100%;height:auto}
+.codebox{display:inline-block;margin-top:10px;padding:10px 16px;border-radius:14px;background:var(--card);border:2px solid var(--line);font-size:1.5rem;font-weight:900;letter-spacing:.12em}
+.priv{display:flex;gap:12px;align-items:flex-start;margin-top:12px}
+.priv>span{flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:var(--ok-soft);color:var(--ok-dark)}
+.priv.no>span{background:color-mix(in srgb,var(--bad) 14%,var(--card));color:var(--bad)}
+.priv>span svg{width:18px;height:18px}
+
+/* Journal */
+.jrow{display:block;width:100%;text-align:left;padding:12px 0;border-bottom:2px solid var(--line)}
+.jrow:last-child{border-bottom:0}
+.jmeta{display:flex;align-items:center;gap:8px;font-size:.8125rem;font-weight:800}
+.jmood svg{display:block;width:18px;height:18px}
+.jtext{margin-top:4px;font-weight:600;white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Smooth state changes and exits */
+.btn,.opt,.seg button,.daypick button,.iconpick button,.sw,.mood,.item,.tpl,.goal,.ck,.x,.chip{transition:background-color .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease,transform .12s ease,opacity .18s ease}
+.opt:active,.seg button:active,.daypick button:active,.iconpick button:active,.sw:active,.mood:active,.item:active,.tpl:active,.goal:active,.ck:active,.x:active{transform:scale(.96)}
+.switch,.switch::after{transition:background-color .2s ease,left .2s cubic-bezier(.32,.72,0,1)}
+.back.closing{animation:fadeOut .2s ease forwards;pointer-events:none}
+.back.closing .sheet{animation:down .22s cubic-bezier(.4,0,1,1) forwards}
+.back.closing .modal{animation:fall .18s ease-in forwards}
+.overlay.out{opacity:0;transition:opacity .2s ease;pointer-events:none}
+@keyframes fadeOut{to{opacity:0}}
+@keyframes down{to{transform:translateY(100%)}}
+@keyframes fall{to{transform:translateY(12px) scale(.97);opacity:0}}
+
 /* Tasks, tags, boss */
 .struck{text-decoration:line-through}
 .overdue{color:var(--bad)}
@@ -497,7 +525,8 @@ textarea{min-height:70px;resize:vertical}
 /* FX */
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:80}
 .toasts{position:fixed;left:50%;bottom:calc(150px + var(--sab));transform:translateX(-50%);z-index:70;display:grid;gap:8px;width:min(420px,calc(100% - 32px));pointer-events:none}
-.toast{padding:12px 16px;border-radius:16px;background:var(--ink);color:var(--bg);font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.25);animation:rise .3s cubic-bezier(.2,1.3,.4,1)}
+.toast{padding:12px 16px;border-radius:16px;background:var(--ink);color:var(--bg);font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.25);animation:rise .3s cubic-bezier(.32,.72,0,1);transition:opacity .3s ease,transform .3s ease}
+.toast.out{opacity:0;transform:translateY(8px)}
 .toast.gold{background:var(--gold);color:#3A2800}
 .coin{position:fixed;z-index:75;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFF4B8,#FFBF1F 55%,#B87700);box-shadow:0 0 10px rgba(255,180,0,.75);pointer-events:none}
 .float{position:fixed;z-index:76;pointer-events:none;font-weight:900;font-size:1.375rem;color:var(--grape);text-shadow:0 2px 0 rgba(0,0,0,.12);animation:floatUp 1.1s ease-out forwards;white-space:nowrap;transform:translateX(-50%)}
@@ -541,6 +570,8 @@ textarea{min-height:70px;resize:vertical}
 @media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important} }
 @media (max-width:370px){ .shop,.badges{grid-template-columns:repeat(2,1fr)} .hero .petbox{width:100px;height:100px} }
 </style>
+<script src="config.js"></script>
+<script src="vendor/qrcode.js"></script>
 </head>
 <body>
 <canvas id="fx" aria-hidden="true"></canvas>
@@ -727,11 +758,10 @@ const freshState = () => ({
   habits: [], triggers: [], xp: 0, coins: 0, xpLog: {}, freezes: 1, freezeUsed: {}, badges: {}, chests: {}, perfect: {},
   flags: {}, days: {}, quests: {}, pledges: {}, inv: { owned: [], eq: {} }, rewards: [], redeemed: [], cheered: {}, lastCheerSeen: 0,
   pet: { food: 0, hunger: 80, fun: 80, clean: 80, t: Date.now(), best: { catch: 0, pop: 0 } },
-  todos: [], tags: [], boss: null
+  todos: [], tags: [], boss: null, journal: [], group: null
 });
 let state = freshState();
 const store = { mode: "loading", db: null, user: null, uid: null, readOnly: false, notice: "", canShare: false };
-const social = { players: null, cheers: [], names: {}, requested: new Set(), error: "" };
 let view = "heute";
 
 function normHabit(h) {
@@ -762,7 +792,7 @@ function migrate(raw) {
   st.pet.best = Object.assign({ catch: 0, pop: 0 }, st.pet.best);
   if (!s.pet) st.pet.food = Math.min(300, Math.round((st.xp || 0) / 3)); // welcome gift for existing saves
   ["xpLog", "freezeUsed", "badges", "chests", "perfect", "flags", "days", "quests", "pledges", "cheered"].forEach(k => { if (!st[k] || typeof st[k] !== "object" || Array.isArray(st[k])) st[k] = {}; });
-  ["triggers", "rewards", "redeemed", "todos", "tags"].forEach(k => { if (!Array.isArray(st[k])) st[k] = []; });
+  ["triggers", "rewards", "redeemed", "todos", "tags", "journal"].forEach(k => { if (!Array.isArray(st[k])) st[k] = []; });
   st.todos = st.todos.map(t => Object.assign(newTodo(), t));
   st.habits = (s.habits || []).map(normHabit);
   st.triggers = st.triggers.slice(-400);
@@ -953,7 +983,7 @@ function flyCoins(x, y, n, targetSel = "#chipCoins") {
     an.onfinish = () => { c.remove(); if (i % 3 === 0) sfx("tick", 4); if (i === n - 1) { bumpEl(tgt); sfx("coin"); renderTopbar(); } };
   }
 }
-function toast(msg, cls = "") { const t = document.createElement("div"); t.className = "toast " + cls; t.textContent = msg; $("#toasts").appendChild(t); setTimeout(() => t.remove(), 3400); }
+function toast(msg, cls = "") { const t = document.createElement("div"); t.className = "toast " + cls; t.textContent = msg; $("#toasts").appendChild(t); setTimeout(() => t.classList.add("out"), 3100); setTimeout(() => t.remove(), 3400); }
 
 /* ============ Overlays ============ */
 const overlayQ = []; let overlayOpen = false;
@@ -968,7 +998,7 @@ function nextOverlay() {
   document.body.appendChild(el); el.querySelector("button").focus();
   bigCelebration(); sfx(o.sound || "level"); vibrate([40, 60, 40, 60, 140]);
   setTimeout(() => burst(innerWidth / 2, innerHeight * .4, 110, 1.6), 450);
-  el.addEventListener("click", () => { el.remove(); setTimeout(nextOverlay, 150); }, { once: true });
+  el.addEventListener("click", () => { el.classList.add("out"); setTimeout(() => { el.remove(); setTimeout(nextOverlay, 80); }, reduced ? 0 : 200); }, { once: true });
 }
 function showLevelUp() {
   const L = pendingLevel; pendingLevel = 0; if (!L) return;
@@ -1008,6 +1038,10 @@ const BADGES = [
   { id: "l5", n: "Aufsteiger", d: "Level 5 erreicht", r: "rare", ic: "trophy", t: () => levelOf(state.xp) >= 5 },
   { id: "l10", n: "Elite", d: "Level 10 erreicht", r: "legend", ic: "trophy", t: () => levelOf(state.xp) >= 10 },
   { id: "q7", n: "Eine Woche frei", d: "7 Tage ohne Rückfall", r: "epic", ic: "heart", t: () => state.habits.some(h => h.kind === "break" && (quitDays(h) >= 7 || h.bestQuit >= 7 * 864e5)) },
+  { id: "team", n: "Teamplayer", d: "Einer Gruppe beigetreten", r: "common", ic: "users", t: () => !!state.flags.grouped },
+  { id: "cheer1", n: "Anfeuerer", d: "Einen Freund angefeuert", r: "common", ic: "clap", t: () => (state.flags.cheered || 0) >= 1 },
+  { id: "jr1", n: "Erste Zeilen", d: "Ersten Tagebuch-Eintrag geschrieben", r: "common", ic: "edit", t: () => state.journal.length >= 1 },
+  { id: "jr10", n: "Schreiber", d: "10 Tagebuch-Einträge", r: "rare", ic: "edit", t: () => state.journal.length >= 10 },
   { id: "todo1", n: "Abgehakt", d: "Erste Aufgabe erledigt", r: "common", ic: "check", t: () => (state.flags.todos || 0) >= 1 },
   { id: "todo10", n: "Aufgaben-Held", d: "10 Aufgaben erledigt", r: "rare", ic: "target", t: () => (state.flags.todos || 0) >= 10 },
   { id: "boss1", n: "Bossbezwinger", d: "Ersten Wochen-Boss besiegt", r: "epic", ic: "trophy", t: () => (state.flags.bosses || 0) >= 1 },
@@ -1183,7 +1217,7 @@ function logChange() {
   }
   snap = now;
 }
-const ACT_LABEL = { tap: "Gewohnheit abgehakt", minus: "Zähler verringert", "save-habit": "Gewohnheit gespeichert", "del-habit": "Gewohnheit gelöscht", claim: "Quest eingelöst", chest: "Truhe geöffnet", "wheel-spin": "Glücksrad gedreht", item: "Shop-Kauf oder Outfit", petcolor: "Farbe geändert", "rename-save": "Name geändert", redeem: "Belohnung eingelöst", "rv-save": "Abend-Rückblick", pledge: "Morgen-Versprechen", relapse: "Rückfall", "sos-win": "Drang besiegt", "set-sound": "Sound umgeschaltet", restore: "Backup wiederhergestellt", "todo-tap": "Aufgabe abgehakt", "todo-save": "Aufgabe gespeichert", "ck-toggle": "Checklistenpunkt", "tag-add": "Tag angelegt", "tag-del": "Tag gelöscht", feed: "Begleiter gefüttert", "care-wash": "Begleiter gewaschen", game: "Minispiel gestartet", "game-end": "Minispiel beendet", gift: "Tagesgeschenk geöffnet", pet: "Begleiter gestreichelt", system: "Automatisch" };
+const ACT_LABEL = { tap: "Gewohnheit abgehakt", minus: "Zähler verringert", "save-habit": "Gewohnheit gespeichert", "del-habit": "Gewohnheit gelöscht", claim: "Quest eingelöst", chest: "Truhe geöffnet", "wheel-spin": "Glücksrad gedreht", item: "Shop-Kauf oder Outfit", petcolor: "Farbe geändert", "rename-save": "Name geändert", redeem: "Belohnung eingelöst", "rv-save": "Abend-Rückblick", pledge: "Morgen-Versprechen", relapse: "Rückfall", "sos-win": "Drang besiegt", "set-sound": "Sound umgeschaltet", restore: "Backup wiederhergestellt", "g-do-create": "Gruppe erstellt", "g-do-join": "Gruppe beigetreten", "g-cheer": "Freund angefeuert", "g-leave": "Gruppe verlassen", "j-save": "Tagebuch-Eintrag", "j-del": "Tagebuch-Eintrag gelöscht", "todo-tap": "Aufgabe abgehakt", "todo-save": "Aufgabe gespeichert", "ck-toggle": "Checklistenpunkt", "tag-add": "Tag angelegt", "tag-del": "Tag gelöscht", feed: "Begleiter gefüttert", "care-wash": "Begleiter gewaschen", game: "Minispiel gestartet", "game-end": "Minispiel beendet", gift: "Tagesgeschenk geöffnet", pet: "Begleiter gestreichelt", system: "Automatisch" };
 async function openLog() {
   openSheet(`${sheetHead("Aktionsprotokoll")}<div id="logBody" class="muted" style="font-weight:700">Lädt …</div>`);
   const all = await logAll(), el = $("#logBody"); if (!el) return;
@@ -1201,60 +1235,170 @@ async function exportLog() {
 }
 
 /* ============ Persistence ============ */
-let saveTimer = 0, saveChain = Promise.resolve();
 function save() {
   prune();
   try { logChange(); } catch (e) { /* the log must never block saving */ }
+  try { syncGroup(); } catch (e) { /* group sync must never block saving */ }
   try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
-  return;
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => {
-    const body = JSON.parse(JSON.stringify(state));
-    saveChain = saveChain.then(() => store.db.doc(`data/users/${store.uid}/state`).set(body)).catch(e => {
-      if (e && e.code === "invalid_argument") { store.readOnly = true; renderBanner(); }
-      else if (e && e.code === "quota_exceeded") { store.notice = "Der Speicher ist voll. Neue Einträge landen nur in diesem Browser."; renderBanner(); }
-    });
-    syncPlayer();
-  }, 600);
 }
-let lastPlayerJSON = "", playerChain = Promise.resolve(), playerDeleted = false;
-function playerBody() {
-  const t = todayK();
-  return { xp: state.xp, level: levelOf(state.xp), weekStart: weekStart(t), weekXp: weekXp(weekStart(t)), day: t, doneToday: doneToday(t), totalToday: schedToday(), streak: gStreak(), petColor: state.profile.petColor };
+/* ============ Gruppe ============ */
+// Backend: Supabase, see supabase/schema.sql. The app only calls six functions and never sends habit names or journal text:
+// the group sees name, level, XP, XP of the week, streak and "done today of today", nothing else.
+const CFG = Object.assign({}, window.DAYS_CONFIG || {}, (() => { try { return JSON.parse(localStorage.getItem("21days-config") || "{}"); } catch (e) { return {}; } })());
+const groupReady = () => !!(CFG.supabaseUrl && CFG.supabaseKey);
+const grp = { board: null, err: "", loading: false, last: 0, lastCheers: null, sort: "week" };
+const GERR = { group_not_found: "Diesen Code gibt es nicht. Prüfe die Zeichen.", group_full: "Die Gruppe ist voll (höchstens 20 Mitglieder).", bad_name: "Bitte gib einen Namen ein.", try_again: "Das hat nicht geklappt. Versuch es noch einmal." };
+const cleanCode = c => String(c || "").toUpperCase().replace(/[^A-Z0-9]/g, "").replace(/O/g, "0").replace(/[IL]/g, "1");
+const fmtCode = c => c.length > 5 ? c.slice(0, 5) + "-" + c.slice(5) : c;
+const inviteLink = c => "days21://join/" + c;
+async function rpc(fn, args) {
+  const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 12000);
+  try {
+    const r = await fetch(`${CFG.supabaseUrl.replace(/\/+$/, "")}/rest/v1/rpc/${fn}`, { method: "POST", signal: ctl.signal, headers: { "Content-Type": "application/json", apikey: CFG.supabaseKey, Authorization: `Bearer ${CFG.supabaseKey}` }, body: JSON.stringify(args || {}) });
+    const txt = await r.text(); let body = null; try { body = txt ? JSON.parse(txt) : null; } catch (e) { /* empty or plain-text body */ }
+    if (!r.ok) throw new Error((body && body.message) || `http_${r.status}`);
+    return body;
+  } catch (e) { if (e && e.name === "AbortError") throw new Error("timeout"); throw e; } finally { clearTimeout(to); }
 }
-function syncPlayer() {
-  if (store.mode !== "cloud" || store.readOnly || !store.canShare) return;
-  const ref = store.db.doc(`players/${store.uid}`);
-  if (!state.profile.shareBoard) { if (playerDeleted) return; playerDeleted = true; lastPlayerJSON = ""; playerChain = playerChain.then(() => ref.delete()).catch(() => {}); return; }
-  const body = playerBody(), j = JSON.stringify(body); if (j === lastPlayerJSON) return;
-  lastPlayerJSON = j; playerDeleted = false;
-  playerChain = playerChain.then(() => ref.set(Object.assign({ updated: Date.now() }, body))).catch(e => { if (e && e.code === "invalid_argument") store.canShare = false; });
+function groupStats() {
+  const t = todayK(), ws = weekStart(t);
+  return { p_level: levelOf(state.xp), p_xp: state.xp, p_week_xp: weekXp(ws), p_week_start: ws, p_streak: gStreak(), p_done: doneToday(t), p_total: schedToday(), p_day: t };
 }
-function startSocial() {
-  const db = store.db;
-  const timer = setTimeout(() => { if (!social.players) { social.error = "Die Liga ist gerade nicht erreichbar."; if (view === "freunde") render(); } }, 10000);
-  db.collection("players").onSnapshot(snap => {
-    clearTimeout(timer); social.error = "";
-    social.players = snap.docs.filter(d => d.exists).map(d => Object.assign({ id: d.id }, d.data()));
-    if (view === "freunde") render();
-  }, () => { clearTimeout(timer); social.error = "Die Liga konnte nicht geladen werden."; social.players = social.players || []; if (view === "freunde") render(); });
-  let first = true;
-  db.collection("cheers").where("to", "==", store.uid).onSnapshot(snap => {
-    social.cheers = snap.docs.filter(d => d.exists).map(d => Object.assign({ id: d.id }, d.data())).sort((a, b) => b.ts - a.ts);
-    const fresh = social.cheers.filter(c => c.ts > (state.lastCheerSeen || 0));
-    if (fresh.length) {
-      resolveNames(fresh.map(c => c.from)).then(() => { toast(fresh.length > 1 ? `Du wurdest ${fresh.length}× angefeuert!` : `${social.names[fresh[0].from] || "Jemand"} feuert dich an!`, "gold"); if (!first) sfx("chirp"); });
-      state.lastCheerSeen = Math.max(...fresh.map(c => c.ts)); save();
-    }
-    social.cheers.filter(c => Date.now() - c.ts > 14 * 864e5).slice(0, 5).reduce((p, c) => p.then(() => db.doc(`cheers/${c.id}`).delete()).catch(() => {}), Promise.resolve());
-    first = false; if (view === "freunde") render();
-  }, () => {});
+let gTimer = 0, gLastJSON = "";
+async function pushStats(force) {
+  const g = state.group; if (!g || !groupReady()) return;
+  const body = Object.assign({ p_player: g.playerId, p_secret: g.secret, p_name: g.me, p_color: state.profile.petColor }, groupStats()), j = JSON.stringify(body);
+  if (!force && j === gLastJSON) return;
+  await rpc("report", body); gLastJSON = j;
 }
-async function resolveNames(ids) {
-  if (!store.user) return;
-  const need = [...new Set(ids)].filter(id => id && !social.requested.has(id)); if (!need.length) return;
-  need.forEach(id => social.requested.add(id));
-  try { const ps = await store.user.profiles(need); need.forEach(id => { social.names[id] = (ps && ps[id] && ps[id].name) || ""; }); } catch (e) { /* names unavailable */ }
+function syncGroup() { if (!state.group || !groupReady()) return; clearTimeout(gTimer); gTimer = setTimeout(() => pushStats().catch(groupError), 1500); }
+function groupError(e) {
+  const m = e && e.message;
+  if (m === "not_authorized") { state.group = null; grp.board = null; save(); toast("Du bist nicht mehr in der Gruppe."); if (view === "gruppe") render(); return; }
+  grp.err = GERR[m] || "Keine Verbindung zum Gruppen-Server."; if (view === "gruppe") softRender("#gboard");
+}
+async function loadBoard() {
+  if (!state.group || !groupReady() || grp.loading) return;
+  grp.loading = true; grp.last = Date.now();
+  try {
+    await pushStats(true);
+    const b = await rpc("board", { p_player: state.group.playerId, p_secret: state.group.secret });
+    const mine = (b.players.find(p => p.id === b.me) || {}).cheers || 0;
+    if (grp.lastCheers !== null && mine > grp.lastCheers) { toast("Jemand aus deiner Gruppe feuert dich an!", "gold"); sfx("chirp"); vibrate([15, 30, 15]); }
+    grp.lastCheers = mine; grp.board = b; grp.err = "";
+  } catch (e) { grp.loading = false; groupError(e); return; }
+  grp.loading = false; if (view === "gruppe") softRender("#gboard");
+}
+setInterval(() => { if (view === "gruppe" && !document.hidden && state.group && !$(".back")) loadBoard(); }, 30000);
+
+const viewGruppe = () => `<div id="gboard">${groupInner()}</div>`;
+function groupInner() {
+  if (!groupReady()) return `<div class="card empty sec enter"><h2>Gruppen sind noch nicht eingerichtet</h2><p>Hier duellierst du dich mit Freunden. Dafür braucht die App einen kostenlosen Gruppen-Server. Die Schritte stehen in der README unter „Gruppen einrichten“.</p></div>`;
+  if (!state.group) {
+    return `<section class="card sec enter" style="--i:0;text-align:center"><span style="display:block;width:64px;height:64px;margin:0 auto 8px;color:var(--gold-dark)">${I.trophy.replace("<svg", '<svg width="64" height="64"')}</span>
+      <h2>Duelliere deine Freunde</h2><p class="muted" style="font-weight:700;margin:8px auto 16px;max-width:34ch">Erstelle eine Gruppe und lade Freunde per Link, Code oder QR ein. Wer die meisten XP der Woche sammelt, gewinnt.</p>
+      <div style="display:grid;gap:10px"><button class="btn full" data-action="g-create">Gruppe erstellen</button><button class="btn ghost full" data-action="g-join">Mit Code beitreten</button></div></section>
+      <section class="card sec enter" style="--i:1"><b>So bleibt es privat</b>
+        <div class="priv"><span>${I.check}</span><div><b>Die Gruppe sieht</b><br><span class="muted">Deinen Namen, Level, XP, XP der Woche, Serie und wie viele Gewohnheiten du heute geschafft hast.</span></div></div>
+        <div class="priv no"><span>${I.x}</span><div><b>Nie sichtbar</b><br><span class="muted">Namen deiner Gewohnheiten, Rückfälle, SOS-Momente, Auslöser und dein Tagebuch.</span></div></div></section>`;
+  }
+  const g = state.group, b = grp.board, t = todayK(), ws = weekStart(t), days = 7 - wIdx(t), all = grp.sort === "all";
+  const ps = (b ? b.players : []).map(p => ({ ...p, w: p.week_start === ws ? p.week_xp : 0, d: p.day === t ? p.done_today : 0 }));
+  const me = ps.find(p => p.id === g.playerId) || (b ? null : { id: g.playerId, name: g.me, color: state.profile.petColor });
+  if (me) Object.assign(me, { name: g.me, level: levelOf(state.xp), xp: state.xp, w: weekXp(ws), streak: gStreak(), d: doneToday(t), total_today: schedToday() });
+  if (b && !me) ps.push({ id: g.playerId, name: g.me, color: state.profile.petColor, level: levelOf(state.xp), xp: state.xp, w: weekXp(ws), streak: gStreak(), d: doneToday(t), total_today: schedToday(), cheers: 0, cheered: true });
+  const val = p => all ? p.xp : p.w;
+  ps.sort((a, c) => val(c) - val(a) || c.xp - a.xp);
+  const myI = ps.findIndex(p => p.id === g.playerId);
+  let duel = "";
+  if (ps.length > 1 && myI >= 0) duel = myI === 0 ? `Du führst mit ${val(ps[0]) - val(ps[1])} XP vor ${esc(ps[1].name)}.` : `Noch ${val(ps[myI - 1]) - val(ps[myI])} XP, dann überholst du ${esc(ps[myI - 1].name)}.`;
+  const row = (p, i) => {
+    const mine = p.id === g.playerId;
+    return `<div class="lb-row enter ${mine ? "me" : ""}" style="--i:${i + 1}"><span class="rank ${i === 0 ? "r1" : ""} num">${i + 1}</span>
+      <span class="avatar" style="--av:${esc(p.color || "#FF8A3D")}">${esc((p.name || "?").charAt(0).toUpperCase())}</span>
+      <div class="lb-name"><b>${esc(p.name)}${mine ? " (Du)" : ""}</b><span class="num">Lvl ${p.level} · Serie ${p.streak} · heute ${p.d}/${p.total_today}${p.cheers ? ` · ${p.cheers} angefeuert` : ""}</span></div>
+      <div class="lb-right"><div class="lb-xp num">${val(p)}<small>XP</small></div>${mine ? "" : `<button class="btn sm ${p.cheered ? "ghost" : "gold"}" data-action="g-cheer" data-id="${esc(p.id)}" ${p.cheered ? "disabled" : ""} aria-label="${esc(p.name)} anfeuern${p.cheered ? ", heute schon angefeuert" : ""}">${I.clap}</button>`}</div></div>`;
+  };
+  return `<section class="card sec enter" style="--i:0"><div style="display:flex;align-items:center;gap:12px"><div style="flex:1;min-width:0"><h2 style="font-size:1.25rem;overflow-wrap:anywhere">${esc(g.name)}</h2><div class="muted num" style="font-weight:700">Code ${esc(fmtCode(g.code))}</div></div><button class="btn sm" data-action="g-invite">Einladen</button></div></section>
+    ${grp.err ? `<div class="banner">${esc(grp.err)}</div>` : ""}
+    ${duel ? `<div class="card sec enter" style="--i:1"><div class="muted" style="font-weight:800;font-size:.8125rem">${all ? "Gesamt" : `Wochen-Duell · noch ${days} ${days === 1 ? "Tag" : "Tage"}`}</div><div style="font-weight:900;font-size:1.0625rem;margin-top:2px">${duel}</div></div>` : ""}
+    <div class="seg sec" role="group"><button data-action="g-sort" data-v="week" aria-pressed="${!all}">Diese Woche</button><button data-action="g-sort" data-v="all" aria-pressed="${all}">Gesamt</button></div>
+    <div class="hlist sec">${b ? ps.map(row).join("") : `<div class="card muted" style="font-weight:700">Rangliste wird geladen …</div>`}</div>
+    ${b && ps.length < 2 ? `<div class="card sec"><b>Noch allein hier?</b><p class="muted" style="margin:4px 0 0;font-weight:600">Lade Freunde mit dem Code oder QR ein. Dann tretet ihr gegeneinander an.</p></div>` : ""}
+    <p class="muted" style="font-size:.8125rem;font-weight:600">Sichtbar sind nur Name, Level, XP, Serie und der Tagesfortschritt. Gewohnheiten und Tagebuch bleiben privat auf deinem Gerät.</p>
+    <button class="btn danger full sec" data-action="g-leave">Gruppe verlassen</button>`;
+}
+function openGroupForm(kind, code = "") {
+  const join = kind === "join";
+  openSheet(`${sheetHead(join ? "Gruppe beitreten" : "Gruppe erstellen")}
+    <form id="gForm" novalidate>
+      ${join ? `<div class="field"><label for="gCode">Gruppen-Code</label><input type="text" id="gCode" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="14" value="${esc(code)}" placeholder="XXXXX-XXXXX"></div>`
+        : `<div class="field"><label for="gName">Name der Gruppe</label><input type="text" id="gName" maxlength="30" placeholder="z. B. Die Dranbleiber"></div>`}
+      <div class="field"><label for="gMe">Dein Name in der Gruppe</label><input type="text" id="gMe" maxlength="20" value="${esc(state.profile.userName || "")}" placeholder="z. B. Ada"><small>Deine Freunde sehen: Name, Level, XP, Serie und wie viele Gewohnheiten du heute geschafft hast. Sonst nichts.</small></div>
+      ${state.group ? `<small class="muted" style="font-weight:700">Du verlässt dabei die Gruppe „${esc(state.group.name)}“.</small>` : ""}
+      <div class="err" id="gErr" role="alert"></div>
+      <button type="button" class="btn full" data-action="${join ? "g-do-join" : "g-do-create"}" style="margin-top:12px">${join ? "Beitreten" : "Erstellen"}</button>
+    </form>`, { reset: true });
+}
+async function submitGroup(join) {
+  const me = ($("#gMe").value || "").trim(), err = $("#gErr"), btn = $("#gForm .btn");
+  const code = join ? ($("#gCode").value || "").trim() : "", gname = join ? "" : ($("#gName").value || "").trim();
+  if (join && !cleanCode(code)) { err.textContent = "Gib den Code deiner Freunde ein."; $("#gCode").focus(); return; }
+  if (!join && !gname) { err.textContent = "Gib der Gruppe einen Namen."; $("#gName").focus(); return; }
+  if (!me) { err.textContent = "Wie sollen dich deine Freunde nennen?"; $("#gMe").focus(); return; }
+  btn.disabled = true; btn.textContent = "Einen Moment …"; err.textContent = "";
+  try {
+    const old = state.group;
+    const r = join ? await rpc("join_group", { p_code: code, p_player_name: me, p_color: state.profile.petColor }) : await rpc("create_group", { p_group_name: gname, p_player_name: me, p_color: state.profile.petColor });
+    if (old) rpc("leave_group", { p_player: old.playerId, p_secret: old.secret }).catch(() => {}); // the old group is only left once the new one worked
+    state.group = { groupId: r.group_id, name: r.group_name, code: r.code, playerId: r.player_id, secret: r.secret, me }; state.profile.userName = me;
+    grp.board = null; grp.lastCheers = null; gLastJSON = ""; grp.err = ""; state.flags.grouped = true;
+    evaluateBadges(); save(); closeSheet(); render();
+    burst(innerWidth / 2, innerHeight * .4, 90, 1.2); sfx("bonus"); vibrate([30, 40, 60]); toast(join ? `Du bist in „${r.group_name}“!` : "Gruppe erstellt!", "gold");
+    if (!join) setTimeout(openInvite, 500);
+  } catch (e) { btn.disabled = false; btn.textContent = join ? "Beitreten" : "Erstellen"; err.textContent = GERR[e.message] || "Keine Verbindung zum Gruppen-Server."; }
+}
+function openInvite() {
+  const g = state.group; if (!g) return;
+  let qr = ""; try { const q = qrcode(0, "M"); q.addData(inviteLink(g.code)); q.make(); qr = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }); } catch (e) { /* QR optional, the code still works */ }
+  openSheet(`${sheetHead("Freunde einladen")}
+    <div style="text-align:center">
+      ${qr ? `<div class="qr" role="img" aria-label="QR-Code zum Beitreten">${qr}</div><p class="muted" style="font-weight:700;margin:10px 0 0">Mit der Kamera scannen oder den Code eingeben</p>` : ""}
+      <div class="codebox num" aria-label="Gruppen-Code">${esc(fmtCode(g.code))}</div>
+    </div>
+    <div style="display:grid;gap:12px;margin-top:16px"><button class="btn full" data-action="g-share">Einladung teilen</button><button class="btn ghost full" data-action="g-copy">Code kopieren</button></div>`, { reset: true });
+}
+async function copyText(txt, msg) { try { await navigator.clipboard.writeText(txt); toast(msg); } catch (e) { toast("Kopieren war nicht möglich."); } }
+async function shareInvite() {
+  const g = state.group; if (!g) return;
+  const text = `Tritt meiner 21-Days-Gruppe „${g.name}“ bei!\nCode: ${fmtCode(g.code)}\nLink: ${inviteLink(g.code)}`;
+  const S = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Share;
+  try { if (S) { await S.share({ title: "21 Days", text }); return; } if (navigator.share) { await navigator.share({ title: "21 Days", text }); return; } }
+  catch (e) { if (e && (e.name === "AbortError" || /cancel/i.test(e.message || ""))) return; }
+  copyText(text, "Einladung kopiert");
+}
+async function cheerPlayer(id, btn) {
+  btn.disabled = true;
+  try {
+    await rpc("cheer", { p_player: state.group.playerId, p_secret: state.group.secret, p_to: id });
+    const p = grp.board && grp.board.players.find(x => x.id === id); if (p) { p.cheered = true; p.cheers = (p.cheers || 0) + 1; }
+    const dd = day(); dd.cheers = (dd.cheers || 0) + 1; state.flags.cheered = (state.flags.cheered || 0) + 1;
+    if (dd.cheers <= 3) addCoins(3);
+    evaluateBadges(); save();
+    const r = btn.getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 40); sfx("chirp"); vibrate([15, 25]);
+    toast(dd.cheers <= 3 ? "Angefeuert! +3 Münzen" : "Angefeuert!"); renderTopbar(); softRender("#gboard");
+  } catch (e) { btn.disabled = false; groupError(e); toast("Anfeuern hat nicht geklappt."); }
+}
+async function leaveGroup() {
+  const g = state.group; if (!g) return;
+  try { await rpc("leave_group", { p_player: g.playerId, p_secret: g.secret }); } catch (e) { /* offline or already gone: leave locally anyway */ }
+  state.group = null; grp.board = null; grp.lastCheers = null; gLastJSON = ""; save(); render(); toast("Du hast die Gruppe verlassen.");
+}
+// Invite link (days21://join/CODE or #join=CODE): opens the join form with the code filled in. Joining always needs a tap.
+function handleJoinUrl(url) {
+  const m = /join[\/=]([A-Za-z0-9-]+)/.exec(url || ""); if (!m || !state.profile.onboarded) return;
+  location.hash = "gruppe"; history.replaceState(null, "", "#gruppe");
+  setTimeout(() => openGroupForm("join", fmtCode(cleanCode(m[1]))), 350);
 }
 
 /* ============ Rendering: chrome ============ */
@@ -1273,7 +1417,7 @@ function renderTopbar() {
   shownXp = state.xp;
 }
 function renderNav() {
-  const tabs = [["heute", "Heute", I.home], ["fortschritt", "Fortschritt", I.chart], ["begleiter", state.profile.petName.slice(0, 10), I.paw], ["profil", "Profil", I.user]];
+  const tabs = [["heute", "Heute", I.home], ["fortschritt", "Fortschritt", I.chart], ["begleiter", state.profile.petName.slice(0, 10), I.paw], ["gruppe", "Gruppe", I.trophy], ["profil", "Profil", I.user]];
   $("#nav").innerHTML = tabs.map(([id, l, ic]) => { const need = id === "begleiter" && petNeedy(); return `<button data-action="go" data-view="${id}" ${need ? `class="dot" aria-label="${esc(l)}, braucht Pflege"` : ""} ${view === id ? 'aria-current="page"' : ""}>${ic}<span>${esc(l)}</span></button>`; }).join("");
   $("#fab").innerHTML = I.plus;
   $("#fab").style.display = view === "heute" && state.profile.onboarded ? "" : "none";
@@ -1285,14 +1429,24 @@ function renderBanner() {
   $("#banner").innerHTML = m.map(x => `<div class="banner">${esc(x)}</div>`).join("");
 }
 let animateNext = true;
+// Re-renders one container of the current page (shop tabs, progress tabs, tag filter) without replaying the whole page.
+const viewHTML = () => view === "fortschritt" ? viewProgress() : view === "begleiter" ? viewPet() : view === "gruppe" ? viewGruppe() : view === "profil" ? viewProfile() : viewToday();
+function softRender(sel) {
+  const cur = $(sel); if (!cur) { render(); return; }
+  const tmp = document.createElement("div");
+  tmp.innerHTML = viewHTML();
+  const nu = tmp.querySelector(sel); if (!nu) { render(); return; }
+  cur.innerHTML = nu.innerHTML; cur.classList.remove("anim"); void cur.offsetWidth; if (!reduced) cur.classList.add("anim"); updateTickers();
+}
 function render() {
   applyTheme(); ensureBoss(); renderTopbar(); renderNav(); renderBanner();
   const v = $("#view");
   if (store.mode === "loading") { v.innerHTML = `<div class="loading">21 Days wird geladen …</div>`; return; }
   v.classList.toggle("anim", animateNext && !reduced); animateNext = false;
-  v.innerHTML = view === "fortschritt" ? viewProgress() : view === "begleiter" ? viewPet() : view === "profil" ? viewProfile() : viewToday();
+  v.innerHTML = viewHTML();
   updateTickers();
   if (pendingBoss) setTimeout(showBossWin, 900);
+  if (view === "gruppe" && state.group && Date.now() - grp.last > 8000) loadBoard();
 }
 
 /* ============ View: Heute ============ */
@@ -1376,18 +1530,21 @@ function viewToday() {
   ${wheelCard(false)}
   ${questCard()}
   ${bossCard()}
+  <div id="tl">
   ${tagBar()}
   ${state.habits.length ? `<div class="sec-h"><h2>Gewohnheiten</h2><span class="muted">${esc(fmtLong(t))}</span></div>` : ""}
   ${list}
-  ${state.profile.onboarded ? todosSection() : ""}`;
+  ${state.profile.onboarded ? todosSection() : ""}</div>`;
 }
 
 /* ============ View: Fortschritt ============ */
 let progTab = "overview";
-function viewProgress() {
-  const tabs = `<div class="seg sec" role="group">${[["overview", "Übersicht"], ["habits", "Gewohnheiten"], ["triggers", "Auslöser"]].map(([k, l]) => `<button data-action="ptab" data-v="${k}" aria-pressed="${progTab === k}">${l}</button>`).join("")}</div>`;
+const viewProgress = () => `<div id="prog">${viewProgressInner()}</div>`;
+function viewProgressInner() {
+  const tabs = `<div class="seg scroll sec" role="group">${[["overview", "Übersicht"], ["habits", "Gewohnheiten"], ["journal", "Journal"], ["triggers", "Auslöser"]].map(([k, l]) => `<button data-action="ptab" data-v="${k}" aria-pressed="${progTab === k}">${l}</button>`).join("")}</div>`;
   if (progTab === "habits") return tabs + progHabits();
   if (progTab === "triggers") return tabs + progTriggers();
+  if (progTab === "journal") return tabs + progJournal();
   const t = todayK(), gs = gStreak(), gb = gBest();
   let last30p = 0, last30d = 0;
   for (let i = 0; i < 30; i++) { const k = addDays(t, -i); habitsFor(k).forEach(h => { last30p++; if (isDone(h, k)) last30d++; }); }
@@ -1480,10 +1637,10 @@ function viewPet() {
   </section>
   <section class="card sec enter" style="--i:1" id="care">${careHtml()}</section>
   ${wheelCard(true)}
-  <div class="sec-h"><h2>Shop</h2><span class="chip coins">${I.coin}<span class="num">${state.coins}</span></span></div>
+  <div id="shop"><div class="sec-h"><h2>Shop</h2><span class="chip coins">${I.coin}<span class="num">${state.coins}</span></span></div>
   <div class="seg scroll" role="group" style="margin-bottom:12px">${[["outfit", "Outfits"], ["room", "Zimmer"], ["theme", "Themen"], ["power", "Items"], ["rewards", "Belohnungen"]].map(([k, l]) => `<button data-action="stab" data-v="${k}" aria-pressed="${shopTab === k}">${l}</button>`).join("")}</div>
   ${shopTab === "outfit" ? `<div class="card" style="margin-bottom:12px"><div class="swatches">${PET_COLORS.map(c => `<button class="sw" style="--c:${c}" data-action="petcolor" data-v="${c}" aria-pressed="${state.profile.petColor === c}" aria-label="Farbe ${c}"></button>`).join("")}</div><div style="text-align:center"><button class="link" data-action="rename">Namen ändern</button></div></div>` : ""}
-  ${shopHtml}`;
+  ${shopHtml}</div>`;
 }
 function rewardsHtml() {
   return `<div class="card"><p class="muted" style="margin:0 0 8px;font-weight:700">Gönn dir echte Belohnungen für deine Münzen, z. B. eine Serienfolge oder dein Lieblingsessen.</p>
@@ -1500,38 +1657,6 @@ function rewardsHtml() {
 }
 
 /* ============ View: Freunde ============ */
-const AV = ["#FF6B2C", "#1FBF8A", "#3B82F6", "#EC4899", "#8B5CF6", "#0EA5C4", "#F59E0B", "#EF4462"];
-function viewFriends() {
-  if (store.mode !== "cloud") return `<div class="card empty sec"><h2>Gemeinsam dranbleiben</h2><p>Die Wochen-Liga mit Freunden und das Anfeuern funktionieren, wenn du 21 Days angemeldet über claude.ai öffnest.</p></div>`;
-  if (!store.canShare) return `<div class="card empty sec"><h2>Gemeinsam dranbleiben</h2><p>Mit deiner Zugriffsstufe kannst du nicht in der Liga erscheinen. Bitte um die Stufe „Mitwirkende“.</p></div>`;
-  const t = todayK(), ws = weekStart(t);
-  const ps = (social.players || []).map(p => ({ ...p, wxp: p.weekStart === ws ? (p.weekXp || 0) : 0, dT: p.day === t ? (p.doneToday || 0) : 0, tot: p.totalToday || 0, stk: p.streak || 0 }));
-  if (state.profile.shareBoard && !ps.find(p => p.id === store.uid)) { const b = playerBody(); ps.push({ id: store.uid, ...b, wxp: b.weekXp, dT: b.doneToday, tot: b.totalToday, stk: b.streak }); }
-  ps.sort((a, b) => b.wxp - a.wxp || b.xp - a.xp);
-  const unknown = ps.map(p => p.id).concat(social.cheers.map(c => c.from)).filter(id => !social.requested.has(id));
-  if (unknown.length) resolveNames(unknown).then(() => { if (view === "freunde") render(); });
-  const nm = id => id === store.uid ? "Du" : (social.names[id] || "Mitglied");
-  const others = ps.filter(p => p.id !== store.uid);
-  const days = 7 - wIdx(t);
-  return `
-  <div class="card sec enter" style="--i:0;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,var(--gold-soft),var(--card))">
-    <span style="width:56px;height:56px;flex:none;color:var(--gold-dark)">${I.trophy.replace("<svg", '<svg width="56" height="56"')}</span>
-    <div><h2 style="font-size:20px">Wochen-Liga</h2><div class="muted" style="font-weight:700">Noch ${days} ${days === 1 ? "Tag" : "Tage"} · Sammle XP mit Häkchen und Quests</div></div>
-  </div>
-  ${social.error ? `<div class="banner">${esc(social.error)}</div>` : ""}
-  <div class="hlist sec">${social.players === null && !social.error ? `<div class="card muted">Liga wird geladen …</div>` : ps.map((p, i) => {
-    const can = p.id !== store.uid && state.cheered[p.id] !== t;
-    return `<div class="lb-row enter ${p.id === store.uid ? "me" : ""}" style="--i:${i + 1}"><span class="rank ${i === 0 ? "r1" : ""} num">${i + 1}</span>
-      <span class="avatar" style="--av:${p.petColor || AV[Math.floor(hash01(p.id) * AV.length)]}">${esc((nm(p.id) || "?").charAt(0).toUpperCase())}</span>
-      <div class="lb-name"><b>${esc(nm(p.id))}</b><span class="num">Lvl ${p.level || 1} · ${p.dT}/${p.tot} heute · Serie ${p.stk}</span></div>
-      <div class="lb-right"><div class="lb-xp num">${p.wxp}<small>XP</small></div>${p.id !== store.uid ? `<button class="btn sm ${can ? "gold" : "ghost"}" data-action="cheer" data-id="${esc(p.id)}" ${can ? "" : "disabled"} aria-label="${esc(nm(p.id))} anfeuern">${I.clap}</button>` : ""}</div></div>`;
-  }).join("")}</div>
-  ${!others.length && social.players !== null ? `<div class="card sec"><b>Noch allein in der Liga?</b><p class="muted" style="margin:4px 0 0;font-weight:600">Teile 21 Days in claude.ai mit Freunden (Zugriffsstufe „Mitwirkende“). Dann tretet ihr gegeneinander an und könnt euch anfeuern.</p></div>` : ""}
-  <p class="muted" style="font-size:13px;font-weight:600">Sichtbar sind nur Level, XP, Serie und Tagesfortschritt. Deine Gewohnheiten bleiben privat.</p>
-  <div class="sec-h"><h2>Angefeuert</h2></div>
-  <div class="card">${social.cheers.length ? social.cheers.slice(0, 8).map(c => `<div class="logrow"><span class="lb res">${I.clap.replace("<svg", '<svg width="18" height="18"')}</span><div><b>${esc(social.names[c.from] || "Jemand")}</b> hat dich angefeuert<div class="muted">${new Date(c.ts).toLocaleString("de-DE", { weekday: "short", hour: "2-digit", minute: "2-digit" })}</div></div></div>`).join("") : `<p class="muted" style="margin:0;font-weight:700">Noch keine Anfeuerungen. Feuer selbst jemanden an!</p>`}</div>`;
-}
-
 /* ============ View: Profil ============ */
 function viewProfile() {
   const L = levelOf(state.xp), b = lvlBase(L), n = lvlBase(L + 1), got = BADGES.filter(x => state.badges[x.id]).length;
@@ -1559,15 +1684,21 @@ function viewProfile() {
 
 /* ============ Sheets & modals ============ */
 function openSheet(html, opts = {}) {
-  if (!$("#modalRoot .back")) sfx("open"); // re-renders of an open sheet stay silent
-  $("#modalRoot").innerHTML = `<div class="back" data-back="${opts.locked ? "" : "1"}"><div class="sheet ${opts.full ? "full" : ""}" role="dialog" aria-modal="true">${opts.full ? "" : '<div class="sheet-grip"></div>'}${html}</div></div>`;
+  const inner = `${opts.full ? "" : '<div class="sheet-grip"></div>'}${html}`, cur = $("#modalRoot .back:not(.closing) > .sheet");
+  if (cur && cur.classList.contains("full") === !!opts.full) { // already open: swap the content, keep scroll, no slide-in again
+    const sc = opts.reset ? 0 : cur.scrollTop; cur.innerHTML = inner; cur.scrollTop = sc; cur.parentNode.dataset.back = opts.locked ? "" : "1";
+  } else {
+    sfx("open");
+    $("#modalRoot").innerHTML = `<div class="back" data-back="${opts.locked ? "" : "1"}"><div class="sheet ${opts.full ? "full" : ""}" role="dialog" aria-modal="true">${inner}</div></div>`;
+  }
   const f = $("#modalRoot [autofocus]"); if (f) f.focus();
 }
 function openModal(html) {
   $("#modalRoot").innerHTML = `<div class="back center" data-back="1"><div class="modal" role="dialog" aria-modal="true">${html}</div></div>`;
   const f = $("#modalRoot [autofocus]") || $("#modalRoot button"); if (f) f.focus();
 }
-const closeSheet = () => { $("#modalRoot").innerHTML = ""; stopBreath(); };
+// Fades out instead of vanishing; a new sheet opened in the meantime simply replaces it.
+const closeSheet = () => { const root = $("#modalRoot"), cur = root.firstElementChild; stopBreath(); if (!cur) return; cur.classList.add("closing"); setTimeout(() => { if (cur.parentNode === root) cur.remove(); }, reduced ? 0 : 220); };
 const sheetHead = (title) => `<div class="sheet-h"><h2>${esc(title)}</h2><button class="x" data-action="close" aria-label="Schließen">${I.x}</button></div>`;
 
 // Habit editor
@@ -1624,7 +1755,7 @@ function syncDraft() {
   $$("#hForm [data-f]").forEach(el => { const k = el.dataset.f; draft[k] = el.type === "number" ? Number(el.value) || 0 : el.value; });
   const rs = $$("#hForm [data-reason]"); if (rs.length) draft.reasons = rs.map(el => el.value.trim()).filter(Boolean);
 }
-function openEditor(d) { draft = d; openSheet(editorHTML(draft)); }
+function openEditor(d) { draft = d; openSheet(editorHTML(draft), { reset: true }); }
 function rerenderEditor() { syncDraft(); const sc = $(".sheet") ? $(".sheet").scrollTop : 0; openSheet(editorHTML(draft)); if ($(".sheet")) $(".sheet").scrollTop = sc; }
 function saveHabit() {
   syncDraft();
@@ -1657,6 +1788,7 @@ function openDetail(id) {
       ${h.cue || h.action ? `<div class="card sec"><b>Dein Plan</b><div class="muted" style="font-weight:700">Wenn ${esc(h.cue || "…")}, dann ${esc(h.action || "…")}.</div></div>` : ""}`}
     <div class="sec-h"><h2>Letzte 5 Wochen</h2><span class="muted">Phase ${doneCountAll(h) < 21 ? "1 · Start" : doneCountAll(h) < 66 ? "2 · Festigen" : "3 · Automatisch"}</span></div>
     <div class="card"><div class="mini-cal">${cal}</div><div class="muted num" style="margin-top:8px;font-weight:700;font-size:13px">${doneCountAll(h)} Tage geschafft · ${doneCountAll(h) < 21 ? `noch ${21 - doneCountAll(h)} bis zum Ende der Startphase` : doneCountAll(h) < 66 ? `noch ${66 - doneCountAll(h)} bis zur Automatik-Phase` : "läuft fast von selbst"}</div></div>
+    ${journalCard(h)}
     <div style="display:grid;gap:12px;margin-top:18px">
       ${brk ? `<button class="btn ice full" data-action="sos" data-id="${h.id}">SOS: Drang überstehen</button><button class="btn danger full" data-action="relapse" data-id="${h.id}">Rückfall eintragen</button>` : ""}
       <button class="btn ghost full" data-action="edit" data-id="${h.id}">${I.edit} Bearbeiten</button>
@@ -1899,6 +2031,62 @@ function buyItem(id, btn) {
   else state.inv.eq[it.slot] = owned && state.inv.eq[it.slot] === id ? null : id;
   evaluateBadges(); save(); render();
   const pet = $(".pet-stage .pet"); if (pet) pet.classList.add("jump");
+}
+
+/* ============ Tagebuch ============ */
+// Entries stay on the device: they are never part of what the group sees.
+const PROMPTS = ["Was hat heute geholfen?", "Was war schwierig?", "Worauf bin ich stolz?", "Was mache ich morgen anders?", "Wofür bin ich dankbar?"];
+let jdraft = null, jFilter = "";
+const jEntries = habitId => state.journal.filter(e => !habitId || e.habitId === habitId).sort((a, b) => b.ts - a.ts);
+const fmtJDay = k => k === todayK() ? "Heute" : k === addDays(todayK(), -1) ? "Gestern" : parseK(k).toLocaleDateString("de-DE", { weekday: "short", day: "numeric", month: "short" });
+const jRow = (e, showDay = true) => `<button class="jrow" data-action="j-open" data-id="${e.id}"><div class="jmeta muted">${showDay ? `<span>${fmtJDay(e.day)}</span>` : ""}${e.hname ? `<span class="pill">${esc(e.hname)}</span>` : ""}${e.mood ? `<span class="jmood" aria-label="Stimmung ${e.mood} von 5">${FACE(e.mood)}</span>` : ""}</div><div class="jtext">${esc(e.text)}</div></button>`;
+function journalCard(h) {
+  const es = jEntries(h.id), n = es.length;
+  return `<div class="sec-h"><h2>Tagebuch</h2><button class="link" data-action="j-new" data-id="${h.id}">+ Eintrag</button></div>
+    <div class="card">${n ? es.slice(0, 3).map(e => jRow(e)).join("") + (n > 3 ? `<button class="link" data-action="j-all" data-id="${h.id}">Alle ${n} Einträge</button>` : "") : `<p class="muted" style="margin:0;font-weight:700">Halte fest, was dir bei „${esc(h.name)}“ hilft oder schwerfällt. Nur für dich, auf diesem Gerät.</p>`}</div>`;
+}
+function progJournal() {
+  const all = jEntries(), es = jFilter ? all.filter(e => e.habitId === jFilter) : all, wk = all.filter(e => e.day >= weekStart(todayK())).length;
+  const chips = state.habits.length ? `<div class="tagbar" role="group" aria-label="Nach Gewohnheit filtern"><button class="opt" data-action="j-filter" data-v="" aria-pressed="${!jFilter}">Alle</button>${state.habits.map(h => `<button class="opt" data-action="j-filter" data-v="${h.id}" aria-pressed="${jFilter === h.id}">${esc(h.name)}</button>`).join("")}</div>` : "";
+  const groups = []; es.slice(0, 60).forEach(e => { let g = groups[groups.length - 1]; if (!g || g.day !== e.day) groups.push(g = { day: e.day, items: [] }); g.items.push(e); });
+  return `<div class="tiles sec"><div class="tile"><div class="tv num">${all.length}</div><span>Einträge</span></div><div class="tile"><div class="tv num">${wk}</div><span>diese Woche</span></div></div>
+    <button class="btn full" style="margin-top:12px" data-action="j-new" data-id="${jFilter}">${I.edit} Neuer Eintrag</button>
+    ${chips}
+    ${groups.length ? groups.map(g => `<div class="group-h">${fmtJDay(g.day)}</div><div class="card enter">${g.items.map(e => jRow(e, false)).join("")}</div>`).join("") : `<div class="card empty sec"><h2>Dein Tagebuch</h2><p>Schreib auf, was dir hilft und was schwerfällt. Das bleibt privat auf deinem Gerät.</p></div>`}`;
+}
+function journalHTML(d) {
+  return `${sheetHead(d.id ? "Eintrag" : "Neuer Eintrag")}
+  <form id="jForm" novalidate>
+    <div class="field"><span class="lbl">Zu welcher Gewohnheit?</span><div class="opts"><button type="button" class="opt" data-action="j-habit" data-v="" aria-pressed="${!d.habitId}">Allgemein</button>${state.habits.map(h => `<button type="button" class="opt" data-action="j-habit" data-v="${h.id}" aria-pressed="${d.habitId === h.id}">${esc(h.name)}</button>`).join("")}</div></div>
+    <div class="field"><span class="lbl">Wie geht's dir? (optional)</span><div class="moods">${[1, 2, 3, 4, 5].map(m => `<button type="button" class="mood" data-action="j-mood" data-v="${m}" aria-pressed="${d.mood === m}" aria-label="Stimmung ${m} von 5">${FACE(m)}</button>`).join("")}</div></div>
+    <div class="field"><label for="jText">Dein Eintrag</label><textarea id="jText" maxlength="1500" style="min-height:140px" placeholder="Schreib frei los …">${esc(d.text)}</textarea>
+      <div class="opts">${PROMPTS.map((p, i) => `<button type="button" class="opt" data-action="j-prompt" data-v="${i}">${esc(p)}</button>`).join("")}</div>
+      <small>Bleibt nur auf deinem Gerät und ist nie für die Gruppe sichtbar.</small></div>
+    <div class="err" id="jErr" role="alert"></div>
+    <button type="button" class="btn full" data-action="j-save" style="margin-top:12px">Speichern</button>
+    ${d.id ? `<button type="button" class="btn danger full" data-action="j-del" data-id="${d.id}" style="margin-top:12px">Eintrag löschen</button>` : ""}
+  </form>`;
+}
+const syncJ = () => { const el = $("#jText"); if (el) jdraft.text = el.value; };
+const openJournalSheet = () => openSheet(journalHTML(jdraft), { reset: true });
+const rerenderJ = () => openSheet(journalHTML(jdraft));
+function afterJournal() {
+  const back = jdraft.back && state.habits.some(h => h.id === jdraft.back) ? jdraft.back : "";
+  if (back) openDetail(back); else closeSheet();
+  render();
+}
+function saveJournal() {
+  syncJ(); const text = (jdraft.text || "").trim();
+  if (!text) { $("#jErr").textContent = "Schreib ein paar Worte auf."; $("#jText").focus(); return false; }
+  const h = state.habits.find(x => x.id === jdraft.habitId);
+  const e = { id: jdraft.id || uid(), day: jdraft.day || todayK(), ts: jdraft.ts || Date.now(), habitId: jdraft.habitId || null, hname: h ? h.name : (jdraft.hname || ""), text: text.slice(0, 1500), mood: jdraft.mood || 0 };
+  const i = state.journal.findIndex(x => x.id === e.id);
+  if (i >= 0) state.journal[i] = e; else state.journal.push(e);
+  const first = !day().journal;
+  if (first) { day().journal = true; addCoins(5); addXP(5); toast("Tagebuch: +5 Münzen · +5 XP", "gold"); sfx("bonus"); vibrate([20, 30, 40]); }
+  else toast("Eintrag gespeichert");
+  evaluateBadges(); save();
+  return true;
 }
 
 /* ============ Schwierigkeit, Tags, Aufgaben ============ */
@@ -2337,7 +2525,18 @@ document.addEventListener("click", e => {
     case "close-reward": closeSheet(); if (pendingLevel) setTimeout(showLevelUp, 200); break;
     case "claim": claimQuest(id, b); break;
     case "chest": openChest(b); break;
-    case "tag-filter": tagFilter = b.dataset.v; sfx("tap"); render(); break;
+    case "j-new": jdraft = { id: null, habitId: id || "", mood: 0, text: "", back: $("#modalRoot .sheet") ? id || "" : "" }; openJournalSheet(); break;
+    case "j-open": { const e = state.journal.find(q => q.id === id); if (e) { jdraft = Object.assign({}, e, { habitId: e.habitId || "", back: $("#modalRoot .sheet") ? e.habitId || "" : "" }); openJournalSheet(); } break; }
+    case "j-all": progTab = "journal"; jFilter = id; closeSheet(); if (location.hash.slice(1) === "fortschritt") { animateNext = true; render(); } else location.hash = "fortschritt"; break;
+    case "j-filter": jFilter = b.dataset.v; softRender("#prog"); break;
+    case "j-habit": syncJ(); jdraft.habitId = b.dataset.v; rerenderJ(); break;
+    case "j-mood": syncJ(); jdraft.mood = jdraft.mood === Number(b.dataset.v) ? 0 : Number(b.dataset.v); rerenderJ(); break;
+    case "j-prompt": { syncJ(); const p = PROMPTS[Number(b.dataset.v)]; jdraft.text += (jdraft.text && !jdraft.text.endsWith("\n") ? "\n" : "") + p + "\n"; rerenderJ(); const ta = $("#jText"); if (ta) { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); } break; }
+    case "j-save": if (saveJournal()) afterJournal(); break;
+    case "j-del":
+      if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Wirklich löschen?"; break; }
+      state.journal = state.journal.filter(q => q.id !== id); save(); toast("Eintrag gelöscht"); afterJournal(); break;
+    case "tag-filter": tagFilter = b.dataset.v; softRender("#tl"); break;
     case "f-diff": syncDraft(); draft.diff = Number(b.dataset.v); rerenderEditor(); break;
     case "f-tag": syncDraft(); draft.tag = b.dataset.v; rerenderEditor(); break;
     case "tag-add": addTag(b.dataset.for); break;
@@ -2387,8 +2586,8 @@ document.addEventListener("click", e => {
       addCoins(10); addXP(5); const r = b.getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 60); sfx("bonus");
       evaluateBadges(); save(); closeSheet(); render(); toast("Danke! Gute Nacht wünscht " + state.profile.petName + "."); break;
     }
-    case "ptab": progTab = b.dataset.v; animateNext = true; render(); break;
-    case "stab": shopTab = b.dataset.v; animateNext = true; render(); break;
+    case "ptab": progTab = b.dataset.v; softRender("#prog"); break;
+    case "stab": shopTab = b.dataset.v; softRender("#shop"); break;
     case "item": buyItem(id, b); break;
     case "theme-default": state.profile.theme = "sun"; save(); render(); break;
     case "petcolor": state.profile.petColor = b.dataset.v; sfx("chirp"); save(); render(); break;
@@ -2408,12 +2607,22 @@ document.addEventListener("click", e => {
       openModal(`<div class="reward-orb" style="--rc:var(--gold)"><b>${I.gift.replace("<svg", '<svg width="70" height="70" style="color:#fff"')}</b></div><h2>Gönn dir: ${esc(rw.name)}</h2><p class="muted" style="font-weight:700">Verdient! Du hast hart dafür gearbeitet.</p><button class="btn gold full" data-action="close" autofocus>Genießen</button>`);
       break;
     }
-    case "cheer": sendCheer(id, b); break;
+    case "g-create": openGroupForm("create"); break;
+    case "g-join": openGroupForm("join"); break;
+    case "g-do-create": submitGroup(false); break;
+    case "g-do-join": submitGroup(true); break;
+    case "g-invite": openInvite(); break;
+    case "g-share": shareInvite(); break;
+    case "g-copy": copyText(fmtCode(state.group.code), "Code kopiert"); break;
+    case "g-sort": grp.sort = b.dataset.v; softRender("#gboard"); break;
+    case "g-cheer": cheerPlayer(id, b); break;
+    case "g-leave":
+      if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Wirklich verlassen?"; break; }
+      leaveGroup(); break;
     case "shield-info": openModal(`<div style="width:90px;height:90px;margin:0 auto">${I.shield}</div><h2>Schutzschilde: ${state.freezes}/${MAX_SHIELDS}</h2><p class="muted" style="font-weight:700">Verpasst du einen Tag, rettet ein Schutzschild automatisch deine Serie. Neue Schilde gibt's im Shop und manchmal in Quest-Truhen.</p><button class="btn ice full" data-action="close-go-shop">Zum Shop</button>`); break;
     case "close-go-shop": closeSheet(); shopTab = "power"; location.hash = "begleiter"; break;
     case "set-haptics": state.profile.haptics = !state.profile.haptics; b.setAttribute("aria-checked", state.profile.haptics); save(); vibrate([30, 40, 30]); break;
     case "set-sound": state.profile.sound = !state.profile.sound; b.setAttribute("aria-checked", state.profile.sound); save(); sfx("tap"); break;
-    case "set-board": state.profile.shareBoard = !state.profile.shareBoard; b.setAttribute("aria-checked", state.profile.shareBoard); save(); break;
     case "onboard-again": openOnboarding(); break;
     case "install": if (installEvt) { installEvt.prompt(); installEvt.userChoice.finally(() => { installEvt = null; render(); }); } break;
     case "backup":
@@ -2471,18 +2680,6 @@ document.addEventListener("change", e => {
   fr.readAsText(e.target.files[0]);
 });
 
-async function sendCheer(id, btn) {
-  if (store.mode !== "cloud") return;
-  const t = todayK(); btn.disabled = true;
-  try {
-    await store.db.collection("cheers").add({ from: store.uid, to: id, ts: Date.now(), day: t });
-    state.cheered[id] = t; Object.keys(state.cheered).forEach(k => { if (state.cheered[k] !== t) delete state.cheered[k]; });
-    state.flags.cheered = true; addCoins(5); evaluateBadges(); save();
-    const r = btn.getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 40); sfx("chirp");
-    toast(`Du hast ${social.names[id] || "dein Gegenüber"} angefeuert! +5 Münzen`); render();
-  } catch (e) { btn.disabled = false; toast("Anfeuern hat nicht geklappt. Versuch es gleich noch einmal."); }
-}
-
 /* ============ Tickers ============ */
 function updateTickers() {
   const now = Date.now();
@@ -2502,7 +2699,7 @@ function checkQuitMilestones(silent) {
 }
 let lastDay = todayK();
 setInterval(() => {
-  if (todayK() !== lastDay) { lastDay = todayK(); const fr = applyFreezes(); if (fr) freezeNotice(fr); save(); render(); syncPlayer(); }
+  if (todayK() !== lastDay) { lastDay = todayK(); const fr = applyFreezes(); if (fr) freezeNotice(fr); save(); render(); syncGroup(); }
   if (state.profile.onboarded) checkQuitMilestones(false);
 }, 30000);
 function freezeNotice(fr) {
@@ -2511,8 +2708,8 @@ function freezeNotice(fr) {
 }
 
 /* ============ Routing & boot ============ */
-const VIEWS = ["heute", "fortschritt", "begleiter", "profil"];
-function route() { const h = location.hash.slice(1); view = VIEWS.includes(h) ? h : "heute"; animateNext = true; if (store.mode !== "loading") render(); window.scrollTo(0, 0); }
+const VIEWS = ["heute", "fortschritt", "begleiter", "gruppe", "profil"];
+function route() { if (location.hash.startsWith("#join=")) { handleJoinUrl(location.hash); return; } const h = location.hash.slice(1); view = VIEWS.includes(h) ? h : "heute"; animateNext = true; if (store.mode !== "loading") render(); window.scrollTo(0, 0); }
 addEventListener("hashchange", route);
 
 function afterLoad() {
@@ -2523,7 +2720,8 @@ function afterLoad() {
   if (!state.profile.onboarded) { openOnboarding(); return; }
   if (fr) freezeNotice(fr);
   checkQuitMilestones(false);
-  evaluateBadges(); save(); syncPlayer();
+  evaluateBadges(); save(); syncGroup();
+  if (location.hash.startsWith("#join=")) handleJoinUrl(location.hash);
 }
 function loadCached() {
   try { const v2 = localStorage.getItem(KEY); if (v2) return JSON.parse(v2); const v1 = localStorage.getItem(OLD_KEY); if (v1) return JSON.parse(v1); } catch (e) { /* ignore */ }
@@ -2547,7 +2745,15 @@ if (CapApp) CapApp.addListener("backButton", ({ canGoBack }) => {
   const layer = $("#modalRoot .back"); if (layer) { if (layer.dataset.back === "1") closeSheet(); return; }
   if (canGoBack) history.back(); else CapApp.exitApp();
 });
-document.addEventListener("visibilitychange", () => { if (!document.hidden && !$(".back") && !$(".overlay")) render(); });
+if (CapApp) { // invite links that open the app: days21://join/CODE
+  CapApp.addListener("appUrlOpen", e => handleJoinUrl(e.url));
+  CapApp.getLaunchUrl().then(r => { if (r && r.url) handleJoinUrl(r.url); }).catch(() => {});
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) return;
+  syncGroup(); if (view === "gruppe") loadBoard();
+  if (!$(".back") && !$(".overlay")) render();
+});
 const inApp = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
 if (!inApp && "serviceWorker" in navigator && location.protocol.startsWith("http")) addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
 init();

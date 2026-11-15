@@ -35,6 +35,24 @@ Die App ist dieselbe Weboberfläche in einer Hülle (Capacitor). Dazu kommt:
 
 Die Daten liegen in der App auf dem Gerät. Die App im Browser und die App auf dem Handy haben getrennte Daten. Übertragen geht über **Profil → Backup**.
 
+## Gruppen einrichten (Rangliste mit Freunden)
+
+Im Reiter **Gruppe** erstellst du eine Gruppe und lädst Freunde per QR-Code, Link oder Code ein. Alle sehen die XP der Woche und gesamt, Level, Serie und wie viele Gewohnheiten jeder heute geschafft hat. Sie sehen **nie** die Namen deiner Gewohnheiten, Rückfälle, SOS-Momente oder dein Tagebuch. Das ist technisch ausgeschlossen: Die App schickt diese Daten gar nicht erst los. Man kann sich außerdem gegenseitig anfeuern.
+
+Dafür braucht die App einen kleinen kostenlosen Server (Supabase). Das richtest du einmal ein:
+
+1. Auf https://supabase.com ein kostenloses Konto anlegen und ein neues Projekt erstellen.
+2. Im Projekt links **SQL Editor** → **New query**. Den kompletten Inhalt von `supabase/schema.sql` einfügen und auf **Run** klicken. Das legt die Tabellen an und sperrt sie: Die App darf nur sechs feste Funktionen aufrufen.
+3. Unter **Project Settings → API** zwei Werte kopieren: die **Project URL** und den Schlüssel **anon public**.
+4. Beide in `config.js` eintragen (`supabaseUrl` und `supabaseKey`), die Datei auf GitHub hochladen und den Workflow neu starten. Der anon-Schlüssel ist dafür gedacht, in Apps zu stehen.
+5. Alle Freunde installieren die App aus **demselben** Lauf, dann haben alle denselben Server.
+
+Gruppen haben höchstens 20 Mitglieder. Wer den Gruppen-Code kennt, kann beitreten, gib ihn also nur an Freunde weiter. Der Link `days21://join/CODE` öffnet die App direkt (in manchen Chat-Apps ist er nicht anklickbar, dann den Code eintippen). Im Browser geht auch `…/index.html#join=CODE`.
+
+## Tagebuch
+
+Zu jeder Gewohnheit gibt es in der Detailansicht ein Tagebuch, und unter **Fortschritt → Journal** siehst du alle Einträge mit Filter. Fragen-Vorschläge helfen beim Start, der erste Eintrag am Tag gibt 5 Münzen und 5 XP. Das Tagebuch bleibt auf dem Gerät und ist im Backup enthalten.
+
 ## Speicherung
 
 Alle Daten bleiben lokal im Browser auf deinem Gerät. Nichts wird an einen Server geschickt.
@@ -50,6 +68,7 @@ Alle Daten bleiben lokal im Browser auf deinem Gerät. Nichts wird an einen Serv
 | `start.bat` | Startet den lokalen Server per Doppelklick |
 | `server.ps1` | Server ohne Installation (wird von `start.bat` genutzt, wenn Python fehlt) |
 | `manifest.webmanifest`, `sw.js`, `icons/`, `fonts/` | Installierbare App, Offline-Modus, Schrift |
+| `config.js`, `supabase/schema.sql`, `vendor/` | Gruppen-Server (Zugangsdaten, Datenbank), QR-Code-Bibliothek |
 | `package.json`, `capacitor.config.json`, `scripts/`, `assets/`, `.github/workflows/mobile.yml` | Bau der Android- und iOS-App |
 
 ## Features

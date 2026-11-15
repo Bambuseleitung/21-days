@@ -35,8 +35,12 @@ jobs:
           npx @capacitor/assets generate --android
           npx cap sync android
 
-      - name: Hochformat festlegen
-        run: perl -0pi -e 's/<activity\b/<activity android:screenOrientation="portrait"/' android/app/src/main/AndroidManifest.xml
+      - name: Hochformat und Einladungs-Link (days21://) festlegen
+        run: |
+          M=android/app/src/main/AndroidManifest.xml
+          perl -0pi -e 's/<activity\b/<activity android:screenOrientation="portrait"/' "$M"
+          perl -0pi -e 's#</activity>#<intent-filter><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.DEFAULT"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="days21" android:host="join"/></intent-filter></activity>#' "$M"
+          grep -c 'days21' "$M"
 
       - name: APK bauen
         working-directory: android
@@ -75,12 +79,18 @@ jobs:
           npx @capacitor/assets generate --ios
           npx cap sync ios
 
-      - name: Hochformat auf dem iPhone festlegen
+      - name: Hochformat und Einladungs-Link (days21://) festlegen
         run: |
           P=ios/App/App/Info.plist
           /usr/libexec/PlistBuddy -c "Delete :UISupportedInterfaceOrientations" "$P"
           /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations array" "$P"
           /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations:0 string UIInterfaceOrientationPortrait" "$P"
+          /usr/libexec/PlistBuddy -c "Delete :CFBundleURLTypes" "$P" || true
+          /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes array" "$P"
+          /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0 dict" "$P"
+          /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0:CFBundleURLName string de.bambuseleitung.days21" "$P"
+          /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes array" "$P"
+          /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes:0 string days21" "$P"
 
       - name: Xcode wählen
         run: |
