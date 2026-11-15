@@ -1,5 +1,5 @@
 // 21 Days service worker: network first, offline fallback from cache.
-const CACHE = "21days-v12";
+const CACHE = "21days-v13";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon.svg", "./icons/icon-192.png", "./icons/icon-512.png", "./fonts/nunito-latin.woff2", "./fonts/nunito-latin-ext.woff2", "./config.js", "./vocab.js", "./vendor/qrcode.js"];
 
 self.addEventListener("install", e => {

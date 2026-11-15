@@ -35,9 +35,32 @@ Die App ist dieselbe Weboberfläche in einer Hülle (Capacitor). Dazu kommt:
 
 Die Daten liegen in der App auf dem Gerät. Die App im Browser und die App auf dem Handy haben getrennte Daten. Übertragen geht über **Profil → Backup**.
 
+## Training (Gym-Logger)
+
+Im Reiter **Training** protokollierst du deine Workouts. 95 Übungen sind schon dabei, sortiert nach Muskelgruppe, dazu fünf Routinen (Push, Pull, Beine, Ganzkörper, Zuhause). Eigene Übungen und Routinen kannst du anlegen.
+
+1. Routine antippen oder **Freies Training** starten und Übungen hinzufügen.
+2. Gewicht und Wiederholungen eintragen und den Satz abhaken. Beim nächsten Mal stehen deine letzten Werte schon da.
+3. Nach jedem Satz läuft der Pausen-Timer (90 Sekunden, mit −15 und +15 anpassbar).
+4. **Workout beenden**: Du siehst Dauer, Sätze, Rekorde und das bewegte Gewicht.
+
+Was dazukommt:
+- **Rekorde** werden beim Abhaken erkannt und gefeiert. Bei Gewichten zählt die geschätzte Maximalkraft, sonst Wiederholungen, Zeit oder Strecke.
+- **Coach**: Dein Begleiter schlägt die Routine vor, deren Muskeln am besten erholt sind, und gibt je Übung einen Tipp („Letztes Mal 60 kg × 8. Schaffst du heute 9?“).
+- **Erholung**: Unter Statistik steht für jede Muskelgruppe, ob sie bereit ist oder noch Pause braucht.
+- **Scheibenrechner** für Langhantel-Übungen (20-kg-Stange).
+- Ein Workout gibt XP und Münzen, schadet dem Wochen-Boss und hakt verknüpfte Gewohnheiten ab (z. B. „Sport“, Schalter „Mit Training verknüpfen“ beim Bearbeiten).
+- Der Bildschirm bleibt während des Workouts an, wenn das Gerät das unterstützt.
+
+## Erkenntnisse, Wochenrückblick und Zeitkapsel
+
+- **Erkenntnisse** (Fortschritt): 21 Days liest aus deinen Daten Muster, z. B. deinen stärksten Wochentag, wackelige Gewohnheiten und ob Training oder starke Tage deine Stimmung heben.
+- **Wochenrückblick**: Jede Woche erscheint auf „Heute“ ein Rückblick auf die Vorwoche mit Quote, XP, stärkster Gewohnheit und Training.
+- **Zeitkapsel** (Detailansicht einer Gewohnheit): Schreib einen Brief an dein Ich in 21 Tagen. Er bleibt versiegelt und lässt sich erst dann öffnen.
+
 ## Gruppen einrichten (Rangliste mit Freunden)
 
-Im Reiter **Gruppe** erstellst du eine Gruppe und lädst Freunde per QR-Code, Link oder Code ein. Alle sehen die XP der Woche und gesamt, Level, Serie und wie viele Gewohnheiten jeder heute geschafft hat. Sie sehen **nie** die Namen deiner Gewohnheiten, Rückfälle, SOS-Momente oder dein Tagebuch. Das ist technisch ausgeschlossen: Die App schickt diese Daten gar nicht erst los. Man kann sich außerdem gegenseitig anfeuern.
+Die Gruppe findest du unter **Profil → Gruppe**. Dort erstellst du eine Gruppe und lädst Freunde per QR-Code, Link oder Code ein. Alle sehen die XP der Woche und gesamt, Level, Serie und wie viele Gewohnheiten jeder heute geschafft hat. Sie sehen **nie** die Namen deiner Gewohnheiten, Rückfälle, SOS-Momente oder dein Tagebuch. Das ist technisch ausgeschlossen: Die App schickt diese Daten gar nicht erst los. Man kann sich außerdem gegenseitig anfeuern.
 
 Dafür braucht die App einen kleinen kostenlosen Server (Supabase). Das richtest du einmal ein:
 
@@ -66,8 +89,9 @@ Zu jeder Gewohnheit gibt es in der Detailansicht ein Tagebuch, und unter **Forts
 
 ## Speicherung
 
-Alle Daten bleiben lokal im Browser auf deinem Gerät. Nichts wird an einen Server geschickt.
+Alle Daten bleiben lokal auf deinem Gerät. Nur wenn du einer Gruppe beitrittst, schickt die App Name, Level, XP, Serie und den Tagesfortschritt an den Gruppen-Server.
 
+- In der Android- und iPhone-App gibt es keinen Datei-Download. Dort kopierst du das Backup (**Profil → Backup → Backup kopieren**) und fügst es auf dem anderen Gerät unter „Oder kopiertes Backup einfügen“ ein.
 - Jede Adresse hat ihren eigenen Speicher. Wenn du `index.html` direkt geöffnet hast, kommen deine Daten nicht automatisch nach `localhost:8021`. Übertragen kannst du sie mit **Profil → Backup**: dort herunterladen und an der neuen Adresse wiederherstellen.
 - Regelmäßig ein Backup herunterladen schützt vor Datenverlust, z. B. wenn du den Browserverlauf löschst.
 
@@ -92,4 +116,7 @@ Alle Daten bleiben lokal im Browser auf deinem Gerät. Nichts wird an einen Serv
 - Abgewöhnen mit sekundengenauem Zähler, gespartem Geld und gewonnener Zeit, Meilensteinen und SOS-Atemübung
 - Morgen-Versprechen und Abend-Rückblick mit Stimmungsverlauf
 - Statistiken: Serien-Kalender, Aktivität der letzten 20 Wochen, Wochenansicht, Auslöser-Analyse
-- 22 Abzeichen, Level-System, Konfetti, Sounds und Animationen
+- Gym-Logger mit 95 Übungen, Routinen, Rekorden, Pausen-Timer, Coach und Erholungsübersicht
+- Erkenntnisse aus den eigenen Daten, Wochenrückblick und Zeitkapsel
+- Ruhetage: Tage ohne geplante Gewohnheit brechen die Serie nicht und kosten kein Schutzschild
+- Abzeichen, Level-System, Konfetti, Sounds und Animationen

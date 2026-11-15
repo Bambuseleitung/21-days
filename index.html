@@ -630,6 +630,65 @@ mark{background:color-mix(in srgb,var(--p) 22%,transparent);color:inherit;border
 .banner{margin-top:10px;padding:10px 14px;border-radius:14px;background:var(--gold-soft);border:2px solid color-mix(in srgb,var(--gold) 45%,var(--line));font-weight:700;font-size:0.875rem}
 .loading{padding:80px 0;text-align:center;color:var(--muted);font-weight:800}
 
+/* Training, insights, time capsule */
+input[type=search],input[type=date]{width:100%;min-height:48px;padding:13px 14px;border-radius:14px;border:2px solid var(--line);background:var(--card);font-weight:700}
+.linkcard{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font-weight:700}
+.coach{display:flex;align-items:center;gap:12px;background:linear-gradient(160deg,var(--p-soft),var(--card) 70%)}
+.coach .petbox{flex:none;width:84px;height:84px}
+.coach p{margin:2px 0 10px;font-weight:700}
+.tpl small{font-weight:700}
+.gym-top{display:flex;align-items:center;gap:12px}
+.gym-top .petbox{flex:none;width:64px;height:64px}
+.gym-top input{padding:8px 12px;font-weight:900;font-size:1.0625rem}
+.gym-meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px;font-weight:800;font-size:.875rem;color:var(--muted)}
+.gx{padding:12px}
+.gx-h{display:flex;align-items:center;gap:8px}
+.gx-name{flex:1;min-width:0;min-height:44px;text-align:left;display:grid;align-content:center}
+.gx-name b{font-size:1.0625rem;line-height:1.2;overflow-wrap:anywhere;color:var(--p)}
+.gx-name small{font-weight:700;font-size:.8125rem}
+.gx-tip{display:flex;gap:8px;align-items:flex-start;margin-top:8px;padding:8px 10px;border-radius:12px;background:var(--gold-soft);font-size:.8125rem;font-weight:700}
+.gx-tip svg{flex:none;width:18px;height:18px;color:color-mix(in srgb,var(--gold-dark) 60%,var(--ink))}
+.gset{display:grid;grid-template-columns:34px 1fr 1fr 48px;gap:8px;align-items:center;margin-top:8px}
+.gset-h{font-size:.75rem;font-weight:900;color:var(--muted);text-align:center;margin-top:10px}
+.gset input{padding:10px 8px;text-align:center;font-weight:900;font-size:1.0625rem;min-height:48px}
+.gset.done input{background:var(--ok-soft);border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.gs-n{display:grid;place-items:center;font-weight:900;color:var(--muted)}
+.gs-n svg{width:20px;height:20px;color:color-mix(in srgb,var(--gold-dark) 70%,var(--ink))}
+.gs-ck{width:48px;height:48px;border-radius:14px;border:2px solid var(--line);border-bottom-width:4px;background:var(--card);display:grid;place-items:center;color:var(--muted);transition:background-color .15s ease,transform .1s}
+.gs-ck:active{transform:scale(.92)}
+.gs-ck svg{width:24px;height:24px}
+.gs-ck.on{background:var(--ok-dark);border-color:var(--ok-dark);color:#fff}
+.gx-f{display:flex;gap:18px;margin-top:4px}
+.restbar{position:fixed;z-index:38;left:50%;transform:translateX(-50%);bottom:calc(78px + var(--sab));width:min(448px,calc(100% - 24px));display:flex;align-items:center;gap:8px;padding:8px 10px 8px 16px;border-radius:18px;background:var(--card);border:2px solid var(--p);box-shadow:0 10px 30px rgba(0,0,0,.22)}
+.restbar[hidden]{display:none}
+.restbar b{font-size:1.5rem;font-weight:900;min-width:3.2ch}
+.restbar .muted{flex:1;font-weight:800;font-size:.875rem}
+.rest-pad{height:70px}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mtile{display:grid;gap:1px;padding:10px;border-radius:16px;background:var(--card);border:2px solid var(--line);font-size:.8125rem;font-weight:800}
+.mtile b{font-size:.9375rem;overflow-wrap:anywhere}
+.mtile span,.mtile small{color:var(--muted)}
+.mtile.ready{border-color:color-mix(in srgb,var(--ok) 55%,var(--line))}
+.mtile.ready span{color:color-mix(in srgb,var(--ok-dark) 75%,var(--ink))}
+.mtile.rest{border-color:color-mix(in srgb,var(--gold) 60%,var(--line))}
+.mtile.rest span{color:color-mix(in srgb,var(--gold-dark) 55%,var(--ink))}
+.setline{display:grid;grid-template-columns:24px 1fr auto;gap:8px;align-items:center;padding:8px 0;font-weight:800;border-bottom:2px solid var(--line)}
+.setline:last-child{border-bottom:0}
+.plates{display:flex;align-items:center;justify-content:center;gap:3px;height:110px;margin:10px 0}
+.plates i{display:block;width:14px;border-radius:4px;background:var(--pb)}
+.plates .barx{width:64px;height:10px;border-radius:3px;background:var(--muted)}
+.quick{display:flex;gap:10px;margin-top:12px}
+.qk{flex:1;min-width:0;min-height:68px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 6px;border-radius:18px;background:linear-gradient(135deg,var(--gold-soft),var(--p-soft));border:2px solid var(--gold);font-size:.8125rem}
+.qk svg{width:30px;height:30px;color:color-mix(in srgb,var(--gold-dark) 60%,var(--ink))}
+.qk b{font-weight:900;white-space:nowrap}
+.qk.shake svg{animation:shake .45s ease-in-out 3}
+.qk:active{transform:scale(.97)}
+.insight{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-weight:700;font-size:.9375rem}
+.insight svg{flex:none;width:20px;height:20px;color:var(--p);margin-top:2px}
+.capsule{text-align:center}
+.capsule .lock{width:52px;height:52px;margin:0 auto 6px;color:color-mix(in srgb,var(--gold-dark) 70%,var(--ink))}
+.capsule .lock svg{width:100%;height:100%}
+.captext{white-space:pre-wrap;text-align:left;font-weight:700;padding:12px;border-radius:14px;background:var(--gold-soft);overflow-wrap:anywhere}
 @media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important} }
 @media (max-width:370px){ .shop,.badges{grid-template-columns:repeat(2,1fr)} .hero .petbox{width:100px;height:100px} }
 </style>
@@ -646,6 +705,7 @@ mark{background:color-mix(in srgb,var(--p) 22%,transparent);color:inherit;border
 </div>
 <button class="fab" id="fab" data-action="new" aria-label="Neue Gewohnheit"></button>
 <nav class="nav" aria-label="Bereiche"><div class="nav-in" id="nav"></div></nav>
+<div class="restbar" id="restBar" hidden></div>
 <div id="modalRoot"></div>
 <div class="toasts" id="toasts" aria-live="polite"></div>
 
@@ -704,7 +764,9 @@ const I = {
   gear: sv('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>'),
   edit: sv('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/>'),
   leaf: sv('<path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15"/><path d="M5 19l8-8"/>'),
-  chev: sv('<path d="M9 5l7 7-7 7"/>')
+  chev: sv('<path d="M9 5l7 7-7 7"/>'),
+  dumbbell: sv('<path d="M6 7v10M18 7v10M3 9.5v5M21 9.5v5M6 12h12"/>'),
+  lock: sv('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>')
 };
 // Habit icons
 const HI = {
@@ -746,7 +808,7 @@ const TEMPLATES = {
     { name: "Vokabel-Pack", icon: "book", special: "vocab", time: "any", color: "#8B5CF6" },
     { name: "Wasser trinken", icon: "drop", target: 8, unit: "Gläser", time: "any", color: "#3B82F6" },
     { name: "Lesen", icon: "book", time: "evening", cue: "ich im Bett liege", action: "lese ich 10 Seiten", color: "#8B5CF6" },
-    { name: "Sport", icon: "dumbbell", time: "any", color: "#EF4462" },
+    { name: "Sport", icon: "dumbbell", special: "gym", time: "any", color: "#EF4462" },
     { name: "Meditieren", icon: "lotus", time: "morning", cue: "ich aufgestanden bin", action: "meditiere ich 5 Minuten", color: "#0EA5C4" },
     { name: "Früh aufstehen", icon: "sun", time: "morning", color: "#F59E0B" },
     { name: "Tagebuch schreiben", icon: "pen", time: "evening", color: "#EC4899" },
@@ -822,9 +884,10 @@ const KEY = "21days-state-v2", OLD_KEY = "21days-state-v1";
 const freshState = () => ({
   v: 2, profile: { petName: "Keimi", petColor: PET_COLORS[0], theme: "sun", sound: true, haptics: true, shareBoard: true, onboarded: false, since: todayK() },
   habits: [], triggers: [], xp: 0, coins: 0, xpLog: {}, freezes: 1, freezeUsed: {}, badges: {}, chests: {}, perfect: {},
-  flags: {}, days: {}, quests: {}, pledges: {}, inv: { owned: [], eq: {} }, rewards: [], redeemed: [], cheered: {}, lastCheerSeen: 0,
+  flags: { gymLink: true }, days: {}, quests: {}, pledges: {}, inv: { owned: [], eq: {} }, rewards: [], redeemed: [], cheered: {}, lastCheerSeen: 0,
   pet: { food: 0, hunger: 80, fun: 80, clean: 80, t: Date.now(), best: { catch: 0, pop: 0 } },
-  todos: [], tags: [], boss: null, journal: [], group: null, vocab: { got: {}, seen: [], today: null }
+  todos: [], tags: [], boss: null, journal: [], group: null, vocab: { got: {}, seen: [], today: null },
+  gym: { sessions: [], routines: [], custom: [], active: null, rest: 90 }
 });
 let state = freshState();
 const store = { mode: "loading", db: null, user: null, uid: null, readOnly: false, notice: "", canShare: false };
@@ -833,7 +896,7 @@ let view = "heute";
 function normHabit(h) {
   return Object.assign({ id: uid(), name: "Gewohnheit", kind: "build", icon: "star", color: COLORS[0], target: 1, unit: "", days: [0, 1, 2, 3, 4, 5, 6], time: "any",
     cue: "", action: "", replacement: "", reasons: [], money: 0, minutes: 0, quitStart: Date.now(), bestQuit: 0, relapses: [], quitHit: [],
-    start: todayK(), log: {}, xp: {}, milestones: [], diff: 2, tag: "", special: "" }, h);
+    start: todayK(), log: {}, xp: {}, milestones: [], diff: 2, tag: "", special: "", capsule: null, slip: "" }, h);
 }
 function migrate(raw) {
   const s = JSON.parse(JSON.stringify(raw || {}));
@@ -857,11 +920,16 @@ function migrate(raw) {
   st.pet = Object.assign(freshState().pet, s.pet || {});
   st.pet.best = Object.assign({ catch: 0, pop: 0 }, st.pet.best);
   st.vocab = Object.assign({ got: {}, seen: [], today: null }, s.vocab || {});
+  st.gym = Object.assign(freshState().gym, s.gym || {});
+  ["sessions", "routines", "custom"].forEach(k => { if (!Array.isArray(st.gym[k])) st.gym[k] = []; });
   if (!s.pet) st.pet.food = Math.min(300, Math.round((st.xp || 0) / 3)); // welcome gift for existing saves
   ["xpLog", "freezeUsed", "badges", "chests", "perfect", "flags", "days", "quests", "pledges", "cheered"].forEach(k => { if (!st[k] || typeof st[k] !== "object" || Array.isArray(st[k])) st[k] = {}; });
   ["triggers", "rewards", "redeemed", "todos", "tags", "journal"].forEach(k => { if (!Array.isArray(st[k])) st[k] = []; });
   st.todos = st.todos.map(t => Object.assign(newTodo(), t));
   st.habits = (s.habits || []).map(normHabit);
+  // once: habits with the dumbbell icon get linked to the workout logger; unlinking in the editor sticks
+  if (!st.flags.gymLink) { st.flags.gymLink = true; st.habits.forEach(h => { if (h.kind === "build" && !h.special && h.icon === "dumbbell") h.special = "gym"; }); }
+  st.flags.maxLvl = Math.max(st.flags.maxLvl || 0, levelOf(st.xp || 0));
   st.triggers = st.triggers.slice(-400);
   return st;
 }
@@ -905,33 +973,36 @@ function hBest(h) {
   return best;
 }
 const activeDay = k => state.habits.some(h => isDone(h, k));
+// Days without any planned habit are rest days: they neither break nor extend the streak and never cost a shield.
+const firstStart = () => state.habits.reduce((m, h) => h.start < m ? h.start : m, "9999-12-31");
+const restDay = k => !habitsFor(k).length;
 function gStreak() {
-  const t = todayK();
+  const t = todayK(), lo = firstStart();
   let d = activeDay(t) ? t : addDays(t, -1), c = 0, guard = 0;
-  while (guard++ < 2000) {
+  while (d >= lo && guard++ < 2000) {
     if (activeDay(d)) c++;
-    else if (!state.freezeUsed[d]) break;
+    else if (!state.freezeUsed[d] && !restDay(d)) break;
     d = addDays(d, -1);
-    if (d < addDays(t, -1500)) break;
   }
   return c;
 }
 function gBest() {
-  const keys = new Set(); state.habits.forEach(h => Object.keys(h.log).forEach(k => { if (isDone(h, k)) keys.add(k); }));
-  Object.keys(state.freezeUsed).forEach(k => keys.add(k));
-  const sorted = [...keys].sort(); let best = 0, cur = 0, prev = null;
-  sorted.forEach(k => { if (prev && addDays(prev, 1) === k) cur++; else cur = 1; if (!state.freezeUsed[k] || activeDay(k)) best = Math.max(best, cur); prev = k; });
-  return Math.max(best, gStreak());
+  const t = todayK(); let best = 0, cur = 0, guard = 0;
+  for (let d = firstStart(); d <= t && guard++ < 4000; d = addDays(d, 1)) {
+    if (activeDay(d)) best = Math.max(best, ++cur);
+    else if (d !== t && !state.freezeUsed[d] && !restDay(d)) cur = 0;
+  }
+  return best;
 }
 function applyFreezes() {
-  const t = todayK(), y = addDays(t, -1);
-  if (activeDay(y) || state.freezeUsed[y]) return null;
-  let d = addDays(y, -1), gap = [y], guard = 0;
-  while (!activeDay(d) && !state.freezeUsed[d] && guard++ < 60) { gap.push(d); d = addDays(d, -1); }
-  if (guard >= 60 || !state.habits.length) return null;
+  if (!state.habits.length) return null;
+  const t = todayK(), lo = firstStart();
+  let d = addDays(t, -1), gap = [], guard = 0;
+  while (d >= lo && !activeDay(d) && !state.freezeUsed[d] && guard++ < 60) { if (!restDay(d)) gap.push(d); d = addDays(d, -1); }
+  if (!gap.length || d < lo || guard >= 60) return null;
   // d is the last active/frozen day; did a streak exist?
   let prevStreak = 0, e = d, g2 = 0;
-  while ((activeDay(e) || state.freezeUsed[e]) && g2++ < 2000) { if (activeDay(e)) prevStreak++; e = addDays(e, -1); }
+  while (e >= lo && (activeDay(e) || state.freezeUsed[e] || restDay(e)) && g2++ < 2000) { if (activeDay(e)) prevStreak++; e = addDays(e, -1); }
   if (!prevStreak) return null;
   if (gap.length <= state.freezes) {
     gap.forEach(k => { state.freezeUsed[k] = true; }); state.freezes -= gap.length;
@@ -951,7 +1022,8 @@ function fmtSince(ms) {
 let pendingLevel = 0;
 function addXP(n, k = todayK()) {
   const b = levelOf(state.xp); state.xp = Math.max(0, state.xp + n); state.pet.food = Math.max(0, state.pet.food + n); bossHit(n); state.xpLog[k] = (state.xpLog[k] || 0) + n;
-  const a = levelOf(state.xp); if (a > b) { pendingLevel = a; state.coins += 50 * (a - b); }
+  const a = levelOf(state.xp), top = Math.max(state.flags.maxLvl || 0, b);
+  if (a > top) { pendingLevel = a; state.coins += 50 * (a - top); state.flags.maxLvl = a; } // coins only the first time a level is reached
 }
 const addCoins = n => { state.coins = Math.max(0, state.coins + n); };
 const weekXp = ws => { let s = 0; for (let i = 0; i < 7; i++) s += state.xpLog[addDays(ws, i)] || 0; return Math.max(0, s); };
@@ -964,8 +1036,8 @@ function tone(f, t, d, type = "triangle", vol = .17) {
   g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + d);
   o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + d + .03);
 }
-const SELF_SOUND = new Set(["tap", "todo-tap", "feed", "care-wash", "chest", "claim", "wheel-spin", "gift", "pet", "item", "redeem", "rv-save", "sos-win", "relapse", "go", "set-sound", "minus", "ck-toggle", "rv-mood", "game", "petcolor", "pk-flip", "pk-done"]);
-const SELF_HAPTIC = new Set(["tap", "todo-tap", "feed", "care-wash", "chest", "claim", "wheel-spin", "gift", "pet", "item", "redeem", "rv-save", "sos-win", "relapse", "game", "set-haptics", "pk-flip", "pk-done"]);
+const SELF_SOUND = new Set(["tap", "todo-tap", "feed", "care-wash", "chest", "claim", "wheel-spin", "gift", "pet", "item", "redeem", "rv-save", "sos-win", "relapse", "go", "set-sound", "minus", "ck-toggle", "rv-mood", "game", "petcolor", "pk-flip", "pk-done", "gy-set", "gy-finish", "gy-start", "gy-startex", "gy-again", "cap-save", "cap-open", "recap", "recap-view"]);
+const SELF_HAPTIC = new Set(["tap", "todo-tap", "feed", "care-wash", "chest", "claim", "wheel-spin", "gift", "pet", "item", "redeem", "rv-save", "sos-win", "relapse", "game", "set-haptics", "pk-flip", "pk-done", "gy-set", "gy-finish", "gy-start", "gy-startex", "gy-again", "cap-save", "cap-open", "recap", "recap-view"]);
 const SFX = {
   check: [[784, 0, .14], [1175, .08, .3]], tick: [[880, 0, .07]], bonus: [[784, 0, .12], [988, .07, .12], [1175, .14, .12], [1568, .21, .45]],
   level: [[523, 0, .18], [659, .13, .18], [784, .26, .18], [1047, .39, .6], [1319, .39, .6]], undo: [[440, 0, .1], [330, .07, .16]],
@@ -1110,6 +1182,13 @@ const BADGES = [
   { id: "voc150", n: "Wortgewandt", d: "150 Vokabeln entdeckt", r: "epic", ic: "star", t: () => Object.keys(state.vocab.got).length >= 150 },
   { id: "voc500", n: "Sprachmeister", d: "500 Vokabeln entdeckt", r: "legend", ic: "trophy", t: () => Object.keys(state.vocab.got).length >= 500 },
   { id: "vleg", n: "Glückskarte", d: "Eine legendäre Vokabel gezogen", r: "rare", ic: "star", t: () => !!state.flags.vleg },
+  { id: "gym1", n: "Erstes Training", d: "Erstes Workout beendet", r: "common", ic: "dumbbell", t: () => (state.flags.workouts || 0) >= 1 },
+  { id: "gym10", n: "Stammgast", d: "10 Workouts beendet", r: "rare", ic: "dumbbell", t: () => (state.flags.workouts || 0) >= 10 },
+  { id: "gym50", n: "Eisenfresser", d: "50 Workouts beendet", r: "epic", ic: "dumbbell", t: () => (state.flags.workouts || 0) >= 50 },
+  { id: "gympr", n: "Rekordbrecher", d: "5 Trainingsrekorde gebrochen", r: "rare", ic: "trophy", t: () => (state.flags.gymPrs || 0) >= 5 },
+  { id: "gymvol", n: "Tonnen-Stemmer", d: "10.000 kg insgesamt bewegt", r: "rare", ic: "dumbbell", t: () => (state.flags.gymVol || 0) >= 10000 },
+  { id: "gymvol2", n: "Schwergewicht", d: "100.000 kg insgesamt bewegt", r: "legend", ic: "dumbbell", t: () => (state.flags.gymVol || 0) >= 100000 },
+  { id: "capsule", n: "Post aus der Vergangenheit", d: "Eine Zeitkapsel geöffnet", r: "rare", ic: "lock", t: () => state.habits.some(h => h.capsule && h.capsule.opened) },
   { id: "team", n: "Teamplayer", d: "Einer Gruppe beigetreten", r: "common", ic: "users", t: () => !!state.flags.grouped },
   { id: "cheer1", n: "Anfeuerer", d: "Einen Freund angefeuert", r: "common", ic: "clap", t: () => (state.flags.cheered || 0) >= 1 },
   { id: "jr1", n: "Erste Zeilen", d: "Ersten Tagebuch-Eintrag geschrieben", r: "common", ic: "edit", t: () => state.journal.length >= 1 },
@@ -1152,12 +1231,14 @@ const QUESTS = {
   two: { n: () => `Erledige ${Math.min(2, schedToday())} Gewohnheiten`, goal: () => Math.min(2, schedToday()), prog: k => doneToday(k), c: 10, ic: "check", ok: () => schedToday() >= 2 },
   one: { n: () => "Erledige eine Gewohnheit", goal: () => 1, prog: k => doneToday(k), c: 10, ic: "check", ok: () => schedToday() === 1 },
   perfect: { n: () => "Schaffe einen perfekten Tag", goal: () => 1, prog: k => state.perfect[k] ? 1 : 0, c: 20, ic: "star", ok: () => schedToday() >= 1 },
-  early: { n: () => "Hake etwas vor 12 Uhr ab", goal: () => 1, prog: k => day(k).early ? 1 : 0, c: 15, ic: "sun", ok: () => schedToday() >= 1 },
-  pledge: { n: () => "Gib dein Morgen-Versprechen", goal: () => 1, prog: k => state.pledges[k] && state.pledges[k].am ? 1 : 0, c: 10, ic: "hand", ok: () => true },
+  early: { n: () => "Hake etwas vor 12 Uhr ab", goal: () => 1, prog: k => day(k).early ? 1 : 0, c: 15, ic: "sun", ok: () => schedToday() >= 1 && (new Date().getHours() < 11 || day().early) },
+  pledge: { n: () => "Gib dein Morgen-Versprechen", goal: () => 1, prog: k => state.pledges[k] && state.pledges[k].am ? 1 : 0, c: 10, ic: "hand", ok: () => new Date().getHours() < 16 || !!(state.pledges[todayK()] || {}).am },
   review: { n: () => "Mach den Abend-Rückblick", goal: () => 1, prog: k => state.pledges[k] && state.pledges[k].pm ? 1 : 0, c: 10, ic: "moon", ok: () => true },
   combo: { n: () => "Erreiche Combo ×3", goal: () => 3, prog: k => day(k).maxCombo, c: 15, ic: "bolt", ok: () => schedToday() >= 3 },
   sos: { n: () => "Überstehe einen Drang", goal: () => 1, prog: k => day(k).resisted, c: 20, ic: "shield", ok: () => state.habits.some(h => h.kind === "break") },
-  pet: { n: () => `Streichle ${state.profile.petName} 3-mal`, goal: () => 3, prog: k => day(k).petted, c: 5, ic: "heart", ok: () => true }
+  pet: { n: () => `Streichle ${state.profile.petName} 3-mal`, goal: () => 3, prog: k => day(k).petted, c: 5, ic: "heart", ok: () => true },
+  journal: { n: () => "Schreib einen Tagebuch-Eintrag", goal: () => 1, prog: k => day(k).journal ? 1 : 0, c: 10, ic: "edit", ok: () => true },
+  gym: { n: () => "Beende ein Workout", goal: () => 1, prog: k => day(k).workouts ? 1 : 0, c: 20, ic: "dumbbell", ok: () => (state.flags.workouts || 0) >= 1 }
 };
 function questsFor(k = todayK()) {
   let q = state.quests[k];
@@ -1289,7 +1370,7 @@ function logChange() {
   }
   snap = now;
 }
-const ACT_LABEL = { tap: "Gewohnheit abgehakt", minus: "Zähler verringert", "save-habit": "Gewohnheit gespeichert", "del-habit": "Gewohnheit gelöscht", claim: "Quest eingelöst", chest: "Truhe geöffnet", "wheel-spin": "Glücksrad gedreht", item: "Shop-Kauf oder Outfit", petcolor: "Farbe geändert", "rename-save": "Name geändert", redeem: "Belohnung eingelöst", "rv-save": "Abend-Rückblick", pledge: "Morgen-Versprechen", relapse: "Rückfall", "sos-win": "Drang besiegt", "set-sound": "Sound umgeschaltet", restore: "Backup wiederhergestellt", "pk-done": "Vokabel-Pack abgeschlossen", "g-do-create": "Gruppe erstellt", "g-do-join": "Gruppe beigetreten", "g-cheer": "Freund angefeuert", "g-leave": "Gruppe verlassen", "j-save": "Tagebuch-Eintrag", "j-del": "Tagebuch-Eintrag gelöscht", "todo-tap": "Aufgabe abgehakt", "todo-save": "Aufgabe gespeichert", "ck-toggle": "Checklistenpunkt", "tag-add": "Tag angelegt", "tag-del": "Tag gelöscht", feed: "Begleiter gefüttert", "care-wash": "Begleiter gewaschen", game: "Minispiel gestartet", "game-end": "Minispiel beendet", gift: "Tagesgeschenk geöffnet", pet: "Begleiter gestreichelt", system: "Automatisch" };
+const ACT_LABEL = { tap: "Gewohnheit abgehakt", minus: "Zähler verringert", "save-habit": "Gewohnheit gespeichert", "del-habit": "Gewohnheit gelöscht", claim: "Quest eingelöst", chest: "Truhe geöffnet", "wheel-spin": "Glücksrad gedreht", item: "Shop-Kauf oder Outfit", petcolor: "Farbe geändert", "rename-save": "Name geändert", redeem: "Belohnung eingelöst", "rv-save": "Abend-Rückblick", pledge: "Morgen-Versprechen", relapse: "Rückfall", "sos-win": "Drang besiegt", "set-sound": "Sound umgeschaltet", restore: "Backup wiederhergestellt", "pk-done": "Vokabel-Pack abgeschlossen", "gy-start": "Workout gestartet", "gy-set": "Satz abgehakt", "gy-finish": "Workout beendet", "gy-cancel": "Workout verworfen", "gy-del-sess": "Workout gelöscht", "gy-save-routine": "Routine gespeichert", "cap-save": "Zeitkapsel versiegelt", "cap-open": "Zeitkapsel geöffnet", recap: "Wochenrückblick", "g-do-create": "Gruppe erstellt", "g-do-join": "Gruppe beigetreten", "g-cheer": "Freund angefeuert", "g-leave": "Gruppe verlassen", "j-save": "Tagebuch-Eintrag", "j-del": "Tagebuch-Eintrag gelöscht", "todo-tap": "Aufgabe abgehakt", "todo-save": "Aufgabe gespeichert", "ck-toggle": "Checklistenpunkt", "tag-add": "Tag angelegt", "tag-del": "Tag gelöscht", feed: "Begleiter gefüttert", "care-wash": "Begleiter gewaschen", game: "Minispiel gestartet", "game-end": "Minispiel beendet", gift: "Tagesgeschenk geöffnet", pet: "Begleiter gestreichelt", system: "Automatisch" };
 async function openLog() {
   openSheet(`${sheetHead("Aktionsprotokoll")}<div id="logBody" class="muted" style="font-weight:700">Lädt …</div>`);
   const all = await logAll(), el = $("#logBody"); if (!el) return;
@@ -1301,6 +1382,7 @@ async function openLog() {
 async function exportLog() {
   const entries = await logAll();
   const body = { app: "21days", exported: new Date().toISOString(), device: { id: deviceId, platform: navigator.platform, language: navigator.language, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }, entries };
+  if (inApp) { await copyText(JSON.stringify(body), "Protokoll kopiert"); return entries.length; } // the app's web view cannot download files
   const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([JSON.stringify(body, null, 1)], { type: "application/json" }));
   a.download = `21days-protokoll-${deviceId.slice(0, 6)}-${todayK()}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   return entries.length;
@@ -1312,7 +1394,7 @@ function save() {
   if (state.profile.infinite) state.coins = Math.max(state.coins, 999999);
   try { logChange(); } catch (e) { /* the log must never block saving */ }
   try { syncGroup(); } catch (e) { /* group sync must never block saving */ }
-  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { if (!save.warned) { save.warned = true; toast("Speichern nicht möglich: Der Speicher ist voll oder gesperrt. Sichere deine Daten über Profil → Backup."); } }
 }
 /* ============ Gruppe ============ */
 // Backend: Supabase, see supabase/schema.sql. The app only calls six functions and never sends habit names or journal text:
@@ -1364,7 +1446,7 @@ async function loadBoard() {
 }
 setInterval(() => { if (view === "gruppe" && !document.hidden && state.group && !$(".back")) loadBoard(); }, 30000);
 
-const viewGruppe = () => `<div id="gboard">${groupInner()}</div>`;
+const viewGruppe = () => `<button class="link" data-action="go" data-view="profil">‹ Profil</button><div id="gboard">${groupInner()}</div>`;
 function groupInner() {
   if (!groupReady()) return `<div class="card empty sec enter"><h2>Gruppen sind noch nicht eingerichtet</h2><p>Hier duellierst du dich mit Freunden. Dafür braucht die App einen kostenlosen Gruppen-Server. Die Schritte stehen in der README unter „Gruppen einrichten“.</p></div>`;
   if (!state.group) {
@@ -1490,8 +1572,8 @@ function renderTopbar() {
   shownXp = state.xp;
 }
 function renderNav() {
-  const tabs = [["heute", "Heute", I.home], ["fortschritt", "Fortschritt", I.chart], ["begleiter", state.profile.petName.slice(0, 10), I.paw], ["gruppe", "Gruppe", I.trophy], ["profil", "Profil", I.user]];
-  $("#nav").innerHTML = tabs.map(([id, l, ic]) => { const need = id === "begleiter" && petNeedy(); return `<button data-action="go" data-view="${id}" ${need ? `class="dot" aria-label="${esc(l)}, braucht Pflege"` : ""} ${view === id ? 'aria-current="page"' : ""}>${ic}<span>${esc(l)}</span></button>`; }).join("");
+  const tabs = [["heute", "Heute", I.home], ["training", "Training", I.dumbbell], ["fortschritt", "Fortschritt", I.chart], ["begleiter", state.profile.petName.slice(0, 10), I.paw], ["profil", "Profil", I.user]];
+  $("#nav").innerHTML = tabs.map(([id, l, ic]) => { const need = id === "begleiter" && petNeedy(); return `<button data-action="go" data-view="${id}" ${need ? `class="dot" aria-label="${esc(l)}, braucht Pflege"` : ""} ${view === id || (id === "profil" && view === "gruppe") ? 'aria-current="page"' : ""}>${ic}<span>${esc(l)}</span></button>`; }).join("");
   $("#fab").innerHTML = I.plus;
   $("#fab").style.display = view === "heute" && state.profile.onboarded ? "" : "none";
 }
@@ -1503,7 +1585,7 @@ function renderBanner() {
 }
 let animateNext = true;
 // Re-renders one container of the current page (shop tabs, progress tabs, tag filter) without replaying the whole page.
-const viewHTML = () => view === "fortschritt" ? viewProgress() : view === "begleiter" ? viewPet() : view === "gruppe" ? viewGruppe() : view === "profil" ? viewProfile() : viewToday();
+const viewHTML = () => view === "training" ? viewGym() : view === "fortschritt" ? viewProgress() : view === "begleiter" ? viewPet() : view === "gruppe" ? viewGruppe() : view === "profil" ? viewProfile() : viewToday();
 function softRender(sel) {
   const cur = $(sel); if (!cur) { render(); return; }
   const tmp = document.createElement("div");
@@ -1520,6 +1602,9 @@ function render() {
   updateTickers();
   if (pendingBoss) setTimeout(showBossWin, 900);
   if (view === "gruppe" && state.group && Date.now() - grp.last > 8000) loadBoard();
+  wake(view === "training" && !!state.gym.active); restDraw();
+  // a level-up from a quiet source (badge, pet, workout) still gets its moment
+  if (pendingLevel) setTimeout(() => { if (pendingLevel && !overlayOpen && !$("#modalRoot .back") && !pk) showLevelUp(); }, 1500);
 }
 
 /* ============ View: Heute ============ */
@@ -1542,7 +1627,7 @@ function pledgeCard() {
 function questCard() {
   if (!state.habits.length) return "";
   const t = todayK(), qs = questsFor(t), allClaimed = qs.every(q => q.claimed), opened = state.chests[t];
-  return `<div class="sec-h"><h2>Tages-Quests</h2><span class="muted">${qs.filter(q => q.claimed).length}/3</span></div>
+  return `<div class="sec-h"><h2>Tages-Quests</h2><span class="muted">${qs.filter(q => q.claimed).length}/${qs.length}</span></div>
   <div class="card enter" style="--i:2">
     ${qs.map(q => `<div class="quest ${q.claimed ? "claimed" : ""}"><div class="qi">${q.claimed ? I.check : I[q.ic]}</div>
       <div><b>${esc(q.n)}</b><div class="qbar"><i style="width:${q.p / q.goal * 100}%"></i></div></div>
@@ -1563,7 +1648,7 @@ function habitCard(h, i, off) {
   } else {
     meta = `<span class="fl ${st.c ? "" : "zero"}">${I.flame}${st.c}</span>${h.target > 1 ? `<span class="num">${c}/${h.target} ${esc(h.unit)}</span>` : ""}${h.cue && h.action ? `<span>Wenn ${esc(h.cue)}</span>` : ""}`;
   }
-  meta += itemBadges(h) + vocabBadge(h);
+  meta += itemBadges(h) + vocabBadge(h) + gymBadge(h) + capBadge(h);
   const inner = h.special === "vocab" && !done ? I.gift : done ? I.check : h.target > 1 ? `<span class="cnt num">${c}/${h.target}</span>` : I.check;
   return `<article class="hcard enter ${done ? "done" : ""}" style="--hc:${esc(h.color)};--i:${i + 3}" data-card="${h.id}" data-action="detail" data-id="${h.id}">
     <div class="hicon">${HI[h.icon] || I.star}</div>
@@ -1598,16 +1683,17 @@ function viewToday() {
     </div>
   </section>
   ${weekStrip()}
+  ${gymLiveCard()}
+  ${quickRow()}
   ${pledgeCard()}
-  ${giftCard()}
-  ${wheelCard(false)}
-  ${questCard()}
-  ${bossCard()}
   <div id="tl">
   ${tagBar()}
   ${state.habits.length ? `<div class="sec-h"><h2>Gewohnheiten</h2><span class="muted">${esc(fmtLong(t))}</span></div>` : ""}
-  ${list}
-  ${state.profile.onboarded ? todosSection() : ""}</div>`;
+  ${list}</div>
+  ${questCard()}
+  ${bossCard()}
+  <div id="tl2">${state.profile.onboarded ? todosSection() : ""}</div>
+  ${groupCard()}`;
 }
 
 /* ============ View: Fortschritt ============ */
@@ -1646,6 +1732,7 @@ function viewProgressInner() {
     <div class="tile enter" style="--i:2"><div class="tv num">${rate}%</div><span>erledigt (30 Tage)</span></div>
     <div class="tile enter" style="--i:3"><div class="tv num">${totalChecks()}</div><span>Häkchen gesamt</span></div>
   </div>
+  ${insightCard()}
   <div class="sec-h"><h2>${now.toLocaleDateString("de-DE", { month: "long", year: "numeric" })}</h2><span class="muted">Serien-Kalender</span></div>
   <div class="card enter" style="--i:4"><div class="cal">${cal}</div></div>
   <div class="sec-h"><h2>Diese Woche</h2>${best && best.p ? `<span class="muted">Bester Tag: ${WD[days.indexOf(best)]}</span>` : ""}</div>
@@ -1737,6 +1824,7 @@ function viewProfile() {
   <section class="card sec enter" style="--i:0"><div class="profile-head"><div class="petbox">${petSVG({ size: 90, mood: petMood() })}</div>
     <div style="flex:1;min-width:0"><h2 style="font-size:22px">${esc(titleOf(L))}</h2><div class="muted" style="font-weight:800">Level ${L} · dabei seit ${parseK(state.profile.since).toLocaleDateString("de-DE", { month: "short", year: "numeric" })}</div>
     <div class="xpbar"><i style="width:${(state.xp - b) / (n - b) * 100}%"></i></div><div class="muted num" style="font-size:13px;font-weight:800;margin-top:4px">${state.xp - b} / ${n - b} XP bis Level ${L + 1}</div></div></div></section>
+  ${groupCard(true)}
   <div class="sec-h"><h2>Abzeichen</h2><span class="muted num">${got}/${BADGES.length}</span></div>
   <div class="badges">${BADGES.map((x, i) => { const R = RAR[x.r], ok = state.badges[x.id]; return `<div class="bcard enter ${ok ? "" : "locked"}" style="--i:${i + 1}"><span class="bdg" style="--rc:${R.c}">${I[x.ic]}</span><span class="rarity" style="--rc:${R.c}">${R.n}</span><b>${esc(x.n)}</b><small>${esc(x.d)}</small></div>`; }).join("")}</div>
   <div class="sec-h"><h2>Meine Gewohnheiten</h2><button class="link" data-action="new">+ Neu</button></div>
@@ -1815,6 +1903,7 @@ function editorHTML(d) {
       <div class="row2"><div class="field"><label for="fTarget">Ziel pro Tag</label><input type="number" id="fTarget" data-f="target" min="1" max="50" value="${d.target}"></div>
       <div class="field"><label for="fUnit">Einheit</label><input type="text" id="fUnit" data-f="unit" maxlength="16" value="${esc(d.unit)}" placeholder="z. B. Gläser"></div></div>
       <div class="field"><span class="lbl">Wenn-Dann-Plan</span><div class="row2"><input type="text" data-f="cue" maxlength="80" value="${esc(d.cue)}" placeholder="Wenn … (Auslöser)" aria-label="Wenn"><input type="text" data-f="action" maxlength="80" value="${esc(d.action)}" placeholder="dann … (Handlung)" aria-label="Dann"></div><small>Ein fester Anker macht es leichter, die Gewohnheit nicht zu vergessen.</small></div>
+      ${d.special === "vocab" ? "" : `<div class="setrow" style="border:0;padding-bottom:0"><div><b>Mit Training verknüpfen</b><small>Wird abgehakt, sobald du ein Workout beendest</small></div><button type="button" class="switch" role="switch" aria-checked="${d.special === "gym"}" aria-label="Mit Training verknüpfen" data-action="f-gym"></button></div>`}
     `}
     <div class="field"><span class="lbl">Tage</span><div class="daypick">${WD.map((w, i) => `<button type="button" data-action="f-day" data-v="${i}" aria-pressed="${d.days.includes(i)}">${w}</button>`).join("")}</div></div>
     <div class="field"><span class="lbl">Tageszeit</span><div class="opts">${TIME_ORDER.map(k => `<button type="button" class="opt" data-action="f-time" data-v="${k}" aria-pressed="${d.time === k}">${TIMES[k].n}</button>`).join("")}</div></div>
@@ -1846,6 +1935,7 @@ function saveHabit() {
 function openDetail(id) {
   const h = state.habits.find(x => x.id === id); if (!h) return;
   const t = todayK(), st = hStreak(h), best = hBest(h);
+  sosDraft = { strength: 3, tags: [] };
   let cal = ""; const s0 = addDays(weekStart(t), -4 * 7);
   for (let i = 0; i < 35; i++) { const k = addDays(s0, i); cal += `<i class="${isDone(h, k) ? "on" : ""} ${!sched(h, k) || k > t ? "na" : ""} ${k === t ? "today" : ""}" title="${k}"></i>`; }
   const brk = h.kind === "break";
@@ -1863,7 +1953,9 @@ function openDetail(id) {
     <div class="sec-h"><h2>Letzte 5 Wochen</h2><span class="muted">Phase ${doneCountAll(h) < 21 ? "1 · Start" : doneCountAll(h) < 66 ? "2 · Festigen" : "3 · Automatisch"}</span></div>
     <div class="card"><div class="mini-cal">${cal}</div><div class="muted num" style="margin-top:8px;font-weight:700;font-size:13px">${doneCountAll(h)} Tage geschafft · ${doneCountAll(h) < 21 ? `noch ${21 - doneCountAll(h)} bis zum Ende der Startphase` : doneCountAll(h) < 66 ? `noch ${66 - doneCountAll(h)} bis zur Automatik-Phase` : "läuft fast von selbst"}</div></div>
     ${vocabCard(h)}
+    ${gymLinkCard(h)}
     ${journalCard(h)}
+    ${capsuleCard(h)}
     <div style="display:grid;gap:12px;margin-top:18px">
       ${brk ? `<button class="btn ice full" data-action="sos" data-id="${h.id}">SOS: Drang überstehen</button><button class="btn danger full" data-action="relapse" data-id="${h.id}">Rückfall eintragen</button>` : ""}
       <button class="btn ghost full" data-action="edit" data-id="${h.id}">${I.edit} Bearbeiten</button>
@@ -1900,7 +1992,7 @@ function openSOS(id) {
 }
 function sosWin(id, btn) {
   state.triggers.push({ id: uid(), habitId: id, ts: Date.now(), strength: sosDraft.strength, tags: sosDraft.tags.slice(), outcome: "resisted" });
-  day().resisted++;
+  day().resisted++; sosDraft = { strength: 3, tags: [] };
   addXP(10); addCoins(15);
   const r = btn.getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 90, 1.2); flyCoins(r.left + r.width / 2, r.top, 8);
   praise(r.left + r.width / 2, r.top - 20, "Widerstanden!"); sfx("bonus"); vibrate([25, 30, 45]);
@@ -1911,7 +2003,11 @@ function relapse(id) {
   const h = state.habits.find(x => x.id === id); if (!h) return;
   const el = Date.now() - h.quitStart;
   h.bestQuit = Math.max(h.bestQuit || 0, el); h.relapses.push(Date.now()); h.quitStart = Date.now(); h.quitHit = [];
-  state.triggers.push({ id: uid(), habitId: id, ts: Date.now(), strength: sosDraft.strength || 3, tags: (sosDraft.tags || []).slice(), outcome: "gave" });
+  const sd = sosDraft.id === id ? sosDraft : { strength: 3, tags: [] }, t = todayK(); // strength and tags only from an SOS for this habit
+  state.triggers.push({ id: uid(), habitId: id, ts: Date.now(), strength: sd.strength || 3, tags: (sd.tags || []).slice(), outcome: "gave" });
+  sosDraft = { strength: 3, tags: [] };
+  if (h.log[t]) { const x = h.xp[t] || 0; delete h.log[t]; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); } // a relapse day is not a done day
+  h.slip = t;
   save(); closeSheet(); render();
   openModal(`<div style="width:110px;height:110px;margin:0 auto">${petSVG({ size: 110, mood: "ok" })}</div><h2 style="margin-top:6px">Rückfälle gehören dazu</h2>
     <p class="muted" style="font-weight:700">Du warst ${fmtSince(el)} frei. Das zählt! Dein Zähler startet jetzt neu, und ${esc(state.profile.petName)} ist weiter an deiner Seite.</p>
@@ -2005,14 +2101,17 @@ function drawOb() {
 }
 
 /* ============ Core actions ============ */
+// Taking a check back also takes back the perfect-day bonus, so checking on and off cannot farm it.
+function unperfect(t) { if (state.perfect[t] && !habitsFor(t).every(x => isDone(x, t))) { delete state.perfect[t]; addXP(-20, t); addCoins(-10); } }
 function tapHabit(id, btn) {
   const h = state.habits.find(x => x.id === id); if (!h) return;
   const t = todayK();
   if (!sched(h, t)) { toast("Heute ist für diese Gewohnheit frei."); return; }
   if (h.special === "vocab") { openPack(h); return; }
+  if (h.slip === t) { toast("Heute gab es einen Rückfall. Morgen zählt wieder ein neuer Tag."); return; }
   const wasDone = isDone(h, t);
   if (wasDone && h.target === 1) {
-    const x = h.xp[t] || 0; delete h.log[t]; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); sfx("undo");
+    const x = h.xp[t] || 0; delete h.log[t]; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); sfx("undo");
     save(); render(); return;
   }
   if (wasDone) { toast(`Ziel schon erreicht: ${h.target} ${h.unit}`); return; }
@@ -2027,14 +2126,16 @@ function tapHabit(id, btn) {
   completeHabit(h, bx, by, r);
 }
 function completeHabit(h, bx, by, r) {
-  const t = todayK(), firstToday = !state.habits.some(x => x !== h && isDone(x, t));
+  // dd.first and dd.rolled: streak overlay, spin and treat drop happen once, even when a check is taken back and set again
+  const t = todayK(), dd = day(t), firstToday = !dd.first && !state.habits.some(x => x !== h && isDone(x, t));
+  if (firstToday) dd.first = true;
   const s = hStreak(h).c, combo = habitsFor(t).filter(x => isDone(x, t)).length;
   let xp = DIFF_XP + Math.min(s, 10) * 2 + (combo - 1) * 5;
   xp = Math.round(xp * (DIFFS[h.diff] || DIFFS[2]).m);
   const lucky = hash01(h.id + t) < .12; if (lucky) xp *= 2;
   const coins = Math.round(xp / 2);
   h.xp[t] = xp; addXP(xp, t); addCoins(coins);
-  const hr = new Date().getHours(), dd = day(t);
+  const hr = new Date().getHours();
   if (hr < 12) dd.early = true; if (hr < 8) state.flags.early = true; if (hr >= 22) state.flags.night = true;
   dd.maxCombo = Math.max(dd.maxCombo, combo);
   burst(bx, by, lucky ? 130 : 80, lucky ? 1.35 : 1);
@@ -2050,7 +2151,8 @@ function completeHabit(h, bx, by, r) {
   if (perfectNow) { state.perfect[t] = true; addXP(20, t); addCoins(10); }
   const spinEarned = !!ms || (firstToday && gStreak() % 7 === 0);
   if (spinEarned) addSpin(1);
-  if (Math.random() < .2) { const drop = 10 + Math.floor(Math.random() * 11); state.pet.food += drop; setTimeout(() => { toast(`Leckerli-Drop! +${drop} Futter für ${state.profile.petName}`, "gold"); sfx("chirp"); }, 1500); }
+  dd.rolled = dd.rolled || {};
+  if (!dd.rolled[h.id] && (dd.rolled[h.id] = 1) && Math.random() < .2) { const drop = 10 + Math.floor(Math.random() * 11); state.pet.food += drop; setTimeout(() => { toast(`Leckerli-Drop! +${drop} Futter für ${state.profile.petName}`, "gold"); sfx("chirp"); }, 1500); }
   evaluateBadges(); save(); render();
   if (spinEarned) setTimeout(() => toast("Neue Drehung am Glücksrad!", "gold"), 1800);
   const nb = $(`.hcheck[data-id="${h.id}"]`); if (nb) nb.classList.add("pop");
@@ -2455,6 +2557,514 @@ function tapTodo(id, btn) {
   if (pendingLevel) setTimeout(showLevelUp, 900);
 }
 
+/* ============ Training (Gym-Logger) ============ */
+// Workouts stay on the device. A finished workout gives XP (boss damage, pet food) and ticks every habit linked with special "gym".
+const MUSCLES = ["Brust", "Rücken", "Schultern", "Bizeps", "Trizeps", "Beine", "Po", "Bauch", "Cardio"];
+const EQUIP = { LH: "Langhantel", KH: "Kurzhantel", M: "Maschine", K: "Kabelzug", KG: "Körpergewicht", KB: "Kettlebell", S: "Frei" };
+const RECOV = { Beine: 72, Rücken: 72, Po: 72, Brust: 48, Schultern: 48, Bizeps: 48, Trizeps: 48, Bauch: 24, Cardio: 24 }; // hours until a muscle group counts as recovered
+// id|Name|Muskelgruppe|Gerät|Typ (w = Gewicht × Wdh., b = Körpergewicht, t = Zeit, c = Ausdauer)
+const EXERCISES = `bench|Bankdrücken|Brust|LH|w
+incbench|Schrägbankdrücken|Brust|LH|w
+decbench|Negativbankdrücken|Brust|LH|w
+dbbench|Kurzhantel-Bankdrücken|Brust|KH|w
+incdb|Kurzhantel-Schrägbankdrücken|Brust|KH|w
+dbfly|Kurzhantel-Fliegende|Brust|KH|w
+cablefly|Fliegende am Kabel|Brust|K|w
+pecdeck|Butterfly-Maschine|Brust|M|w
+chestpress|Brustpresse|Brust|M|w
+pushup|Liegestütze|Brust|KG|b
+dip|Dips|Brust|KG|b
+deadlift|Kreuzheben|Rücken|LH|w
+pullup|Klimmzüge|Rücken|KG|b
+chinup|Klimmzüge im Untergriff|Rücken|KG|b
+latpull|Latzug|Rücken|K|w
+latpullclose|Latzug eng|Rücken|K|w
+bbrow|Langhantelrudern|Rücken|LH|w
+dbrow|Kurzhantelrudern|Rücken|KH|w
+cablerow|Rudern am Kabel|Rücken|K|w
+tbar|T-Bar-Rudern|Rücken|LH|w
+machinerow|Rudern an der Maschine|Rücken|M|w
+pullover|Überzüge am Kabel|Rücken|K|w
+hyper|Rückenstrecker|Rücken|KG|b
+shrug|Shrugs|Rücken|KH|w
+rackpull|Rack Pulls|Rücken|LH|w
+ohp|Schulterdrücken mit Langhantel|Schultern|LH|w
+dbpress|Schulterdrücken mit Kurzhanteln|Schultern|KH|w
+machpress|Schulterpresse|Schultern|M|w
+arnold|Arnold Press|Schultern|KH|w
+latraise|Seitheben|Schultern|KH|w
+cablelat|Seitheben am Kabel|Schultern|K|w
+frontraise|Frontheben|Schultern|KH|w
+reardelt|Reverse Butterfly|Schultern|M|w
+facepull|Face Pulls|Schultern|K|w
+uprow|Aufrechtes Rudern|Schultern|LH|w
+bbcurl|Langhantel-Curls|Bizeps|LH|w
+ezcurl|SZ-Curls|Bizeps|LH|w
+dbcurl|Kurzhantel-Curls|Bizeps|KH|w
+hammer|Hammer-Curls|Bizeps|KH|w
+inclcurl|Schrägbank-Curls|Bizeps|KH|w
+preacher|Scott-Curls|Bizeps|M|w
+cablecurl|Curls am Kabel|Bizeps|K|w
+conccurl|Konzentrations-Curls|Bizeps|KH|w
+pushdown|Trizepsdrücken am Kabel|Trizeps|K|w
+ropepush|Trizepsdrücken mit Seil|Trizeps|K|w
+skull|Skull Crusher|Trizeps|LH|w
+ohtri|Trizepsstrecken über Kopf|Trizeps|KH|w
+cgbench|Enges Bankdrücken|Trizeps|LH|w
+kickback|Trizeps-Kickbacks|Trizeps|KH|w
+benchdip|Bank-Dips|Trizeps|KG|b
+squat|Kniebeuge|Beine|LH|w
+frontsquat|Frontkniebeuge|Beine|LH|w
+legpress|Beinpresse|Beine|M|w
+hack|Hackenschmidt-Kniebeuge|Beine|M|w
+lunge|Ausfallschritte|Beine|KH|w
+bulg|Bulgarian Split Squats|Beine|KH|w
+legext|Beinstrecker|Beine|M|w
+legcurl|Beinbeuger|Beine|M|w
+rdl|Rumänisches Kreuzheben|Beine|LH|w
+goblet|Goblet Squat|Beine|KB|w
+calf|Wadenheben stehend|Beine|M|w
+seatcalf|Wadenheben sitzend|Beine|M|w
+adduct|Adduktoren-Maschine|Beine|M|w
+bwsquat|Kniebeuge ohne Gewicht|Beine|KG|b
+stepup|Step-ups|Beine|KG|b
+wallsit|Wandsitzen|Beine|KG|t
+hipthrust|Hip Thrust|Po|LH|w
+glutebridge|Glute Bridge|Po|KG|b
+abduct|Abduktoren-Maschine|Po|M|w
+cablekick|Kickbacks am Kabel|Po|K|w
+kbswing|Kettlebell-Swings|Po|KB|w
+sumo|Sumo-Kreuzheben|Po|LH|w
+plank|Plank|Bauch|KG|t
+sideplank|Seitstütz|Bauch|KG|t
+crunch|Crunches|Bauch|KG|b
+legraise|Beinheben hängend|Bauch|KG|b
+lyingraise|Beinheben liegend|Bauch|KG|b
+cablecrunch|Crunches am Kabel|Bauch|K|w
+russian|Russian Twists|Bauch|KG|b
+abwheel|Ab Wheel|Bauch|S|b
+mountain|Mountain Climbers|Bauch|KG|t
+situp|Sit-ups|Bauch|KG|b
+hollow|Hollow Hold|Bauch|KG|t
+run|Laufen|Cardio|S|c
+treadmill|Laufband|Cardio|M|c
+bike|Radfahren|Cardio|S|c
+ergo|Ergometer|Cardio|M|c
+rower|Rudergerät|Cardio|M|c
+cross|Crosstrainer|Cardio|M|c
+stair|Stairmaster|Cardio|M|c
+swim|Schwimmen|Cardio|S|c
+walk|Gehen|Cardio|S|c
+rope|Seilspringen|Cardio|S|t
+jack|Hampelmänner|Cardio|KG|t
+burpee|Burpees|Cardio|KG|b`.split("\n").map(r => { const [id, n, m, eq, ty] = r.split("|"); return { id, n, m, eq, ty }; });
+const ROUTINES = [
+  { id: "r-push", n: "Push", d: "Brust, Schultern und Trizeps", ex: ["bench", "incdb", "dbpress", "latraise", "pushdown"] },
+  { id: "r-pull", n: "Pull", d: "Rücken und Bizeps", ex: ["latpull", "bbrow", "cablerow", "facepull", "dbcurl"] },
+  { id: "r-legs", n: "Beine", d: "Beine und Po", ex: ["squat", "legpress", "rdl", "legcurl", "hipthrust", "calf"] },
+  { id: "r-full", n: "Ganzkörper", d: "Alles in einer Einheit", ex: ["squat", "bench", "bbrow", "ohp", "plank"] },
+  { id: "r-home", n: "Zuhause", d: "Ohne Geräte", ex: ["pushup", "bwsquat", "glutebridge", "plank", "burpee"] }
+];
+const SETLBL = { w: ["kg", "Wdh."], b: ["+ kg", "Wdh."], t: ["", "Sek."], c: ["km", "Min."] };
+const HEAVY = [[120, "ein Pandabär"], [300, "ein Braunbär"], [500, "ein Konzertflügel"], [700, "eine Milchkuh"], [1200, "ein Kleinwagen"], [2500, "ein Nashorn"], [5000, "ein Elefant"], [8000, "ein T-Rex"], [12000, "ein Linienbus"], [30000, "ein Buckelwal"]];
+let gymTab = "start", exPick = { q: "", m: "", mode: "add" }, cxd = { n: "", m: "Brust", ty: "w" }, gymSaveT = 0, wakeL = null;
+const allEx = () => EXERCISES.concat(state.gym.custom);
+const exById = id => EXERCISES.find(e => e.id === id) || state.gym.custom.find(e => e.id === id) || { id, n: "Unbekannte Übung", m: "Brust", eq: "S", ty: "w" };
+const allRoutines = () => state.gym.routines.concat(ROUTINES);
+const numF = v => { const n = parseFloat(String(v).replace(",", ".")); return isFinite(n) && n > 0 ? Math.min(n, 9999) : 0; };
+const nf = v => v ? String(Math.round(v * 100) / 100).replace(".", ",") : "";
+const big = v => Math.round(v).toLocaleString("de-DE");
+// One number per set to compare sets of the same exercise: estimated one-rep max (Epley) for weights, else reps, seconds or distance.
+const setScore = (ty, s) => ty === "t" ? s.r : ty === "c" ? (s.w || s.r / 1000) : ty === "b" ? (s.w ? 1000 + s.w * (1 + s.r / 30) : s.r) : s.w * (1 + s.r / 30);
+const setVol = (ty, s) => ty === "w" || ty === "b" ? s.w * s.r : 0;
+const setTxt = (ty, s) => ty === "t" ? `${s.r} Sek.` : ty === "c" ? `${s.w ? nf(s.w) + " km in " : ""}${s.r} Min.` : s.w ? `${nf(s.w)} kg × ${s.r}` : `${s.r} Wdh.`;
+const setOk = (ty, s) => s.r > 0 && (ty !== "w" || s.w > 0);
+const sessOf = id => state.gym.sessions.filter(s => s.items.some(i => i.ex === id));
+const setsIn = (s, id) => s.items.filter(i => i.ex === id).flatMap(i => i.sets);
+const lastSets = id => { const h = sessOf(id); return h.length ? setsIn(h[h.length - 1], id) : null; };
+function bestOf(id) { const ty = exById(id).ty; let b = null; sessOf(id).forEach(s => setsIn(s, id).forEach(q => { const sc = setScore(ty, q); if (!b || sc > b.sc) b = { sc, set: q, day: s.day }; })); return b; }
+const fmtDur = ms => { const m = Math.max(1, Math.round(ms / 60000)); return m >= 60 ? `${Math.floor(m / 60)}:${pad(m % 60)} h` : `${m} min`; };
+const heavyLine = v => { const h = HEAVY.filter(x => x[0] <= v).pop(); return h ? `Du hast ${big(v)} kg bewegt. Das ist mehr, als ${h[1]} wiegt!` : v ? `Du hast ${big(v)} kg bewegt. Jedes Kilo zählt.` : "Stark durchgezogen!"; };
+const gymBadge = h => h.special === "gym" ? `<span class="pill">Training</span>` : "";
+const gymLinkCard = h => h.special === "gym" ? `<div class="card sec" style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div><b>Mit Training verknüpft</b><div class="muted" style="font-weight:700">Wird abgehakt, sobald du ein Workout beendest.</div></div><button class="btn sm" data-action="gy-go">Training</button></div>` : "";
+const gymLiveCard = () => state.gym.active ? `<button class="card sec linkcard enter" style="--i:1;border-color:var(--p)" data-action="go" data-view="training"><span class="hicon" style="--hc:#EF4462">${I.dumbbell}</span><span style="flex:1"><b>Workout läuft</b><br><span class="muted num" data-since="${state.gym.active.start}">${fmtSince(Date.now() - state.gym.active.start)}</span></span><span style="width:22px;color:var(--muted)">${I.chev}</span></button>` : "";
+const groupCard = always => always || state.group ? `<button class="card sec linkcard" data-action="go" data-view="gruppe"><span class="hicon" style="--hc:#D49500">${I.trophy}</span><span style="flex:1"><b>${state.group ? esc(state.group.name) : "Gruppe"}</b><br><span class="muted">${state.group ? "Rangliste und Wochen-Duell" : "Duelliere dich mit Freunden"}</span></span><span style="width:22px;color:var(--muted)">${I.chev}</span></button>` : "";
+async function wake(on) { // keeps the screen on during a workout, where supported
+  try {
+    if (on && !wakeL && navigator.wakeLock) { wakeL = await navigator.wakeLock.request("screen"); wakeL.addEventListener("release", () => { wakeL = null; }); }
+    else if (!on && wakeL) { const w = wakeL; wakeL = null; await w.release(); }
+  } catch (e) { /* not supported or not allowed */ }
+}
+
+// Recovery and coach
+function muscleState() {
+  const now = Date.now(), out = {}; MUSCLES.forEach(m => { out[m] = { last: 0, sets: 0 }; });
+  state.gym.sessions.forEach(s => s.items.forEach(i => { const o = out[exById(i.ex).m]; if (!o) return; o.last = Math.max(o.last, s.end); if (now - s.end < 7 * 864e5) o.sets += i.sets.length; }));
+  MUSCLES.forEach(m => { const o = out[m]; o.h = o.last ? (now - o.last) / 36e5 : Infinity; o.ready = o.h >= RECOV[m]; });
+  return out;
+}
+const routineMuscles = r => [...new Set(r.ex.map(id => exById(id).m))].filter(m => RECOV[m]);
+function coachPick() {
+  if (!state.gym.sessions.length) return { r: ROUTINES[3], txt: "Starte mit einem Ganzkörper-Training. Trag ein, was du schaffst. Beim nächsten Mal stehen deine Werte schon da." };
+  const ms = muscleState(); let best = null;
+  allRoutines().forEach(r => {
+    const mm = routineMuscles(r); if (!mm.length) return;
+    const rd = mm.map(m => Math.min(20, ms[m].h / RECOV[m])), sc = Math.min(...rd), avg = rd.reduce((a, b) => a + b, 0) / rd.length;
+    if (!best || sc > best.sc || (sc === best.sc && avg > best.avg)) best = { r, sc, avg, mm };
+  });
+  if (!best || best.sc < 1) return { r: null, txt: "Deine Muskeln erholen sich noch. Ein Ruhetag oder lockeres Cardio passt heute gut." };
+  const old = best.mm.reduce((a, m) => ms[m].h > ms[a].h ? m : a, best.mm[0]), d = Math.max(1, Math.round(ms[old].h / 24));
+  return { r: best.r, txt: `Heute passt „${best.r.n}“. ${isFinite(ms[old].h) ? `${old}: zuletzt vor ${d} ${d === 1 ? "Tag" : "Tagen"}` : `${old}: noch nie trainiert`}. Alles ist erholt.` };
+}
+function coachTip(ex, last) { // progressive overload: a little more than last time
+  if (!last || !last.length) return "";
+  if (ex.ty === "w") {
+    const w = Math.max(...last.map(s => s.w)), top = last.filter(s => s.w === w), minR = Math.min(...top.map(s => s.r));
+    return minR >= 10 ? `Letztes Mal ${top.length} × ${minR} mit ${nf(w)} kg. Probier heute ${nf(w + (w >= 40 ? 2.5 : 1))} kg.` : `Letztes Mal ${nf(w)} kg × ${minR}. Schaffst du heute ${minR + 1} Wiederholungen?`;
+  }
+  if (ex.ty === "c") return "";
+  const r = Math.max(...last.map(s => s.r));
+  return ex.ty === "t" ? `Bestwert vom letzten Mal: ${r} Sek. Schaffst du ${r + 5}?` : `Bestwert vom letzten Mal: ${r} Wdh. Schaffst du ${r + 1}?`;
+}
+
+// Views
+const viewGym = () => `<div id="gym">${state.gym.active ? gymActive() : gymHome()}</div>`;
+function gymHome() {
+  const G = state.gym, ws = weekStart(todayK()), wk = G.sessions.filter(s => s.day >= ws);
+  const tabs = `<div class="seg sec" role="group">${[["start", "Training"], ["stats", "Statistik"], ["history", "Verlauf"]].map(([k, l]) => `<button data-action="gy-tab" data-v="${k}" aria-pressed="${gymTab === k}">${l}</button>`).join("")}</div>`;
+  if (gymTab === "stats") return tabs + gymStats();
+  if (gymTab === "history") return tabs + gymHistory();
+  const c = coachPick();
+  return tabs + `
+  <section class="card sec coach enter" style="--i:0"><div class="petbox">${petSVG({ size: 84, mood: "happy" })}</div><div style="flex:1;min-width:0"><div class="rarity" style="--rc:var(--p)">Coach ${esc(state.profile.petName)}</div><p>${esc(c.txt)}</p>${c.r ? `<button class="btn sm" data-action="gy-start" data-id="${c.r.id}">„${esc(c.r.n)}“ starten</button>` : ""}</div></section>
+  <div class="tiles sec"><div class="tile enter" style="--i:1"><div class="tv num">${wk.length}</div><span>Workouts diese Woche</span></div><div class="tile enter" style="--i:2"><div class="tv num">${big(wk.reduce((a, s) => a + s.vol, 0))}</div><span>kg bewegt diese Woche</span></div></div>
+  <div class="sec-h"><h2>Workout starten</h2></div>
+  <button class="btn full" data-action="gy-start" data-id="">${I.plus} Freies Training</button>
+  <div class="group-h">Routinen</div>
+  <div class="tpl-grid">${allRoutines().map(r => `<button class="tpl" style="--hc:${r.id.startsWith("r-") ? "#EF4462" : "#3B82F6"}" data-action="gy-routine" data-id="${r.id}"><span class="hicon">${I.dumbbell}</span><span>${esc(r.n)}<br><small class="muted">${r.ex.length} Übungen</small></span></button>`).join("")}</div>
+  <button class="btn ghost full sec" data-action="gy-lib">Alle ${allEx().length} Übungen ansehen</button>`;
+}
+function gymStats() {
+  const G = state.gym, ws = weekStart(todayK());
+  if (!G.sessions.length) return `<div class="card empty sec"><h2>Noch keine Daten</h2><p>Nach deinem ersten Workout siehst du hier Volumen, Erholung und Rekorde.</p></div>`;
+  const weeks = []; for (let i = 7; i >= 0; i--) { const a = addDays(ws, -7 * i), b = addDays(a, 7); weeks.push({ a, v: G.sessions.filter(s => s.day >= a && s.day < b).reduce((x, s) => x + s.vol, 0) }); }
+  const mx = Math.max(1, ...weeks.map(w => w.v)), ms = muscleState(), total = G.sessions.reduce((a, s) => a + s.vol, 0), prs = G.sessions.reduce((a, s) => a + s.prs, 0);
+  const avg = G.sessions.reduce((a, s) => a + (s.end - s.start), 0) / G.sessions.length;
+  const recs = [...new Set(G.sessions.flatMap(s => s.items.map(i => i.ex)))].map(id => ({ ex: exById(id), b: bestOf(id) })).filter(x => x.b).sort((a, b) => a.b.day < b.b.day ? 1 : a.b.day > b.b.day ? -1 : 0).slice(0, 8);
+  const lbl = v => v >= 1000 ? (v / 1000).toFixed(1).replace(".", ",") + " t" : String(Math.round(v));
+  return `<div class="tiles sec"><div class="tile"><div class="tv num">${G.sessions.length}</div><span>Workouts gesamt</span></div><div class="tile"><div class="tv num">${lbl(total)}</div><span>${total >= 1000 ? "bewegt gesamt" : "kg bewegt gesamt"}</span></div>
+    <div class="tile"><div class="tv num">${prs}</div><span>Rekorde gebrochen</span></div><div class="tile"><div class="tv num">${fmtDur(avg)}</div><span>Dauer im Schnitt</span></div></div>
+  <div class="sec-h"><h2>Erholung</h2><span class="muted">Sätze in 7 Tagen</span></div>
+  <div class="mgrid">${MUSCLES.map(m => { const o = ms[m]; return `<div class="mtile ${o.last ? (o.ready ? "ready" : "rest") : ""}"><b>${m}</b><span>${!o.last ? "noch nie" : o.ready ? "bereit" : `noch ${Math.max(1, Math.ceil(RECOV[m] - o.h))} h`}</span><small class="num">${o.sets} ${o.sets === 1 ? "Satz" : "Sätze"}</small></div>`; }).join("")}</div>
+  <div class="sec-h"><h2>Volumen</h2><span class="muted">8 Wochen</span></div>
+  <div class="card"><div class="bars" style="grid-template-columns:repeat(8,1fr)">${weeks.map((w, i) => `<div class="col ${i === 7 ? "best" : ""}"><small class="num">${w.v ? lbl(w.v) : ""}</small><i style="height:${Math.max(4, w.v / mx * 100)}px;${w.v ? "" : "opacity:.25"}"></i></div>`).join("")}</div><div class="blabels" style="grid-template-columns:repeat(8,1fr)">${weeks.map(w => `<span class="num">${parseK(w.a).getDate()}.${parseK(w.a).getMonth() + 1}.</span>`).join("")}</div></div>
+  <div class="sec-h"><h2>Rekorde</h2><span class="muted">tippen für den Verlauf</span></div>
+  <div class="card">${recs.map(x => `<button class="jrow" data-action="gy-info" data-id="${x.ex.id}"><div class="jmeta muted"><span>${fmtJDay(x.b.day)}</span><span>${x.ex.m}</span></div><div class="jtext"><b>${esc(x.ex.n)}</b> · ${setTxt(x.ex.ty, x.b.set)}</div></button>`).join("")}</div>`;
+}
+const sessRow = s => `<button class="jrow" data-action="gy-sess" data-id="${s.id}"><div class="jmeta muted"><span>${fmtJDay(s.day)}</span><span>${fmtDur(s.end - s.start)}</span>${s.prs ? `<span class="pill">${s.prs} ${s.prs === 1 ? "Rekord" : "Rekorde"}</span>` : ""}</div><div class="jtext"><b>${esc(s.name)}</b> · ${s.sets} ${s.sets === 1 ? "Satz" : "Sätze"}${s.vol ? ` · ${big(s.vol)} kg` : ""}</div></button>`;
+const gymHistory = () => state.gym.sessions.length ? `<div class="card sec">${state.gym.sessions.slice(-60).reverse().map(sessRow).join("")}</div>` : `<div class="card empty sec"><h2>Noch kein Workout</h2><p>Jedes beendete Workout landet hier, mit allen Sätzen.</p></div>`;
+function gymTotals(a) { let sets = 0, vol = 0; a.items.forEach(it => { const ty = exById(it.ex).ty; it.sets.forEach(s => { if (s.done) { sets++; vol += setVol(ty, s); } }); }); return { sets, vol }; }
+const gymTotTxt = tt => `${tt.sets} ${tt.sets === 1 ? "Satz" : "Sätze"}${tt.vol ? ` · ${big(tt.vol)} kg` : ""}`;
+function exCard(i) {
+  const it = state.gym.active.items[i], ex = exById(it.ex), L = SETLBL[ex.ty], tip = coachTip(ex, lastSets(ex.id));
+  return `<section class="card sec gx" id="gx-${i}">
+    <div class="gx-h"><button class="gx-name" data-action="gy-info" data-id="${ex.id}"><b>${esc(ex.n)}</b><small class="muted">${ex.m} · ${EQUIP[ex.eq]}</small></button>${ex.eq === "LH" ? `<button class="btn sm ghost" data-action="gy-plates" data-i="${i}">Scheiben</button>` : ""}<button class="x" data-action="gy-rm" data-i="${i}" aria-label="${esc(ex.n)} entfernen">${I.x}</button></div>
+    ${tip ? `<div class="gx-tip">${I.bolt}<span>${esc(tip)}</span></div>` : ""}
+    <div class="gset gset-h" aria-hidden="true"><span>Satz</span><span>${L[0]}</span><span>${L[1]}</span><span></span></div>
+    ${it.sets.map((s, j) => `<div class="gset ${s.done ? "done" : ""}"><span class="gs-n num">${s.pr ? I.trophy : j + 1}</span>
+      ${L[0] ? `<input type="text" inputmode="decimal" class="num" data-g="w" data-i="${i}" data-j="${j}" value="${nf(s.w)}" placeholder="0" autocomplete="off" aria-label="Satz ${j + 1}: ${L[0]}" ${s.done ? "readonly" : ""}>` : "<span></span>"}
+      <input type="text" inputmode="numeric" class="num" data-g="r" data-i="${i}" data-j="${j}" value="${s.r || ""}" placeholder="0" autocomplete="off" aria-label="Satz ${j + 1}: ${L[1]}" ${s.done ? "readonly" : ""}>
+      <button class="gs-ck ${s.done ? "on" : ""}" data-action="gy-set" data-i="${i}" data-j="${j}" aria-pressed="${!!s.done}" aria-label="Satz ${j + 1} ${s.done ? "erledigt, tippen zum Zurücknehmen" : "abhaken"}">${I.check}</button></div>`).join("")}
+    <div class="gx-f"><button class="link" data-action="gy-addset" data-i="${i}">+ Satz</button>${it.sets.length > 1 ? `<button class="link" data-action="gy-delset" data-i="${i}">− Satz</button>` : ""}</div></section>`;
+}
+function gymActive() {
+  const a = state.gym.active;
+  return `<section class="card sec gym-top enter" style="--i:0"><div class="petbox" id="gymPet">${petSVG({ size: 64, mood: "happy" })}</div><div style="flex:1;min-width:0"><input type="text" id="gName" maxlength="30" value="${esc(a.name)}" aria-label="Name des Workouts"><div class="gym-meta num"><span data-since="${a.start}">${fmtSince(Date.now() - a.start)}</span><span id="gTot">${gymTotTxt(gymTotals(a))}</span></div></div></section>
+  ${a.items.map((_, i) => exCard(i)).join("")}
+  ${a.items.length ? "" : `<div class="card empty sec"><p style="margin:0 auto">Füge deine erste Übung hinzu. Beim nächsten Mal stehen deine Werte schon da.</p></div>`}
+  <button class="btn ghost full sec" data-action="gy-add">${I.plus} Übung hinzufügen</button>
+  <div style="display:grid;gap:12px;margin-top:18px"><button class="btn ok full" data-action="gy-finish">${I.check} Workout beenden</button><button class="btn danger full" data-action="gy-cancel">Workout verwerfen</button></div>
+  <div class="rest-pad"></div>`;
+}
+const redrawEx = i => { const el = $("#gx-" + i); if (el) el.outerHTML = exCard(i); };
+const gymHead = () => { const el = $("#gTot"), a = state.gym.active; if (el && a) el.textContent = gymTotTxt(gymTotals(a)); };
+
+// Rest timer: one bar above the tab bar, counted from a timestamp so it survives reloads
+function restDraw() {
+  const a = state.gym.active, el = $("#restBar"); if (!el) return;
+  const left = a && a.restEnd ? Math.ceil((a.restEnd - Date.now()) / 1000) : 0;
+  if (a && a.restEnd && left <= 0) { a.restEnd = 0; save(); sfx("unlock"); vibrate([60, 60, 60, 60, 120]); toast("Pause vorbei. Weiter geht's!", "gold"); }
+  const show = left > 0 && view === "training";
+  el.hidden = !show; if (!show) return;
+  if (!el.firstChild) el.innerHTML = `<b class="num" id="restT" role="timer"></b><span class="muted">Pause</span><button class="btn sm ghost" data-action="gy-rest" data-v="-15" aria-label="Pause 15 Sekunden kürzer">−15</button><button class="btn sm ghost" data-action="gy-rest" data-v="15" aria-label="Pause 15 Sekunden länger">+15</button><button class="btn sm" data-action="gy-rest" data-v="0">Weiter</button>`;
+  $("#restT").textContent = `${Math.floor(left / 60)}:${pad(left % 60)}`;
+}
+setInterval(restDraw, 500);
+
+// Workout flow
+const newItem = id => { const last = lastSets(id); return { ex: id, sets: (last && last.length ? last.slice(0, 8) : [{}, {}, {}]).map(q => ({ w: q.w || 0, r: q.r || 0, done: false })) }; };
+function startWorkout(name, exIds) {
+  if (state.gym.active) { toast("Es läuft schon ein Workout."); closeSheet(); if (view !== "training") location.hash = "training"; return; }
+  state.gym.active = { id: uid(), name, start: Date.now(), items: (exIds || []).map(newItem), restEnd: 0 };
+  save(); closeSheet(); sfx("bonus"); vibrate([20, 30, 40]);
+  if (view === "training") { animateNext = true; render(); window.scrollTo(0, 0); } else location.hash = "training";
+}
+function toggleSet(i, j, btn) {
+  const a = state.gym.active, it = a.items[i], s = it && it.sets[j]; if (!s) return;
+  const ex = exById(it.ex);
+  if (s.done) { s.done = false; delete s.pr; sfx("undo"); save(); redrawEx(i); gymHead(); return; }
+  if (!setOk(ex.ty, s)) { toast(ex.ty === "w" ? "Trag Gewicht und Wiederholungen ein." : "Trag zuerst einen Wert ein."); const inp = $(`#gx-${i} input[data-j="${j}"]`); if (inp) inp.focus(); return; }
+  const prev = bestOf(it.ex), sc = setScore(ex.ty, s);
+  const sess = Math.max(0, ...a.items.filter(x => x.ex === it.ex).flatMap(x => x.sets).filter(q => q.done).map(q => setScore(ex.ty, q)));
+  const pr = !!prev && sc > prev.sc && sc > sess; // a record needs an older session to beat, the first time sets the baseline
+  s.done = true; if (pr) s.pr = 1;
+  a.restEnd = Date.now() + state.gym.rest * 1000;
+  const r = btn.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+  save(); redrawEx(i); gymHead(); restDraw();
+  if (pr) { burst(x, y, 120, 1.3); praise(x, r.top - 30, "Neuer Rekord!", "lucky"); sfx("bonus"); vibrate([30, 40, 30, 40, 80]); }
+  else { burst(x, y, 16, .6); sfx("check", Math.min(8, gymTotals(a).sets)); vibrate([20, 30]); }
+  const pet = $("#gymPet .pet"); if (pet) { pet.classList.remove("jump"); void pet.getBoundingClientRect(); pet.classList.add("jump"); }
+}
+function finishWorkout() {
+  const a = state.gym.active; if (!a) return;
+  const items = a.items.map(it => ({ ex: it.ex, sets: it.sets.filter(s => s.done).map(s => Object.assign({ w: s.w, r: s.r }, s.pr ? { pr: 1 } : {})) })).filter(it => it.sets.length);
+  if (!items.length) { toast("Hake mindestens einen Satz ab, bevor du das Workout beendest."); return; }
+  const t = todayK(), tt = gymTotals(a), prs = items.reduce((n, it) => n + it.sets.filter(s => s.pr).length, 0), dd = day(t);
+  dd.workouts = (dd.workouts || 0) + 1;
+  // XP for at most two workouts a day and only from three sets on, so logging single sets is not a coin machine
+  const xp = dd.workouts <= 2 && tt.sets >= 3 ? 20 + Math.min(40, tt.sets * 2) + Math.min(5, prs) * 10 : 0, coins = Math.round(xp / 2);
+  const sess = { id: a.id, day: t, start: a.start, end: Date.now(), name: (a.name || "").trim() || "Training", items, vol: Math.round(tt.vol), sets: tt.sets, prs, xp };
+  // shortcut: keeps the last 400 workouts so the save in localStorage stays small, raise the limit once storage moves to IndexedDB
+  state.gym.sessions.push(sess); state.gym.sessions = state.gym.sessions.slice(-400); state.gym.active = null;
+  if (xp) { addXP(xp, t); addCoins(coins); }
+  const f = state.flags; f.workouts = (f.workouts || 0) + 1; f.gymPrs = (f.gymPrs || 0) + prs; f.gymVol = (f.gymVol || 0) + sess.vol;
+  const linked = habitsFor(t).filter(h => h.special === "gym" && !isDone(h, t));
+  linked.forEach(h => { h.log[t] = h.target; completeHabit(h, innerWidth / 2, 96, { top: 110 }); }); // effects near the top, clear of the summary
+  evaluateBadges(); save(); animateNext = true; render(); window.scrollTo(0, 0);
+  const exs = [...new Set(items.map(i => i.ex))], known = allRoutines().some(r => r.ex.join() === exs.join());
+  openModal(`<div class="rarity" style="--rc:${RAR.epic.c};font-size:.8125rem">Workout geschafft</div><div class="reward-orb" style="--rc:var(--ok)"><b class="num" style="font-size:1.75rem">${fmtDur(sess.end - sess.start)}</b></div>
+    <h2>${esc(sess.name)}</h2>
+    <div class="tiles" style="margin-top:12px;text-align:left"><div class="tile"><div class="tv num">${sess.sets}</div><span>${sess.sets === 1 ? "Satz" : "Sätze"}</span></div><div class="tile"><div class="tv num">${prs}</div><span>${prs === 1 ? "Rekord" : "Rekorde"}</span></div></div>
+    <p style="font-weight:800">${heavyLine(sess.vol)}</p>
+    <p class="muted" style="font-weight:700">${xp ? `+${xp} XP · +${coins} Münzen` : tt.sets < 3 ? "XP gibt es ab 3 Sätzen." : "XP gibt es für zwei Workouts am Tag."}${linked.length ? ` · „${esc(linked[0].name)}“ ist abgehakt` : ""}</p>
+    <div style="display:grid;gap:10px">${known ? "" : `<button class="btn ghost full" data-action="gy-save-routine" data-id="${sess.id}">Als Routine speichern</button>`}<button class="btn gold full" data-action="close-reward" autofocus>Fertig</button></div>`);
+  bigCelebration(); sfx("chest"); vibrate([40, 50, 80]); if (coins) flyCoins(innerWidth / 2, innerHeight * .4, Math.min(12, 3 + Math.round(coins / 4)));
+}
+function saveRoutine(id, btn) {
+  const s = state.gym.sessions.find(x => x.id === id); if (!s) return;
+  if (state.gym.routines.length >= 12) { toast("Maximal 12 eigene Routinen. Lösch zuerst eine alte."); return; }
+  let n = s.name, k = 2; while (allRoutines().some(r => r.n === n)) n = `${s.name} ${k++}`;
+  state.gym.routines.push({ id: uid(), n, d: "", ex: [...new Set(s.items.map(i => i.ex))] }); save(); render();
+  btn.disabled = true; btn.textContent = "Routine gespeichert"; toast(`„${n}“ ist jetzt eine Routine`, "gold");
+}
+
+// Sheets
+function openRoutine(id) {
+  const r = allRoutines().find(x => x.id === id); if (!r) return;
+  openSheet(`${sheetHead(r.n)}${r.d ? `<p class="muted" style="margin:0 0 12px;font-weight:700">${esc(r.d)}</p>` : ""}
+    <div class="card">${r.ex.map(e => { const ex = exById(e), l = lastSets(e); return `<div class="logrow"><div><b>${esc(ex.n)}</b><div class="muted" style="font-weight:600">${ex.m}${l ? " · zuletzt " + l.slice(0, 3).map(q => setTxt(ex.ty, q)).join(", ") : ""}</div></div></div>`; }).join("")}</div>
+    <div style="display:grid;gap:12px;margin-top:16px"><button class="btn full" data-action="gy-start" data-id="${r.id}">Workout starten</button>${id.startsWith("r-") ? "" : `<button class="btn danger full" data-action="gy-del-routine" data-id="${r.id}">Routine löschen</button>`}</div>`, { reset: true });
+}
+function exListHTML() {
+  const q = exPick.q.trim().toLowerCase(), used = {}; state.gym.sessions.forEach(s => s.items.forEach(i => { used[i.ex] = (used[i.ex] || 0) + 1; }));
+  const list = allEx().filter(e => (!exPick.m || e.m === exPick.m) && (!q || e.n.toLowerCase().includes(q) || e.m.toLowerCase().includes(q) || EQUIP[e.eq].toLowerCase().includes(q))).sort((a, b) => (used[b.id] || 0) - (used[a.id] || 0) || a.n.localeCompare(b.n, "de"));
+  return list.map(e => `<button class="jrow" data-action="gy-pick" data-id="${e.id}"><div class="jtext"><b>${esc(e.n)}</b></div><div class="jmeta muted"><span>${e.m} · ${EQUIP[e.eq]}</span>${used[e.id] ? `<span class="pill num">${used[e.id]}× trainiert</span>` : ""}</div></button>`).join("") || `<p class="muted" style="margin:0;font-weight:700">Nichts gefunden. Leg unten eine eigene Übung an.</p>`;
+}
+function openExPicker(mode) {
+  exPick = { q: "", m: "", mode };
+  openSheet(`${sheetHead(mode === "add" ? "Übung hinzufügen" : "Übungen")}
+    <input type="search" id="exQ" placeholder="Suchen, z. B. Bankdrücken" aria-label="Übung suchen" autocomplete="off">
+    <div class="tagbar" role="group" aria-label="Nach Muskelgruppe filtern"><button class="opt" data-action="gy-m" data-v="" aria-pressed="true">Alle</button>${MUSCLES.map(m => `<button class="opt" data-action="gy-m" data-v="${m}" aria-pressed="false">${m}</button>`).join("")}</div>
+    <div class="card" id="exList" style="margin-top:10px">${exListHTML()}</div>
+    <button class="btn ghost full" style="margin-top:14px" data-action="gy-custom">${I.plus} Eigene Übung anlegen</button>`, { reset: true });
+}
+function pickExercise(id) {
+  const a = state.gym.active;
+  if (exPick.mode !== "add" || !a) { openExInfo(id); return; }
+  if (a.items.length >= 20) { toast("Maximal 20 Übungen pro Workout"); return; }
+  a.items.push(newItem(id)); save(); closeSheet(); render();
+  setTimeout(() => { const el = $("#gx-" + (a.items.length - 1)); if (el) el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" }); }, 60);
+}
+function drawCustomEx() {
+  openSheet(`${sheetHead("Eigene Übung")}
+    <div class="field"><label for="cxName">Name</label><input type="text" id="cxName" maxlength="40" value="${esc(cxd.n)}" placeholder="z. B. Landmine Press"></div>
+    <div class="field"><span class="lbl">Muskelgruppe</span><div class="opts">${MUSCLES.map(m => `<button type="button" class="opt" data-action="cx-m" data-v="${m}" aria-pressed="${cxd.m === m}">${m}</button>`).join("")}</div></div>
+    <div class="field"><span class="lbl">Gemessen wird</span><div class="opts">${[["w", "Gewicht × Wdh."], ["b", "Wiederholungen"], ["t", "Zeit"], ["c", "Strecke und Zeit"]].map(([k, l]) => `<button type="button" class="opt" data-action="cx-t" data-v="${k}" aria-pressed="${cxd.ty === k}">${l}</button>`).join("")}</div></div>
+    <div class="err" id="cxErr" role="alert"></div><button class="btn full" data-action="cx-save" style="margin-top:12px">Übung anlegen</button>`);
+}
+function saveCustomEx() {
+  const n = ($("#cxName").value || "").trim().slice(0, 40);
+  if (!n) { $("#cxErr").textContent = "Gib der Übung einen Namen."; $("#cxName").focus(); return; }
+  if (state.gym.custom.length >= 60) { toast("Maximal 60 eigene Übungen"); return; }
+  const e = { id: "c" + uid(), n, m: cxd.m, eq: "S", ty: cxd.ty }; state.gym.custom.push(e); save(); toast("Übung angelegt");
+  pickExercise(e.id);
+}
+function openExInfo(id) {
+  const ex = exById(id), ty = ex.ty, hist = sessOf(id), b = bestOf(id), a = state.gym.active;
+  const pts = hist.slice(-12).map(s => Math.max(...setsIn(s, id).map(q => ty === "w" ? setScore(ty, q) : ty === "c" ? (q.w || q.r) : q.r)));
+  let chart = "";
+  if (pts.length >= 2) {
+    const lo = Math.min(...pts), hi = Math.max(...pts), X = i => (10 + i * (300 / (pts.length - 1))).toFixed(1), Y = v => (100 - (hi > lo ? (v - lo) / (hi - lo) : .5) * 80).toFixed(1);
+    chart = `<div class="sec-h"><h2>Verlauf</h2><span class="muted">${ty === "w" ? "geschätzte Maximalkraft" : ty === "t" ? "Sekunden" : ty === "c" ? "Strecke" : "Wiederholungen"}</span></div>
+      <div class="card mood-chart"><svg viewBox="0 0 320 120" role="img" aria-label="Verlauf der letzten ${pts.length} Einheiten, von ${nf(lo) || 0} auf ${nf(pts[pts.length - 1]) || 0}"><path d="${pts.map((v, i) => (i ? "L" : "M") + X(i) + " " + Y(v)).join(" ")}" fill="none" stroke="var(--p)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${pts.map((v, i) => `<circle cx="${X(i)}" cy="${Y(v)}" r="5" fill="var(--card)" stroke="var(--p)" stroke-width="3"/>`).join("")}</svg></div>`;
+  }
+  openSheet(`${sheetHead(ex.n)}
+    <div class="jmeta"><span class="pill">${ex.m}</span><span class="pill">${EQUIP[ex.eq]}</span></div>
+    ${b ? `<div class="tiles sec"><div class="tile"><div class="tv num" style="font-size:1.375rem">${setTxt(ty, b.set)}</div><span>Rekord · ${fmtJDay(b.day)}</span></div><div class="tile"><div class="tv num">${ty === "w" ? nf(Math.round(b.sc * 2) / 2) : hist.length}</div><span>${ty === "w" ? "kg geschätzte Maximalkraft" : hist.length === 1 ? "Einheit" : "Einheiten"}</span></div></div>` : `<div class="card sec"><p class="muted" style="margin:0;font-weight:700">Noch nicht trainiert. Nach dem ersten Workout siehst du hier Rekord und Verlauf.</p></div>`}
+    ${chart}
+    ${hist.length ? `<div class="sec-h"><h2>Letzte Einheiten</h2></div><div class="card">${hist.slice(-5).reverse().map(s => `<div class="logrow"><div><b>${fmtJDay(s.day)}</b><div class="muted num" style="font-weight:600">${setsIn(s, id).map(q => setTxt(ty, q)).join(" · ")}</div></div></div>`).join("")}</div>` : ""}
+    <div style="display:grid;gap:12px;margin-top:16px">${a ? (a.items.some(x => x.ex === id) ? "" : `<button class="btn full" data-action="gy-addex" data-id="${id}">Zum Workout hinzufügen</button>`) : `<button class="btn full" data-action="gy-startex" data-id="${id}">Workout mit dieser Übung starten</button>`}</div>`, { reset: true });
+}
+function openSession(id) {
+  const s = state.gym.sessions.find(x => x.id === id); if (!s) return;
+  openSheet(`${sheetHead(s.name)}<div class="muted" style="font-weight:700">${fmtLong(s.day)} · ${fmtDur(s.end - s.start)}</div>
+    <div class="tiles sec"><div class="tile"><div class="tv num">${s.sets}</div><span>${s.sets === 1 ? "Satz" : "Sätze"}</span></div><div class="tile"><div class="tv num">${big(s.vol)}</div><span>kg bewegt</span></div></div>
+    ${s.items.map(it => { const ex = exById(it.ex); return `<div class="card sec"><b>${esc(ex.n)}</b>${it.sets.map((q, j) => `<div class="setline num"><span class="muted">${j + 1}</span><span>${setTxt(ex.ty, q)}</span>${q.pr ? `<span class="pill">Rekord</span>` : "<span></span>"}</div>`).join("")}</div>`; }).join("")}
+    <div style="display:grid;gap:12px;margin-top:16px"><button class="btn full" data-action="gy-again" data-id="${s.id}">Nochmal trainieren</button><button class="btn ghost full" data-action="gy-save-routine" data-id="${s.id}">Als Routine speichern</button><button class="btn danger full" data-action="gy-del-sess" data-id="${s.id}">Workout löschen</button></div>`, { reset: true });
+}
+function openPlates(i) {
+  const it = state.gym.active.items[i], s = it.sets.find(q => !q.done && q.w) || it.sets.slice().reverse().find(q => q.w);
+  if (!s) { toast("Trag zuerst ein Gewicht ein."); return; }
+  const BAR = 20, out = []; let side = (s.w - BAR) / 2;
+  [25, 20, 15, 10, 5, 2.5, 1.25].forEach(p => { while (side >= p - 1e-9) { out.push(p); side -= p; } });
+  const pl = p => `<i style="height:${30 + p * 3}px"></i>`;
+  openModal(`<h2>${nf(s.w)} kg laden</h2><p class="muted" style="font-weight:700;margin:4px 0 0">Mit einer 20-kg-Stange</p>
+    ${s.w < BAR ? `<p style="font-weight:700">Das ist leichter als die Stange allein.</p>` : `<div class="plates" aria-hidden="true">${out.slice().reverse().map(pl).join("")}<span class="barx"></span>${out.map(pl).join("")}</div>
+      <p style="font-weight:800">Pro Seite: ${out.length ? out.map(nf).join(" + ") + " kg" : "keine Scheiben"}</p>${side > .01 ? `<p class="muted" style="font-weight:700">${nf(side * 2)} kg lassen sich nicht aufteilen.</p>` : ""}`}
+    <button class="btn full" data-action="close" autofocus>Fertig</button>`);
+}
+document.addEventListener("input", e => {
+  const el = e.target, a = state.gym.active;
+  if (el.id === "exQ") { exPick.q = el.value; const l = $("#exList"); if (l) l.innerHTML = exListHTML(); return; }
+  if (!a) return;
+  if (el.id === "gName") a.name = el.value.slice(0, 30);
+  else if (el.dataset.g) { const s = a.items[el.dataset.i] && a.items[el.dataset.i].sets[el.dataset.j]; if (!s) return; s[el.dataset.g] = el.dataset.g === "r" ? Math.round(numF(el.value)) : numF(el.value); }
+  else return;
+  clearTimeout(gymSaveT); gymSaveT = setTimeout(save, 600);
+});
+function gymAction(a, b, id) {
+  const A = state.gym.active, i = Number(b.dataset.i), del = label => { if (b.dataset.confirm === "1") return true; b.dataset.confirm = "1"; b.textContent = label; return false; };
+  if (!A && ["gy-set", "gy-addset", "gy-delset", "gy-rm", "gy-plates", "gy-rest", "gy-finish", "gy-cancel", "gy-add", "gy-addex"].includes(a)) { render(); return; }
+  switch (a) {
+    case "gy-tab": gymTab = b.dataset.v; softRender("#gym"); break;
+    case "gy-go": closeSheet(); location.hash = "training"; break;
+    case "gy-start": { const r = allRoutines().find(x => x.id === id); startWorkout(r ? r.n : "Freies Training", r ? r.ex : []); break; }
+    case "gy-startex": startWorkout("Freies Training", [id]); break;
+    case "gy-again": { const s = state.gym.sessions.find(x => x.id === id); if (s) startWorkout(s.name, [...new Set(s.items.map(q => q.ex))]); break; }
+    case "gy-routine": openRoutine(id); break;
+    case "gy-del-routine": if (del("Wirklich löschen?")) { state.gym.routines = state.gym.routines.filter(r => r.id !== id); save(); closeSheet(); render(); toast("Routine gelöscht"); } break;
+    case "gy-lib": openExPicker("info"); break;
+    case "gy-add": openExPicker("add"); break;
+    case "gy-m": exPick.m = b.dataset.v; $$('[data-action="gy-m"]').forEach(x => x.setAttribute("aria-pressed", x === b)); $("#exList").innerHTML = exListHTML(); break;
+    case "gy-pick": pickExercise(id); break;
+    case "gy-addex": exPick.mode = "add"; pickExercise(id); break;
+    case "gy-custom": cxd = { n: exPick.q.trim(), m: exPick.m || "Brust", ty: "w" }; drawCustomEx(); break;
+    case "cx-m": case "cx-t": cxd.n = ($("#cxName") || {}).value || ""; cxd[a === "cx-m" ? "m" : "ty"] = b.dataset.v; drawCustomEx(); break;
+    case "cx-save": saveCustomEx(); break;
+    case "gy-info": openExInfo(id); break;
+    case "gy-set": toggleSet(i, Number(b.dataset.j), b); break;
+    case "gy-addset": { const it = A.items[i], l = it.sets[it.sets.length - 1] || {}; if (it.sets.length >= 12) { toast("Maximal 12 Sätze"); break; } it.sets.push({ w: l.w || 0, r: l.r || 0, done: false }); save(); redrawEx(i); break; }
+    case "gy-delset": { const it = A.items[i]; if (it.sets.length > 1) { it.sets.pop(); save(); redrawEx(i); gymHead(); } break; }
+    case "gy-rm": if (!A.items[i].sets.some(s => s.done) || b.dataset.confirm === "1") { A.items.splice(i, 1); save(); render(); } else { b.dataset.confirm = "1"; toast("Tippe noch einmal, um die Übung mit ihren Sätzen zu entfernen."); } break;
+    case "gy-plates": openPlates(i); break;
+    case "gy-rest": { const v = Number(b.dataset.v); if (!v) A.restEnd = 0; else { state.gym.rest = clamp(state.gym.rest + v, 15, 300); A.restEnd = Math.max(Date.now() + 1000, A.restEnd + v * 1000); } save(); restDraw(); break; }
+    case "gy-finish": finishWorkout(); break;
+    case "gy-cancel": if (del("Wirklich verwerfen?")) { state.gym.active = null; save(); animateNext = true; render(); toast("Workout verworfen"); } break;
+    case "gy-sess": openSession(id); break;
+    case "gy-save-routine": saveRoutine(id, b); break;
+    case "gy-del-sess": if (del("Wirklich löschen?")) { state.gym.sessions = state.gym.sessions.filter(s => s.id !== id); save(); closeSheet(); render(); toast("Workout gelöscht"); } break;
+  }
+}
+/* ============ Erkenntnisse, Wochenrückblick, Zeitkapsel ============ */
+// Patterns from the person's own data, computed on the device.
+const WDL = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
+function insights() {
+  const t = todayK(), out = [], pc = v => Math.round(v * 100) + " %", f1 = v => v.toFixed(1).replace(".", ",");
+  const wd = WD.map(() => [0, 0]);
+  for (let i = 1; i <= 56; i++) { const k = addDays(t, -i); habitsFor(k).forEach(h => { wd[wIdx(k)][0]++; if (isDone(h, k)) wd[wIdx(k)][1]++; }); }
+  const rs = wd.map(([p, d], i) => ({ i, p, r: p ? d / p : 0 })).filter(x => x.p >= 3).sort((a, b) => b.r - a.r);
+  if (rs.length >= 3 && rs[0].r - rs[rs.length - 1].r >= .15) out.push(`${WDL[rs[0].i]} ist dein stärkster Tag (${pc(rs[0].r)}). Am ${WDL[rs[rs.length - 1].i]} fällt es dir am schwersten (${pc(rs[rs.length - 1].r)}).`);
+  const hr = state.habits.map(h => { let p = 0, d = 0; for (let i = 1; i <= 14; i++) { const k = addDays(t, -i); if (sched(h, k)) { p++; if (isDone(h, k)) d++; } } return { h, p, r: p ? d / p : 1 }; }).filter(x => x.p >= 4).sort((a, b) => a.r - b.r);
+  if (hr.length && hr[0].r < .6) out.push(`„${hr[0].h.name}“ wackelt: ${pc(hr[0].r)} in den letzten 2 Wochen. Mach die Gewohnheit kleiner oder häng sie an einen festen Auslöser.`);
+  if (hr.length > 1 && hr[hr.length - 1].r >= .85) out.push(`„${hr[hr.length - 1].h.name}“ sitzt: ${pc(hr[hr.length - 1].r)} in den letzten 2 Wochen.`);
+  const a = [[0, 0], [0, 0]], g = [[0, 0], [0, 0]];
+  Object.entries(state.pledges).forEach(([k, p]) => {
+    if (!p.pm || !p.pm.mood) return;
+    const hs = habitsFor(k); if (hs.length) { const i = hs.filter(h => isDone(h, k)).length / hs.length >= .8 ? 0 : 1; a[i][0] += p.pm.mood; a[i][1]++; }
+    const j = state.gym.sessions.some(s => s.day === k) ? 0 : 1; g[j][0] += p.pm.mood; g[j][1]++;
+  });
+  const avg = x => x[0] / x[1];
+  if (a[0][1] >= 3 && a[1][1] >= 3 && avg(a[0]) - avg(a[1]) >= .3) out.push(`An starken Tagen geht es dir besser: Stimmung ${f1(avg(a[0]))} statt ${f1(avg(a[1]))} von 5.`);
+  if (g[0][1] >= 3 && g[1][1] >= 3 && avg(g[0]) - avg(g[1]) >= .3) out.push(`Training hebt deine Laune: ${f1(avg(g[0]))} an Trainingstagen, sonst ${f1(avg(g[1]))} von 5.`);
+  return out.slice(0, 4);
+}
+function insightCard() {
+  const xs = insights();
+  return `<div class="sec-h"><h2>Erkenntnisse</h2><span class="muted">aus deinen Daten</span></div>
+  <div class="card enter" style="--i:4">${xs.length ? xs.map(x => `<div class="insight">${I.bolt}<span>${esc(x)}</span></div>`).join("") : `<p class="muted" style="margin:0;font-weight:700">Nach ein bis zwei Wochen zeigt 21 Days hier deine Muster: starke und schwache Tage, wackelige Gewohnheiten und was deine Stimmung hebt.</p>`}
+  ${recapData(recapWeek()).p ? `<button class="link" data-action="recap-view">Rückblick auf letzte Woche ansehen</button>` : ""}</div>`;
+}
+
+// Weekly recap: a short run of full-screen cards about the week before the current one
+const recapWeek = () => addDays(weekStart(todayK()), -7);
+function recapData(ws) {
+  let p = 0, d = 0, perfect = 0; const per = new Map(), end = addDays(ws, 7);
+  for (let i = 0; i < 7; i++) { const k = addDays(ws, i); habitsFor(k).forEach(h => { p++; const o = per.get(h) || [0, 0]; o[0]++; if (isDone(h, k)) { d++; o[1]++; } per.set(h, o); }); if (state.perfect[k]) perfect++; }
+  const best = [...per.entries()].filter(([, o]) => o[0] >= 2 && o[1] > 0).sort((x, y) => y[1][1] / y[1][0] - x[1][1] / x[1][0] || y[1][1] - x[1][1])[0] || null;
+  const gs = state.gym.sessions.filter(s => s.day >= ws && s.day < end);
+  return { p, d, perfect, best, xp: weekXp(ws), gs, vol: gs.reduce((a, s) => a + s.vol, 0), prs: gs.reduce((a, s) => a + s.prs, 0), words: Object.values(state.vocab.got).filter(x => x >= ws && x < end).length, jr: state.journal.filter(e => e.day >= ws && e.day < end).length };
+}
+const recapReady = () => state.profile.onboarded && state.flags.recap !== recapWeek() && state.profile.since < weekStart(todayK()) && recapData(recapWeek()).p > 0;
+
+// Gift, wheel and recap share one compact row on the home page, so the habits stay on the first screen.
+function quickRow() {
+  const q = [];
+  if (state.profile.onboarded && giftReady()) q.push(`<button class="qk" data-action="gift">${I.gift}<b>Geschenk</b></button>`);
+  if (spins()) q.push(`<button class="qk" data-action="wheel">${WHEEL_ICON}<b>Glücksrad · ${spins()}</b></button>`);
+  if (recapReady()) q.push(`<button class="qk" data-action="recap">${I.chart}<b>Rückblick</b></button>`);
+  return q.length ? `<div class="quick enter" style="--i:1">${q.join("")}</div>` : "";
+}
+function playRecap(reward) {
+  const ws = recapWeek(), r = recapData(ws), rate = r.p ? Math.round(r.d / r.p * 100) : 0, dm = k => parseK(k).toLocaleDateString("de-DE", { day: "numeric", month: "short" });
+  const title = rate >= 90 ? "Unaufhaltsam" : rate >= 70 ? "Dranbleiber" : rate >= 40 ? "Auf Kurs" : "Neustarter";
+  pushOverlay({ kicker: `Wochenrückblick · ${dm(ws)} bis ${dm(addDays(ws, 6))}`, big: rate + "%", title: "deiner Gewohnheiten geschafft", sub: `${r.d} von ${r.p} Häkchen · ${r.perfect} ${r.perfect === 1 ? "perfekter Tag" : "perfekte Tage"}`, color: "#FFC53D", sound: "streak" });
+  const extra = [r.words ? `${r.words} neue Wörter` : "", r.jr ? `${r.jr} ${r.jr === 1 ? "Tagebuch-Eintrag" : "Tagebuch-Einträge"}` : ""].filter(Boolean).join(" · ");
+  if (r.xp > 0) pushOverlay({ kicker: "Gesammelt", big: "+" + r.xp, title: "XP in einer Woche", sub: extra || "Jede XP war Schaden am Wochen-Boss.", color: "#C084FC", sound: "bonus" });
+  if (r.best) pushOverlay({ kicker: "Stärkste Gewohnheit", big: `${r.best[1][1]}/${r.best[1][0]}`, title: r.best[0].name, sub: "Darauf kannst du bauen.", color: "#38B6F5", sound: "bonus" });
+  if (r.gs.length) pushOverlay({ kicker: "Training", big: String(r.gs.length), title: r.gs.length === 1 ? "Workout" : "Workouts", sub: `${big(r.vol)} kg bewegt${r.prs ? ` · ${r.prs} ${r.prs === 1 ? "Rekord" : "Rekorde"}` : ""}`, color: "#FF6B6B", sound: "bonus" });
+  pushOverlay({ kicker: "Dein Titel der Woche", big: "★", title, sub: reward ? "+25 Münzen. Auf eine starke neue Woche!" : "Auf eine starke neue Woche!", color: "#1FBF8A", sound: "level" });
+  if (reward) { state.flags.recap = ws; addCoins(25); save(); render(); }
+}
+
+// Time capsule: a letter to yourself that stays sealed for 21 days
+const capReady = h => !!h.capsule && !h.capsule.opened && todayK() >= h.capsule.open;
+const capBadge = h => capReady(h) ? `<span class="pill" style="background:var(--gold-soft);color:var(--ink)">Zeitkapsel bereit</span>` : "";
+function capsuleCard(h) {
+  const c = h.capsule, head = `<div class="sec-h"><h2>Zeitkapsel</h2></div>`;
+  if (!c) return `${head}<div class="card capsule"><p class="muted" style="margin:0 0 12px;font-weight:700">Schreib deinem Ich in 21 Tagen einen Brief. Er bleibt versiegelt, bis die Startphase vorbei ist.</p><button class="btn ghost full" data-action="cap-new" data-id="${h.id}">${I.edit} Brief schreiben</button></div>`;
+  if (c.opened) return `${head}<div class="card"><div class="muted" style="font-weight:700;font-size:.8125rem;margin-bottom:8px">Geschrieben am ${fmtLong(c.at)}</div><div class="captext">${esc(c.text)}</div><button class="link" data-action="cap-new" data-id="${h.id}">Neue Zeitkapsel schreiben</button></div>`;
+  const left = Math.max(0, Math.round((parseK(c.open) - parseK(todayK())) / 864e5));
+  return `${head}<div class="card capsule"><div class="lock">${I.lock}</div><b>${left ? `Versiegelt bis ${fmtLong(c.open)}` : "Deine Zeitkapsel ist bereit!"}</b>
+    <p class="muted" style="margin:4px 0 0;font-weight:700">${left ? `Noch ${left} ${left === 1 ? "Tag" : "Tage"}. Geschrieben am ${fmtLong(c.at)}.` : "Lies, was du dir vor 21 Tagen geschrieben hast."}</p>
+    ${left ? "" : `<button class="btn gold full" style="margin-top:12px" data-action="cap-open" data-id="${h.id}">Zeitkapsel öffnen</button>`}</div>`;
+}
+function openCapsule(id) {
+  openSheet(`${sheetHead("Zeitkapsel")}<p class="muted" style="margin:0;font-weight:700">Schreib deinem Ich in 21 Tagen: Warum fängst du an? Was soll dann anders sein? Der Brief bleibt bis dahin versiegelt.</p>
+    <div class="field"><label for="capText">Dein Brief</label><textarea id="capText" maxlength="1000" style="min-height:160px" placeholder="Liebes Ich in 21 Tagen, ich fange heute an, weil …"></textarea></div>
+    <div class="err" id="capErr" role="alert"></div><button class="btn full" data-action="cap-save" data-id="${id}" style="margin-top:12px">Für 21 Tage versiegeln</button>`, { reset: true });
+}
+function saveCapsule(id) {
+  const h = state.habits.find(x => x.id === id), text = ($("#capText").value || "").trim(); if (!h) return;
+  if (!text) { $("#capErr").textContent = "Schreib ein paar Zeilen an dich."; $("#capText").focus(); return; }
+  const t = todayK(); h.capsule = { text: text.slice(0, 1000), at: t, open: addDays(t, 21), opened: false };
+  save(); sfx("unlock"); vibrate([20, 30, 40]); toast("Versiegelt. In 21 Tagen darfst du sie öffnen.", "gold"); openDetail(id); render();
+}
+function revealCapsule(id) {
+  const h = state.habits.find(x => x.id === id); if (!h || !capReady(h)) return;
+  h.capsule.opened = true; addCoins(30); addXP(20); evaluateBadges(); save(); closeSheet(); render(); bigCelebration(); sfx("chest"); vibrate([40, 50, 80]);
+  openModal(`<div class="rarity" style="--rc:${RAR.legend.c};font-size:.8125rem">Zeitkapsel · ${fmtLong(h.capsule.at)}</div><h2 style="margin:8px 0 12px">Dein Brief an dich</h2><div class="captext">${esc(h.capsule.text)}</div>
+    <p class="muted" style="font-weight:700">+30 Münzen · +20 XP</p><button class="btn gold full" data-action="close-reward" autofocus>Danke, altes Ich</button>`);
+}
 /* ============ Wochen-Boss ============ */
 // Every XP point is damage, so habits, tasks, quests and badges all push the boss. A boss that escapes costs nothing.
 const BOSS_EYES = '<circle cx="46" cy="64" r="8" fill="#fff"/><circle cx="74" cy="64" r="8" fill="#fff"/><circle cx="48" cy="66" r="4" fill="#1A1F33"/><circle cx="72" cy="66" r="4" fill="#1A1F33"/><path d="M36 52 L54 58 M84 52 L66 58" stroke="#1A1F33" stroke-width="4" stroke-linecap="round"/>';
@@ -2677,10 +3287,7 @@ function endGame(quit) {
 
 /* ============ Tagesgeschenk ============ */
 const giftReady = () => (state.flags.gift || {}).last !== todayK();
-function giftCard() {
-  if (!state.profile.onboarded || !giftReady()) return "";
-  return `<div class="sec enter" style="--i:1"><button class="chest-btn" style="margin-top:0" data-action="gift">${I.gift.replace("<svg", '<svg class="chest" style="color:var(--gold-dark)"')}<div><h3>Tagesgeschenk</h3><p>Hol dir deine Überraschung für heute.</p></div></button></div>`;
-}
+
 let giftBusy = false;
 function openGift(btn) {
   if (giftBusy || !giftReady()) return;
@@ -2781,10 +3388,11 @@ document.addEventListener("click", e => {
   curAct = { a, id, t: Date.now() };
   if (!SELF_SOUND.has(a)) sfx("tap"); if (!SELF_HAPTIC.has(a)) vibrate(8);
   if (b.closest(".hcard") && a === "detail" && e.target.closest("button")) return;
+  if (a.startsWith("gy-") || a.startsWith("cx-")) { gymAction(a, b, id); return; }
   switch (a) {
     case "go": sfx("tap"); if (location.hash.slice(1) === b.dataset.view) { animateNext = true; render(); } else location.hash = b.dataset.view; break;
     case "tap": e.stopPropagation(); tapHabit(id, b); if ($(".sheet") && b.closest(".sheet")) openDetail(id); break;
-    case "minus": { const h = state.habits.find(x => x.id === id), t = todayK(); if (h && cnt(h, t) > 0) { const wasDone = isDone(h, t); h.log[t]--; if (!h.log[t]) delete h.log[t]; if (wasDone && !isDone(h, t)) { const x = h.xp[t] || 0; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); } sfx("undo"); save(); render(); openDetail(id); } break; }
+    case "minus": { const h = state.habits.find(x => x.id === id), t = todayK(); if (h && cnt(h, t) > 0) { const wasDone = isDone(h, t); h.log[t]--; if (!h.log[t]) delete h.log[t]; if (wasDone && !isDone(h, t)) { const x = h.xp[t] || 0; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); } sfx("undo"); save(); render(); openDetail(id); } break; }
     case "detail": openDetail(id); break;
     case "new": openTemplates(); break;
     case "tpl-kind": openTemplates.setKind(b.dataset.v); break;
@@ -2823,7 +3431,13 @@ document.addEventListener("click", e => {
     case "v-coll": openCollection(); break;
     case "v-open": openWord(Number(id), $(".sheet-h h2") && $(".sheet-h h2").textContent === "Sammlung" ? "coll" : ((state.habits.find(x => x.special === "vocab") || {}).id || "")); break;
     case "v-back": if (vBack === "coll") openCollection(); else if (vBack && state.habits.some(x => x.id === vBack)) openDetail(vBack); else closeSheet(); break;
-    case "tag-filter": tagFilter = b.dataset.v; softRender("#tl"); break;
+    case "tag-filter": tagFilter = b.dataset.v; softRender("#tl"); softRender("#tl2"); break;
+    case "f-gym": syncDraft(); draft.special = draft.special === "gym" ? "" : "gym"; rerenderEditor(); break;
+    case "recap": playRecap(true); break;
+    case "recap-view": playRecap(false); break;
+    case "cap-new": openCapsule(id); break;
+    case "cap-save": saveCapsule(id); break;
+    case "cap-open": revealCapsule(id); break;
     case "f-diff": syncDraft(); draft.diff = Number(b.dataset.v); rerenderEditor(); break;
     case "f-tag": syncDraft(); draft.tag = b.dataset.v; rerenderEditor(); break;
     case "tag-add": addTag(b.dataset.for); break;
@@ -2914,9 +3528,14 @@ document.addEventListener("click", e => {
     case "onboard-again": openOnboarding(); break;
     case "install": if (installEvt) { installEvt.prompt(); installEvt.userChoice.finally(() => { installEvt = null; render(); }); } break;
     case "backup":
-      openSheet(`${sheetHead("Backup")}<p class="muted" style="margin:0;font-weight:700">Deine Daten liegen nur in diesem Browser. Lade regelmäßig ein Backup herunter, damit nichts verloren geht, z. B. beim Löschen des Browserverlaufs.</p>
-        <div style="display:grid;gap:12px;margin-top:16px"><button class="btn full" data-action="backup-dl">Backup herunterladen</button>
-        <label class="btn ghost full" for="restoreFile" style="cursor:pointer">Backup wiederherstellen</label><input type="file" id="restoreFile" accept=".json,application/json" hidden></div><div class="err" id="bkErr"></div>`); break;
+      openSheet(`${sheetHead("Backup")}<p class="muted" style="margin:0;font-weight:700">Deine Daten liegen nur auf diesem Gerät. Sichere sie regelmäßig, damit nichts verloren geht. So ziehst du auch auf ein anderes Gerät um.</p>
+        <div style="display:grid;gap:12px;margin-top:16px">${inApp ? "" : `<button class="btn full" data-action="backup-dl">Backup herunterladen</button>`}
+        <button class="btn ${inApp ? "" : "ghost"} full" data-action="backup-copy">Backup kopieren</button>
+        <label class="btn ghost full" for="restoreFile" style="cursor:pointer">Aus Datei wiederherstellen</label><input type="file" id="restoreFile" accept=".json,application/json" hidden></div>
+        <div class="field"><label for="bkText">Oder kopiertes Backup einfügen</label><textarea id="bkText" placeholder="Hier einfügen" spellcheck="false" autocomplete="off" style="font-size:.75rem"></textarea></div>
+        <button class="btn ghost full" style="margin-top:10px" data-action="backup-paste">Aus Text wiederherstellen</button><div class="err" id="bkErr" role="alert"></div>`); break;
+    case "backup-copy": copyText(JSON.stringify(state), "Backup kopiert. Füge es in eine Notiz oder Nachricht an dich ein."); break;
+    case "backup-paste": restoreFrom(($("#bkText") || {}).value || ""); break;
     case "backup-dl": {
       try {
         const blob = new Blob([JSON.stringify(state, null, 1)], { type: "application/json" });
@@ -2958,13 +3577,14 @@ document.addEventListener("keydown", e => {
   if (e.key === "Enter" && e.target.id === "rwName") { e.preventDefault(); $('[data-action="add-reward"]').click(); }
 });
 document.addEventListener("submit", e => e.preventDefault());
+function restoreFrom(text) {
+  try { const data = JSON.parse(text); if (!data || !Array.isArray(data.habits)) throw new Error("bad"); state = migrate(data); shownXp = null; curAct = { a: "restore", t: Date.now() }; save(); closeSheet(); render(); toast("Backup wiederhergestellt", "gold"); }
+  catch (err) { const el = $("#bkErr"); if (el) el.textContent = "Das ist kein gültiges 21-Days-Backup."; }
+}
 document.addEventListener("change", e => {
   if (e.target.id !== "restoreFile" || !e.target.files[0]) return;
   const fr = new FileReader();
-  fr.onload = () => {
-    try { const data = JSON.parse(fr.result); if (!data || !Array.isArray(data.habits)) throw new Error("bad"); state = migrate(data); shownXp = null; curAct = { a: "restore", t: Date.now() }; save(); closeSheet(); render(); toast("Backup wiederhergestellt", "gold"); }
-    catch (err) { const el = $("#bkErr"); if (el) el.textContent = "Diese Datei ist kein gültiges 21-Days-Backup."; }
-  };
+  fr.onload = () => restoreFrom(fr.result);
   fr.readAsText(e.target.files[0]);
 });
 
@@ -2986,8 +3606,10 @@ function checkQuitMilestones(silent) {
   if (best) { evaluateBadges(); save(); }
 }
 let lastDay = todayK();
+// Runs on the timer and when the app comes back to the front, so a new day never shows yesterday's state.
+function dayTick() { if (todayK() === lastDay) return false; lastDay = todayK(); const fr = applyFreezes(); if (fr) freezeNotice(fr); save(); syncGroup(); return true; }
 setInterval(() => {
-  if (todayK() !== lastDay) { lastDay = todayK(); const fr = applyFreezes(); if (fr) freezeNotice(fr); save(); render(); syncGroup(); }
+  if (dayTick()) render();
   if (state.profile.onboarded) checkQuitMilestones(false);
 }, 30000);
 function freezeNotice(fr) {
@@ -2996,7 +3618,7 @@ function freezeNotice(fr) {
 }
 
 /* ============ Routing & boot ============ */
-const VIEWS = ["heute", "fortschritt", "begleiter", "gruppe", "profil"];
+const VIEWS = ["heute", "training", "fortschritt", "begleiter", "gruppe", "profil"];
 function route() { if (location.hash.startsWith("#join=")) { handleJoinUrl(location.hash); return; } const h = location.hash.slice(1); view = VIEWS.includes(h) ? h : "heute"; animateNext = true; if (store.mode !== "loading") render(); window.scrollTo(0, 0); }
 addEventListener("hashchange", route);
 
@@ -3040,7 +3662,7 @@ if (CapApp) { // invite links that open the app: days21://join/CODE
 }
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) return;
-  syncGroup(); if (view === "gruppe") loadBoard();
+  dayTick(); syncGroup(); if (view === "gruppe") loadBoard();
   if (!$(".back") && !$(".overlay")) render();
 });
 const inApp = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
