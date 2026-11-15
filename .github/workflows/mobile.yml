@@ -1,0 +1,111 @@
+name: Android-APK und iPhone-IPA
+
+# Von Hand starten: GitHub → Reiter „Actions“ → „Android-APK und iPhone-IPA“ → „Run workflow“.
+# Ergebnis (nach ein paar Minuten unter „Artifacts“):
+#   21Days-apk  → 21Days.apk  (direkt auf Android installieren)
+#   21Days-ipa  → 21Days.ipa  (ungesigniert, mit Sideloadly oder AltStore und deiner Apple-ID aufs iPhone)
+on:
+  workflow_dispatch:
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Weboberfläche zusammenbauen
+        run: node scripts/build-web.mjs
+
+      - name: Android-Projekt erzeugen
+        run: |
+          npx cap add android
+          npx @capacitor/assets generate --android
+          npx cap sync android
+
+      - name: Hochformat festlegen
+        run: perl -0pi -e 's/<activity\b/<activity android:screenOrientation="portrait"/' android/app/src/main/AndroidManifest.xml
+
+      - name: APK bauen
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: APK umbenennen
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk 21Days.apk && ls -lh 21Days.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 21Days-apk
+          path: 21Days.apk
+          retention-days: 14
+
+  ios:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Weboberfläche zusammenbauen
+        run: node scripts/build-web.mjs
+
+      - name: iOS-Projekt erzeugen
+        run: |
+          npx cap add ios
+          npx @capacitor/assets generate --ios
+          npx cap sync ios
+
+      - name: Hochformat auf dem iPhone festlegen
+        run: |
+          P=ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Delete :UISupportedInterfaceOrientations" "$P"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations array" "$P"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations:0 string UIInterfaceOrientationPortrait" "$P"
+
+      - name: Xcode wählen
+        run: |
+          ls -d /Applications/Xcode*.app || true
+          newest=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          if [ -n "$newest" ]; then sudo xcode-select -s "$newest"; fi
+          xcodebuild -version
+
+      - name: App bauen (ohne Signatur)
+        working-directory: ios/App
+        run: |
+          xcodebuild -project App.xcodeproj -scheme App -configuration Release -sdk iphoneos \
+            -destination 'generic/platform=iOS' -archivePath "$RUNNER_TEMP/21Days.xcarchive" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            archive
+
+      - name: IPA packen
+        run: |
+          mkdir -p Payload
+          cp -R "$RUNNER_TEMP/21Days.xcarchive/Products/Applications/App.app" Payload/
+          zip -qry 21Days.ipa Payload
+          ls -lh 21Days.ipa
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 21Days-ipa
+          path: 21Days.ipa
+          retention-days: 14

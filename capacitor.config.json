@@ -1,0 +1,13 @@
+{
+  "appId": "de.bambuseleitung.days21",
+  "appName": "21 Days",
+  "webDir": "www",
+  "backgroundColor": "#F2F4F8",
+  "ios": {
+    "backgroundColor": "#F2F4F8",
+    "contentInset": "never"
+  },
+  "android": {
+    "backgroundColor": "#F2F4F8"
+  }
+}
