@@ -538,8 +538,8 @@ mark{background:color-mix(in srgb,var(--p) 22%,transparent);color:inherit;border
 .pk-mini p{margin:4px 0 0;font-size:.875rem;font-weight:600}
 
 /* Group */
-.qr{width:min(240px,70vw);margin:8px auto 0;padding:10px;background:#fff;border-radius:16px;line-height:0}
-.qr svg{display:block;width:100%;height:auto}
+.qrcode{width:min(240px,70vw);margin:8px auto 0;padding:10px;background:#fff;border-radius:16px;line-height:0}
+.qrcode svg{display:block;width:100%;height:auto}
 .codebox{display:inline-block;margin-top:10px;padding:10px 16px;border-radius:14px;background:var(--card);border:2px solid var(--line);font-size:1.5rem;font-weight:900;letter-spacing:.12em}
 .priv{display:flex;gap:12px;align-items:flex-start;margin-top:12px}
 .priv>span{flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:var(--ok-soft);color:var(--ok-dark)}
@@ -1309,6 +1309,7 @@ async function exportLog() {
 /* ============ Persistence ============ */
 function save() {
   prune();
+  if (state.profile.infinite) state.coins = Math.max(state.coins, 999999);
   try { logChange(); } catch (e) { /* the log must never block saving */ }
   try { syncGroup(); } catch (e) { /* group sync must never block saving */ }
   try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
@@ -1435,7 +1436,7 @@ function openInvite() {
   let qr = ""; try { const q = qrcode(0, "M"); q.addData(inviteLink(g.code)); q.make(); qr = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }); } catch (e) { /* QR optional, the code still works */ }
   openSheet(`${sheetHead("Freunde einladen")}
     <div style="text-align:center">
-      ${qr ? `<div class="qr" role="img" aria-label="QR-Code zum Beitreten">${qr}</div><p class="muted" style="font-weight:700;margin:10px 0 0">Mit der Kamera scannen oder den Code eingeben</p>` : ""}
+      ${qr ? `<div class="qrcode" role="img" aria-label="QR-Code zum Beitreten">${qr}</div><p class="muted" style="font-weight:700;margin:10px 0 0">Mit der Kamera scannen oder den Code eingeben</p>` : ""}
       <div class="codebox num" aria-label="Gruppen-Code">${esc(fmtCode(g.code))}</div>
     </div>
     <div style="display:grid;gap:12px;margin-top:16px"><button class="btn full" data-action="g-share">Einladung teilen</button><button class="btn ghost full" data-action="g-copy">Code kopieren</button></div>`, { reset: true });
@@ -1481,7 +1482,7 @@ function renderTopbar() {
   const C = 2 * Math.PI * 20, pct = (state.xp - b) / (n - b);
   $("#topbar").innerHTML = `
     <button class="chip flame ${hot ? "hot" : "cold"}" id="chipStreak" data-action="go" data-view="fortschritt" aria-label="${s} Tage Serie${hot ? "" : ", heute noch nicht verlängert"}">${I.flame}<span class="num">${s}</span></button>
-    <button class="chip coins" id="chipCoins" data-action="go" data-view="begleiter" aria-label="${state.coins} Münzen">${I.coin}<span class="num">${state.coins}</span></button>
+    <button class="chip coins" id="chipCoins" data-action="go" data-view="begleiter" aria-label="${state.profile.infinite ? "Unendlich viele" : state.coins} Münzen">${I.coin}<span class="num">${state.profile.infinite ? "∞" : state.coins}</span></button>
     <button class="chip shields" id="chipShields" data-action="shield-info" aria-label="${state.freezes} Schutzschilde">${I.shield}<span class="num">${state.freezes}</span></button>
     <button class="lvl-btn" id="lvlBtn" data-action="go" data-view="profil" aria-label="Level ${L}, ${state.xp - b} von ${n - b} XP">
       <svg viewBox="0 0 46 46"><circle class="t" cx="23" cy="23" r="20"/><circle class="v" cx="23" cy="23" r="20" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - pct)}"/></svg><b class="num">${L}</b></button>`;
@@ -1709,7 +1710,7 @@ function viewPet() {
   </section>
   <section class="card sec enter" style="--i:1" id="care">${careHtml()}</section>
   ${wheelCard(true)}
-  <div id="shop"><div class="sec-h"><h2>Shop</h2><span class="chip coins">${I.coin}<span class="num">${state.coins}</span></span></div>
+  <div id="shop"><div class="sec-h"><h2>Shop</h2><span class="chip coins">${I.coin}<span class="num">${state.profile.infinite ? "∞" : state.coins}</span></span></div>
   <div class="seg scroll" role="group" style="margin-bottom:12px">${[["outfit", "Outfits"], ["room", "Zimmer"], ["theme", "Themen"], ["power", "Items"], ["rewards", "Belohnungen"]].map(([k, l]) => `<button data-action="stab" data-v="${k}" aria-pressed="${shopTab === k}">${l}</button>`).join("")}</div>
   ${shopTab === "outfit" ? `<div class="card" style="margin-bottom:12px"><div class="swatches">${PET_COLORS.map(c => `<button class="sw" style="--c:${c}" data-action="petcolor" data-v="${c}" aria-pressed="${state.profile.petColor === c}" aria-label="Farbe ${c}"></button>`).join("")}</div><div style="text-align:center"><button class="link" data-action="rename">Namen ändern</button></div></div>` : ""}
   ${shopHtml}</div>`;
@@ -1745,6 +1746,7 @@ function viewProfile() {
   <div class="card">
     <div class="setrow"><div><b>Sound</b><small>Klänge bei Häkchen, Münzen und Level</small></div><button class="switch" role="switch" aria-checked="${state.profile.sound}" aria-label="Sound" data-action="set-sound"></button></div>
     <div class="setrow"><div><b>Haptik</b><small>Vibration bei Antippen, Erfolgen und Spielen</small></div><button class="switch" role="switch" aria-checked="${state.profile.haptics}" aria-label="Haptik" data-action="set-haptics"></button></div>
+    <div class="setrow"><div><b>Unendlich Münzen</b><small>Nur zum Testen: Münzen gehen nie aus</small></div><button class="switch" role="switch" aria-checked="${!!state.profile.infinite}" aria-label="Unendlich Münzen" data-action="set-infinite"></button></div>
     <div class="setrow"><div><b>Speicherort</b><small>Nur lokal in diesem Browser auf deinem Gerät</small></div></div>
     ${installEvt ? `<div class="setrow"><div><b>Als App installieren</b><small>21 Days als eigenes Fenster, auch offline</small></div><button class="btn sm" data-action="install">Installieren</button></div>` : ""}
     <div class="setrow"><div><b>Backup</b><small>Daten kopieren oder aus einem Backup wiederherstellen</small></div><button class="btn sm ghost" data-action="backup">Öffnen</button></div>
@@ -2906,6 +2908,7 @@ document.addEventListener("click", e => {
       leaveGroup(); break;
     case "shield-info": openModal(`<div style="width:90px;height:90px;margin:0 auto">${I.shield}</div><h2>Schutzschilde: ${state.freezes}/${MAX_SHIELDS}</h2><p class="muted" style="font-weight:700">Verpasst du einen Tag, rettet ein Schutzschild automatisch deine Serie. Neue Schilde gibt's im Shop und manchmal in Quest-Truhen.</p><button class="btn ice full" data-action="close-go-shop">Zum Shop</button>`); break;
     case "close-go-shop": closeSheet(); shopTab = "power"; location.hash = "begleiter"; break;
+    case "set-infinite": state.profile.infinite = !state.profile.infinite; b.setAttribute("aria-checked", state.profile.infinite); save(); renderTopbar(); toast(state.profile.infinite ? "Münzen gehen jetzt nie aus" : "Normale Münzen"); break;
     case "set-haptics": state.profile.haptics = !state.profile.haptics; b.setAttribute("aria-checked", state.profile.haptics); save(); vibrate([30, 40, 30]); break;
     case "set-sound": state.profile.sound = !state.profile.sound; b.setAttribute("aria-checked", state.profile.sound); save(); sfx("tap"); break;
     case "onboard-again": openOnboarding(); break;
