@@ -37,12 +37,16 @@ Die Daten liegen in der App auf dem Gerät. Die App im Browser und die App auf d
 
 ## Training (Gym-Logger)
 
-Im Reiter **Training** protokollierst du deine Workouts. 95 Übungen sind schon dabei, sortiert nach Muskelgruppe, dazu fünf Routinen (Push, Pull, Beine, Ganzkörper, Zuhause). Eigene Übungen und Routinen kannst du anlegen.
+Training gehört zu deinen Gewohnheiten: Leg die Gewohnheit **„Sport“** an (oder schalte bei einer Gewohnheit „Mit Training verknüpfen“ ein). Ein Tipp auf ihren Haken öffnet das Training. 238 Übungen sind schon dabei, sortiert nach Muskelgruppe, dazu acht Vorlagen (Push, Pull, Beine, Oberkörper, Unterkörper, Ganzkörper, Zuhause, Bauch).
 
-1. Routine antippen oder **Freies Training** starten und Übungen hinzufügen.
+**Eigene Routinen:** Unter „Routinen“ auf **Neu** tippen, Namen vergeben, Übungen suchen und hinzufügen, mit den Pfeilen sortieren, speichern. Jede Vorlage lässt sich als eigene Routine kopieren und anpassen, und jedes beendete Workout kann zur Routine werden.
+
+1. Routine antippen und starten, oder **Freies Training** wählen und Übungen hinzufügen.
 2. Gewicht und Wiederholungen eintragen und den Satz abhaken. Beim nächsten Mal stehen deine letzten Werte schon da.
 3. Nach jedem Satz läuft der Pausen-Timer (90 Sekunden, mit −15 und +15 anpassbar).
-4. **Workout beenden**: Du siehst Dauer, Sätze, Rekorde und das bewegte Gewicht.
+4. **Beenden**: Du siehst Dauer, Sätze, Rekorde und das bewegte Gewicht, und die Gewohnheit ist abgehakt.
+
+Mit dem Pfeil oben links blendest du das Workout aus, es läuft weiter. Die Gewohnheit zeigt dann die laufende Zeit, ein Tipp auf den Haken holt es zurück. Wer nicht protokollieren will, findet im Training „Ohne Protokoll abhaken“.
 
 Was dazukommt:
 - **Rekorde** werden beim Abhaken erkannt und gefeiert. Bei Gewichten zählt die geschätzte Maximalkraft, sonst Wiederholungen, Zeit oder Strecke.
@@ -116,7 +120,8 @@ Alle Daten bleiben lokal auf deinem Gerät. Nur wenn du einer Gruppe beitrittst,
 - Abgewöhnen mit sekundengenauem Zähler, gespartem Geld und gewonnener Zeit, Meilensteinen und SOS-Atemübung
 - Morgen-Versprechen und Abend-Rückblick mit Stimmungsverlauf
 - Statistiken: Serien-Kalender, Aktivität der letzten 20 Wochen, Wochenansicht, Auslöser-Analyse
-- Gym-Logger mit 95 Übungen, Routinen, Rekorden, Pausen-Timer, Coach und Erholungsübersicht
+- Schlichtes Design nach Apples Gestaltungsregeln, hell und dunkel, Gewohnheiten zuerst
+- Gym-Logger in der Gewohnheit „Sport“: 238 Übungen, eigene Routinen, Rekorde, Pausen-Timer, Coach und Erholungsübersicht
 - Erkenntnisse aus den eigenen Daten, Wochenrückblick und Zeitkapsel
 - Ruhetage: Tage ohne geplante Gewohnheit brechen die Serie nicht und kosten kein Schutzschild
 - Abzeichen, Level-System, Konfetti, Sounds und Animationen
