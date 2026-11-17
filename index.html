@@ -1559,7 +1559,7 @@ const inviteLink = c => "days21://join/" + c;
 async function rpc(fn, args) {
   const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 12000);
   try {
-    const r = await fetch(`${CFG.supabaseUrl.replace(/\/+$/, "")}/rest/v1/rpc/${fn}`, { method: "POST", signal: ctl.signal, headers: { "Content-Type": "application/json", apikey: CFG.supabaseKey, Authorization: `Bearer ${CFG.supabaseKey}` }, body: JSON.stringify(args || {}) });
+    const r = await fetch(`${CFG.supabaseUrl.replace(/\/+$/, "").replace(/\/rest\/v1$/, "")}/rest/v1/rpc/${fn}`, { method: "POST", signal: ctl.signal, headers: { "Content-Type": "application/json", apikey: CFG.supabaseKey, Authorization: `Bearer ${CFG.supabaseKey}` }, body: JSON.stringify(args || {}) });
     const txt = await r.text(); let body = null; try { body = txt ? JSON.parse(txt) : null; } catch (e) { /* empty or plain-text body */ }
     if (!r.ok) throw new Error((body && body.message) || `http_${r.status}`);
     return body;
