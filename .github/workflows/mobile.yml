@@ -42,6 +42,15 @@ jobs:
           perl -0pi -e 's#</activity>#<intent-filter><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.DEFAULT"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="days21" android:host="join"/></intent-filter></activity>#' "$M"
           grep -c 'days21' "$M"
 
+      - name: Startbildschirm-Widget einbauen (native/android)
+        run: |
+          cp -r native/android/java/. android/app/src/main/java/
+          cp -r native/android/res/. android/app/src/main/res/
+          M=android/app/src/main/AndroidManifest.xml
+          perl -0pi -e 's#</application>#<receiver android:name=".TodayWidget" android:exported="false"><intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter><meta-data android:name="android.appwidget.provider" android:resource="\@xml/widget_today_info"/></receiver></application>#' "$M"
+          grep -c 'TodayWidget' "$M"
+          grep -c 'registerPlugin(WidgetPlugin' android/app/src/main/java/de/bambuseleitung/days21/MainActivity.java
+
       - name: APK bauen
         working-directory: android
         run: |

@@ -31,6 +31,8 @@ Beides baut GitHub für dich. Auf dem PC ist dafür nichts nötig.
 Die App ist dieselbe Weboberfläche in einer Hülle (Capacitor). Dazu kommt:
 - **Haptik** bei Antippen, Erfolgen, Minispielen und Belohnungen (in der App echt über Android und iOS, im Browser per Vibration). Abschaltbar unter **Profil → Haptik**.
 - **Soundeffekte** bei Antippen, Öffnen von Fenstern und allen Belohnungen. Abschaltbar unter **Profil → Sound**. Auf dem iPhone folgt der Ton dem Stumm-Schalter.
+- **Erinnerungen**: pro Gewohnheit eine Uhrzeit (Bearbeiten → Erinnerung) und eine **Abend-Erinnerung** unter Profil, die nur kommt, wenn noch etwas offen ist. Erledigtes erinnert nicht mehr. Geplant wird immer eine Woche im Voraus: Wer die App eine Woche lang nicht öffnet, bekommt danach keine Erinnerungen mehr, bis er sie wieder öffnet.
+- **Widget (Android)**: lange auf den Startbildschirm drücken → Widgets → 21 Days. Es zeigt den Stand von heute, deine Serie und deinen Platz in der Gruppe samt Team-Serie. Ein iPhone-Widget gibt es nicht.
 - Hochformat, eigenes Icon und Startbild, Schrift in der App, Android-Zurück-Taste schließt Fenster.
 
 Die Daten liegen in der App auf dem Gerät. Die App im Browser und die App auf dem Handy haben getrennte Daten. Übertragen geht über **Profil → Backup**.
@@ -69,10 +71,24 @@ Die Gruppe findest du unter **Profil → Gruppe**. Dort erstellst du eine Gruppe
 Dafür braucht die App einen kleinen kostenlosen Server (Supabase). Das richtest du einmal ein:
 
 1. Auf https://supabase.com ein kostenloses Konto anlegen und ein neues Projekt erstellen.
-2. Im Projekt links **SQL Editor** → **New query**. Den kompletten Inhalt von `supabase/schema.sql` einfügen und auf **Run** klicken. Das legt die Tabellen an und sperrt sie: Die App darf nur sechs feste Funktionen aufrufen.
+2. Im Projekt links **SQL Editor** → **New query**. Den kompletten Inhalt von `supabase/schema.sql` einfügen und auf **Run** klicken. Das legt die Tabellen an und sperrt sie: Die App darf nur feste Funktionen aufrufen.
 3. Unter **Project Settings → API** zwei Werte kopieren: die **Project URL** und den Schlüssel **anon public**.
 4. Beide in `config.js` eintragen (`supabaseUrl` und `supabaseKey`), die Datei auf GitHub hochladen und den Workflow neu starten. Der anon-Schlüssel ist dafür gedacht, in Apps zu stehen.
 5. Alle Freunde installieren die App aus **demselben** Lauf, dann haben alle denselben Server.
+
+**Server aktualisieren:** Nach einem App-Update mit neuen Gruppen-Funktionen (zuletzt: Challenges) `supabase/schema.sql` im SQL Editor einfach noch einmal komplett ausführen. Die Datei ist dafür gemacht, vorhandene Gruppen und Daten bleiben erhalten. Solange das fehlt, zeigt die Gruppe einen Hinweis, die Rangliste läuft trotzdem weiter.
+
+### Gruppen-Challenges
+
+Der **Leader** (wer die Gruppe erstellt hat) legt unter **Gruppe → Challenges → Neu** Challenges an, zum Beispiel „10.000 Schritte“ (Angewöhnen) oder „Kein Zucker“ (Abgewöhnen), mit Symbol, Farbe und Wochentagen. Höchstens 10 laufen gleichzeitig.
+
+- Jedes Mitglied bekommt die Challenge automatisch als Gewohnheit. Sie steht auf **Heute** oben im Block „Challenges“ und wird dort abgehakt wie jede Gewohnheit. Name, Tage und Aussehen legt nur der Leader fest, eigene Notizen und eine Erinnerung darf jeder setzen.
+- An jeder Challenge siehst du, wer sie heute schon geschafft hat („2/3“ mit den Anfangsbuchstaben).
+- **Team-Serie**: Sie wächst nur an Tagen, an denen alle Mitglieder alle Challenges geschafft haben. Fehlt einer, beginnt sie von vorn. Schafft die Gruppe einen Tag komplett, bekommt jeder +25 XP und +10 Münzen.
+- Challenges zählen wie jede Gewohnheit für XP, deshalb steigen sie auch in der Wochen-Rangliste.
+- **Aktivität**: Wer was geschafft hat und wer wen angefeuert hat, in den letzten zwei Tagen. Daneben kannst du direkt anfeuern.
+- Beendet der Leader eine Challenge, verschwindet sie bei allen. Verlässt der Leader die Gruppe, übernimmt das Mitglied, das am längsten dabei ist. Ältere Gruppen ohne Leader: Das erste Mitglied, das auf „Leader werden“ tippt, übernimmt.
+- Abgehakt werden kann nur heute (und gestern, wegen Zeitzonen). An den Server geht nur, welche Challenge du an welchem Tag geschafft hast, weiterhin nie deine privaten Gewohnheiten.
 
 Gruppen haben höchstens 20 Mitglieder. Wer den Gruppen-Code kennt, kann beitreten, gib ihn also nur an Freunde weiter. Der Link `days21://join/CODE` öffnet die App direkt (in manchen Chat-Apps ist er nicht anklickbar, dann den Code eintippen). Im Browser geht auch `…/index.html#join=CODE`.
 
@@ -93,7 +109,7 @@ Zu jeder Gewohnheit gibt es in der Detailansicht ein Tagebuch, und unter **Forts
 
 ## Speicherung
 
-Alle Daten bleiben lokal auf deinem Gerät. Nur wenn du einer Gruppe beitrittst, schickt die App Name, Level, XP, Serie und den Tagesfortschritt an den Gruppen-Server.
+Alle Daten bleiben lokal auf deinem Gerät. Nur wenn du einer Gruppe beitrittst, schickt die App Name, Level, XP, Serie, den Tagesfortschritt und deine Häkchen bei Gruppen-Challenges an den Gruppen-Server.
 
 - In der Android- und iPhone-App gibt es keinen Datei-Download. Dort kopierst du das Backup (**Profil → Backup → Backup kopieren**) und fügst es auf dem anderen Gerät unter „Oder kopiertes Backup einfügen“ ein.
 - Jede Adresse hat ihren eigenen Speicher. Wenn du `index.html` direkt geöffnet hast, kommen deine Daten nicht automatisch nach `localhost:8021`. Übertragen kannst du sie mit **Profil → Backup**: dort herunterladen und an der neuen Adresse wiederherstellen.
@@ -109,6 +125,7 @@ Alle Daten bleiben lokal auf deinem Gerät. Nur wenn du einer Gruppe beitrittst,
 | `manifest.webmanifest`, `sw.js`, `icons/`, `fonts/` | Installierbare App, Offline-Modus, Schrift |
 | `config.js`, `supabase/schema.sql`, `vendor/` | Gruppen-Server (Zugangsdaten, Datenbank), QR-Code-Bibliothek |
 | `package.json`, `capacitor.config.json`, `scripts/`, `assets/`, `.github/workflows/mobile.yml` | Bau der Android- und iOS-App |
+| `native/android/` | Android-Widget (Java, Layout), wird beim Bau ins Android-Projekt kopiert |
 
 ## Features
 
