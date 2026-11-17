@@ -35,12 +35,19 @@ jobs:
           npx @capacitor/assets generate --android
           npx cap sync android
 
-      - name: Hochformat und Einladungs-Link (days21://) festlegen
+      - name: Hochformat, Links (days21://join, wake, steps) und Wecker-Berechtigung festlegen
         run: |
           M=android/app/src/main/AndroidManifest.xml
           perl -0pi -e 's/<activity\b/<activity android:screenOrientation="portrait"/' "$M"
-          perl -0pi -e 's#</activity>#<intent-filter><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.DEFAULT"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="days21" android:host="join"/></intent-filter></activity>#' "$M"
+          perl -0pi -e 's#</activity>#<intent-filter><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.DEFAULT"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="days21"/></intent-filter></activity>#' "$M"
+          perl -0pi -e 's#<application#<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>\n    <application#' "$M"
           grep -c 'days21' "$M"
+          grep -c 'SET_ALARM' "$M"
+
+      - name: Health Connect braucht Android 8 (minSdk 26)
+        run: |
+          perl -pi -e 's/minSdkVersion = \d+/minSdkVersion = 26/' android/variables.gradle
+          grep 'minSdkVersion' android/variables.gradle
 
       - name: Startbildschirm-Widget einbauen (native/android)
         run: |
@@ -101,6 +108,20 @@ jobs:
           /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes array" "$P"
           /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes:0 string days21" "$P"
 
+      - name: Apple Health (Schritte lesen)
+        run: |
+          P=ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Delete :NSHealthShareUsageDescription" "$P" || true
+          /usr/libexec/PlistBuddy -c "Add :NSHealthShareUsageDescription string 21 Days liest deine Schritte, um die Gewohnheit Schritte automatisch abzuhaken. Die Daten bleiben auf deinem iPhone." "$P"
+          /usr/libexec/PlistBuddy -c "Delete :NSHealthUpdateUsageDescription" "$P" || true
+          /usr/libexec/PlistBuddy -c "Add :NSHealthUpdateUsageDescription string 21 Days schreibt nichts in Apple Health." "$P"
+          cat > "$RUNNER_TEMP/App.entitlements" <<'PLIST'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict><key>com.apple.developer.healthkit</key><true/><key>com.apple.developer.healthkit.access</key><array/></dict></plist>
+          PLIST
+          plutil -lint "$RUNNER_TEMP/App.entitlements"
+
       - name: Xcode wählen
         run: |
           ls -d /Applications/Xcode*.app || true
@@ -120,6 +141,8 @@ jobs:
         run: |
           mkdir -p Payload
           cp -R "$RUNNER_TEMP/21Days.xcarchive/Products/Applications/App.app" Payload/
+          # Ad-hoc-Signatur nur, damit die HealthKit-Berechtigung in der App steht (Sideloadly signiert danach mit deiner Apple-ID neu).
+          codesign --force --deep --sign - --entitlements "$RUNNER_TEMP/App.entitlements" Payload/App.app || echo "Ad-hoc-Signatur übersprungen"
           zip -qry 21Days.ipa Payload
           ls -lh 21Days.ipa
 
