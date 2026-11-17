@@ -41,6 +41,8 @@ Die Daten liegen in der App auf dem Gerät. Die App im Browser und die App auf d
 
 Training gehört zu deinen Gewohnheiten: Leg die Gewohnheit **„Sport“** an (oder schalte bei einer Gewohnheit „Mit Training verknüpfen“ ein). Ein Tipp auf ihren Haken öffnet das Training. 238 Übungen sind schon dabei, sortiert nach Muskelgruppe, dazu acht Vorlagen (Push, Pull, Beine, Oberkörper, Unterkörper, Ganzkörper, Zuhause, Bauch).
 
+**Einrichten:** Beim ersten Mal fragt die App, ob du im **Fitnessstudio** oder mit **Calisthenics** trainierst, wie viel Erfahrung du hast (Einsteiger, Fortgeschritten, Profi) und an wie vielen Tagen. Dann schlägt sie einen Plan vor (Ganzkörper, Ober-/Unterkörper oder Drücken/Ziehen/Beine) und erklärt Sätze, Wiederholungen und Steigerung. Übernommen wird nur, was du bestätigst. Calisthenics-Übungen sind in der Übungsliste nach Stufe markiert. „Plan neu einrichten“ geht jederzeit.
+
 **Eigene Routinen:** Unter „Routinen“ auf **Neu** tippen, Namen vergeben, Übungen suchen und hinzufügen, mit den Pfeilen sortieren, speichern. Jede Vorlage lässt sich als eigene Routine kopieren und anpassen, und jedes beendete Workout kann zur Routine werden.
 
 1. Routine antippen und starten, oder **Freies Training** wählen und Übungen hinzufügen.
@@ -103,6 +105,33 @@ Lege über das Plus die Gewohnheit **„Vokabel-Pack“** an (oder wähle beim S
 
 Es gibt 991 Wörter (`vocab.js`). Ein Wort kommt erst wieder, wenn alle einmal dran waren (nach rund 330 Tagen). Alle gezogenen Karten stehen in der **Sammlung** (in der Detailansicht der Gewohnheit). Ohne Bewegung (Systemeinstellung „Bewegung reduzieren“) erscheinen die Karten sofort.
 
+## Ziele je Gewohnheit (Messarten)
+
+Im Editor wählst du unter **Ziel → Messart**, wie eine Gewohnheit zählt. Die Vorlagen bringen passende Ziele schon mit.
+
+| Messart | Beispiel | So funktioniert's |
+|---|---|---|
+| **Abhaken** | Vitamine nehmen | Ein Tipp auf den Kreis, fertig. |
+| **Menge** | Wasser 2.000 ml, 10 Seiten, 5 Portionen | Der Kreis addiert den ersten Schnell-Wert (z. B. +250 ml). In der Detailansicht gibt es alle Schnell-Buttons und eine freie Eingabe. Einheiten: Gläser, ml, Seiten, Portionen, Wdh., km, Kapitel oder eigene. |
+| **Timer** | Lesen 20 Min, Meditieren 10 Min | Start, Pause, Speichern. Der Timer läuft weiter, wenn du die App schließt, und endet mit einem Gong. In der App kommt am Ziel eine Mitteilung. Minuten lassen sich auch nachtragen. |
+| **Aufstehen** | Früh aufstehen, Ziel 06:30 + 30 Min Puffer | Zählt, wenn du bis Weckzeit plus Puffer auf „Ich bin wach“ tippst. Die Aufstehzeiten der letzten Woche stehen in der Detailansicht. |
+| **Tagebuch** | Tagebuch schreiben, mind. 30 Wörter | Der Kreis öffnet das Tagebuch mit Wortzähler. Abgehakt wird, sobald die Einträge des Tages lang genug sind. |
+| **Schritte** | 10.000 Schritte | Automatisch aus der Fitness-App, per iPhone-Kurzbefehl oder per Eingabe (siehe unten). |
+
+### Wecker (Aufstehen)
+
+- **Android-App:** „Wecker“ im Editor stellt einen echten, wiederkehrenden Wecker in deiner Uhr-App (an deinen geplanten Tagen). Zusätzlich kommt zur Weckzeit eine Mitteilung; Antippen zählt als „Ich bin wach“.
+- **iPhone-App:** Apps dürfen keine Wecker in der Uhr-App stellen. Du bekommst zur Weckzeit eine Mitteilung (Antippen zählt als wach). Für einen lauten Wecker stellst du ihn in der Uhr-App und lässt dich automatisch abhaken: Kurzbefehle → Automation → **Wecker** → **Wird gestoppt** → Aktion **URL öffnen** mit `days21://wake`.
+- **Browser:** In der Detailansicht gibt es den Wecker als wiederkehrenden Kalender-Termin mit Alarm (`.ics`).
+
+### Schritte aus Apple Fitness, Google Fit, Samsung Health …
+
+- **In der App:** Ist „Automatisch übernehmen“ an, liest 21 Days beim Öffnen die Schritte von heute aus **Apple Health** (iPhone, Apple Watch, Apple Fitness) bzw. **Health Connect** (Android; Google Fit, Samsung Health, Fitbit usw., wenn sie mit Health Connect verbunden sind). Beim ersten Mal fragt das Handy nach der Erlaubnis. Gelesen wird nur die Schrittzahl, nichts verlässt das Gerät (`privacypolicy.html`).
+- **iPhone-Kurzbefehl** (klappt auch, wenn Health in der per Sideloadly installierten App nicht freigegeben wird): Aktion **Health-Beispiele suchen** (Schritte, Startdatum heute) → **Statistik berechnen** (Summe) → **URL öffnen** `days21://steps/` + Variable *Statistik*. Als Automation z. B. täglich um 21:00.
+- **Browser:** Ein Link wie `http://localhost:8021/#steps=8500` trägt die Zahl ein, wenn du 21 Days auf demselben Gerät nutzt. Oder du gibst die Schritte in der Detailansicht ein.
+
+Hinweis: HealthKit in einer per Sideloadly installierten iPhone-App hängt davon ab, ob deine Apple-ID die Berechtigung erhält. Klappt das nicht, nimm den Kurzbefehl.
+
 ## Tagebuch
 
 Zu jeder Gewohnheit gibt es in der Detailansicht ein Tagebuch, und unter **Fortschritt → Journal** siehst du alle Einträge mit Filter. Fragen-Vorschläge helfen beim Start, der erste Eintrag am Tag gibt 5 Münzen und 5 XP. Das Tagebuch bleibt auf dem Gerät und ist im Backup enthalten.
@@ -125,7 +154,8 @@ Alle Daten bleiben lokal auf deinem Gerät. Nur wenn du einer Gruppe beitrittst,
 | `manifest.webmanifest`, `sw.js`, `icons/`, `fonts/` | Installierbare App, Offline-Modus, Schrift |
 | `config.js`, `supabase/schema.sql`, `vendor/` | Gruppen-Server (Zugangsdaten, Datenbank), QR-Code-Bibliothek |
 | `package.json`, `capacitor.config.json`, `scripts/`, `assets/`, `.github/workflows/mobile.yml` | Bau der Android- und iOS-App |
-| `native/android/` | Android-Widget (Java, Layout), wird beim Bau ins Android-Projekt kopiert |
+| `native/android/` | Android-Widget und Wecker (Java, Layout), wird beim Bau ins Android-Projekt kopiert |
+| `privacypolicy.html` | Datenschutz-Hinweis für Health Connect (Schritte lesen) |
 
 ## Features
 

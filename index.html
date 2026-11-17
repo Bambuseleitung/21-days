@@ -855,8 +855,122 @@ input[type=text],input[type=number],input[type=search],input[type=date],textarea
 .tile .tv svg{width:22px;height:22px;vertical-align:-3px;color:var(--p)}
 .row.feed .avatar{width:36px;height:36px;font-size:.875rem;flex:none}
 .row.feed .row-t b{font-weight:500}
+/* Gewohnheit bearbeiten: gruppiert wie die iOS-Einstellungen */
+.ed-h{position:sticky;top:-8px;z-index:2;background:var(--bg);margin:-8px -16px 4px;padding:8px 8px 4px}
+.ed-h h2{text-align:center;font-size:1.0625rem;font-weight:600}
+.tbtn{min-height:44px;min-width:88px;padding:0 8px;color:var(--p);font-size:1.0625rem;text-align:left}
+.tbtn.b{font-weight:600;text-align:right}
+.ed-hero{display:flex;flex-direction:column;align-items:center;gap:12px;margin:4px 0 6px}
+.ed-hero > button{border-radius:24px}
+.ed-hero .ed-tile{width:84px;height:84px;border-radius:24px;position:relative}
+.ed-hero .ed-tile svg{width:42px;height:42px}
+.ed-tile i{position:absolute;right:-6px;bottom:-6px;width:28px;height:28px;border-radius:50%;background:var(--card-2);border:3px solid var(--bg);display:grid;place-items:center;color:var(--ink)}
+.ed-tile i svg{width:13px !important;height:13px !important}
+.ed .ed-name{text-align:center;font-size:1.25rem;font-weight:600;border:0}
+.ig-h{font-size:.8125rem;color:var(--muted);text-transform:uppercase;letter-spacing:.02em;margin:22px 16px 6px}
+.ig{background:var(--card);border-radius:12px;overflow:hidden}
+.ig + .ig{margin-top:22px}
+.ig-pad{padding:14px}
+.ig-f{font-size:.8125rem;color:var(--muted);margin:6px 16px 0;line-height:1.35}
+.ir{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:6px 16px;position:relative}
+.ir + .ir::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:1px solid var(--line)}
+.ir > label,.ir > span:first-child{flex:0 1 auto;min-width:0}
+.ir.col{flex-direction:column;align-items:stretch;gap:10px;padding:12px 16px}
+.ir.col > span:first-child{font-size:.9375rem}
+.iv{display:flex;align-items:center;gap:8px;justify-content:flex-end;min-width:0}
+.iv > svg{width:14px;height:14px;color:var(--muted);flex:none}
+.ig input.it,.ig select.is{flex:1;width:auto;min-width:0;min-height:36px;padding:6px 0;border:0;border-radius:0;background:none;text-align:right;color:var(--ink)}
+.ig input.it.full{text-align:left}
+.ig select.is{-webkit-appearance:none;appearance:none;text-align-last:right;color:var(--muted);padding-right:2px}
+.ig input[type=number],.ig input[type=time].it{flex:none;width:96px;min-height:34px;padding:5px 10px;border:0;border-radius:8px;background:var(--card-2);text-align:right;color:var(--ink)}
+.ig input[type=time].it{width:auto}
+.iv em{font-style:normal;color:var(--muted)}
+.ig .daypick button,.ig .iconpick button{background:var(--card-2)}
+.ig .daypick button[aria-pressed="true"]{background:var(--pb);color:#fff}
+.ed-more{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:22px;padding:12px 16px;background:var(--card);border-radius:12px;text-align:left;min-height:48px}
+.ed-more small{display:block;color:var(--muted);font-size:.8125rem;margin-top:2px}
+.ed-more svg{width:16px;height:16px;color:var(--muted);transition:transform .2s ease}
+.ed-more[aria-expanded="true"]{margin-bottom:0}
+.ed-more[aria-expanded="true"] svg{transform:rotate(90deg)}
+.ed-del{display:block;width:100%;min-height:48px;margin-top:26px;color:var(--bad);font-weight:500;text-align:center;background:var(--card);border-radius:12px}
+/* Vorlage „Neu“, Tipps, Profilbild, Rundgang, Begleiter-Arten, Pflege, Training einrichten, Spiele */
+.tpl.is-new{position:relative;border:2px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,#8B5CF6,#EC4899,#F59E0B) border-box}
+.newtag{position:absolute;top:-9px;right:10px;padding:2px 8px;border-radius:99px;background:linear-gradient(135deg,#7C3AED,#DB2777);color:#fff;font-size:.6875rem;font-weight:700;letter-spacing:.02em}
+.tip-hero{display:flex;align-items:center;gap:12px;margin:4px 0 12px}
+.tip-hero p{margin:0;font-weight:600}
+.tips{margin:0;padding:0;list-style:none;counter-reset:t;display:grid;gap:10px}
+.tips li{counter-increment:t;display:flex;gap:12px;background:var(--card);border-radius:12px;padding:12px 14px;line-height:1.4}
+.tips li::before{content:counter(t);flex:none;width:24px;height:24px;border-radius:50%;background:var(--pb);color:#fff;font-size:.8125rem;font-weight:700;display:grid;place-items:center}
+.ig-f a{color:var(--p)}
+.avatar{position:relative;flex:none;width:90px;height:90px;cursor:pointer;border-radius:50%}
+.avatar img{width:90px;height:90px;border-radius:50%;object-fit:cover;display:block}
+.avatar .cam{position:absolute;right:-2px;bottom:-2px;width:28px;height:28px;border-radius:50%;background:var(--card-2);border:3px solid var(--card);display:grid;place-items:center;color:var(--ink)}
+.avatar .cam svg{width:13px;height:13px}
+.avatar input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.avatar:focus-within{outline:2px solid var(--p);outline-offset:3px}
+.tour{position:fixed;inset:0;z-index:300}
+.tour-hole{position:fixed;border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,.62);pointer-events:none}
+.tour-tip{position:fixed;left:16px;right:16px;max-width:420px;margin:0 auto;background:var(--card);color:var(--ink);border-radius:16px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.tour-tip p{margin:0;line-height:1.4}
+.tour-tip div{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}
+.species{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sp{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:14px;background:var(--card-2);font-size:.8125rem;font-weight:500;color:var(--ink)}
+.ob .sp{background:var(--card)}
+.sp[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--p)}
+.care-slots{display:flex;gap:8px;margin-top:12px}
+.care-slots span{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;min-height:36px;border-radius:10px;background:var(--card-2);font-size:.875rem;font-weight:600;color:var(--muted)}
+.care-slots span.now{color:var(--ink);box-shadow:inset 0 0 0 2px var(--p)}
+.care-slots span.ok{color:var(--ok-dark)}
+.care-slots svg{width:16px;height:16px}
+.gs-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.gs-q{font-size:1.25rem;margin:8px 0 12px}
+.gs-opt{display:block;width:100%;text-align:left;padding:14px 16px;border-radius:14px;background:var(--card);margin-bottom:10px}
+.gs-opt b{display:block;font-size:1.0625rem}
+.gs-opt small{color:var(--muted);font-size:.875rem}
+.gs-opt[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--p)}
+.g-lives{display:flex;gap:4px;justify-content:flex-end}
+.g-lives .heart svg{width:22px;height:22px;color:#F43F5E}
+.g-lives .heart.off{opacity:.25}
+.g-item{width:44px;height:44px}
+.bub{left:0;top:0}
+.bub.bad{background:radial-gradient(circle at 30% 30%,#FFD1D1,#EF4444)}
+.bub.burst{opacity:0;transition:opacity .15s}
+.g-pet.jp{top:0;bottom:auto;width:64px;height:64px;pointer-events:none}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.stage.sky{background:linear-gradient(#7CC4F5,#CDEBFF)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important} }
 @media (max-width:370px){ .shop,.badges{grid-template-columns:repeat(2,1fr)} .hero .petbox{width:100px;height:100px} }
+/* ---------- Messarten: Timer, Mengen, Schritte, Wecker ---------- */
+.tm{display:grid;gap:14px;justify-items:center;padding-top:4px}
+.tm-ring{position:relative;width:min(240px,70vw);aspect-ratio:1}
+.tm-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.tm-ring circle{fill:none;stroke-width:12}
+.tm-ring .t{stroke:var(--card-2)}
+.tm-ring .v{stroke:var(--hc);stroke-linecap:round;transition:stroke-dashoffset .5s linear}
+.tm-in{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:4px}
+.tm-time{font-family:var(--font-r);font-size:3rem;font-weight:800;line-height:1}
+.tm-ring.run .v{filter:drop-shadow(0 0 6px color-mix(in srgb,var(--hc) 55%,transparent))}
+.tm-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.tm .row2{width:100%}
+.big-num{font-family:var(--font-r);font-size:2rem;font-weight:800;line-height:1.1}
+.big-num small{font-size:1rem;color:var(--muted);font-weight:600}
+.mode-bar{height:10px;border-radius:99px;background:var(--card-2);overflow:hidden;margin-top:10px}
+.mode-bar i{display:block;height:100%;background:var(--hc);border-radius:99px;transition:width .5s cubic-bezier(.32,.72,0,1)}
+.qbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.wk7{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:76px;margin-top:14px}
+.wk7 span{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:3px;height:100%;font-size:.6875rem;color:var(--muted)}
+.wk7 i{display:block;width:100%;max-width:26px;border-radius:6px 6px 2px 2px;background:var(--hc);min-height:3px}
+.wk7 i.miss{opacity:.35}
+details.how{margin-top:12px}
+details.how summary{cursor:pointer;font-weight:600;color:var(--p);min-height:44px;display:flex;align-items:center}
+details.how ol{margin:4px 0 0;padding-left:20px;color:var(--muted)}
+details.how li{margin:5px 0}
+details.how b{color:var(--ink)}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8125rem;background:var(--card-2);padding:2px 6px;border-radius:6px;word-break:break-all;color:var(--ink)}
+.jwords{display:flex;align-items:center;gap:8px;font-size:.8125rem;font-weight:600;color:var(--muted)}
+.jwords .mode-bar{flex:1;margin:0;height:8px}
+.jwords.ok{color:var(--ok-dark)}
 </style>
 <script src="config.js"></script>
 <script src="vocab.js"></script>
@@ -907,6 +1021,9 @@ const I = {
   coin: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#FFBF1F"/><circle cx="12" cy="12" r="7" fill="#FFD95A"/><path d="M12 8v8M9.5 10.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4" stroke="#B87700" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>',
   shield: '<svg viewBox="0 0 24 24"><path d="M12 2.5l8 3v6.2c0 5-3.4 8.3-8 9.8-4.6-1.5-8-4.8-8-9.8V5.5z" fill="#38B6F5"/><path d="M12 5.2l5.5 2v4.5c0 3.5-2.3 5.9-5.5 7.1z" fill="#8FDBFF"/></svg>',
   plus: sv('<path d="M12 5v14M5 12h14"/>', 'stroke-width="3"'),
+  play: '<svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" fill="currentColor"/></svg>',
+  pause: '<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4.2" height="14" rx="1.4" fill="currentColor"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.4" fill="currentColor"/></svg>',
+  alarm: sv('<circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 1.5M4 4.5l3 2.5M20 4.5l-3 2.5M7 20l-1.5 2M17 20l1.5 2"/>'),
   minus: sv('<path d="M5 12h14"/>', 'stroke-width="3"'),
   x: sv('<path d="M6 6l12 12M18 6L6 18"/>', 'stroke-width="2.8"'),
   home: sv('<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>'),
@@ -974,16 +1091,17 @@ const TIME_ORDER = ["morning", "noon", "evening", "any"];
 const DIFF_XP = 15;
 const TEMPLATES = {
   build: [
-    { name: "Vokabel-Pack", icon: "book", special: "vocab", time: "any", color: "#8B5CF6" },
-    { name: "Wasser trinken", icon: "drop", target: 8, unit: "Gläser", time: "any", color: "#3B82F6" },
-    { name: "Lesen", icon: "book", time: "evening", cue: "ich im Bett liege", action: "lese ich 10 Seiten", color: "#8B5CF6" },
+    { name: "Vokabel-Pack", icon: "book", special: "vocab", time: "any", color: "#8B5CF6", isNew: true },
+    { name: "Wasser trinken", icon: "drop", mode: "count", target: 2000, unit: "ml", quick: [250, 500], time: "any", color: "#3B82F6" },
+    { name: "Lesen", icon: "book", mode: "timer", target: 20, time: "evening", cue: "ich im Bett liege", action: "lese ich 20 Minuten", color: "#8B5CF6" },
+    { name: "Seiten lesen", icon: "book", mode: "count", target: 10, unit: "Seiten", quick: [1, 5, 10], time: "evening", color: "#6366F1" },
     { name: "Sport", icon: "dumbbell", special: "gym", time: "any", color: "#EF4462" },
-    { name: "Meditieren", icon: "lotus", time: "morning", cue: "ich aufgestanden bin", action: "meditiere ich 5 Minuten", color: "#0EA5C4" },
-    { name: "Früh aufstehen", icon: "sun", time: "morning", color: "#F59E0B" },
-    { name: "Tagebuch schreiben", icon: "pen", time: "evening", color: "#EC4899" },
-    { name: "10.000 Schritte", icon: "shoe", time: "any", color: "#1FBF8A" },
-    { name: "Obst & Gemüse", icon: "apple", target: 3, unit: "Portionen", time: "any", color: "#16A34A" },
-    { name: "Aufräumen", icon: "broom", time: "evening", color: "#FF6B2C" },
+    { name: "Meditieren", icon: "lotus", mode: "timer", target: 10, time: "morning", cue: "ich aufgestanden bin", action: "meditiere ich 10 Minuten", color: "#0EA5C4" },
+    { name: "Früh aufstehen", icon: "sun", mode: "wake", wakeAt: "06:30", grace: 30, alarm: true, time: "morning", color: "#F59E0B" },
+    { name: "Tagebuch schreiben", icon: "pen", mode: "journal", words: 30, time: "evening", color: "#EC4899" },
+    { name: "10.000 Schritte", icon: "shoe", mode: "steps", target: 10000, health: true, time: "any", color: "#1FBF8A" },
+    { name: "Obst & Gemüse", icon: "apple", mode: "count", target: 5, unit: "Portionen", quick: [1], time: "any", color: "#16A34A" },
+    { name: "Aufräumen", icon: "broom", mode: "timer", target: 10, time: "evening", color: "#FF6B2C" },
     { name: "Vitamine nehmen", icon: "pill", time: "morning", color: "#F59E0B" }
   ],
   break: [
@@ -997,6 +1115,39 @@ const TEMPLATES = {
     { name: "Nicht Nägelkauen", icon: "bite", money: 0, minutes: 0, replacement: "Hände beschäftigen, z. B. Knetball", color: "#EF4462" }
   ]
 };
+// Kurzhilfe je Vorlage: eigene Zusammenfassung der verlinkten Quelle (recherchiert Nov. 2026), ersetzt keine Beratung.
+const TIPS = {
+  "Vokabel-Pack": { t: ["Lieber jeden Tag ein paar Wörter als einmal pro Woche viele: Wiederholen über mehrere Tage verankert sie.", "Bilde mit jedem neuen Wort einen eigenen Satz. Was du selbst benutzt, merkst du dir besser als Gelesenes.", "Ein Wort braucht mehrere Begegnungen in verschiedenen Zusammenhängen, bis es sitzt."], q: ["Migaku", "https://migaku.com/blog/language-fun/language-learning-journal-guide"] },
+  "Wasser trinken": { t: ["Richtwert: 6 bis 8 Gläser am Tag. Wasser, Tee und Kaffee zählen mit.", "Stell dir eine Flasche hin, die du immer siehst, und trink lieber oft kleine Schlucke.", "An heißen Tagen und nach Sport brauchst du mehr."], q: ["NHS", "https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eight-tips-for-healthy-eating/"] },
+  "Lesen": { t: ["Fang klein an, etwa 15 Minuten am Tag, und steigere dich langsam.", "Häng das Lesen an etwas, das du sowieso tust, zum Beispiel ins Bett gehen.", "Leg das Handy beim Lesen weg. Ein Buch, das dich langweilt, darfst du abbrechen."], q: ["Popular Science", "https://www.popsci.com/health/how-to-rebuild-your-reading-habits/"] },
+  "Seiten lesen": { t: ["Wähle Bücher, die dich wirklich interessieren. Abwechslung bei Autorinnen und Genres hält die Lust wach.", "Ein festes Plätzchen und eine feste Zeit machen den Einstieg leichter.", "Hörbücher zählen auch, etwa auf dem Weg zur Arbeit."], q: ["Popular Science", "https://www.popsci.com/health/how-to-rebuild-your-reading-habits/"] },
+  "Sport": { t: ["Fang lieber zu leicht als zu schwer an. Wer zu viel auf einmal will, ist schnell verletzt oder frustriert.", "Trag dein Training wie einen Termin in den Kalender ein.", "Ein verpasster Tag ist kein Rückschlag. Es zählt, dass du über Wochen dranbleibst."], q: ["HelpGuide", "https://www.helpguide.org/wellness/fitness/how-to-start-exercising-and-stick-to-it"] },
+  "Meditieren": { t: ["Starte mit 2 bis 5 Minuten. Regelmäßig ist wichtiger als lang.", "Meditiere jeden Tag zur selben Zeit, etwa direkt nach dem Aufstehen.", "Schweifen die Gedanken ab, bemerke es ohne Ärger und kehr zum Atem zurück."], q: ["Calm", "https://www.calm.com/blog/how-to-meditate-for-beginners"] },
+  "Früh aufstehen": { t: ["Verschieb Schlafenszeit und Wecker in Schritten von 15 Minuten und bleib bei jeder Stufe ein paar Tage.", "Rechne von der Weckzeit rückwärts, damit du genug Schlaf bekommst, und steh auch am Wochenende ähnlich auf.", "Stell den Wecker außer Reichweite und hol dir morgens Tageslicht."], q: ["Sleep Foundation", "https://www.sleepfoundation.org/sleep-hygiene/how-to-wake-up-early"] },
+  "Tagebuch schreiben": { t: ["Schon eine Minute oder ein paar Sätze reichen. Regelmäßig schlägt lang.", "Nutze die Fragen-Vorschläge, dann bleibt die Seite nicht leer.", "Schreib nicht nur an schlechten Tagen, sonst verbindest du das Tagebuch nur mit Kummer."], q: ["Lifenote", "https://blog.mylifenote.ai/how-to-start-journaling-2026/"] },
+  "10.000 Schritte": { t: ["Steigere dich langsam: etwa 500 bis 1.000 Schritte mehr pro Tag als bisher.", "Steig eine Haltestelle früher aus, park weiter weg, telefonier im Gehen.", "Auch 7.500 Schritte bringen schon viel. Dranbleiben zählt mehr als die genaue Zahl."], q: ["Cleveland Clinic", "https://health.clevelandclinic.org/10000-steps-a-day"] },
+  "Obst & Gemüse": { t: ["Ziel sind 5 Portionen am Tag. Eine Portion ist etwa eine Handvoll (80 g).", "Leicht gemacht: Banane ins Müsli, Obst statt Snack am Vormittag.", "Tiefkühl-, Dosen- und Trockenobst zählen auch. Saft zählt höchstens einmal am Tag."], q: ["NHS", "https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eight-tips-for-healthy-eating/"] },
+  "Aufräumen": { t: ["Kurz, aber täglich: 10 Minuten mit Timer fühlen sich machbar an.", "Häng es an einen festen Moment, etwa direkt nach dem Abendessen.", "Fang mit einer Fläche an, die du oft siehst, zum Beispiel dem Schreibtisch."], q: ["James Clear", "https://jamesclear.com/habit-stacking"] },
+  "Vitamine nehmen": { t: ["Stell die Dose dorthin, wo du sie morgens ohnehin siehst, etwa neben die Kaffeemaschine.", "Kopple es an eine feste Gewohnheit: „Nach dem Zähneputzen nehme ich …“.", "Fragen zur Dosis klärst du am besten in der Apotheke oder bei deiner Ärztin."], q: ["James Clear", "https://jamesclear.com/habit-stacking"] },
+  "Nicht rauchen": { t: ["Ein Rauchdrang dauert meist nur ein paar Minuten. Halte eine Ablenkung bereit, zum Beispiel die SOS-Atmung in der App.", "Lerne deine Auslöser kennen und räum Zigaretten, Feuerzeuge und Aschenbecher weg.", "Rauchstopp-Mittel plus Beratung erhöhen die Chancen deutlich. Frag in der Apotheke oder Arztpraxis."], q: ["NHS", "https://www.nhs.uk/better-health/quit-smoking/staying-smoke-free/understand-your-smoking-triggers-and-cravings/"] },
+  "Weniger Social Media": { t: ["Setz App-Limits in der Bildschirmzeit deines Handys.", "Plane feste handyfreie Zeiten, etwa beim Essen.", "Reduziere eine Plattform nach der anderen statt alle auf einmal."], q: ["Sleep Foundation", "https://www.sleepfoundation.org/sleep-topics/sleep-and-social-media"] },
+  "Keine Süßigkeiten": { t: ["Reduziere schrittweise. Das klappt oft besser als ein harter Stopp.", "Eiweißreiche Mahlzeiten halten länger satt und dämpfen Heißhunger.", "Die ersten zwei Wochen sind am härtesten, danach gewöhnt sich der Geschmack um."], q: ["American Stroke Association", "https://stroke.org/en/healthy-living/healthy-eating/eat-smart/sugar/rethink-your-drink-reducing-sugary-drinks-in-your-diet"] },
+  "Kein Alkohol": { t: ["Plane feste alkoholfreie Tage und kauf keinen Vorrat für zu Hause.", "Verabrede dich zu Kaffee, Kino oder Sport statt zum Trinken.", "Wenn es schwerfällt, hilft deine Hausarztpraxis weiter."], q: ["NHS", "https://www.nhs.uk/better-health/drink-less/"] },
+  "Kein Fast Food": { t: ["Plane Mahlzeiten vor und nimm Essen zur Arbeit mit.", "Koch am Wochenende einmal mehr und friere Portionen ein.", "Iss in Ruhe statt nebenbei, dann merkst du eher, wann du satt bist."], q: ["Harvard Health", "https://www.health.harvard.edu/healthbeat/tips-for-healthy-eating-away-from-home"] },
+  "Kein Handy im Bett": { t: ["Lade das Handy außerhalb des Schlafzimmers und nutz einen normalen Wecker.", "Mach eine Stunde vor dem Schlafen Bildschirmpause.", "Schalte Mitteilungen nachts ganz aus, nicht nur auf Vibration."], q: ["Sleep Foundation", "https://www.sleepfoundation.org/sleep-topics/sleep-and-social-media"] },
+  "Keine Energy Drinks": { t: ["Trink schrittweise weniger, sonst drohen ein paar Tage Kopfschmerzen.", "Energy Drinks enthalten oft viel Zucker. Sprudelwasser oder Tee sind gute Ersatz-Getränke.", "Genug Schlaf senkt den Drang nach dem nächsten Wachmacher."], q: ["American Stroke Association", "https://stroke.org/en/healthy-living/healthy-eating/eat-smart/sugar/rethink-your-drink-reducing-sugary-drinks-in-your-diet"] },
+  "Nicht Nägelkauen": { t: ["Achte eine Woche lang darauf, wann und wo du kaust. Das Bemerken ist der erste Schritt.", "Mach beim Drang etwas, das nicht zusammen mit Kauen geht, etwa einen Knetball drücken.", "Halt die Nägel kurz und erzähl jemandem davon, der nachfragen darf."], q: ["GoodRx", "https://www.goodrx.com/health-topic/dermatology/how-to-stop-biting-nails"] }
+};
+let tipNext = null;
+function openTips(t, next, last) {
+  const x = TIPS[t.name]; if (!x) { next(); return; }
+  tipNext = next;
+  openSheet(`${sheetHead(t.name)}
+    <div class="tip-hero"><span class="hicon" style="--hc:${esc(t.color)}">${HI[t.icon] || I.star}</span><p>So klappt es leichter</p></div>
+    <ol class="tips">${x.t.map(q => `<li>${esc(q)}</li>`).join("")}</ol>
+    <p class="ig-f">Quelle: <a href="${x.q[1]}" target="_blank" rel="noopener">${esc(x.q[0])}</a>. Ersetzt keine ärztliche Beratung.</p>
+    <button class="btn full" data-action="tip-go" style="margin-top:18px">${last ? "Fertig" : "Weiter zum Einrichten"}</button>`, { reset: true, locked: !state.profile.onboarded });
+}
 const GOALS = [
   { id: "vocab", n: "Wortschatz erweitern", ic: "book", t: ["Vokabel-Pack", "Lesen"] },
   { id: "health", n: "Gesünder leben", ic: "apple", t: ["Wasser trinken", "Obst & Gemüse", "Keine Süßigkeiten"] },
@@ -1051,10 +1202,10 @@ const RAR = { common: { n: "Gewöhnlich", c: "#7A86A8", xp: 10 }, rare: { n: "Se
 /* ============ State ============ */
 const KEY = "21days-state-v2", OLD_KEY = "21days-state-v1";
 const freshState = () => ({
-  v: 2, profile: { petName: "Keimi", petColor: PET_COLORS[0], theme: "sun", sound: true, haptics: true, shareBoard: true, onboarded: false, since: todayK() },
+  v: 2, profile: { petName: "Keimi", petColor: PET_COLORS[0], species: "keimi", appearance: "auto", avatar: "", theme: "sun", sound: true, haptics: true, shareBoard: true, onboarded: false, since: todayK() },
   habits: [], triggers: [], xp: 0, coins: 0, xpLog: {}, freezes: 1, freezeUsed: {}, badges: {}, chests: {}, perfect: {},
   flags: { gymLink: true }, days: {}, quests: {}, pledges: {}, inv: { owned: [], eq: {} }, rewards: [], redeemed: [], cheered: {}, lastCheerSeen: 0,
-  pet: { food: 0, hunger: 80, fun: 80, clean: 80, t: Date.now(), best: { catch: 0, pop: 0 } },
+  pet: { food: 0, hunger: 80, fun: 80, clean: 80, t: Date.now(), best: { catch: 0, pop: 0, jump: 0 } },
   todos: [], tags: [], boss: null, journal: [], group: null, vocab: { got: {}, seen: [], today: null },
   gym: { sessions: [], routines: [], custom: [], active: null, rest: 90 }
 });
@@ -1065,7 +1216,8 @@ let view = "heute";
 function normHabit(h) {
   return Object.assign({ id: uid(), name: "Gewohnheit", kind: "build", icon: "star", color: COLORS[0], target: 1, unit: "", days: [0, 1, 2, 3, 4, 5, 6], time: "any",
     cue: "", action: "", replacement: "", reasons: [], money: 0, minutes: 0, quitStart: Date.now(), bestQuit: 0, relapses: [], quitHit: [],
-    start: todayK(), log: {}, xp: {}, milestones: [], diff: 2, tag: "", special: "", capsule: null, slip: "", gc: "", remind: "" }, h);
+    start: todayK(), log: {}, xp: {}, milestones: [], diff: 2, tag: "", special: "", capsule: null, slip: "", gc: "", remind: "",
+    mode: "", quick: [], wakeAt: "06:30", grace: 30, words: 30, alarm: false, alarmSet: "", health: false, woke: {} }, h);
 }
 function migrate(raw) {
   const s = JSON.parse(JSON.stringify(raw || {}));
@@ -1087,7 +1239,8 @@ function migrate(raw) {
   st.profile = Object.assign(freshState().profile, s.profile || {});
   st.inv = Object.assign({ owned: [], eq: {} }, s.inv || {});
   st.pet = Object.assign(freshState().pet, s.pet || {});
-  st.pet.best = Object.assign({ catch: 0, pop: 0 }, st.pet.best);
+  st.pet.best = Object.assign({ catch: 0, pop: 0, jump: 0 }, st.pet.best);
+  if (!/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(st.profile.avatar || "")) st.profile.avatar = ""; // only our own resized photo
   st.vocab = Object.assign({ got: {}, seen: [], today: null }, s.vocab || {});
   st.gym = Object.assign(freshState().gym, s.gym || {});
   ["sessions", "routines", "custom"].forEach(k => { if (!Array.isArray(st.gym[k])) st.gym[k] = []; });
@@ -1107,6 +1260,7 @@ function prune() {
   ["xpLog", "days", "quests", "pledges", "chests"].forEach(k => Object.keys(state[k]).forEach(d => { if (d < cut) delete state[k][d]; }));
   state.redeemed = state.redeemed.slice(-50);
   const c30 = addDays(todayK(), -30); state.todos = state.todos.filter(t => !t.done || t.doneAt >= c30);
+  state.habits.forEach(h => { if (h.woke) Object.keys(h.woke).forEach(k => { if (k < cut) delete h.woke[k]; }); });
 }
 const day = (k = todayK()) => (state.days[k] = state.days[k] || { early: false, maxCombo: 0, petted: 0, resisted: 0, played: 0, care: false });
 
@@ -1205,8 +1359,8 @@ function tone(f, t, d, type = "triangle", vol = .17) {
   g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + d);
   o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + d + .03);
 }
-const SELF_SOUND = new Set(["tap", "todo-tap", "feed", "care-wash", "chest", "claim", "wheel-spin", "gift", "pet", "item", "redeem", "rv-save", "sos-win", "relapse", "go", "set-sound", "minus", "ck-toggle", "rv-mood", "game", "petcolor", "pk-flip", "pk-done", "gy-set", "gy-finish", "gy-start", "gy-startex", "gy-again", "cap-save", "cap-open", "recap", "recap-view"]);
-const SELF_HAPTIC = new Set(["tap", "todo-tap", "feed", "care-wash", "chest", "claim", "wheel-spin", "gift", "pet", "item", "redeem", "rv-save", "sos-win", "relapse", "game", "set-haptics", "pk-flip", "pk-done", "gy-set", "gy-finish", "gy-start", "gy-startex", "gy-again", "cap-save", "cap-open", "recap", "recap-view"]);
+const SELF_SOUND = new Set(["amt-q", "amt-add", "steps-set", "tm-toggle", "tm-stop", "wake-now", "h-reset", "tap", "todo-tap", "feed", "care-wash", "chest", "claim", "wheel-spin", "gift", "pet", "item", "redeem", "rv-save", "sos-win", "relapse", "go", "set-sound", "minus", "ck-toggle", "rv-mood", "game", "petcolor", "pk-flip", "pk-done", "gy-set", "gy-finish", "gy-start", "gy-startex", "gy-again", "cap-save", "cap-open", "recap", "recap-view"]);
+const SELF_HAPTIC = new Set(["amt-q", "amt-add", "steps-set", "tm-toggle", "tm-stop", "wake-now", "tap", "todo-tap", "feed", "care-wash", "chest", "claim", "wheel-spin", "gift", "pet", "item", "redeem", "rv-save", "sos-win", "relapse", "game", "set-haptics", "pk-flip", "pk-done", "gy-set", "gy-finish", "gy-start", "gy-startex", "gy-again", "cap-save", "cap-open", "recap", "recap-view"]);
 const SFX = {
   check: [[784, 0, .14], [1175, .08, .3]], tick: [[880, 0, .07]], bonus: [[784, 0, .12], [988, .07, .12], [1175, .14, .12], [1568, .21, .45]],
   level: [[523, 0, .18], [659, .13, .18], [784, .26, .18], [1047, .39, .6], [1319, .39, .6]], undo: [[440, 0, .1], [330, .07, .16]],
@@ -1216,15 +1370,26 @@ const SFX = {
   breathe: [[440, 0, .6]], munch: [[330, 0, .06], [260, .08, .06], [330, .16, .06], [392, .24, .12]],
   open: [[392, 0, .05], [587, .04, .08]], tear: [[180, 0, .06], [320, .04, .06], [640, .08, .08], [1100, .12, .12], [1700, .16, .25]], flip: [[420, 0, .05], [640, .05, .07], [900, .1, .1]], pop: [[900, 0, .05], [1400, .04, .09]], splash: [[600, 0, .06], [800, .06, .06], [1000, .12, .12]]
 };
+SFX.gong = [[392, 0, 1.6], [588, .01, 1.4], [784, .02, 1.8]];
+SFX.wake = [[659, 0, .12], [880, .1, .12], [1175, .2, .3]];
 function sfx(kind, combo = 1) {
   if (!state.profile.sound) return;
   try {
     ac = ac || new (window.AudioContext || window.webkitAudioContext)();
-    if (ac.state === "suspended") ac.resume();
+    if (ac.state !== "running") ac.resume(); // iOS: also "interrupted" after switching apps
     const t = ac.currentTime + .01, m = Math.pow(2, Math.min(combo - 1, 7) * 2 / 12);
-    (SFX[kind] || []).forEach(([f, o, d]) => tone(f * m, t + o, d, kind === "unlock" || kind === "chirp" || kind === "breathe" ? "sine" : "triangle"));
+    (SFX[kind] || []).forEach(([f, o, d]) => tone(f * m, t + o, d, kind === "unlock" || kind === "chirp" || kind === "breathe" || kind === "gong" ? "sine" : "triangle"));
   } catch (e) { /* audio blocked */ }
 }
+// iOS only unlocks Web Audio inside a real touch; a silent one-sample buffer does that on the first tap.
+function audioUnlock() {
+  if (!state.profile.sound || (ac && ac.state === "running")) return;
+  try {
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)(); ac.resume();
+    const src = ac.createBufferSource(); src.buffer = ac.createBuffer(1, 1, 22050); src.connect(ac.destination); src.start(0);
+  } catch (e) { /* audio blocked */ }
+}
+["touchend", "click", "keydown"].forEach(ev => document.addEventListener(ev, audioUnlock, { capture: true, passive: true }));
 const impactStyle = ms => ms <= 15 ? "LIGHT" : ms <= 35 ? "MEDIUM" : "HEAVY";
 function vibrate(p) {
   if (!state.profile.haptics) return;
@@ -1419,7 +1584,8 @@ function questsFor(k = todayK()) {
 }
 
 /* ============ Pet SVG ============ */
-function petSVG({ size = 128, mood = "ok", level, color, eq, cls = "", dirty = false } = {}) {
+const SPECIES = [["keimi", "Keimi", "Keimi"], ["katze", "Katze", "Mika"], ["hase", "Hase", "Hoppel"], ["baer", "Bär", "Bruno"], ["drache", "Drache", "Funki"], ["pinguin", "Pinguin", "Pino"]];
+function petSVG({ size = 128, mood = "ok", level, color, eq, cls = "", dirty = false, species } = {}) {
   const L = level ?? levelOf(state.xp), st = stageOf(L), c = color || state.profile.petColor, e = eq || state.inv.eq || {};
   const rx = 52 + st * 5, ry = 48 + st * 5, cy = 130 - st * 2, top = cy - ry;
   const light = `color-mix(in srgb, ${c} 45%, #fff)`, dark = `color-mix(in srgb, ${c} 70%, #000)`;
@@ -1458,7 +1624,22 @@ function petSVG({ size = 128, mood = "ok", level, color, eq, cls = "", dirty = f
   const dirt = dirty ? [[-30, -8], [26, 6], [-12, 22], [34, -26]].map(([dx, dy]) => `<circle cx="${100 + dx}" cy="${cy + dy}" r="5" fill="#6B4A2B" opacity=".55"/>`).join("") : "";
   const zzz = mood === "sleepy" ? `<text class="zzz" x="150" y="${top + 10}" font-size="22" font-weight="900" fill="var(--muted)" font-family="Nunito, sans-serif">z</text><text class="zzz" x="162" y="${top - 6}" font-size="16" font-weight="900" fill="var(--muted)" style="animation-delay:.8s" font-family="Nunito, sans-serif">z</text>` : "";
   const sparks = mood === "happy" ? [[30, top + 10], [170, top + 20], [160, cy + 40], [38, cy + 30]].map(([x, y], i) => `<path class="spark" style="animation-delay:${i * .35}s;transform-origin:${x}px ${y}px" d="M${x} ${y - 8} l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#FFC21F"/>`).join("") : "";
-  const showSprout = !e.hat || e.hat === "crown";
+  const showSprout = !e.hat || e.hat === "crown", sp = species || state.profile.species || "keimi", ink = "#1A1F33";
+  let back = "", front = ""; // back: ears, wings, tail behind the body; front: face details under eyes and mouth
+  if (sp === "katze") {
+    back = [-1, 1].map(q => `<path d="M${100 + q * rx * .8} ${top + ry * .5} L${100 + q * rx * .6} ${top - 20} L${100 + q * rx * .12} ${top + 8}z" fill="${c}"/><path d="M${100 + q * rx * .68} ${top + ry * .3} L${100 + q * rx * .57} ${top - 6} L${100 + q * rx * .3} ${top + 10}z" fill="#FF9EB5"/>`).join("")
+      + `<path d="M${100 + rx - 8} ${cy + ry * .55} q${rx * .75} 0 ${rx * .55} -${ry * 1.1}" stroke="${dark}" stroke-width="12" fill="none" stroke-linecap="round"/>`;
+    front = [-1, 1].map(q => `<path d="M${100 + q * 28} ${cy + 1} l${q * 26} -5 M${100 + q * 28} ${cy + 7} l${q * 26} 3" stroke="${ink}" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>`).join("");
+  } else if (sp === "hase") {
+    back = [-1, 1].map(q => `<g transform="rotate(${q * 12} ${100 + q * 22} ${top + 14})"><ellipse cx="${100 + q * 22}" cy="${top - 24}" rx="13" ry="38" fill="${c}"/><ellipse cx="${100 + q * 22}" cy="${top - 22}" rx="6" ry="27" fill="#FF9EB5"/></g>`).join("");
+    front = `<ellipse cx="100" cy="${cy + 2}" rx="5" ry="3.5" fill="#FF7A9C"/>`;
+  } else if (sp === "baer") {
+    back = [-1, 1].map(q => `<circle cx="${100 + q * rx * .66}" cy="${top + 14}" r="17" fill="${dark}"/><circle cx="${100 + q * rx * .66}" cy="${top + 14}" r="8" fill="${light}"/>`).join("");
+    front = `<ellipse cx="100" cy="${cy + 6}" rx="21" ry="14" fill="${light}"/><ellipse cx="100" cy="${cy - 1}" rx="7" ry="5" fill="${ink}"/>`;
+  } else if (sp === "drache") {
+    back = [-1, 1].map(q => `<path d="M${100 + q * (rx - 8)} ${cy - 4} q${q * 52} -40 ${q * 50} 12 q${-q * 14} -6 ${-q * 20} 6 q${-q * 10} -10 ${-q * 30} -18z" fill="${dark}"/>`).join("");
+    front = [-1, 1].map(q => `<path d="M${100 + q * 20} ${top + 10} q${q * 4} -20 ${q * 16} -28 q${-q * 2} 18 ${q * 2} 30z" fill="#FFE08A" stroke="#D49500" stroke-width="2"/>`).join("");
+  } else if (sp === "pinguin") front = `<path d="M90 ${cy - 4} L110 ${cy - 4} L100 ${cy + 7}z" fill="#FFB020"/>`;
   return `<svg class="pet ${mood} ${cls}" viewBox="0 0 200 200" width="${size}" height="${size}" role="img" aria-label="${esc(state.profile.petName)}">
     <ellipse cx="100" cy="190" rx="${rx * .8}" ry="7" fill="rgba(0,0,0,.12)"/>
     ${sparks}
@@ -1466,12 +1647,12 @@ function petSVG({ size = 128, mood = "ok", level, color, eq, cls = "", dirty = f
       <ellipse class="arm-l" cx="${100 - rx + 4}" cy="${cy + 6}" rx="12" ry="18" fill="${dark}" transform="rotate(20 ${100 - rx + 4} ${cy + 6})"/>
       <ellipse class="arm-r" cx="${100 + rx - 4}" cy="${cy + 6}" rx="12" ry="18" fill="${dark}" transform="rotate(-20 ${100 + rx - 4} ${cy + 6})"/>
       <ellipse cx="${100 - 22}" cy="${cy + ry - 4}" rx="16" ry="10" fill="${dark}"/><ellipse cx="${100 + 22}" cy="${cy + ry - 4}" rx="16" ry="10" fill="${dark}"/>
-      ${showSprout && !e.hat ? sprout : ""}
+      ${sp === "keimi" && showSprout && !e.hat ? sprout : ""}${back}
       <ellipse cx="100" cy="${cy}" rx="${rx}" ry="${ry}" fill="${c}"/>
-      <ellipse cx="100" cy="${cy + ry * .38}" rx="${rx * .62}" ry="${ry * .5}" fill="${light}" opacity=".75"/>
+      ${sp === "pinguin" ? `<ellipse cx="100" cy="${cy + ry * .2}" rx="${rx * .7}" ry="${ry * .72}" fill="#fff" opacity=".95"/>` : `<ellipse cx="100" cy="${cy + ry * .38}" rx="${rx * .62}" ry="${ry * .5}" fill="${light}" opacity=".75"/>`}
       <ellipse cx="${100 - rx * .45}" cy="${cy - ry * .55}" rx="${rx * .22}" ry="${ry * .14}" fill="#fff" opacity=".35" transform="rotate(-25 ${100 - rx * .45} ${cy - ry * .55})"/>
       <circle cx="${100 - eyeDX - 14}" cy="${eyeY + 18}" r="7" fill="#FF7A9C" opacity=".55"/><circle cx="${100 + eyeDX + 14}" cy="${eyeY + 18}" r="7" fill="#FF7A9C" opacity=".55"/>
-      ${dirt}${eyes}${mouth}${glasses}${neck}${hat}${e.hat === "crown" ? "" : ""}
+      ${dirt}${front}${eyes}${mouth}${glasses}${neck}${hat}${e.hat === "crown" ? "" : ""}
     </g>${zzz}</svg>`;
 }
 function petMood() {
@@ -1491,6 +1672,7 @@ function petLine() {
   if (ps.hunger < 25) return pick(["Mein Bauch knurrt …", "Hast du etwas Leckeres für mich?"], seed);
   if (ps.fun < 25) return pick(["Mir ist langweilig. Spielen wir was?", "Lass uns ein Minispiel machen!"], seed);
   if (ps.clean < 25) return "Ich fühle mich ein bisschen schmutzig …";
+  if (careOpen()) return careSlot() === "am" ? "Guten Morgen! Zeit für meine Morgenpflege: erst Futter, dann waschen, spielen oder streicheln." : "Abendpflege? Ein bisschen Futter und eine Runde Kuscheln, dann schlaf ich gut.";
   if (!n) return pick(["Heute ist frei. Genieß den Tag!", "Pause gehört dazu. Morgen geht's weiter!"], seed);
   if (d >= n) return pick(["Perfekter Tag! Ich bin so stolz auf dich!", "Energie voll! Wir sind ein starkes Team.", "Alles erledigt. Zeit zum Feiern!"], seed);
   if (!activeDay(t) && hr >= 18 && gStreak() > 0) return `Unsere ${gStreak()}-Tage-Serie ist in Gefahr! Ein Häkchen rettet sie.`;
@@ -1718,6 +1900,14 @@ async function leaveGroup() {
   state.group = null; grp.board = null; grp.lastCheers = null; gLastJSON = ""; dropChallenges(); save(); render(); toast("Du hast die Gruppe verlassen.");
 }
 // Invite link (days21://join/CODE or #join=CODE): opens the join form with the code filled in. Joining always needs a tap.
+// Links von außen: days21://wake, days21://steps/8500 (Kurzbefehle, Mitteilungen), im Browser #wake und #steps=8500.
+function handleAppUrl(url) {
+  url = String(url || ""); let m;
+  if (!state.profile.onboarded) return false;
+  if ((m = /steps[\/=](\d{1,6})/.exec(url))) { stepsFromUrl(Number(m[1])); return true; }
+  if (/(?:^|[\/#])wake(?:$|[\/?&#])/.test(url)) { wakeFromUrl(); return true; }
+  handleJoinUrl(url); return false;
+}
 function handleJoinUrl(url) {
   const m = /join[\/=]([A-Za-z0-9-]+)/.exec(url || ""); if (!m || !state.profile.onboarded) return;
   location.hash = "gruppe"; history.replaceState(null, "", "#gruppe");
@@ -1901,12 +2091,19 @@ async function askNotify() {
 let devT = 0, remLast = "", wLast = "";
 function reminderPlan() { // reminders for the next 7 days, at most 60 (iOS keeps 64 pending)
   const out = [], now = Date.now(), t = todayK(), at = (k, hm) => { const [H, M] = hm.split(":").map(Number), d = parseK(k); d.setHours(H, M, 0, 0); return d; };
+  const T = state.timer, th = T && T.run && state.habits.find(x => x.id === T.id);
+  if (th) { const end = T.run + Math.max(0, th.target * 60000 - cnt(th, t) * 60000 - T.acc); if (end > now) out.push({ at: new Date(end), title: "Zeit um!", body: `${th.name}: Tagesziel erreicht. Tippe zum Abhaken.`, extra: { act: "timer", id: th.id } }); }
   for (let i = 0; i < 7; i++) {
     const k = addDays(t, i);
     state.habits.forEach(h => {
       if (!h.remind || !sched(h, k) || (k === t && isDone(h, k))) return;
       const d = at(k, h.remind); if (d.getTime() <= now) return;
       out.push({ at: d, title: h.name, body: h.gc ? "Gruppen-Challenge: Die Gruppe zählt auf dich." : h.kind === "break" ? "Bleib stark. Heute zählt." : "Zeit für deine Gewohnheit." });
+    });
+    state.habits.forEach(h => { // Aufstehen: Mitteilung zur Weckzeit (Android stellt zusätzlich einen echten Wecker)
+      if (modeOf(h) !== "wake" || !h.alarm || !sched(h, k) || (k === t && (isDone(h, k) || (h.woke && h.woke[k])))) return;
+      const d = at(k, h.wakeAt); if (d.getTime() <= now) return;
+      out.push({ at: d, title: "Guten Morgen!", body: `Tippe hier, dann zählt „${h.name}“. Du hast bis ${wakeLimit(h)} Zeit.`, extra: { act: "wake", id: h.id } });
     });
     const nr = state.profile.nightRemind;
     if (!nr || !habitsFor(k).length) continue;
@@ -1933,7 +2130,7 @@ function deviceSync() {
     try {
       if ((await LN.checkPermissions()).display !== "granted") return;
       await LN.cancelAll();
-      if (plan.length) await LN.schedule({ notifications: plan.map((n, i) => ({ id: i + 1, title: n.title, body: n.body, schedule: { at: n.at, allowWhileIdle: true }, isExactNotification: false })) });
+      if (plan.length) await LN.schedule({ notifications: plan.map((n, i) => ({ id: i + 1, title: n.title, body: n.body, schedule: { at: n.at, allowWhileIdle: true }, isExactNotification: false, extra: n.extra || null })) });
       remLast = j;
     } catch (e) { /* reminders are optional */ }
   }, 1500);
@@ -1941,7 +2138,10 @@ function deviceSync() {
 
 /* ============ Rendering: chrome ============ */
 let shownXp = null;
-function applyTheme() { const t = THEMES[state.profile.theme] || THEMES.sun; document.documentElement.style.setProperty("--p0", t.p); }
+function applyTheme() {
+  const t = THEMES[state.profile.theme] || THEMES.sun, a = state.profile.appearance, el = document.documentElement; el.style.setProperty("--p0", t.p);
+  if (a === "light" || a === "dark") el.dataset.theme = a; else delete el.dataset.theme;
+}
 const VTITLE = { heute: "Heute", fortschritt: "Fortschritt", gruppe: "Gruppe", profil: "Profil" };
 // Navigation bar: the section's large title, streak (opens streak and shields) and coins (opens the shop), add button on Heute.
 function renderTopbar() {
@@ -2026,16 +2226,16 @@ function habitCard(h, i, off) {
   if (h.kind === "break") {
     meta = `<span class="num" data-since="${h.quitStart}">${fmtSince(Date.now() - h.quitStart)}</span>${h.money ? `<span class="saved num" data-money="${h.id}">${eur(h.money * quitDays(h))}</span>` : ""}<span class="fl ${st.c ? "" : "zero"}">${I.flame}${st.c}</span>`;
   } else {
-    meta = `<span class="fl ${st.c ? "" : "zero"}">${I.flame}${st.c}</span>${h.target > 1 ? `<span class="num">${c}/${h.target} ${esc(h.unit)}</span>` : ""}${h.cue && h.action ? `<span>Wenn ${esc(h.cue)}</span>` : ""}`;
+    meta = `<span class="fl ${st.c ? "" : "zero"}">${I.flame}${st.c}</span>${modeMeta(h, c)}${h.cue && h.action && modeOf(h) === "check" ? `<span>Wenn ${esc(h.cue)}</span>` : ""}`;
   }
   meta += gcBadge(h) + itemBadges(h) + vocabBadge(h) + gymBadge(h) + capBadge(h);
-  const inner = h.special === "vocab" && !done ? I.gift : h.special === "gym" && !done ? I.dumbbell : done ? I.check : h.target > 1 ? `<span class="cnt num">${c}/${h.target}</span>` : I.check;
+  const inner = h.special === "vocab" && !done ? I.gift : h.special === "gym" && !done ? I.dumbbell : modeInner(h, c, done), ma = modeAria(h, c, done);
   return `<article class="hcard enter ${done ? "done" : ""}" style="--hc:${esc(h.color)};--i:${i + 3}" data-card="${h.id}" data-action="detail" data-id="${h.id}">
     <div class="hicon">${HI[h.icon] || I.star}</div>
     <div class="hbody"><div class="hname">${esc(h.name)}</div><div class="hmeta">${meta}</div>
       ${st.grace && !off ? `<div class="hwarn">Gestern verpasst: Heute erledigen hält die Serie!</div>` : ""}</div>
     ${h.kind === "break" && !off ? `<button class="sos" data-action="sos" data-id="${h.id}" aria-label="SOS-Hilfe bei Drang">SOS</button>` : ""}
-    ${off ? `<span class="pill">frei</span>` : `<button class="hcheck ${done ? "done" : ""}" data-action="tap" data-id="${h.id}" aria-label="${esc(h.name)}: ${h.special === "gym" ? (state.gym.active ? "Workout fortsetzen" : done ? "erledigt, Training ansehen" : "Training öffnen") : h.special === "vocab" ? (done ? "Karten von heute ansehen" : "Tages-Pack öffnen") : done ? "erledigt, tippen zum Rückgängig machen" : h.target > 1 ? `${c} von ${h.target}, tippen für +1` : "als erledigt markieren"}">
+    ${off ? `<span class="pill">frei</span>` : `<button class="hcheck ${done ? "done" : ""}" data-action="tap" data-id="${h.id}" aria-label="${esc(h.name)}: ${h.special === "gym" ? (state.gym.active ? "Workout fortsetzen" : done ? "erledigt, Training ansehen" : "Training öffnen") : h.special === "vocab" ? (done ? "Karten von heute ansehen" : "Tages-Pack öffnen") : ma ? ma : done ? "erledigt, tippen zum Rückgängig machen" : h.target > 1 ? `${c} von ${h.target}, tippen für +1` : "als erledigt markieren"}">
       <svg class="ring" viewBox="0 0 58 58"><circle class="t" cx="29" cy="29" r="${R}"/><circle class="v" cx="29" cy="29" r="${R}" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - frac)}"/></svg>${inner}</button>`}
   </article>`;
 }
@@ -2168,7 +2368,7 @@ function viewPet() {
   ${wheelCard(true)}
   <div id="shop"><div class="sec-h"><h2>Shop</h2><span class="chip coins">${I.coin}<span class="num">${state.profile.infinite ? "∞" : state.coins}</span></span></div>
   <div class="seg scroll" role="group" style="margin-bottom:12px">${[["outfit", "Outfits"], ["room", "Zimmer"], ["theme", "Themen"], ["power", "Items"], ["rewards", "Belohnungen"]].map(([k, l]) => `<button data-action="stab" data-v="${k}" aria-pressed="${shopTab === k}">${l}</button>`).join("")}</div>
-  ${shopTab === "outfit" ? `<div class="card" style="margin-bottom:12px"><div class="swatches">${PET_COLORS.map(c => `<button class="sw" style="--c:${c}" data-action="petcolor" data-v="${c}" aria-pressed="${state.profile.petColor === c}" aria-label="Farbe ${c}"></button>`).join("")}</div><div style="text-align:center"><button class="link" data-action="rename">Namen ändern</button></div></div>` : ""}
+  ${shopTab === "outfit" ? `<div class="card" style="margin-bottom:12px"><div class="species" style="margin:0 0 14px">${SPECIES.map(([k, n]) => `<button class="sp" data-action="petspecies" data-v="${k}" aria-pressed="${(state.profile.species || "keimi") === k}">${petSVG({ size: 48, mood: "ok", level: 1, eq: {}, species: k })}<span>${n}</span></button>`).join("")}</div><div class="swatches">${PET_COLORS.map(c => `<button class="sw" style="--c:${c}" data-action="petcolor" data-v="${c}" aria-pressed="${state.profile.petColor === c}" aria-label="Farbe ${c}"></button>`).join("")}</div><div style="text-align:center"><button class="link" data-action="rename">Namen ändern</button></div></div>` : ""}
   ${shopHtml}</div>`;
 }
 function rewardsHtml() {
@@ -2194,7 +2394,7 @@ function viewProfile() {
   const sw = (act, on, t, sub) => `<div class="setrow"><div><b>${t}</b><small>${sub}</small></div><button class="switch" role="switch" aria-checked="${!!on}" aria-label="${t}" data-action="${act}"></button></div>`;
   const btn = (act, t, sub, label, cls = "ghost") => `<div class="setrow"><div><b>${t}</b><small>${sub}</small></div><button class="btn sm ${cls}" data-action="${act}">${label}</button></div>`;
   return `
-  <section class="card profile-head enter"><div class="petbox">${petSVG({ size: 90, mood: petMood() })}</div>
+  <section class="card profile-head enter"><label class="avatar" title="Profilbild ändern">${state.profile.avatar ? `<img src="${esc(state.profile.avatar)}" alt="Dein Profilbild">` : `<span class="petbox">${petSVG({ size: 90, mood: petMood() })}</span>`}<span class="cam" aria-hidden="true">${I.edit}</span><input type="file" id="avatarFile" accept="image/*" aria-label="Profilbild ändern"></label>
     <div style="flex:1;min-width:0"><h2>${esc(titleOf(L))}</h2><div class="muted">Level ${L} · dabei seit ${parseK(state.profile.since).toLocaleDateString("de-DE", { month: "short", year: "numeric" })}</div>
     <div class="xpbar"><i style="width:${(state.xp - b) / (n - b) * 100}%"></i></div><div class="muted num" style="font-size:.8125rem;margin-top:4px">${state.xp - b} / ${n - b} XP bis Level ${L + 1}</div></div></section>
   <div class="sec-h"><h2>Gewohnheiten</h2><button class="link" data-action="new">${I.plus} Neu</button></div>
@@ -2208,14 +2408,28 @@ function viewProfile() {
   <div class="card">
     ${sw("set-sound", state.profile.sound, "Sound", "Klänge bei Häkchen, Münzen und Level")}
     ${sw("set-haptics", state.profile.haptics, "Haptik", "Vibration bei Antippen, Erfolgen und Spielen")}
+    <div class="setrow" style="flex-wrap:wrap"><div><b>Erscheinungsbild</b><small>„Automatisch“ folgt der Einstellung deines Handys</small></div><div class="seg" role="group" aria-label="Erscheinungsbild" style="flex:1 1 100%">${[["auto", "Automatisch"], ["light", "Hell"], ["dark", "Dunkel"]].map(([k, l]) => `<button data-action="set-appear" data-v="${k}" aria-pressed="${(state.profile.appearance || "auto") === k}">${l}</button>`).join("")}</div></div>
     ${capP("LocalNotifications") ? `${sw("set-night", state.profile.nightRemind, "Abend-Erinnerung", state.profile.nightRemind ? "Erinnert dich, wenn abends noch etwas offen ist" : "Erinnert dich abends an Offenes")}${state.profile.nightRemind ? `<div class="setrow"><div><b>Uhrzeit</b></div><input type="time" id="nightTime" value="${esc(state.profile.nightRemind)}" style="width:auto" aria-label="Uhrzeit der Abend-Erinnerung"></div>` : ""}` : ""}
     ${sw("set-infinite", state.profile.infinite, "Unendlich Münzen", "Nur zum Testen: Münzen gehen nie aus")}
     ${installEvt ? btn("install", "Als App installieren", "21 Days als eigenes Fenster, auch offline", "Installieren", "") : ""}
+    ${state.profile.avatar ? btn("avatar-del", "Profilbild", "Eigenes Bild entfernen", "Entfernen") : ""}
     ${btn("backup", "Backup", "Daten sichern oder wiederherstellen", "Öffnen")}
     ${btn("log-open", "Aktionsprotokoll", "Alle Änderungen auf diesem Gerät", "Öffnen")}
     ${btn("onboard-again", "Einführung", "Die Begrüßung noch einmal ansehen", "Starten")}
     ${btn("reset", "Neu anfangen", "Löscht alle Daten auf diesem Gerät", "Löschen", "danger")}
   </div>`;
+}
+
+// Square crop, 256 px JPEG: small enough for the local save and the backup file.
+function setAvatar(file) {
+  const img = new Image(), url = URL.createObjectURL(file);
+  img.onload = () => {
+    const S = 256, c = document.createElement("canvas"), k = Math.max(S / img.width, S / img.height), w = img.width * k, h = img.height * k;
+    c.width = c.height = S; c.getContext("2d").drawImage(img, (S - w) / 2, (S - h) / 2, w, h); URL.revokeObjectURL(url);
+    state.profile.avatar = c.toDataURL("image/jpeg", .82); save(); render(); toast("Profilbild gespeichert");
+  };
+  img.onerror = () => { URL.revokeObjectURL(url); toast("Das Bild konnte nicht geöffnet werden"); };
+  img.src = url;
 }
 
 /* ============ Sheets & modals ============ */
@@ -2242,7 +2456,8 @@ let draft = null;
 function draftFrom(h, tpl, kind) {
   if (h) return JSON.parse(JSON.stringify(h));
   const base = normHabit({ kind: kind || "build", color: COLORS[state.habits.length % COLORS.length] });
-  if (tpl) Object.assign(base, { name: tpl.name, icon: tpl.icon, target: tpl.target || 1, unit: tpl.unit || "", time: tpl.time || "any", cue: tpl.cue || "", action: tpl.action || "", replacement: tpl.replacement || "", money: tpl.money || 0, minutes: tpl.minutes || 0, color: tpl.color || base.color, special: tpl.special || "" });
+  if (tpl) Object.assign(base, { name: tpl.name, icon: tpl.icon, target: tpl.target || 1, unit: tpl.unit || "", time: tpl.time || "any", cue: tpl.cue || "", action: tpl.action || "", replacement: tpl.replacement || "", money: tpl.money || 0, minutes: tpl.minutes || 0, color: tpl.color || base.color, special: tpl.special || "",
+    mode: tpl.mode || "", quick: (tpl.quick || []).slice(), wakeAt: tpl.wakeAt || base.wakeAt, grace: tpl.grace ?? base.grace, words: tpl.words || base.words, alarm: !!tpl.alarm, health: !!tpl.health });
   base.id = null;
   return base;
 }
@@ -2252,50 +2467,66 @@ function openTemplates() {
     openSheet(`${sheetHead("Neue Gewohnheit")}
       <div class="seg" role="group"><button data-action="tpl-kind" data-v="build" aria-pressed="${kind === "build"}">Angewöhnen</button><button data-action="tpl-kind" data-v="break" aria-pressed="${kind === "break"}">Abgewöhnen</button></div>
       <div class="group-h">Beliebt</div>
-      <div class="tpl-grid">${TEMPLATES[kind].map((t, i) => `<button class="tpl" style="--hc:${t.color}" data-action="tpl" data-kind="${kind}" data-i="${i}"><span class="hicon">${HI[t.icon]}</span>${esc(t.name)}</button>`).join("")}</div>
+      <div class="tpl-grid">${TEMPLATES[kind].map((t, i) => `<button class="tpl ${t.isNew ? "is-new" : ""}" style="--hc:${t.color}" data-action="tpl" data-kind="${kind}" data-i="${i}"><span class="hicon">${HI[t.icon]}</span>${esc(t.name)}${t.isNew ? '<span class="newtag">Neu</span>' : ""}</button>`).join("")}</div>
       <button class="btn ghost full" style="margin-top:14px" data-action="tpl-custom" data-kind="${kind}">${I.edit} Eigene Gewohnheit</button>`);
   };
   openTemplates.setKind = k => { kind = k; render2(); };
   render2();
 }
+// Editor: grouped like iOS Settings. Rarely used fields sit under "Mehr Optionen", icon and color in their own view.
+let edMore = false, edLook = false;
+const irow = (label, ctl, id) => `<div class="ir">${id ? `<label for="${id}">${label}</label>` : `<span>${label}</span>`}${ctl}</div>`;
+const igrp = (head, rows, foot) => rows ? `${head ? `<div class="ig-h">${head}</div>` : ""}<div class="ig">${rows}</div>${foot ? `<div class="ig-f">${foot}</div>` : ""}` : "";
+const inum = (id, f, v, min, max, step, unit) => `<span class="iv"><input type="number" id="${id}" data-f="${f}" min="${min}" max="${max}" step="${step}" value="${v}" inputmode="decimal">${unit ? `<em>${unit}</em>` : ""}</span>`;
+const itxt = (id, f, v, ph, max = 80) => `<input type="text" class="it" id="${id}" data-f="${f}" maxlength="${max}" value="${esc(v || "")}" placeholder="${ph}">`;
+const iswitch = (on, act, lbl) => `<button type="button" class="switch" role="switch" aria-checked="${!!on}" aria-label="${lbl}" data-action="${act}"></button>`;
 function editorHTML(d) {
   const brk = d.kind === "break", gc = !!d.gc; // group challenge: name, look, days and difficulty belong to the leader
-  return `${sheetHead(d.id ? "Bearbeiten" : brk ? "Abgewöhnen" : "Angewöhnen")}
-  <form id="hForm" novalidate>
-    <div style="display:flex;gap:12px;align-items:center"><span class="hicon" style="--hc:${esc(d.color)};width:60px;height:60px;border-radius:18px">${HI[d.icon] || I.star}</span>
-      <div class="field" style="flex:1;margin:0"><label for="fName">Name</label><input type="text" id="fName" data-f="name" maxlength="50" value="${esc(d.name)}" placeholder="${brk ? "z. B. Nicht rauchen" : "z. B. Lesen"}" ${gc ? "readonly" : ""}></div></div>
-    ${gc ? `<p class="muted" style="font-size:.8125rem;font-weight:400;margin:10px 4px 0">Gruppen-Challenge: Name, Aussehen und Tage legt der Leader fest. Deine Notizen unten bleiben privat.</p>` : `<div class="field"><span class="lbl">Symbol</span><div class="iconpick" style="--hc:${esc(d.color)}">${HI_KEYS.map(k => `<button type="button" data-action="f-icon" data-v="${k}" aria-pressed="${d.icon === k}" aria-label="Symbol ${k}">${HI[k]}</button>`).join("")}</div></div>
-    <div class="field"><span class="lbl">Farbe</span><div class="swatches" style="justify-content:flex-start">${COLORS.map(c => `<button type="button" class="sw" style="--c:${c}" data-action="f-color" data-v="${c}" aria-pressed="${d.color === c}" aria-label="Farbe ${c}"></button>`).join("")}</div></div>`}
-    ${brk ? `
-      <div class="row2"><div class="field"><label for="fMoney">Geld pro Tag (€)</label><input type="number" id="fMoney" data-f="money" min="0" step="0.5" value="${d.money || 0}"></div>
-      <div class="field"><label for="fMin">Zeit pro Tag (Min.)</label><input type="number" id="fMin" data-f="minutes" min="0" step="5" value="${d.minutes || 0}"></div></div>
-      <small class="muted" style="font-weight:400">Daraus berechnet 21 Days live, wie viel du schon gespart hast.</small>
-      <div class="field"><label for="fRep">Stattdessen mache ich …</label><input type="text" id="fRep" data-f="replacement" maxlength="80" value="${esc(d.replacement)}" placeholder="z. B. tief durchatmen"></div>
-      <div class="field"><label for="fCue">Typischer Auslöser</label><input type="text" id="fCue" data-f="cue" maxlength="80" value="${esc(d.cue)}" placeholder="z. B. nach dem Essen"></div>
-      <div class="field"><span class="lbl">Warum ich aufhöre</span>${[0, 1, 2].map(i => `<input type="text" data-reason="${i}" maxlength="80" value="${esc(d.reasons[i] || "")}" placeholder="${["z. B. Ich will fitter sein", "z. B. Für meine Familie", "z. B. Mehr Geld für Urlaub"][i]}" aria-label="Grund ${i + 1}">`).join("")}<small>Diese Gründe zeigt dir die SOS-Hilfe, wenn es schwer wird.</small></div>
-    ` : gc ? `
-      <div class="field"><span class="lbl">Wenn-Dann-Plan</span><div class="row2"><input type="text" data-f="cue" maxlength="80" value="${esc(d.cue)}" placeholder="Wenn … (Auslöser)" aria-label="Wenn"><input type="text" data-f="action" maxlength="80" value="${esc(d.action)}" placeholder="dann … (Handlung)" aria-label="Dann"></div></div>
-    ` : `
-      <div class="row2"><div class="field"><label for="fTarget">Ziel pro Tag</label><input type="number" id="fTarget" data-f="target" min="1" max="50" value="${d.target}"></div>
-      <div class="field"><label for="fUnit">Einheit</label><input type="text" id="fUnit" data-f="unit" maxlength="16" value="${esc(d.unit)}" placeholder="z. B. Gläser"></div></div>
-      <div class="field"><span class="lbl">Wenn-Dann-Plan</span><div class="row2"><input type="text" data-f="cue" maxlength="80" value="${esc(d.cue)}" placeholder="Wenn … (Auslöser)" aria-label="Wenn"><input type="text" data-f="action" maxlength="80" value="${esc(d.action)}" placeholder="dann … (Handlung)" aria-label="Dann"></div><small>Ein fester Anker macht es leichter, die Gewohnheit nicht zu vergessen.</small></div>
-      ${d.special === "vocab" ? "" : `<div class="setrow" style="border:0;padding-bottom:0"><div><b>Mit Training verknüpfen</b><small>Wird abgehakt, sobald du ein Workout beendest</small></div><button type="button" class="switch" role="switch" aria-checked="${d.special === "gym"}" aria-label="Mit Training verknüpfen" data-action="f-gym"></button></div>`}
-    `}
-    ${gc ? "" : `<div class="field"><span class="lbl">Tage</span><div class="daypick">${WD.map((w, i) => `<button type="button" data-action="f-day" data-v="${i}" aria-pressed="${d.days.includes(i)}">${w}</button>`).join("")}</div></div>`}
-    ${capP("LocalNotifications") ? `<div class="field"><label for="fRemind">Erinnerung</label><input type="time" id="fRemind" data-f="remind" value="${esc(d.remind || "")}"><small>An geplanten Tagen, solange noch nicht abgehakt. Leer lassen für keine.</small></div>` : ""}
-    <div class="field"><span class="lbl">Tageszeit</span><div class="opts">${TIME_ORDER.map(k => `<button type="button" class="opt" data-action="f-time" data-v="${k}" aria-pressed="${d.time === k}">${TIMES[k].n}</button>`).join("")}</div></div>
-    ${gc ? "" : `<div class="field"><span class="lbl">Schwierigkeit</span><div class="opts">${[1, 2, 3].map(k => `<button type="button" class="opt" data-action="f-diff" data-v="${k}" aria-pressed="${(d.diff || 2) === k}">${stars(k)} ${DIFFS[k].n}</button>`).join("")}</div><small>Schwere Gewohnheiten geben mehr XP und mehr Schaden am Boss.</small></div>`}
-    ${tagField(d, "f-tag")}
+  if (edLook && !gc) return lookHTML(d);
+  const tile = `<span class="hicon ed-tile" style="--hc:${esc(d.color)}">${HI[d.icon] || I.star}${gc ? "" : `<i>${I.edit}</i>`}</span>`;
+  const seg = (act, keys, cur, name) => `<div class="seg" role="group" aria-label="${name}">${keys.map(([k, n]) => `<button type="button" data-action="${act}" data-v="${k}" aria-pressed="${cur === k}">${n}</button>`).join("")}</div>`;
+  const timeSeg = `<div class="ir col"><span>Tageszeit</span>${seg("f-time", TIME_ORDER.map(k => [k, TIMES[k].n]), d.time, "Tageszeit")}</div>`;
+  const diffSeg = gc ? "" : igrp("Schwierigkeit", `<div class="ir col">${seg("f-diff", [1, 2, 3].map(k => [k, DIFFS[k].n]), d.diff || 2, "Schwierigkeit")}</div>`, "Schwere Gewohnheiten geben mehr XP und mehr Schaden am Boss.");
+  const plan = igrp("Wenn-Dann-Plan", irow("Wenn", itxt("fCue", "cue", d.cue, "Auslöser"), "fCue") + irow("Dann", itxt("fAct", "action", d.action, "Handlung"), "fAct"), "Ein fester Anker macht es leichter, die Gewohnheit nicht zu vergessen.");
+  const remind = capP("LocalNotifications") ? irow("Erinnerung", `<span class="iv">${d.remind ? `<input type="time" class="it" id="fRemind" data-f="remind" value="${esc(d.remind)}" aria-label="Uhrzeit der Erinnerung">` : ""}${iswitch(d.remind, "f-remind", "Erinnerung")}</span>`) : "";
+  const days = gc ? "" : `<div class="ir col"><span>Tage</span><div class="daypick">${WD.map((w, i) => `<button type="button" data-action="f-day" data-v="${i}" aria-pressed="${d.days.includes(i)}">${w}</button>`).join("")}</div></div>`;
+  let main, more, moreNames;
+  if (brk) {
+    main = igrp("Was du sparst", irow("Geld pro Tag", inum("fMoney", "money", d.money || 0, 0, 1000, .5, "€"), "fMoney") + irow("Zeit pro Tag", inum("fMin", "minutes", d.minutes || 0, 0, 1440, 5, "Min."), "fMin"), "Daraus rechnet 21 Days live aus, wie viel du schon gespart hast.")
+      + igrp("Wann", days + remind)
+      + igrp("Hilfe in schwachen Momenten", irow("Stattdessen", itxt("fRep", "replacement", d.replacement, "z. B. tief durchatmen"), "fRep") + irow("Auslöser", itxt("fCue", "cue", d.cue, "z. B. nach dem Essen"), "fCue")
+        + [0, 1, 2].map(i => `<div class="ir"><input type="text" class="it full" data-reason="${i}" maxlength="80" value="${esc(d.reasons[i] || "")}" placeholder="${["Grund 1, z. B. Ich will fitter sein", "Grund 2, z. B. Für meine Familie", "Grund 3, z. B. Mehr Geld für Urlaub"][i]}" aria-label="Grund ${i + 1}"></div>`).join(""), "Das zeigt dir die SOS-Hilfe, wenn es schwer wird.");
+    more = igrp("", timeSeg) + diffSeg; moreNames = ["Tageszeit", gc ? "" : "Schwierigkeit", "Tag"];
+  } else {
+    const gym = irow("Mit Training verknüpfen", iswitch(d.special === "gym", "f-gym", "Mit Training verknüpfen"));
+    main = (gc || d.special === "vocab" ? "" : d.special === "gym" ? igrp("Ziel", gym, "Wird abgehakt, sobald du ein Workout beendest.") : modeFields(d, gym))
+      + igrp("Wann", days + timeSeg + remind);
+    more = plan + diffSeg; moreNames = ["Wenn-Dann-Plan", gc ? "" : "Schwierigkeit", "Tag"];
+  }
+  return `<div class="sheet-h ed-h"><button type="button" class="tbtn" data-action="close">Abbrechen</button><h2>${d.id ? "Bearbeiten" : brk ? "Abgewöhnen" : "Angewöhnen"}</h2><button type="button" class="tbtn b" data-action="save-habit">${d.id ? "Fertig" : "Starten"}</button></div>
+  <form id="hForm" class="ed" novalidate>
+    <div class="ed-hero">${gc ? tile : `<button type="button" data-action="f-look" aria-label="Symbol und Farbe ändern">${tile}</button>`}
+      <input type="text" id="fName" class="ed-name" data-f="name" maxlength="50" value="${esc(d.name)}" placeholder="${brk ? "z. B. Nicht rauchen" : "z. B. Lesen"}" aria-label="Name" ${gc ? "readonly" : ""}></div>
+    ${gc ? `<div class="ig-f" style="text-align:center">Gruppen-Challenge: Name, Aussehen und Tage legt der Leader fest. Deine Notizen bleiben privat.</div>` : ""}
     <div class="err" id="fErr" role="alert"></div>
-    <button type="button" class="btn full" data-action="save-habit" style="margin-top:12px">${d.id ? "Speichern" : "Gewohnheit starten"}</button>
-    ${d.id && !gc ? `<button type="button" class="btn danger full" data-action="del-habit" data-id="${d.id}" style="margin-top:12px">Gewohnheit löschen</button>` : ""}
+    ${main}
+    <button type="button" class="ed-more" data-action="f-more" aria-expanded="${edMore}"><span>Mehr Optionen<small>${moreNames.filter(Boolean).join(" · ")}</small></span>${I.chev}</button>
+    ${edMore ? `${more}${tagField(d, "f-tag")}` : ""}
+    ${d.id && !gc ? `<button type="button" class="ed-del" data-action="del-habit" data-id="${d.id}">Gewohnheit löschen</button>` : ""}
   </form>`;
+}
+function lookHTML(d) {
+  return `<div class="sheet-h ed-h"><span class="tbtn"></span><h2>Symbol und Farbe</h2><button type="button" class="tbtn b" data-action="f-look">Fertig</button></div>
+  <div class="ed-hero"><span class="hicon ed-tile" style="--hc:${esc(d.color)}">${HI[d.icon] || I.star}</span><b>${esc(d.name || "Neue Gewohnheit")}</b></div>
+  <div class="ig-h">Farbe</div><div class="ig ig-pad"><div class="swatches" style="justify-content:flex-start">${COLORS.map(c => `<button type="button" class="sw" style="--c:${c}" data-action="f-color" data-v="${c}" aria-pressed="${d.color === c}" aria-label="Farbe ${c}"></button>`).join("")}</div></div>
+  <div class="ig-h">Symbol</div><div class="ig ig-pad"><div class="iconpick" style="--hc:${esc(d.color)}">${HI_KEYS.map(k => `<button type="button" data-action="f-icon" data-v="${k}" aria-pressed="${d.icon === k}" aria-label="Symbol ${k}">${HI[k]}</button>`).join("")}</div></div>`;
 }
 function syncDraft() {
   $$("#hForm [data-f]").forEach(el => { const k = el.dataset.f; draft[k] = el.type === "number" ? Number(el.value) || 0 : el.value; });
   const rs = $$("#hForm [data-reason]"); if (rs.length) draft.reasons = rs.map(el => el.value.trim()).filter(Boolean);
 }
-function openEditor(d) { draft = d; openSheet(editorHTML(draft), { reset: true }); }
+function openEditor(d) { draft = d; edMore = edLook = false; openSheet(editorHTML(draft), { reset: true }); }
+function redrawEditor() { const sc = $(".sheet") ? $(".sheet").scrollTop : 0; openSheet(editorHTML(draft)); if ($(".sheet")) $(".sheet").scrollTop = sc; } // after the draft was changed on purpose (no input sync)
 function rerenderEditor() { syncDraft(); const sc = $(".sheet") ? $(".sheet").scrollTop : 0; openSheet(editorHTML(draft)); if ($(".sheet")) $(".sheet").scrollTop = sc; }
 function saveHabit() {
   syncDraft();
@@ -2304,10 +2535,24 @@ function saveHabit() {
   if (!draft.days.length) { $("#fErr").textContent = "Wähle mindestens einen Tag."; return false; }
   if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(draft.remind || "")) draft.remind = "";
   if (draft.remind) askNotify();
-  draft.diff = clamp(Number(draft.diff) || 2, 1, 3); draft.name = name; draft.target = clamp(Math.round(draft.target || 1), 1, 50); draft.money = Math.max(0, draft.money || 0); draft.minutes = Math.max(0, draft.minutes || 0);
-  if (draft.id) { const i = state.habits.findIndex(h => h.id === draft.id); state.habits[i] = normHabit(draft); toast("Gespeichert"); }
+  draft.diff = clamp(Number(draft.diff) || 2, 1, 3); draft.name = name; draft.money = Math.max(0, draft.money || 0); draft.minutes = Math.max(0, draft.minutes || 0);
+  const md = draft.kind === "break" || draft.special || draft.gc ? "" : draft.mode || "", lim = { timer: [1, 600], steps: [100, 100000], count: [1, 100000] }[md] || [1, 50];
+  draft.mode = md === "check" ? "check" : md;
+  draft.target = md === "wake" || md === "journal" || md === "check" ? 1 : clamp(Math.round(draft.target || 1), lim[0], lim[1]);
+  draft.quick = md === "count" ? parseQuick(draft.quickTxt != null ? draft.quickTxt : (draft.quick || []).join(","), draft.unit) : []; delete draft.quickTxt;
+  draft.grace = clamp(Math.round(Number(draft.grace) || 0), 0, 180); draft.words = clamp(Math.round(Number(draft.words) || 30), 1, 1000);
+  if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(draft.wakeAt || "")) draft.wakeAt = "06:30";
+  if (md === "count" && !draft.unit.trim()) draft.unit = "mal";
+  const alarmKey = `${draft.wakeAt}|${draft.days.join("")}`, wantAlarm = md === "wake" && draft.alarm && platform() === "android" && draft.alarmSet !== alarmKey;
+  if (md !== "wake" || !draft.alarm) draft.alarmSet = "";
+  if (draft.id) { const i = state.habits.findIndex(h => h.id === draft.id), nh = normHabit(draft); rescaleLog(state.habits[i], nh); if (state.timer && state.timer.id === nh.id && md !== "timer") state.timer = null; state.habits[i] = nh; toast("Gespeichert"); }
   else { draft.id = uid(); draft.start = todayK(); draft.quitStart = Date.now(); state.habits.push(normHabit(draft)); toast(`Los geht's: Tag 1 von „${name}“!`); burst(innerWidth / 2, innerHeight * .4, 80); sfx("bonus"); }
-  evaluateBadges(); save(); return true;
+  evaluateBadges(); save();
+  const saved = state.habits.find(h => h.id === draft.id);
+  if (saved && wantAlarm) setPhoneAlarm(saved, false);
+  if (saved && md === "steps" && saved.health && capP("Health") && !state.flags.healthAsked) setTimeout(() => healthSync(true), 600);
+  if (saved && md === "wake" && saved.alarm) askNotify();
+  return true;
 }
 
 // Detail sheet
@@ -2328,7 +2573,7 @@ function openDetail(id) {
       <div class="sec-h"><h2>Meilensteine</h2></div><div class="ms-row">${QUIT_MS.map(m => `<div class="ms ${qd >= m ? "hit" : ""}"><b class="num">${m}</b>${m === 1 ? "Tag" : "Tage"}</div>`).join("")}</div>
       ${h.reasons.length ? `<div class="sec-h"><h2>Warum ich aufhöre</h2></div>${h.reasons.map(r => `<div class="reason">${I.heart}${esc(r)}</div>`).join("")}` : ""}
     ` : `<div class="tiles"><div class="tile"><div class="tv num">${I.flame}${st.c}</div><span>aktuelle Serie</span></div><div class="tile"><div class="tv num">${best}</div><span>beste Serie</span></div></div>
-      ${h.target > 1 ? `<div class="card sec" style="display:flex;align-items:center;justify-content:space-between"><div><b>Heute</b><div class="muted num" style="font-weight:500">${cnt(h, t)} von ${h.target} ${esc(h.unit)}</div></div><div style="display:flex;gap:8px"><button class="btn sm ghost" data-action="minus" data-id="${h.id}" aria-label="Eins weniger">${I.minus}</button><button class="btn sm" data-action="tap" data-id="${h.id}" aria-label="Eins mehr">${I.plus}</button></div></div>` : ""}
+      ${modePanel(h)}
       ${h.cue || h.action ? `<div class="card sec"><b>Dein Plan</b><div class="muted" style="font-weight:500">Wenn ${esc(h.cue || "…")}, dann ${esc(h.action || "…")}.</div></div>` : ""}`}
     <div class="sec-h"><h2>Letzte 5 Wochen</h2><span class="muted">Phase ${doneCountAll(h) < 21 ? "1 · Start" : doneCountAll(h) < 66 ? "2 · Festigen" : "3 · Automatisch"}</span></div>
     <div class="card"><div class="mini-cal">${cal}</div><div class="muted num" style="margin-top:8px;font-weight:500;font-size:13px">${doneCountAll(h)} Tage geschafft · ${doneCountAll(h) < 21 ? `noch ${21 - doneCountAll(h)} bis zum Ende der Startphase` : doneCountAll(h) < 66 ? `noch ${66 - doneCountAll(h)} bis zur Automatik-Phase` : "läuft fast von selbst"}</div></div>
@@ -2337,7 +2582,7 @@ function openDetail(id) {
     ${capsuleCard(h)}
     <div style="display:grid;gap:12px;margin-top:18px">
       ${brk ? `<button class="btn ice full" data-action="sos" data-id="${h.id}">SOS: Drang überstehen</button><button class="btn danger full" data-action="relapse" data-id="${h.id}">Rückfall eintragen</button>` : ""}
-      <button class="btn ghost full" data-action="edit" data-id="${h.id}">${I.edit} Bearbeiten</button>
+      ${TIPS[h.name] ? `<button class="btn ghost full" data-action="tips" data-id="${h.id}">Tipps</button>` : ""}<button class="btn ghost full" data-action="edit" data-id="${h.id}">${I.edit} Bearbeiten</button>
     </div></div>`);
 }
 
@@ -2439,7 +2684,7 @@ function openChest(btn) {
 // Onboarding
 let ob = { step: 0, name: "Keimi", color: PET_COLORS[0], goals: [], hatched: false };
 function openOnboarding() {
-  ob = { step: 0, name: state.profile.petName || "Keimi", color: state.profile.petColor || PET_COLORS[0], goals: [], hatched: false };
+  ob = { step: 0, name: state.profile.petName || "Keimi", color: state.profile.petColor || PET_COLORS[0], species: state.profile.species || "keimi", goals: [], hatched: false };
   drawOb();
 }
 function obDots() { return `<div class="dots">${[0, 1, 2, 3, 4].map(i => `<i class="${i === ob.step ? "on" : ""}"></i>`).join("")}</div>`; }
@@ -2449,9 +2694,10 @@ function drawOb() {
     body = `<div class="grow">${ob.hatched ? `<div class="ob-pet">${petSVG({ size: 200, mood: "happy", color: ob.color, level: 1, eq: {} })}</div><h1>Hallo! Ich bin dein Begleiter.</h1><p>Ich wachse mit jeder Gewohnheit, die du durchziehst. Gemeinsam schaffen wir deine ersten 21 Tage.</p>`
       : `<svg class="egg" id="egg" viewBox="0 0 180 210" data-action="hatch" role="button" aria-label="Ei antippen"><ellipse cx="90" cy="200" rx="60" ry="8" fill="rgba(0,0,0,.12)"/><path d="M90 10 C140 10 165 90 165 130 C165 175 130 200 90 200 C50 200 15 175 15 130 C15 90 40 10 90 10z" fill="#FFF6E5" stroke="#F2D9A8" stroke-width="4"/><circle cx="60" cy="80" r="10" fill="${ob.color}" opacity=".6"/><circle cx="118" cy="120" r="14" fill="${ob.color}" opacity=".6"/><circle cx="70" cy="150" r="8" fill="${ob.color}" opacity=".6"/><circle cx="120" cy="60" r="6" fill="${ob.color}" opacity=".6"/></svg>
       <h1>Willkommen bei 21 Days</h1><p>Hier schlüpft gleich dein Begleiter. Tippe auf das Ei!</p>`}</div>
-      <div class="foot">${ob.hatched ? `<button class="btn full" data-action="ob-next">Weiter</button>` : `<button class="btn full" data-action="hatch">Ei ausbrüten</button>`}</div>`;
+      <div class="foot">${ob.hatched ? `<button class="btn full" data-action="ob-next">Weiter</button>` : `<button class="btn full" data-action="hatch">Ei ausbrüten</button>`}<button class="link" data-action="ob-skip" style="margin-top:12px">Überspringen und App erkunden</button></div>`;
   } else if (ob.step === 1) {
-    body = `<div class="grow"><div style="width:170px;height:170px;margin:0 auto">${petSVG({ size: 170, mood: "happy", color: ob.color, level: 1, eq: {} })}</div><h1>Wie soll ich heißen?</h1>
+    body = `<div class="grow"><div style="width:150px;height:150px;margin:0 auto">${petSVG({ size: 150, mood: "happy", color: ob.color, level: 1, eq: {}, species: ob.species })}</div><h1>Wer bin ich?</h1>
+      <div class="species" role="group" aria-label="Art des Begleiters">${SPECIES.map(([k, n]) => `<button class="sp" data-action="ob-species" data-v="${k}" aria-pressed="${ob.species === k}">${petSVG({ size: 52, mood: "happy", color: ob.color, level: 1, eq: {}, species: k })}<span>${n}</span></button>`).join("")}</div>
       <div class="field" style="text-align:left"><input type="text" id="obName" maxlength="14" value="${esc(ob.name)}" aria-label="Name des Begleiters"></div>
       <div class="swatches" style="margin-top:16px">${PET_COLORS.map(c => `<button class="sw" style="--c:${c}" data-action="ob-color" data-v="${c}" aria-pressed="${ob.color === c}" aria-label="Farbe ${c}"></button>`).join("")}</div></div>
       <div class="foot"><button class="btn full" data-action="ob-next">Weiter</button></div>`;
@@ -2464,7 +2710,7 @@ function drawOb() {
     const all = [...TEMPLATES.build.map(t => ({ ...t, kind: "build" })), ...TEMPLATES.break.map(t => ({ ...t, kind: "break" }))];
     const sug = names.map(n => all.find(t => t.name === n)).filter(Boolean);
     body = `<div class="grow"><h1>Deine erste Gewohnheit</h1><p>Starte mit einer. Weitere kannst du jederzeit hinzufügen.</p>
-      <div class="tpl-grid" style="margin-top:18px">${sug.map(t => `<button class="tpl" style="--hc:${t.color}" data-action="ob-tpl" data-kind="${t.kind}" data-name="${esc(t.name)}"><span class="hicon">${HI[t.icon]}</span>${esc(t.name)}</button>`).join("")}</div></div>
+      <div class="tpl-grid" style="margin-top:18px">${sug.map(t => `<button class="tpl ${t.isNew ? "is-new" : ""}" style="--hc:${t.color}" data-action="ob-tpl" data-kind="${t.kind}" data-name="${esc(t.name)}"><span class="hicon">${HI[t.icon]}</span>${esc(t.name)}${t.isNew ? '<span class="newtag">Neu</span>' : ""}</button>`).join("")}</div></div>
       <div class="foot"><button class="btn ghost full" data-action="ob-custom">Eigene Gewohnheit anlegen</button></div>`;
   } else {
     body = `<div class="grow"><h1>So funktioniert's</h1>
@@ -2479,6 +2725,27 @@ function drawOb() {
   openSheet(`<div class="ob">${obDots()}${ob.step > 0 && ob.step < 4 ? `<button class="link" data-action="ob-back" style="align-self:flex-start;margin-top:6px">Zurück</button>` : ""}${body}</div>`, { full: true, locked: true });
 }
 
+// Rundgang: hebt nacheinander hervor, wo man was findet.
+const TOUR = [
+  ["#topbar .tb-add", "Hier legst du neue Gewohnheiten an: angewöhnen oder abgewöhnen, mit Vorlagen und Tipps."],
+  ['#nav [data-view="fortschritt"]', "Unter Fortschritt siehst du Serien, Kalender und dein Tagebuch."],
+  ['#nav [data-view="begleiter"]', "Hier wohnt dein Begleiter. Füttern, Pflegen, Minispiele und den Shop findest du hier."],
+  ['#nav [data-view="profil"]', "Im Profil: Gruppe mit Freunden, Abzeichen, dein Profilbild und die Einstellungen."]
+];
+let tourI = -1;
+function startTour() { if (view !== "heute") { location.hash = "heute"; } tourI = 0; setTimeout(drawTour, 250); }
+function drawTour() {
+  const old = $("#tour"); if (old) old.remove();
+  const st = TOUR[tourI], el = st && $(st[0]); if (!el) { tourI = -1; return; }
+  const r = el.getBoundingClientRect(), pad = 6, up = r.top > innerHeight / 2, d = document.createElement("div");
+  d.id = "tour"; d.className = "tour";
+  d.innerHTML = `<div class="tour-hole" style="left:${r.left - pad}px;top:${r.top - pad}px;width:${r.width + pad * 2}px;height:${r.height + pad * 2}px"></div>
+    <div class="tour-tip" role="dialog" aria-label="Rundgang ${tourI + 1} von ${TOUR.length}" style="${up ? `bottom:${innerHeight - r.top + 16}px` : `top:${r.bottom + 16}px`}"><p>${esc(st[1])}</p>
+    <div><button class="link" data-action="tour-end">Überspringen</button><span class="muted num">${tourI + 1}/${TOUR.length}</span><button class="btn sm" data-action="tour-next" autofocus>${tourI < TOUR.length - 1 ? "Weiter" : "Fertig"}</button></div></div>`;
+  document.body.appendChild(d); const f = d.querySelector("[autofocus]"); if (f) f.focus();
+}
+addEventListener("resize", () => { if (tourI >= 0) drawTour(); });
+
 /* ============ Core actions ============ */
 // Taking a check back also takes back the perfect-day bonus, so checking on and off cannot farm it.
 function unperfect(t) { if (state.perfect[t] && !habitsFor(t).every(x => isDone(x, t))) { delete state.perfect[t]; addXP(-20, t); addCoins(-10); } }
@@ -2486,10 +2753,15 @@ function tapHabit(id, btn, plain) {
   const h = state.habits.find(x => x.id === id); if (!h) return;
   const t = todayK();
   if (!sched(h, t)) { toast("Heute ist für diese Gewohnheit frei."); return; }
-  if (h.special === "vocab") { openPack(h); return; }
-  if (h.special === "gym" && !plain) { if (state.gym.active) openWorkout(); else openDetail(h.id); return; }
+  if (h.special === "vocab") { openPack(h); return true; }
+  if (h.special === "gym" && !plain) { if (state.gym.active) openWorkout(); else openDetail(h.id); return true; }
   if (h.slip === t) { toast("Heute gab es einen Rückfall. Morgen zählt wieder ein neuer Tag."); return; }
-  const wasDone = isDone(h, t);
+  const wasDone = isDone(h, t), md = modeOf(h);
+  if (md === "timer") { if (wasDone && !state.timer) openDetail(h.id); else openTimer(h); return true; }
+  if (md === "journal") { openJournalFor(h); return true; }
+  if (md === "steps") { openDetail(h.id); healthSync(false); return true; }
+  if (md === "wake") { wakeCheck(h, btn); return; }
+  if (md === "count" && !wasDone) { addAmount(h, quickOf(h)[0], btn); return; }
   if (wasDone && h.target === 1) {
     const x = h.xp[t] || 0; delete h.log[t]; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); sfx("undo");
     save(); render(); return;
@@ -2511,7 +2783,7 @@ function completeHabit(h, bx, by, r) {
   if (firstToday) dd.first = true;
   const s = hStreak(h).c, combo = habitsFor(t).filter(x => isDone(x, t)).length;
   let xp = DIFF_XP + Math.min(s, 10) * 2 + (combo - 1) * 5;
-  xp = Math.round(xp * (DIFFS[h.diff] || DIFFS[2]).m);
+  xp = Math.round(xp * (DIFFS[h.diff] || DIFFS[2]).m * petBoost().m);
   const lucky = hash01(h.id + t) < .12; if (lucky) xp *= 2;
   const coins = Math.round(xp / 2);
   h.xp[t] = xp; addXP(xp, t); addCoins(coins);
@@ -2558,7 +2830,7 @@ function petPet(box) {
   const pet = box.querySelector(".pet"); if (pet) { pet.classList.remove("jump"); void box.offsetWidth; pet.classList.add("jump"); }
   const r = box.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height * .3, 12, .6, "heart"); praise(r.left + r.width / 2, r.top + 10, "♥", "heart");
   sfx("chirp"); vibrate(15);
-  const t = todayK(); day(t).petted++; state.flags.pets = (state.flags.pets || 0) + 1;
+  const t = todayK(); day(t).petted++; state.flags.pets = (state.flags.pets || 0) + 1; careMark("pet");
   const ps = petSettle(); ps.fun = Math.min(100, ps.fun + 2);
   if (state.flags.pets % 10 === 0) { // every 10th pat: a flip and a few coins
     addCoins(3); if (pet) { pet.classList.remove("flip"); void box.offsetWidth; pet.classList.add("flip"); }
@@ -2821,6 +3093,7 @@ function journalHTML(d) {
     <div class="field"><span class="lbl">Wie geht's dir? (optional)</span><div class="moods">${[1, 2, 3, 4, 5].map(m => `<button type="button" class="mood" data-action="j-mood" data-v="${m}" aria-pressed="${d.mood === m}" aria-label="Stimmung ${m} von 5">${FACE(m)}</button>`).join("")}</div></div>
     <div class="field"><label for="jText">Dein Eintrag</label><textarea id="jText" maxlength="1500" style="min-height:140px" placeholder="Schreib frei los …">${esc(d.text)}</textarea>
       <div class="opts">${PROMPTS.map((p, i) => `<button type="button" class="opt" data-action="j-prompt" data-v="${i}">${esc(p)}</button>`).join("")}</div>
+      ${jWordsHTML()}
       <small>Bleibt nur auf deinem Gerät und ist nie für die Gruppe sichtbar.</small></div>
     <div class="err" id="jErr" role="alert"></div>
     <button type="button" class="btn full" data-action="j-save" style="margin-top:12px">Speichern</button>
@@ -2847,6 +3120,311 @@ function saveJournal() {
   else toast("Eintrag gespeichert");
   evaluateBadges(); save();
   return true;
+}
+
+/* ============ Messarten (Ziele je Gewohnheit) ============ */
+// h.mode: "" (alt: Abhaken oder Menge je nach Ziel), count (Menge mit Schnell-Buttons), timer (Minuten mit Timer),
+// wake (Aufstehen bis Uhrzeit + Puffer), journal (Tagebuch mit Mindest-Wörtern), steps (Schritte aus Health, Kurzbefehl oder Eingabe).
+// h.log[Tag] ist immer die Menge des Tages (Minuten, Schritte, ml …); erledigt = log >= target. Wake und Journal haben target 1.
+const MODES = { check: "Abhaken", count: "Menge", timer: "Timer", wake: "Aufstehen", journal: "Tagebuch", steps: "Schritte" };
+const UNITS = ["Gläser", "ml", "Seiten", "Portionen", "Wdh.", "km", "Kapitel"];
+const modeOf = h => h.kind === "break" || h.special ? "check" : h.gc ? (h.target > 1 ? "count" : "check") : h.mode || (h.target > 1 ? "count" : "check");
+const fmtN = n => Math.round(n).toLocaleString("de-DE");
+const fmtK = n => n < 1000 ? String(Math.round(n)) : n < 10000 ? (Math.floor(n / 100) / 10).toLocaleString("de-DE") + "k" : Math.floor(n / 1000) + "k";
+const fmtClock = ms => { const s = Math.max(0, Math.round(ms / 1000)); return s >= 3600 ? `${Math.floor(s / 3600)}:${pad(Math.floor(s % 3600 / 60))}:${pad(s % 60)}` : `${Math.floor(s / 60)}:${pad(s % 60)}`; };
+const defQuick = u => u === "ml" ? [250, 500] : u === "Seiten" ? [1, 5, 10] : u === "km" ? [1] : [1];
+const quickOf = h => h.quick && h.quick.length ? h.quick : defQuick(h.unit);
+const parseQuick = (txt, unit) => { const q = String(txt || "").split(/[,;\s]+/).map(Number).filter(n => n > 0 && n <= 100000).map(Math.round).slice(0, 4); return q.length ? q : defQuick(unit); };
+const wc = s => (String(s || "").trim().match(/\S+/g) || []).length;
+const jWordsToday = h => state.journal.filter(e => e.habitId === h.id && e.day === todayK()).reduce((a, e) => a + wc(e.text), 0);
+const hmToMin = hm => { const [H, M] = String(hm || "06:30").split(":").map(Number); return H * 60 + M; };
+const minToHm = m => `${pad(Math.floor(m / 60) % 24)}:${pad(m % 60)}`;
+const wakeLimit = h => minToHm(hmToMin(h.wakeAt) + (h.grace || 0));
+const platform = () => window.Capacitor && window.Capacitor.getPlatform ? window.Capacitor.getPlatform() : "web";
+const centerRect = () => ({ left: innerWidth / 2 - 29, top: innerHeight / 2 - 29, width: 58, height: 58 });
+function modeMeta(h, c) {
+  const m = modeOf(h), t = todayK();
+  if (m === "timer") return `${state.timer && state.timer.id === h.id ? `<span class="num" style="color:var(--p)">${state.timer.run ? "läuft" : "pausiert"} <span data-timer>${fmtClock(tmMs())}</span></span>` : ""}<span class="num">${c}/${h.target} Min</span>`;
+  if (m === "count") return `<span class="num">${fmtN(c)}/${fmtN(h.target)} ${esc(h.unit)}</span>`;
+  if (m === "steps") return `<span class="num">${fmtN(c)}/${fmtN(h.target)} Schritte</span>`;
+  if (m === "wake") return h.woke && h.woke[t] ? `<span class="num">${isDone(h, t) ? "wach um" : "zu spät:"} ${h.woke[t]}</span>` : `<span class="num">Ziel ${esc(h.wakeAt)}</span>`;
+  if (m === "journal") return `<span class="num">${Math.min(jWordsToday(h), 9999)}/${h.words} Wörter</span>`;
+  return h.target > 1 ? `<span class="num">${c}/${h.target} ${esc(h.unit)}</span>` : "";
+}
+function modeInner(h, c, done) {
+  if (done) return I.check;
+  const m = modeOf(h);
+  if (m === "timer") return state.timer && state.timer.id === h.id ? `<span class="cnt num" data-timer>${fmtClock(tmMs())}</span>` : I.play;
+  if (m === "count") return `<span class="cnt num">${c ? fmtK(c) : "+" + fmtK(quickOf(h)[0])}</span>`;
+  if (m === "steps") return c ? `<span class="cnt num">${fmtK(c)}</span>` : HI.shoe;
+  if (m === "wake") return I.alarm;
+  if (m === "journal") return HI.pen;
+  return h.target > 1 ? `<span class="cnt num">${c}/${h.target}</span>` : I.check;
+}
+function modeAria(h, c, done) {
+  const m = modeOf(h);
+  if (m === "timer") return done ? "erledigt, Timer ansehen" : state.timer && state.timer.id === h.id ? "Timer öffnen" : "Timer starten";
+  if (m === "count") return done ? "Ziel erreicht" : `${fmtN(c)} von ${fmtN(h.target)} ${h.unit}, tippen für plus ${fmtN(quickOf(h)[0])}`;
+  if (m === "steps") return `${fmtN(c)} von ${fmtN(h.target)} Schritten, Schritte eintragen`;
+  if (m === "wake") return done ? "erledigt, tippen zum Rückgängig machen" : "Ich bin wach";
+  if (m === "journal") return done ? "erledigt, Tagebuch öffnen" : "Tagebuch schreiben";
+  return null;
+}
+// Sets today's amount and runs the right feedback: completion, undo or a small tick.
+function setProgress(h, v, r, quiet) {
+  const t = todayK();
+  if (!sched(h, t)) { toast("Heute ist für diese Gewohnheit frei."); return; }
+  if (h.slip === t) { toast("Heute gab es einen Rückfall. Morgen zählt wieder ein neuer Tag."); return; }
+  const was = isDone(h, t), prev = cnt(h, t); v = Math.max(0, Math.round(v));
+  if (v) h.log[t] = v; else delete h.log[t];
+  const now = isDone(h, t); r = r || centerRect();
+  const bx = r.left + r.width / 2, by = r.top + r.height / 2;
+  if (!was && now) { completeHabit(h, bx, by, r); return; }
+  if (was && !now) { const x = h.xp[t] || 0; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); sfx("undo"); save(); render(); return; }
+  if (!quiet && v > prev) { sfx("tick", Math.min(6, Math.ceil(v / h.target * 6))); vibrate(15); burst(bx, by, 14, .6); }
+  save(); render();
+  if (!quiet && v > prev) { const nb = $(`.hcheck[data-id="${h.id}"]`); if (nb) nb.classList.add("tick"); }
+}
+function undoToday(h) {
+  const t = todayK(); if (!h.log[t] && !(h.woke && h.woke[t])) return;
+  if (h.woke) delete h.woke[t];
+  if (h.log[t]) setProgress(h, 0, null, true); else { save(); render(); }
+}
+function addAmount(h, add, btn) {
+  const t = todayK(), r = btn ? btn.getBoundingClientRect() : centerRect();
+  if (isDone(h, t) && modeOf(h) !== "count") { toast("Heute schon geschafft!"); return; }
+  if (modeOf(h) === "count" && add > 0) floatText(r.left + r.width / 2, r.top - 6, `+${fmtN(add)} ${h.unit}`, "var(--p)");
+  setProgress(h, cnt(h, t) + add, r);
+}
+
+/* ---- Timer (Lesen, Meditieren, Aufräumen …) ---- */
+// state.timer = { id, run: Startzeit oder 0 (pausiert), acc: bisher gelaufene ms }. Übersteht Neuladen und läuft weiter, wenn die App zu ist.
+const tmMs = () => { const T = state.timer; return T ? T.acc + (T.run ? Date.now() - T.run : 0) : 0; };
+const tmLeft = h => Math.max(0, h.target * 60000 - cnt(h, todayK()) * 60000 - tmMs());
+const tmSub = h => `Heute ${cnt(h, todayK())} von ${h.target} Min · Sitzung ${fmtClock(tmMs())}`;
+function openTimer(h) {
+  const T = state.timer;
+  if (T && T.id !== h.id) { const o = state.habits.find(x => x.id === T.id); if (o) { toast(`Erst den Timer für „${o.name}“ beenden.`); h = o; } else state.timer = null; }
+  if (isDone(h, todayK()) && !state.timer) { openDetail(h.id); return; }
+  if (!state.timer) state.timer = { id: h.id, run: 0, acc: 0 };
+  drawTimer();
+}
+function drawTimer() {
+  const T = state.timer; if (!T) return;
+  const h = state.habits.find(x => x.id === T.id); if (!h) { state.timer = null; return; }
+  const R = 96, C = 2 * Math.PI * R, frac = Math.min(1, (cnt(h, todayK()) * 60000 + tmMs()) / (h.target * 60000));
+  openSheet(`${sheetHead(h.name)}
+    <div class="tm" style="--hc:${esc(h.color)}">
+      <div class="tm-ring ${T.run ? "run" : ""}"><svg viewBox="0 0 220 220" aria-hidden="true"><circle class="t" cx="110" cy="110" r="${R}"/><circle class="v" id="tmRing" cx="110" cy="110" r="${R}" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - frac)}"/></svg>
+        <div class="tm-in"><div class="muted" style="font-size:.8125rem;font-weight:600">${T.run ? "Noch" : T.acc ? "Pausiert · noch" : "Tagesziel"}</div><div class="tm-time num" id="tmTime" role="timer" aria-live="off">${fmtClock(tmLeft(h))}</div><div class="muted num" id="tmSub" style="font-size:.8125rem">${tmSub(h)}</div></div></div>
+      <div class="tm-btns">
+        <button class="btn" data-action="tm-toggle" style="min-width:140px">${T.run ? `${I.pause} Pause` : `${I.play} ${T.acc ? "Weiter" : "Start"}`}</button>
+        <button class="btn ghost" data-action="tm-stop" ${tmMs() < 30000 ? "disabled" : ""}>${I.check} Speichern</button>
+      </div>
+      <p class="muted" style="text-align:center;font-size:.8125rem;margin:0">Der Timer läuft weiter, auch wenn du das Fenster oder die App schließt. Am Ziel ertönt ein Gong.</p>
+      <div class="row2" style="grid-template-columns:1fr auto;align-items:end"><div class="field" style="margin:0"><label for="amtIn">Minuten nachtragen</label><input type="number" id="amtIn" min="1" max="600" inputmode="numeric" placeholder="z. B. 10"></div><button class="btn sm ghost" data-action="amt-add" data-id="${h.id}" style="height:48px">Nachtragen</button></div>
+      ${T.acc || T.run ? `<button class="link" data-action="tm-discard">Sitzung verwerfen</button>` : ""}
+    </div>`);
+}
+function tmToggle() {
+  const T = state.timer; if (!T) return;
+  if (T.run) { T.acc += Date.now() - T.run; T.run = 0; sfx("undo"); }
+  else { T.run = Date.now(); sfx("open"); vibrate(20); }
+  save(); drawTimer(); render();
+}
+function tmFinish(auto) {
+  const T = state.timer; if (!T) return;
+  const h = state.habits.find(x => x.id === T.id), ms = tmMs(), t = todayK();
+  state.timer = null;
+  if ($("#tmTime")) closeSheet();
+  if (!h) { save(); render(); return; }
+  const mins = auto ? Math.max(1, h.target - cnt(h, t)) : Math.floor(ms / 60000) + (ms % 60000 >= 30000 ? 1 : 0);
+  if (auto) { sfx("gong"); vibrate([60, 80, 60, 80, 200]); }
+  if (mins > 0 && sched(h, t)) { setProgress(h, cnt(h, t) + mins, null); if (!isDone(h, t)) toast(`+${mins} Min gespeichert`); }
+  else { save(); render(); }
+}
+function tmTick() {
+  const T = state.timer; if (!T || !T.run) return;
+  const h = state.habits.find(x => x.id === T.id); if (!h) { state.timer = null; return; }
+  if (tmLeft(h) <= 0) { tmFinish(true); return; }
+  const el = $("#tmTime"); if (el) { el.textContent = fmtClock(tmLeft(h)); $("#tmSub").textContent = tmSub(h); const ring = $("#tmRing"); if (ring) { const C = 2 * Math.PI * 96; ring.style.strokeDashoffset = C * (1 - Math.min(1, (cnt(h, todayK()) * 60000 + tmMs()) / (h.target * 60000))); } }
+  $$("[data-timer]").forEach(x => { x.textContent = fmtClock(tmMs()); });
+  if (el && tmMs() >= 30000) { const sb = $('[data-action="tm-stop"]'); if (sb) sb.disabled = false; }
+}
+setInterval(tmTick, 500);
+
+/* ---- Aufstehen ---- */
+function wakeCheck(h, btn) {
+  const t = todayK(), now = new Date(), mins = now.getHours() * 60 + now.getMinutes();
+  if (!sched(h, t)) { toast("Heute ist für diese Gewohnheit frei."); return; }
+  if (isDone(h, t)) { undoToday(h); return; }
+  h.woke = h.woke || {}; h.woke[t] = minToHm(mins);
+  if (mins <= hmToMin(h.wakeAt) + (h.grace || 0)) {
+    const r = btn ? btn.getBoundingClientRect() : centerRect();
+    setProgress(h, 1, r);
+    setTimeout(() => praise(r.left + r.width / 2, r.top + 30, mins <= hmToMin(h.wakeAt) ? "Pünktlich!" : "Gerade noch!", "combo"), 350);
+  } else {
+    save(); render();
+    toast(`Heute zu spät: Ziel war ${h.wakeAt} (+${h.grace} Min). Morgen klappt's!`);
+  }
+}
+function wakeFromUrl() {
+  const t = todayK(), h = state.habits.find(x => modeOf(x) === "wake" && sched(x, t) && !isDone(x, t));
+  if (!h) { toast(state.habits.some(x => modeOf(x) === "wake") ? "Aufstehen ist für heute schon eingetragen." : "Leg zuerst eine Gewohnheit „Früh aufstehen“ an."); return; }
+  if (view !== "heute") { location.hash = "heute"; }
+  setTimeout(() => wakeCheck(h, null), 300);
+}
+// Android: echter Wecker in der Uhr-App (Plugin DaysWidget.setAlarm). Wochentage für AlarmClock: So=1 … Sa=7.
+async function setPhoneAlarm(h, silent) {
+  const W = capP("DaysWidget");
+  if (!W || platform() !== "android") return false;
+  const [H, M] = h.wakeAt.split(":").map(Number);
+  try {
+    await W.setAlarm({ hour: H, minute: M, days: h.days.map(d => d === 6 ? 1 : d + 2), label: `21 Days: ${h.name}` });
+    h.alarmSet = `${h.wakeAt}|${h.days.join("")}`; save();
+    if (!silent) toast(`Wecker für ${h.wakeAt} in der Uhr-App gestellt.`);
+    return true;
+  } catch (e) { if (!silent) toast("Es wurde keine Uhr-App gefunden, die Wecker annimmt."); return false; }
+}
+function wakeIcs(h) {
+  const [H, M] = h.wakeAt.split(":"), by = h.days.map(d => ["MO", "TU", "WE", "TH", "FR", "SA", "SU"][d]).join(",");
+  const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//21 Days//DE", "BEGIN:VEVENT", `UID:${h.id}-wake@21days`, `DTSTAMP:${stamp}`, `DTSTART:${todayK().replace(/-/g, "")}T${H}${M}00`, "DURATION:PT5M",
+    `RRULE:FREQ=WEEKLY;BYDAY=${by}`, `SUMMARY:${h.name.replace(/[,;\\]/g, " ")} (21 Days)`, "DESCRIPTION:Aufstehen! In 21 Days auf Ich bin wach tippen.", "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:Aufstehen!", "TRIGGER:PT0M", "END:VALARM", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" })); a.download = "21days-wecker.ics"; document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  toast("Kalender-Datei geladen. Öffnen und in den Kalender übernehmen.");
+}
+
+/* ---- Schritte ---- */
+// Quellen: Apple Health / Health Connect (Plugin "Health", nur in der App), Kurzbefehl-Link days21://steps/ZAHL bzw. #steps=ZAHL, Eingabe.
+function stepsFromUrl(n) {
+  const t = todayK(), hs = state.habits.filter(x => modeOf(x) === "steps" && sched(x, t));
+  if (!hs.length) { toast("Leg zuerst eine Gewohnheit „10.000 Schritte“ an."); return; }
+  if (view !== "heute") location.hash = "heute";
+  setTimeout(() => { hs.forEach(h => { if (n > cnt(h, t)) setProgress(h, n, null, true); }); toast(`${fmtN(n)} Schritte übernommen`); }, 300);
+}
+let healthBusy = false;
+async function healthSync(ask) {
+  const H = capP("Health"), t = todayK(), hs = state.habits.filter(h => modeOf(h) === "steps" && h.health && sched(h, t));
+  if (!H) { if (ask) toast("Das geht nur in der 21-Days-App auf dem Handy."); return; }
+  if (!hs.length || healthBusy) return;
+  if (!ask && !state.flags.healthAsked) return; // nie ungefragt nach der Erlaubnis fragen
+  healthBusy = true;
+  try {
+    const av = await H.isAvailable();
+    if (!av || !av.available) { if (ask) toast(platform() === "android" ? "Health Connect fehlt. Installiere es aus dem Play Store." : "Apple Health ist auf diesem Gerät nicht verfügbar."); return; }
+    if (ask) { await H.requestAuthorization({ read: ["steps"], write: [] }); state.flags.healthAsked = true; }
+    const s = parseK(t);
+    const r = await H.queryAggregated({ dataType: "steps", startDate: s.toISOString(), endDate: new Date().toISOString(), bucket: "day", aggregation: "sum" });
+    const n = Math.round(((r && r.samples) || []).reduce((a, x) => a + (Number(x.value) || 0), 0));
+    hs.forEach(h => { if (n > cnt(h, t)) setProgress(h, n, null, true); });
+    if (ask) toast(n ? `${fmtN(n)} Schritte von heute übernommen` : "Noch keine Schritte gefunden. Prüfe in den Health-Einstellungen, ob 21 Days lesen darf.");
+  } catch (e) { if (ask) toast("Schritte konnten nicht gelesen werden. Prüfe die Health-Berechtigung."); }
+  finally { healthBusy = false; }
+}
+
+/* ---- Tagebuch als Ziel ---- */
+function openJournalFor(h) { jdraft = { id: null, habitId: h.id, mood: 0, text: "", back: "" }; openJournalSheet(); }
+function jWordsHTML() {
+  const h = jdraft && state.habits.find(x => x.id === jdraft.habitId && modeOf(x) === "journal"); if (!h) return "";
+  const before = state.journal.filter(e => e.habitId === h.id && e.day === todayK() && e.id !== jdraft.id).reduce((a, e) => a + wc(e.text), 0);
+  const w = before + wc(jdraft.text), ok = w >= h.words;
+  return `<div class="jwords ${ok ? "ok" : ""}" id="jWords" style="--hc:${esc(h.color)}"><span class="num">${w}/${h.words} Wörter</span><div class="mode-bar"><i style="width:${Math.min(100, w / h.words * 100)}%"></i></div><span>${ok ? "Tagesziel erreicht" : "Tagesziel"}</span></div>`;
+}
+function jCheck(hid) {
+  const h = state.habits.find(x => x.id === hid); if (!h || modeOf(h) !== "journal") return;
+  const t = todayK(), w = jWordsToday(h);
+  if (isDone(h, t) || !sched(h, t)) return;
+  if (w >= h.words) setTimeout(() => setProgress(h, 1, null), 250);
+  else toast(`Noch ${h.words - w} Wörter bis zum Tagesziel von „${h.name}“.`);
+}
+
+/* ---- Detailansicht je Messart ---- */
+function modePanel(h) {
+  const m = modeOf(h), t = todayK(), c = cnt(h, t), done = isDone(h, t), today = sched(h, t);
+  const bar = `<div class="mode-bar"><i style="width:${Math.min(100, c / h.target * 100)}%"></i></div>`;
+  const reset = c || (h.woke && h.woke[t]) ? `<button class="link" data-action="h-reset" data-id="${h.id}" style="margin-top:10px">Heute zurücksetzen</button>` : "";
+  const week = fmt => { let out = ""; const mx = Math.max(h.target, ...Array.from({ length: 7 }, (_, i) => cnt(h, addDays(t, i - 6)))); for (let i = 6; i >= 0; i--) { const k = addDays(t, -i), v = cnt(h, k); out += `<span><i class="${isDone(h, k) ? "" : "miss"}" style="height:${Math.max(3, v / mx * 52)}px"></i>${WD[wIdx(k)]}</span>`; } return `<div class="wk7" aria-label="Letzte 7 Tage">${out}</div>`; };
+  if (m === "count") return `<div class="card sec"><b>Heute</b><div class="big-num num">${fmtN(c)} <small>/ ${fmtN(h.target)} ${esc(h.unit)}</small></div>${bar}
+    ${today ? `<div class="qbtns">${quickOf(h).map(q => `<button class="btn sm" data-action="amt-q" data-id="${h.id}" data-v="${q}">+${fmtN(q)} ${esc(h.unit)}</button>`).join("")}<button class="btn sm ghost" data-action="minus" data-id="${h.id}" data-v="${quickOf(h)[0]}" aria-label="${fmtN(quickOf(h)[0])} weniger" ${c ? "" : "disabled"}>${I.minus}</button></div>
+    <div class="row2" style="grid-template-columns:1fr auto;align-items:end;margin-top:10px"><div class="field" style="margin:0"><label for="amtIn">Andere Menge</label><input type="number" id="amtIn" min="1" inputmode="numeric" placeholder="z. B. 330"></div><button class="btn sm ghost" data-action="amt-add" data-id="${h.id}" style="height:48px">Hinzufügen</button></div>` : ""}
+    ${week()}${reset}</div>`;
+  if (m === "timer") return `<div class="card sec"><b>Heute</b><div class="big-num num">${c} <small>/ ${h.target} Min</small></div>${bar}
+    ${today ? `<div class="qbtns"><button class="btn sm" data-action="tm-open" data-id="${h.id}">${I.play} ${state.timer && state.timer.id === h.id ? "Timer öffnen" : done ? "Weitermachen" : "Timer starten"}</button></div>
+    <div class="row2" style="grid-template-columns:1fr auto;align-items:end;margin-top:10px"><div class="field" style="margin:0"><label for="amtIn">Minuten nachtragen</label><input type="number" id="amtIn" min="1" max="600" inputmode="numeric" placeholder="z. B. 15"></div><button class="btn sm ghost" data-action="amt-add" data-id="${h.id}" style="height:48px">Nachtragen</button></div>` : ""}
+    ${week()}${reset}</div>`;
+  if (m === "steps") {
+    const ap = platform(), src = ap === "ios" ? "Apple Health" : "Health Connect";
+    return `<div class="card sec"><b>Heute</b><div class="big-num num">${fmtN(c)} <small>/ ${fmtN(h.target)} Schritte</small></div>${bar}
+    ${today ? `${capP("Health") ? `<div class="qbtns"><button class="btn sm" data-action="health-sync">${HI.shoe} Aus ${src} holen</button></div>` : ""}
+    <div class="row2" style="grid-template-columns:1fr auto;align-items:end;margin-top:10px"><div class="field" style="margin:0"><label for="stepsIn">Schritte heute</label><input type="number" id="stepsIn" min="0" max="200000" inputmode="numeric" placeholder="${c ? fmtN(c) : "z. B. 8500"}"></div><button class="btn sm ghost" data-action="steps-set" data-id="${h.id}" style="height:48px">Eintragen</button></div>` : ""}
+    ${week()}
+    <details class="how"><summary>Automatisch aus der Fitness-App</summary>
+      ${capP("Health") ? `<p class="muted" style="margin:6px 0">Ist „Automatisch übernehmen“ an, holt 21 Days die Schritte bei jedem Öffnen aus ${src}${ap === "android" ? " (z. B. von Google Fit, Samsung Health oder Fitbit, wenn diese mit Health Connect verbunden sind)" : " (iPhone, Apple Watch, Apple Fitness)"}.</p>` : ""}
+      <p class="muted" style="margin:6px 0"><b>iPhone-Kurzbefehl</b> (klappt immer, auch ohne Health-Zugriff):</p>
+      <ol><li>Kurzbefehle → <b>+</b> → Aktion <b>Health-Beispiele suchen</b>: Schritte, Startdatum ist heute.</li><li>Aktion <b>Statistik berechnen</b>: Summe der Health-Beispiele.</li><li>Aktion <b>URL öffnen</b>: <span class="mono">days21://steps/</span> und dahinter die Variable <b>Statistik</b>.</li><li>Unter Automation z. B. täglich um 21:00 ausführen lassen.</li></ol>
+      ${capP("Health") ? "" : `<p class="muted" style="margin:6px 0">Im Browser funktioniert stattdessen ein Link wie <span class="mono">${esc(location.origin + location.pathname)}#steps=8500</span>, solange du 21 Days auf demselben Gerät nutzt.</p>`}
+    </details>${reset}</div>`;
+  }
+  if (m === "wake") {
+    const ap = platform(), times = Array.from({ length: 7 }, (_, i) => addDays(t, i - 6)).map(k => `<span><b class="num" style="font-size:.75rem;color:${isDone(h, k) ? "var(--ok-dark)" : "var(--muted)"}">${h.woke && h.woke[k] ? h.woke[k] : "–"}</b>${WD[wIdx(k)]}</span>`).join("");
+    return `<div class="card sec"><b>Ziel</b><div class="big-num num">${esc(h.wakeAt)} <small>+ ${h.grace} Min Puffer</small></div>
+      <div class="muted" style="font-weight:500;margin-top:4px">${done ? `Heute wach um ${h.woke && h.woke[t] ? h.woke[t] : "–"}. Stark!` : h.woke && h.woke[t] ? `Heute zu spät (${h.woke[t]}).` : `Tippe bis ${wakeLimit(h)} auf „Ich bin wach“.`}</div>
+      ${today && !done && !(h.woke && h.woke[t]) ? `<div class="qbtns"><button class="btn sm" data-action="wake-now" data-id="${h.id}">${I.alarm} Ich bin wach</button></div>` : ""}
+      <div class="wk7" style="height:auto;align-items:center" aria-label="Aufstehzeiten der letzten 7 Tage">${times}</div>
+      <div class="sec-h" style="margin-top:16px"><h2 style="font-size:1rem">Wecker</h2></div>
+      ${ap === "android" && capP("DaysWidget") ? `<p class="muted" style="margin:0 0 8px;font-weight:500">${h.alarmSet ? `In der Uhr-App gestellt (${esc(h.alarmSet.split("|")[0])}).` : "Stellt einen echten Wecker in deiner Uhr-App, an deinen geplanten Tagen."}</p><button class="btn sm ghost" data-action="wake-alarm" data-id="${h.id}">${I.alarm} ${h.alarmSet ? "Erneut stellen" : "Wecker stellen"}</button>`
+      : ap === "ios" ? `<p class="muted" style="margin:0 0 6px;font-weight:500">${h.alarm ? `Du bekommst um ${esc(h.wakeAt)} eine Mitteilung. Tippst du darauf, zählt das als „Ich bin wach“.` : "Schalte im Editor „Wecker“ ein, dann kommt zur Weckzeit eine Mitteilung."} Einen lauten Wecker kann nur die Uhr-App stellen.</p>
+        <details class="how"><summary>Automatisch abhaken, wenn du den Wecker ausmachst</summary><ol><li>Stelle in der Uhr-App einen Wecker für ${esc(h.wakeAt)}.</li><li>Kurzbefehle → Automation → <b>+</b> → <b>Wecker</b> → <b>Wird gestoppt</b> → <b>Sofort ausführen</b>.</li><li>Aktion <b>URL öffnen</b>: <span class="mono">days21://wake</span></li></ol></details>`
+      : `<p class="muted" style="margin:0 0 8px;font-weight:500">Im Browser kann 21 Days keinen Wecker stellen. Hol dir die Weckzeit als wiederkehrenden Kalender-Termin mit Alarm.</p><button class="btn sm ghost" data-action="wake-ics" data-id="${h.id}">${I.alarm} Kalender-Wecker (.ics)</button>`}
+      ${reset}</div>`;
+  }
+  if (m === "journal") {
+    const w = jWordsToday(h);
+    return `<div class="card sec"><b>Heute</b><div class="big-num num">${w} <small>/ ${h.words} Wörter</small></div><div class="mode-bar"><i style="width:${Math.min(100, w / h.words * 100)}%"></i></div>
+      ${today ? `<div class="qbtns"><button class="btn sm" data-action="j-new" data-id="${h.id}">${HI.pen} ${w ? "Weiterschreiben" : "Jetzt schreiben"}</button></div>` : ""}</div>`;
+  }
+  return h.target > 1 ? `<div class="card sec" style="display:flex;align-items:center;justify-content:space-between"><div><b>Heute</b><div class="muted num" style="font-weight:500">${c} von ${h.target} ${esc(h.unit)}</div></div><div style="display:flex;gap:8px"><button class="btn sm ghost" data-action="minus" data-id="${h.id}" aria-label="Eins weniger">${I.minus}</button><button class="btn sm" data-action="tap" data-id="${h.id}" aria-label="Eins mehr">${I.plus}</button></div></div>` : "";
+}
+
+/* ---- Editor ---- */
+const gymFit = d => d.special === "gym" || d.icon === "dumbbell" || /sport|train|gym|fitness|workout|calisthenics|kraft|muskel|liegest|klimmz|pump|hantel|crossfit/i.test(d.name || "");
+function modeFields(d, gym) {
+  const m = d.mode || (d.target > 1 ? "count" : "check"), ap = platform(), app = !!capP("LocalNotifications");
+  let r = irow("Messart", `<span class="iv"><select id="fMode" class="is">${Object.entries(MODES).map(([k, l]) => `<option value="${k}" ${m === k ? "selected" : ""}>${l}</option>`).join("")}</select>${I.chev}</span>`, "fMode"), foot = "";
+  if (m === "check" && gymFit(d)) { r += gym; foot = "„Mit Training verknüpfen“ hakt die Gewohnheit ab, sobald du ein Workout beendest."; }
+  if (m === "count") {
+    r += irow("Ziel pro Tag", inum("fTarget", "target", d.target, 1, 100000, 1), "fTarget")
+      + irow("Einheit", `<input type="text" class="it" id="fUnit" data-f="unit" maxlength="16" list="unitList" value="${esc(d.unit)}" placeholder="z. B. Gläser"><datalist id="unitList">${UNITS.map(u => `<option value="${u}">`).join("")}</datalist>`, "fUnit")
+      + irow("Schnell-Buttons", `<input type="text" class="it" id="fQuick" data-f="quickTxt" value="${esc((d.quickTxt != null ? d.quickTxt : (d.quick && d.quick.length ? d.quick : defQuick(d.unit)).join(", ")))}" inputmode="numeric" placeholder="z. B. 250, 500">`, "fQuick");
+    foot = "Bis zu 4 Schnell-Buttons. Ein Tipp auf den Kreis addiert den ersten.";
+  }
+  if (m === "timer") { r += irow("Minuten pro Tag", inum("fTarget", "target", d.target, 1, 600, 1), "fTarget"); foot = "Mit eingebautem Timer und Gong am Ziel. Minuten lassen sich auch nachtragen."; }
+  if (m === "wake") {
+    r += irow("Aufstehen um", `<input type="time" class="it" id="fWake" data-f="wakeAt" value="${esc(d.wakeAt)}">`, "fWake") + irow("Puffer", inum("fGrace", "grace", d.grace, 0, 180, 5, "Min."), "fGrace") + irow("Wecker", iswitch(d.alarm, "f-alarm", "Wecker"));
+    foot = `Zählt, wenn du bis Weckzeit plus Puffer auf „Ich bin wach“ tippst. Wecker: ${ap === "android" && app ? "stellt einen echten Wecker in deiner Uhr-App." : ap === "ios" ? "Mitteilung zur Weckzeit, Antippen zählt als wach." : "im Browser als Kalender-Termin mit Alarm."}`;
+  }
+  if (m === "journal") { r += irow("Wörter pro Tag", inum("fWords", "words", d.words, 1, 1000, 1), "fWords"); foot = "Abgehakt wird, sobald deine Tagebuch-Einträge des Tages lang genug sind."; }
+  if (m === "steps") {
+    r += irow("Schritte pro Tag", inum("fTarget", "target", d.target, 100, 100000, 500), "fTarget") + irow("Automatisch übernehmen", iswitch(d.health, "f-health", "Automatisch übernehmen"));
+    foot = ap === "ios" ? "Schritte kommen aus Apple Health (iPhone, Apple Watch, Apple Fitness)." : ap === "android" ? "Schritte kommen aus Health Connect (Google Fit, Samsung Health, Fitbit …)." : "Automatisch nur in der Handy-App. Hier per Eingabe oder Link.";
+  }
+  return igrp("Ziel", r, foot);
+}
+function setMode(v) {
+  syncDraft(); draft.mode = v;
+  if (v === "timer") draft.target = draft.target >= 5 && draft.target <= 600 ? draft.target : 20;
+  else if (v === "steps") draft.target = draft.target >= 100 ? draft.target : 10000;
+  else if (v === "count") { draft.target = draft.target > 1 && draft.target <= 100000 ? draft.target : 8; if (!draft.unit) draft.unit = "Gläser"; }
+  else draft.target = 1;
+  if (v !== "check" && draft.special === "gym") draft.special = "";
+  draft.quickTxt = null; redrawEditor();
+}
+// Ändert sich Messart oder Ziel einer bestehenden Gewohnheit, bleiben erledigte Tage erledigt (Serie bleibt).
+function rescaleLog(old, nh) {
+  if (old.target === nh.target && modeOf(old) === modeOf(nh)) return;
+  Object.keys(nh.log).forEach(k => { const was = (old.log[k] || 0) >= old.target; if (was) nh.log[k] = nh.target; else { const v = Math.min(old.log[k] || 0, nh.target - 1); if (v > 0) nh.log[k] = v; else delete nh.log[k]; } });
 }
 
 /* ============ Schwierigkeit, Tags, Aufgaben ============ */
@@ -3182,9 +3760,96 @@ battle|Battle Ropes|Cardio|S|t
 jack|Hampelmänner|Cardio|KG|t
 sledpush|Schlitten schieben|Cardio|S|w
 kbsnatch|Kettlebell Snatch|Cardio|KB|w
-burpee|Burpees|Cardio|KG|b`.split("\n").map(r => { const [id, n, m, eq, ty] = r.split("|"); return { id, n, m, eq, ty }; });
-// self-check: a typo in the list above shows up in the console instead of breaking the picker
+burpee|Burpees|Cardio|KG|b
+wallpush|Wand-Liegestütze|Brust|KG|b
+kneepush|Knie-Liegestütze|Brust|KG|b
+archerpush|Archer-Liegestütze|Brust|KG|b
+clappush|Klatsch-Liegestütze|Brust|KG|b
+onearmpush|Einarmige Liegestütze|Brust|KG|b
+ringdip|Ring-Dips|Brust|KG|b
+pppush|Pseudo-Planche-Liegestütze|Schultern|KG|b
+wallhs|Handstand an der Wand|Schultern|KG|t
+freehs|Freier Handstand|Schultern|KG|t
+planchelean|Planche Lean|Schultern|KG|t
+tuckplanche|Tuck Planche|Schultern|KG|t
+scappull|Schulterblatt-Klimmzüge|Rücken|KG|b
+archerpull|Archer-Klimmzüge|Rücken|KG|b
+muscleup|Muscle-up|Rücken|KG|b
+tuckfl|Tuck Front Lever|Rücken|KG|t
+frontlever|Front Lever|Rücken|KG|t
+dipsupport|Stütz am Barren|Trizeps|KG|t
+bwskull|Skull Crusher mit Körpergewicht|Trizeps|KG|b
+bwlunge|Ausfallschritte ohne Gewicht|Beine|KG|b
+bwbulg|Bulgarian Split Squat ohne Gewicht|Beine|KG|b
+shrimp|Shrimp Squat|Beine|KG|b
+calfbw|Wadenheben ohne Gewicht|Beine|KG|b
+tucklsit|Tuck L-Sit|Bauch|KG|t
+windshield|Scheibenwischer hängend|Bauch|KG|b`.split("\n").map(r => { const [id, n, m, eq, ty] = r.split("|"); return { id, n, m, eq, ty }; });
+// self-check: a typo in the list above shows up in the console instead of breaking the picker (plan ids are checked after PLANS)
 (() => { const seen = new Set(); EXERCISES.forEach(e => { if (seen.has(e.id) || !RECOV[e.m] || !EQUIP[e.eq] || !SETLBL[e.ty]) console.warn("Übung fehlerhaft:", e.id); seen.add(e.id); }); })();
+// Calisthenics-Stufe je Übung (1 Einsteiger, 2 Fortgeschritten, 3 Profi): steht in der Übungsliste und im Plan.
+const LVN = ["", "Einsteiger", "Fortgeschritten", "Profi"];
+const CAL_LV = { wallpush: 1, kneepush: 1, inclpush: 1, invrow: 1, negpull: 1, scappull: 1, deadhang: 1, benchdip: 1, bwsquat: 1, bwlunge: 1, glutebridge: 1, stepup: 1, calfbw: 1, wallsit: 1, frog: 1, fireh: 1, plank: 1, sideplank: 1, deadbug: 1, birddog: 1, crunch: 1, revcrunch: 1, lyingraise: 1, kneeraise: 1, superman: 1, jack: 1, mountain: 1,
+  pushup: 2, widepush: 2, declpush: 2, diamond: 2, dip: 2, pike: 2, wallhs: 2, dipsupport: 2, pullup: 2, chinup: 2, bwbulg: 2, jumpsquat: 2, cossack: 2, singlehip: 2, boxjump: 2, hollow: 2, legraise: 2, tucklsit: 2, vup: 2, flutter: 2, bearcrawl: 2, burpee: 2, bwskull: 2, planchelean: 2, captain: 2,
+  archerpush: 3, clappush: 3, onearmpush: 3, ringdip: 3, pppush: 3, hspu: 3, freehs: 3, tuckplanche: 3, archerpull: 3, muscleup: 3, tuckfl: 3, frontlever: 3, pistol: 3, shrimp: 3, sissy: 3, nordic: 3, lsit: 3, dragonflag: 3, toes: 3, windshield: 3 };
+const SETS_TXT = {
+  1: "3 Sätze mit 8 bis 12 sauberen Wiederholungen (Halteübungen: 20 bis 30 Sekunden), 60 bis 90 Sekunden Pause. Schaffst du überall 12, nimm mehr Gewicht oder die nächste Stufe.",
+  2: "3 bis 4 Sätze mit 6 bis 12 Wiederholungen, 90 Sekunden Pause. Versuch jede Woche eine Wiederholung oder ein bisschen Gewicht mehr.",
+  3: "4 bis 5 Sätze. Kraft und Skills: 3 bis 6 Wiederholungen oder 10 bis 20 Sekunden halten, 2 bis 3 Minuten Pause. Schwere Übungen zuerst, solange du frisch bist."
+};
+const SPLITS = {
+  full: ["Ganzkörper", "Jede Einheit trainiert den ganzen Körper. A und B wechseln sich ab, so trainierst du jede Muskelgruppe mehrmals pro Woche, auch mit wenigen Tagen."],
+  ul: ["Oberkörper und Unterkörper", "Zwei Einheiten im Wechsel. Jede Muskelgruppe kommt zweimal pro Woche dran und hat dazwischen Zeit zum Erholen."],
+  ppl: ["Drücken, Ziehen, Beine", "Drei Einheiten im Wechsel: Brust, Schultern und Trizeps, dann Rücken und Bizeps, dann Beine und Bauch. Gut ab vielen Trainingstagen oder mit Erfahrung."]
+};
+const PLANS = {
+  gym: { full: [["Ganzkörper A", ["squat", "bench", "bbrow", "ohp", "plank"]], ["Ganzkörper B", ["rdl", "incdb", "latpull", "legpress", "dbcurl"]]],
+    ul: [["Oberkörper", ["bench", "bbrow", "ohp", "latpull", "hammer", "ropepush"]], ["Unterkörper", ["squat", "rdl", "bulg", "legext", "seatcalf", "plank"]]],
+    ppl: [["Push", ["bench", "incdb", "dbpress", "latraise", "pushdown"]], ["Pull", ["latpull", "bbrow", "cablerow", "facepull", "dbcurl"]], ["Beine", ["squat", "legpress", "rdl", "legcurl", "hipthrust", "calf"]]] },
+  cali1: { full: [["Grundlagen A", ["kneepush", "invrow", "bwsquat", "glutebridge", "plank"]], ["Grundlagen B", ["inclpush", "negpull", "bwlunge", "deadbug", "deadhang"]]],
+    ul: [["Oberkörper Grundlagen", ["kneepush", "invrow", "inclpush", "negpull", "benchdip", "plank"]], ["Beine und Bauch Grundlagen", ["bwsquat", "bwlunge", "glutebridge", "calfbw", "deadbug", "sideplank"]]] },
+  cali2: { full: [["Ganzkörper A", ["pushup", "pullup", "bwbulg", "hollow", "dip"]], ["Ganzkörper B", ["pike", "chinup", "jumpsquat", "legraise", "invrow"]]],
+    ul: [["Oberkörper", ["pushup", "pullup", "dip", "pike", "chinup", "diamond"]], ["Beine und Bauch", ["bwbulg", "jumpsquat", "singlehip", "cossack", "legraise", "hollow"]]],
+    ppl: [["Drücken", ["dip", "pushup", "pike", "diamond", "wallhs"]], ["Ziehen", ["pullup", "chinup", "invrow", "scappull", "legraise"]], ["Beine und Bauch", ["bwbulg", "jumpsquat", "cossack", "singlehip", "hollow", "tucklsit"]]] },
+  cali3: { full: [["Kraft A", ["archerpush", "muscleup", "pistol", "lsit", "ringdip"]], ["Kraft B", ["hspu", "archerpull", "shrimp", "dragonflag", "tuckfl"]]],
+    ul: [["Oberkörper Skills", ["muscleup", "hspu", "archerpull", "ringdip", "tuckplanche", "tuckfl"]], ["Beine und Core", ["pistol", "shrimp", "nordic", "jumpsquat", "dragonflag", "toes"]]],
+    ppl: [["Drücken", ["hspu", "ringdip", "archerpush", "pppush", "tuckplanche"]], ["Ziehen", ["muscleup", "archerpull", "tuckfl", "toes", "windshield"]], ["Beine und Core", ["pistol", "shrimp", "nordic", "boxjump", "dragonflag", "lsit"]]] }
+};
+(() => { Object.values(PLANS).forEach(set => Object.values(set).forEach(rs => rs.forEach(([, ex]) => ex.forEach(id => { if (!EXERCISES.some(e => e.id === id)) console.warn("Plan-Übung fehlt:", id); })))); })();
+function planFor(g) {
+  const set = g.place === "gym" ? PLANS.gym : PLANS["cali" + g.level];
+  let split = g.days <= 2 ? "full" : g.days === 3 ? (g.level === 3 ? "ppl" : "full") : g.days === 4 ? "ul" : "ppl";
+  if (!set[split]) split = "ul";
+  return { split, routines: set[split] };
+}
+// Einrichten: drei Fragen, dann ein erklärter Vorschlag. Nichts wird ohne Bestätigung angelegt.
+let gsu = null;
+function openGymSetup() {
+  gsu = gsu || { step: 0, place: "", level: 0, days: 3 };
+  const opt = (act, v, on, t, sub) => `<button class="gs-opt" data-action="${act}" data-v="${v}" aria-pressed="${on}"><b>${t}</b><small>${sub}</small></button>`;
+  let body = "", foot = "";
+  if (gsu.step === 0) { body = `<h3 class="gs-q">Dein Plan in drei Fragen</h3><p class="muted">Ich frage dich, wo du trainierst, wie viel Erfahrung du hast und wie oft du Zeit hast. Danach schlage ich dir einen Plan vor und erkläre ihn. Angelegt wird nur, was du bestätigst.</p>`; foot = `<button class="btn full" data-action="gs-next">Los geht's</button>`; }
+  if (gsu.step === 1) body = `<h3 class="gs-q">Wo trainierst du?</h3>${opt("gs-place", "gym", gsu.place === "gym", "Fitnessstudio", "Mit Langhantel, Kurzhanteln und Maschinen")}${opt("gs-place", "cali", gsu.place === "cali", "Calisthenics", "Mit deinem Körpergewicht, zu Hause oder im Park. Eine Klimmzugstange hilft.")}`;
+  if (gsu.step === 2) body = `<h3 class="gs-q">Wie viel Erfahrung hast du?</h3>${opt("gs-level", 1, gsu.level === 1, "Einsteiger", "Weniger als 6 Monate regelmäßiges Training")}${opt("gs-level", 2, gsu.level === 2, "Fortgeschritten", "6 Monate bis 2 Jahre, die Grundübungen sitzen")}${opt("gs-level", 3, gsu.level === 3, "Profi", "Über 2 Jahre, saubere Technik auch bei schweren Übungen")}`;
+  if (gsu.step === 3) { body = `<h3 class="gs-q">Wie oft pro Woche hast du Zeit?</h3><div class="seg" role="group" aria-label="Tage pro Woche">${[2, 3, 4, 5].map(n => `<button data-action="gs-days" data-v="${n}" aria-pressed="${gsu.days === n}">${n}${n === 5 ? "+" : ""} Tage</button>`).join("")}</div><p class="muted" style="margin-top:12px">Lieber realistisch planen: Zwei Einheiten, die du durchziehst, bringen mehr als fünf, die ausfallen.</p>`; foot = `<button class="btn full" data-action="gs-next">Plan ansehen</button>`; }
+  if (gsu.step === 4) {
+    const pl = planFor(gsu), sp = SPLITS[pl.split];
+    body = `<h3 class="gs-q">Dein Plan: ${sp[0]}</h3><p class="muted">${sp[1]}</p>
+      ${pl.routines.map(([n, ex]) => `<div class="ig-h">${esc(n)}</div><div class="ig">${ex.map(id => { const e = exById(id), lv = gsu.place === "cali" && CAL_LV[id]; return `<div class="ir"><span>${esc(e.n)}</span><span class="muted" style="font-size:.8125rem;flex:none">${lv ? LVN[lv] : esc(e.m)}</span></div>`; }).join("")}</div>`).join("")}
+      <div class="ig-h">So trainierst du</div><div class="ig ig-pad"><p style="margin:0;line-height:1.45">${SETS_TXT[gsu.level]}</p></div>
+      <div class="ig-f">Wärm dich 5 bis 10 Minuten auf, Technik geht vor Gewicht. Zwischen zwei Einheiten für dieselben Muskeln liegt mindestens ein Ruhetag.${gsu.place === "cali" ? " Bei Calisthenics steigerst du über schwerere Varianten: Geht eine Übung locker, tausch sie in der Übungsliste gegen die nächste Stufe." : ""}</div>`;
+    foot = `<button class="btn full" data-action="gs-take">Plan übernehmen</button><button class="btn ghost full" data-action="gs-skip" style="margin-top:10px">Lieber selbst zusammenstellen</button>`;
+  }
+  openSheet(`<div class="sheet-h"><h2>Training einrichten</h2><button class="x" data-action="close" aria-label="Schließen">${I.x}</button></div>
+    ${gsu.step ? `<div class="gs-nav"><button class="link" data-action="gs-back">Zurück</button><span class="muted num">Schritt ${gsu.step} von 4</span></div>` : ""}
+    <div class="gs">${body}</div>${foot ? `<div class="stack sec">${foot}</div>` : ""}`, { reset: true });
+}
+function takePlan(use) {
+  const g = gsu; state.gym.setup = { place: g.place, level: g.level, days: g.days };
+  if (use) state.gym.routines = state.gym.routines.filter(r => !r.plan).concat(planFor(g).routines.map(([n, ex]) => ({ id: "p-" + uid(), n, ex: ex.slice(), plan: true })));
+  gsu = null; save(); toast(use ? "Plan übernommen. Viel Spaß beim Training!" : "Alles klar, stell dir deine Routinen selbst zusammen.");
+  backToPanel();
+}
 const ROUTINES = [
   { id: "r-push", n: "Push", d: "Brust, Schultern und Trizeps", ex: ["bench", "incdb", "dbpress", "latraise", "pushdown"] },
   { id: "r-pull", n: "Pull", d: "Rücken und Bizeps", ex: ["latpull", "bbrow", "cablerow", "facepull", "dbcurl"] },
@@ -3234,9 +3899,10 @@ function muscleState() {
 }
 const routineMuscles = r => [...new Set(r.ex.map(id => exById(id).m))].filter(m => RECOV[m]);
 function coachPick() {
-  if (!state.gym.sessions.length) return { r: state.gym.routines[0] || ROUTINES.find(r => r.id === "r-full"), txt: "Starte mit einer Routine oder einem freien Training. Beim nächsten Mal stehen deine Werte schon da." };
+  if (!state.gym.routines.length) return { r: null, txt: "Starte ein freies Training oder leg dir unten einen Plan an." };
+  if (!state.gym.sessions.length) return { r: state.gym.routines[0], txt: "Starte mit einer Routine oder einem freien Training. Beim nächsten Mal stehen deine Werte schon da." };
   const ms = muscleState(); let best = null;
-  allRoutines().forEach(r => {
+  state.gym.routines.forEach(r => {
     const mm = routineMuscles(r); if (!mm.length) return;
     const rd = mm.map(m => Math.min(20, ms[m].h / RECOV[m])), sc = Math.min(...rd), avg = rd.reduce((a, b) => a + b, 0) / rd.length;
     if (!best || sc > best.sc || (sc === best.sc && avg > best.avg)) best = { r, sc, avg, mm };
@@ -3266,12 +3932,14 @@ function gymHome() {
   const tabs = `<div class="seg" role="group">${[["start", "Training"], ["stats", "Statistik"], ["history", "Verlauf"]].map(([k, l]) => `<button data-action="gy-tab" data-v="${k}" aria-pressed="${gymTab === k}">${l}</button>`).join("")}</div>`;
   if (gymTab === "stats") return tabs + gymStats();
   if (gymTab === "history") return tabs + gymHistory();
-  const a = state.gym.active, c = coachPick(), h = state.habits.find(x => x.id === gymHab), done = h && isDone(h, todayK());
+  const a = state.gym.active, c = coachPick(), h = state.habits.find(x => x.id === gymHab), done = h && isDone(h, todayK()), su = state.gym.setup;
+  if (!su && !a) return tabs + `<div class="card sec coach"><p><b>Lass uns dein Training einrichten.</b><br>Drei kurze Fragen: Fitnessstudio oder Calisthenics, deine Erfahrung und wie oft du Zeit hast. Dann schlage ich dir einen passenden Plan vor und erkläre ihn.</p><div class="stack"><button class="btn full" data-action="gs-open">Training einrichten</button><button class="btn ghost full" data-action="gy-start" data-id="">Erst mal frei trainieren</button></div></div>`;
   return tabs + `
   ${a ? `<div class="list sec"><button class="row" data-action="gy-open"><span class="hicon" style="--hc:#EF4462">${I.dumbbell}</span><span class="row-t"><b>${esc(a.name)} läuft</b><small class="num" data-since="${a.start}">${fmtSince(Date.now() - a.start)}</small></span><span class="btn sm">Fortsetzen</span></button></div>`
     : `<div class="card sec coach"><p>${esc(c.txt)}</p><div class="stack">${c.r ? `<button class="btn full" data-action="gy-start" data-id="${c.r.id}">„${esc(c.r.n)}“ starten</button>` : ""}<button class="btn ghost full" data-action="gy-start" data-id="">Freies Training</button></div></div>`}
   <div class="sec-h"><h2>Routinen</h2><button class="link" data-action="gy-new-routine">${I.plus} Neu</button></div>
-  <div class="list">${allRoutines().map(r => `<button class="row" data-action="gy-routine" data-id="${r.id}"><span class="row-t"><b>${esc(r.n)}</b><small>${r.ex.length} ${r.ex.length === 1 ? "Übung" : "Übungen"}${r.id.startsWith("r-") ? " · Vorlage" : ""}</small></span>${I.chev}</button>`).join("")}</div>
+  <div class="list">${state.gym.routines.map(r => `<button class="row" data-action="gy-routine" data-id="${r.id}"><span class="row-t"><b>${esc(r.n)}</b><small>${r.ex.length} ${r.ex.length === 1 ? "Übung" : "Übungen"}${r.plan ? " · aus deinem Plan" : ""}</small></span>${I.chev}</button>`).join("") || `<p class="muted" style="margin:0;padding:14px 16px">Noch keine Routine. Richte deinen Plan ein oder leg selbst eine an.</p>`}</div>
+  <div class="list sec"><button class="row" data-action="gs-open"><span class="row-t"><b>${su ? "Plan neu einrichten" : "Training einrichten"}</b><small>${su ? `${su.place === "cali" ? "Calisthenics" : "Fitnessstudio"} · ${LVN[su.level]} · ${su.days}× pro Woche` : "Drei Fragen, ein passender Plan"}</small></span>${I.chev}</button></div>
   <div class="list sec"><button class="row" data-action="gy-lib"><span class="row-t"><b>Übungen</b><small>${allEx().length} Übungen, nach Muskelgruppe</small></span>${I.chev}</button></div>
   ${h && !a ? `<button class="link" data-action="gy-plain" data-id="${h.id}">${done ? "Häkchen für heute entfernen" : "Ohne Protokoll abhaken"}</button>` : ""}`;
 }
@@ -3434,7 +4102,7 @@ function exListHTML() {
   const q = exPick.q.trim().toLowerCase(), used = {}; state.gym.sessions.forEach(s => s.items.forEach(i => { used[i.ex] = (used[i.ex] || 0) + 1; }));
   const list = allEx().filter(e => (!exPick.m || e.m === exPick.m) && (!q || e.n.toLowerCase().includes(q) || e.m.toLowerCase().includes(q) || EQUIP[e.eq].toLowerCase().includes(q))).sort((a, b) => (used[b.id] || 0) - (used[a.id] || 0) || a.n.localeCompare(b.n, "de"));
   const inR = exPick.mode === "routine" && rdraft ? new Set(rdraft.ex) : null;
-  return list.map(e => `<button class="row" data-action="gy-pick" data-id="${e.id}"><span class="row-t"><b>${esc(e.n)}</b><small>${esc(e.m)} · ${EQUIP[e.eq]}${used[e.id] ? ` · ${used[e.id]}× trainiert` : ""}</small></span>${inR && inR.has(e.id) ? I.check : exPick.mode === "info" ? I.chev : I.plus}</button>`).join("") || `<p class="muted" style="margin:0;padding:16px">Nichts gefunden. Leg unten eine eigene Übung an.</p>`;
+  return list.map(e => `<button class="row" data-action="gy-pick" data-id="${e.id}"><span class="row-t"><b>${esc(e.n)}</b><small>${esc(e.m)} · ${EQUIP[e.eq]}${CAL_LV[e.id] ? ` · ${LVN[CAL_LV[e.id]]}` : ""}${used[e.id] ? ` · ${used[e.id]}× trainiert` : ""}</small></span>${inR && inR.has(e.id) ? I.check : exPick.mode === "info" ? I.chev : I.plus}</button>`).join("") || `<p class="muted" style="margin:0;padding:16px">Nichts gefunden. Leg unten eine eigene Übung an.</p>`;
 }
 function openExPicker(mode, keep) {
   if (!keep) exPick = { q: "", m: "", mode };
@@ -3507,7 +4175,10 @@ function openPlates(i) {
     <div class="card sec" style="text-align:center">${s.w < BAR ? `<p style="margin:0">Das ist leichter als die Stange allein.</p>` : `<div class="plates" aria-hidden="true">${out.slice().reverse().map(pl).join("")}<span class="barx"></span>${out.map(pl).join("")}</div>
       <p style="font-weight:600;margin:0">Pro Seite: ${out.length ? out.map(nf).join(" + ") + " kg" : "keine Scheiben"}</p>${side > .01 ? `<p class="muted" style="margin:6px 0 0">${nf(side * 2)} kg lassen sich nicht aufteilen.</p>` : ""}`}</div>`, { full: true, locked: true, reset: true });
 }
-document.addEventListener("change", e => { if (e.target.id === "nightTime" && /^\d\d:\d\d$/.test(e.target.value)) { state.profile.nightRemind = e.target.value; save(); } });
+document.addEventListener("change", e => { if (e.target.id === "fMode" && draft) setMode(e.target.value);
+  if (e.target.id === "avatarFile" && e.target.files[0]) setAvatar(e.target.files[0]);
+  if (e.target.id === "fUnit") { const u = e.target.value.trim(), qk = $("#fQuick"), t = $("#fTarget"); if (qk) qk.value = defQuick(u).join(", "); if (u === "ml" && t && Number(t.value) < 250) t.value = 2000; }
+if (e.target.id === "nightTime" && /^\d\d:\d\d$/.test(e.target.value)) { state.profile.nightRemind = e.target.value; save(); } });
 document.addEventListener("input", e => {
   const el = e.target, a = state.gym.active;
   if (el.id === "exQ") { exPick.q = el.value; const l = $("#exList"); if (l) l.innerHTML = exListHTML(); return; }
@@ -3712,7 +4383,20 @@ function petNow() {
   return { hunger: clamp(p.hunger - PET_RATE.hunger * h, 0, 100), fun: clamp(p.fun - PET_RATE.fun * h, 0, 100), clean: clamp(p.clean - PET_RATE.clean * h, 0, 100) };
 }
 function petSettle() { Object.assign(state.pet, petNow(), { t: Date.now() }); return state.pet; }
-const petNeedy = () => { const s = petNow(); return Math.min(s.hunger, s.fun, s.clean) < 30; };
+const careSlot = () => { const h = new Date().getHours(); return h >= 5 && h < 12 ? "am" : h >= 17 ? "pm" : ""; };
+const careDay = () => (day().pc = day().pc || {});
+const careOpen = () => { const sl = careSlot(); return !!sl && state.profile.onboarded && !(careDay()[sl] || {}).done; };
+const petNeedy = () => { const s = petNow(); return Math.min(s.hunger, s.fun, s.clean) < 30 || careOpen(); };
+// Happy pet, more XP: the average of the three needs sets a bonus on every habit check.
+function petBoost() { const s = petNow(), a = (s.hunger + s.fun + s.clean) / 3, pct = a >= 85 ? 30 : a >= 65 ? 20 : a >= 45 ? 10 : 0; return { pct, m: 1 + pct / 100 }; }
+// Morning (5-12) and evening (from 17): feed once plus wash, play or pet completes the care round.
+function careMark(kind) {
+  const sl = careSlot(); if (!sl) return;
+  const pc = careDay(), o = pc[sl] = pc[sl] || {}; o[kind] = 1;
+  if (o.done || !o.feed || !(o.wash || o.play || o.pet)) return;
+  o.done = 1; addXP(15); addCoins(10); save();
+  setTimeout(() => { toast(`${sl === "am" ? "Morgenpflege" : "Abendpflege"} geschafft! +15 XP · +10 Münzen`, "gold"); sfx("bonus"); renderTopbar(); renderCare(); }, 900);
+}
 const foodSVG = f => `<svg viewBox="0 0 64 64" aria-hidden="true">${f.art}</svg>`;
 const FOODS = [
   { id: "apple", n: "Apfel", cost: 10, hunger: 15, fun: 0, art: '<circle cx="32" cy="38" r="20" fill="#EF4462"/><path d="M32 18c0-6 3-10 8-11" stroke="#6B4A2B" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="40" cy="14" rx="7" ry="4" fill="#4CC25A" transform="rotate(-25 40 14)"/><ellipse cx="24" cy="32" rx="4" ry="6" fill="#fff" opacity=".35"/>' },
@@ -3725,7 +4409,10 @@ const playsLeft = () => Math.max(0, 1 + doneToday() + (state.perfect[todayK()] ?
 function careHtml() {
   const s = petNow(), p = state.pet, left = playsLeft(), food = Math.floor(p.food);
   const bar = (label, v) => `<div class="stat"><span>${label}</span><div class="sbar" role="meter" aria-label="${label}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(v)}"><i class="${v < 25 ? "low" : ""}" style="width:${v}%"></i></div><b class="num">${Math.round(v)}</b></div>`;
+  const pc = careDay(), sl = careSlot(), bo = petBoost(), nm = esc(state.profile.petName), slot = (k, l) => { const ok = (pc[k] || {}).done; return `<span class="${ok ? "ok" : sl === k ? "now" : ""}">${ok ? I.check : ""}${l}${ok ? "" : sl === k ? " · jetzt" : ""}</span>`; };
   return `<div class="stats">${bar("Satt", s.hunger)}${bar("Laune", s.fun)}${bar("Sauber", s.clean)}</div>
+    <div class="care-slots">${slot("am", "Morgens")}${slot("pm", "Abends")}</div>
+    <p class="muted tray-hint" style="margin-top:8px">Morgens (5 bis 12 Uhr) und abends (ab 17 Uhr): ${nm} füttern und dann waschen, streicheln oder spielen. ${bo.pct ? `Glücks-Bonus gerade: <b>+${bo.pct} % XP</b> auf Gewohnheiten.` : "Je glücklicher, desto mehr XP gibt es für Gewohnheiten, bis +30 %."}</p>
     <div class="foodline"><span class="chip" aria-label="${food} Futter">${foodSVG(FOODS[0]).replace("<svg", '<svg style="width:20px;height:20px"')}<span class="num">${food}</span></span><span class="muted">Futter bekommst du für XP</span></div>
     <div class="care-actions">
       <button class="btn sm ${careTab === "feed" ? "" : "ghost"}" data-action="care-feed" aria-pressed="${careTab === "feed"}">Füttern</button>
@@ -3751,10 +4438,10 @@ function careBonus() {
 function feedPet(id, btn) {
   const f = FOODS.find(x => x.id === id), box = $(".pet-stage .petbox"); if (!f || !box) return;
   const p = petSettle();
-  if (p.hunger >= 95) { toast(`${state.profile.petName} ist satt!`); return; }
+  if (p.hunger >= 95) { careMark("feed"); toast(`${state.profile.petName} ist satt!`); return; }
   if (p.food < f.cost) { toast(`Dir fehlen noch ${Math.ceil(f.cost - p.food)} Futter. Hake Gewohnheiten ab!`); sfx("undo"); return; }
   p.food -= f.cost; p.hunger = Math.min(100, p.hunger + f.hunger); p.fun = Math.min(100, p.fun + f.fun);
-  state.flags.fed = (state.flags.fed || 0) + 1;
+  state.flags.fed = (state.flags.fed || 0) + 1; careMark("feed");
   const r = btn.getBoundingClientRect(), pr = box.getBoundingClientRect(), fx = pr.left + pr.width / 2, fy = pr.top + pr.height * .55;
   careBonus(); evaluateBadges(); save(); renderCare();
   flyFood(f, r, fx, fy, () => {
@@ -3766,6 +4453,7 @@ function feedPet(id, btn) {
 function washPet() {
   const box = $(".pet-stage .petbox"); if (!box) return;
   const p = petSettle();
+  careMark("wash");
   if (p.clean >= 95) { toast(`${state.profile.petName} ist schon sauber!`); return; }
   p.clean = 100; p.fun = Math.min(100, p.fun + 5); state.flags.washed = (state.flags.washed || 0) + 1;
   const pr = box.getBoundingClientRect();
@@ -3780,100 +4468,183 @@ function washPet() {
 
 /* ============ Minispiele ============ */
 // One round per day plus one per finished habit (and one for a perfect day): fun is earned by being productive.
-const GAMES = { catch: { n: "Fruchtfang", d: "Fang Früchte und weiche den Steinen aus. 30 Sekunden.", art: FOODS[0].art }, pop: { n: "Blasenjagd", d: "Tippe die Blasen, bevor sie platzen. 25 Sekunden.", art: '<circle cx="32" cy="32" r="22" fill="#7DD3FC" opacity=".8"/><ellipse cx="24" cy="24" rx="6" ry="4" fill="#fff" opacity=".8"/>' } };
+const GAMES = {
+  jump: { n: "Wolkensprung", d: "Spring von Wolke zu Wolke, so hoch du kannst. Handy neigen oder links und rechts tippen.", art: '<path d="M14 46a10 10 0 0 1 1-20 14 14 0 0 1 27-4 11 11 0 0 1 8 24z" fill="#fff" stroke="#7DB9E8" stroke-width="3"/>', unit: "m" },
+  catch: { n: "Fruchtfang", d: "Wisch mit dem Finger, dein Begleiter folgt. Fang Früchte, Steine kosten ein Herz.", art: FOODS[0].art },
+  pop: { n: "Blasenjagd", d: "Tipp die aufsteigenden Blasen. Entwischt eine, kostet das ein Herz. Rote nicht antippen!", art: '<circle cx="32" cy="32" r="22" fill="#7DD3FC" opacity=".8"/><ellipse cx="24" cy="24" rx="6" ry="4" fill="#fff" opacity=".8"/>' }
+};
 function openPlay() {
   const left = playsLeft(), b = state.pet.best;
   openSheet(`${sheetHead("Spielen")}
     <p class="muted" style="margin:0;font-weight:500">${left ? `${left} ${left === 1 ? "Runde" : "Runden"} frei.` : "Keine Runde frei."} Jede erledigte Gewohnheit heute schenkt dir eine weitere Runde.</p>
-    <div class="hlist" style="margin-top:14px">${Object.entries(GAMES).map(([k, g]) => `<button class="tpl" data-action="game" data-id="${k}" ${left ? "" : "disabled"}><span class="hicon" style="--hc:#3B82F6">${foodSVG(g)}</span><span><b>${g.n}</b><br><span class="muted" style="font-weight:500;font-size:.8125rem">${g.d} Rekord: ${b[k]}</span></span></button>`).join("")}</div>`);
+    <div class="hlist" style="margin-top:14px">${Object.entries(GAMES).map(([k, g]) => `<button class="tpl" data-action="game" data-id="${k}" ${left ? "" : "disabled"}><span class="hicon" style="--hc:#3B82F6">${foodSVG(g)}</span><span><b>${g.n}</b><br><span class="muted" style="font-weight:500;font-size:.8125rem">${g.d} Rekord: ${b[k] || 0}${g.unit ? " " + g.unit : ""}</span></span></button>`).join("")}</div>`);
 }
 let game = null;
 const GITEM = { fruit: FOODS[0].art, star: '<path fill="#FFBF1F" stroke="#D49500" stroke-width="3" stroke-linejoin="round" d="M32 6l7.5 16 17 2-12.500 12 3.500 17L32 44 16.500 53l3.500-17L7.500 24l17-2z"/>', rock: '<path d="M8 52L16 24 36 12l20 16 2 24z" fill="#6B7280"/><path d="M16 24L36 12l4 18-20 5z" fill="#9CA3AF"/>' };
 function startGame(kind) {
   if (game || !GAMES[kind] || !playsLeft()) return;
-  const dur = kind === "catch" ? 30 : 25;
+  // iOS asks for tilt access only inside a tap; without it, tapping left and right still steers
+  if (kind === "jump" && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) DeviceOrientationEvent.requestPermission().catch(() => {});
   day().played = (day().played || 0) + 1; state.flags.played = (state.flags.played || 0) + 1; save();
-  openSheet(`<div class="game-h"><b class="num" id="gScore">0</b><span class="muted" style="font-weight:600">Punkte</span><span class="num grow" id="gTime" aria-live="off">${dur}</span><button class="x" data-action="game-quit" aria-label="Spiel beenden">${I.x}</button></div><div class="stage" id="gStage"></div>`, { full: true, locked: true });
+  openSheet(`<div class="game-h"><b class="num" id="gScore">0</b><span class="muted" style="font-weight:600">${kind === "jump" ? "Meter" : "Punkte"}</span><span class="grow g-lives" id="gLives" aria-live="off"></span><button class="x" data-action="game-quit" aria-label="Spiel beenden">${I.x}</button></div><div class="stage ${kind === "jump" ? "sky" : ""}" id="gStage"></div>`, { full: true, locked: true });
   const stage = $("#gStage");
-  game = { kind, score: 0, left: dur, over: false, streak: 0, last: 0 };
+  game = { kind, score: 0, lives: 3, over: false, streak: 0, last: 0, t: 0 };
   game.add = (pts, cx, cy) => { game.score = Math.max(0, game.score + pts); $("#gScore").textContent = game.score; const r = stage.getBoundingClientRect(); if (pts > 0) { burst(r.left + cx, r.top + cy, 14, .6); floatText(r.left + cx, r.top + cy - 10, `+${pts}`, "#fff"); } };
+  game.hurt = () => { if (game.over) return; game.lives--; game.streak = 0; drawLives(); sfx("undo"); vibrate(40); stage.classList.remove("jolt"); void stage.offsetWidth; stage.classList.add("jolt"); if (game.lives <= 0) endGame(false); };
   game.key = e => { if (e.key === "Escape") endGame(true); else if (game.onKey) game.onKey(e); };
   document.addEventListener("keydown", game.key);
-  (kind === "catch" ? runCatch : runPop)(stage);
+  drawLives();
+  ({ catch: runCatch, pop: runPop, jump: runJump })[kind](stage);
   praise(innerWidth / 2, innerHeight * .3, "Los!", "lucky");
   game.raf = requestAnimationFrame(gameLoop);
 }
+const drawLives = () => { const el = $("#gLives"); if (el && game && game.kind !== "jump") el.innerHTML = [0, 1, 2].map(i => `<span class="heart ${i < game.lives ? "" : "off"}" aria-hidden="true">${I.heart}</span>`).join("") + `<span class="sr-only">${game.lives} Herzen</span>`; };
 function gameLoop(ts) {
   const g = game; if (!g || g.over) return;
-  const dt = Math.min(.05, g.last ? (ts - g.last) / 1000 : 0); g.last = ts;
-  g.left -= dt; const el = $("#gTime"); if (el) el.textContent = Math.max(0, Math.ceil(g.left));
+  const dt = Math.min(.033, g.last ? (ts - g.last) / 1000 : 0); g.last = ts; g.t += dt;
   g.step(dt);
-  if (g.left <= 0) { endGame(false); return; }
-  g.raf = requestAnimationFrame(gameLoop);
+  if (game === g && !g.over) g.raf = requestAnimationFrame(gameLoop);
 }
+// Fruchtfang: the pet moves by the finger's distance, so the finger never covers it; lives instead of a timer.
 function runCatch(stage) {
-  const W = stage.clientWidth, H = stage.clientHeight, pw = 76, items = [];
-  const me = document.createElement("div"); me.className = "g-pet"; me.innerHTML = petSVG({ size: pw, mood: "happy" }); stage.appendChild(me);
-  let x = W / 2, target = W / 2, spawn = .4;
-  const move = cx => { target = clamp(cx - stage.getBoundingClientRect().left, pw / 2, W - pw / 2); };
-  stage.addEventListener("pointermove", e => move(e.clientX)); stage.addEventListener("pointerdown", e => move(e.clientX));
-  game.onKey = e => { if (e.key === "ArrowLeft") target = clamp(target - 60, pw / 2, W - pw / 2); if (e.key === "ArrowRight") target = clamp(target + 60, pw / 2, W - pw / 2); };
+  const W = stage.clientWidth, H = stage.clientHeight, pw = 84, items = [];
+  const me = document.createElement("div"); me.className = "g-pet"; me.style.width = me.style.height = pw + "px"; me.innerHTML = petSVG({ size: pw, mood: "happy" }); stage.appendChild(me);
+  let x = W / 2, shown = x, drag = null, spawn = .6;
+  stage.addEventListener("pointerdown", e => { drag = { px: e.clientX, x }; try { stage.setPointerCapture(e.pointerId); } catch (er) { /* old browsers */ } });
+  stage.addEventListener("pointermove", e => { if (drag) x = clamp(drag.x + (e.clientX - drag.px) * 1.5, pw / 2, W - pw / 2); });
+  const up = () => { drag = null; }; stage.addEventListener("pointerup", up); stage.addEventListener("pointercancel", up);
+  game.onKey = e => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") x = clamp(x + (e.key === "ArrowLeft" ? -56 : 56), pw / 2, W - pw / 2); };
   const spawnItem = () => {
-    const r = Math.random(), kind = r < .12 ? "star" : r < .38 ? "rock" : "fruit", el = document.createElement("div");
+    const lvl = Math.min(1, game.t / 60), r = Math.random(), kind = r < .1 ? "star" : r < .26 + lvl * .16 ? "rock" : "fruit", el = document.createElement("div");
     el.className = "g-item"; el.innerHTML = `<svg viewBox="0 0 64 64" aria-hidden="true">${GITEM[kind]}</svg>`; stage.appendChild(el);
-    items.push({ el, kind, x: 24 + Math.random() * (W - 48), y: -40, v: 150 + Math.random() * 110 + (30 - game.left) * 4 });
+    items.push({ el, kind, x: 26 + Math.random() * (W - 52), y: -44, v: 110 + lvl * 170 + Math.random() * 60, rot: Math.random() * 360, spin: (Math.random() - .5) * 240 });
   };
   game.step = dt => {
-    x += (target - x) * Math.min(1, dt * 14); me.style.transform = `translate(${x - pw / 2}px,0)`;
-    spawn -= dt; if (spawn <= 0) { spawn = Math.max(.35, .8 - (30 - game.left) * .015); spawnItem(); }
+    shown += (x - shown) * Math.min(1, dt * 22);
+    me.style.transform = `translate(${shown - pw / 2}px,0) rotate(${clamp((x - shown) * .25, -12, 12)}deg)`;
+    spawn -= dt; if (spawn <= 0) { spawn = Math.max(.34, .95 - game.t * .012); spawnItem(); }
+    const py = H - pw * .85;
     for (const it of items) {
-      it.y += it.v * dt; it.el.style.transform = `translate(${it.x - 20}px,${it.y}px)`;
-      if (!it.dead && it.y + 40 > H - 60 && it.y < H - 20 && Math.abs(it.x - x) < 44) {
+      it.v += 160 * dt; it.y += it.v * dt; it.rot += it.spin * dt;
+      it.el.style.transform = `translate(${it.x - 22}px,${it.y}px) rotate(${it.rot}deg)`;
+      if (!it.dead && it.y + 40 >= py && it.y < H - 30 && Math.abs(it.x - shown) < pw * .6) {
         it.dead = true;
-        if (it.kind === "rock") { game.streak = 0; game.add(-2, it.x, it.y); sfx("undo"); vibrate(30); stage.classList.remove("jolt"); void stage.offsetWidth; stage.classList.add("jolt"); }
-        else { game.streak++; const pts = it.kind === "star" ? 3 : 1; game.add(pts, it.x, it.y); sfx("pop", Math.min(8, game.streak)); vibrate(8); if (game.streak % 5 === 0) praise(stage.getBoundingClientRect().left + x, stage.getBoundingClientRect().top + H - 110, `Combo ×${game.streak}`, "combo"); }
-      } else if (it.y > H) it.dead = true;
+        if (it.kind === "rock") game.hurt();
+        else {
+          game.streak++; game.add((it.kind === "star" ? 3 : 1) * (game.streak >= 10 ? 2 : 1), it.x, it.y); sfx("pop", Math.min(8, game.streak)); vibrate(8);
+          const pet = me.firstElementChild; if (pet) { pet.classList.remove("eat"); void pet.getBoundingClientRect(); pet.classList.add("eat"); }
+          if (game.streak % 10 === 0) { const r = stage.getBoundingClientRect(); praise(r.left + shown, r.top + H - 120, `Combo ×${game.streak}`, "combo"); }
+        }
+      } else if (!it.dead && it.y > H) { it.dead = true; if (it.kind !== "rock") game.streak = 0; }
+      if (!game || game.over) return;
     }
     for (let i = items.length - 1; i >= 0; i--) if (items[i].dead) { items[i].el.remove(); items.splice(i, 1); }
   };
 }
+// Blasenjagd: bubbles rise, a generous hit circle around each one; a missed bubble costs a heart, red ones must be left alone.
 function runPop(stage) {
-  const W = stage.clientWidth, H = stage.clientHeight, bubs = []; let spawn = .3;
+  const W = stage.clientWidth, H = stage.clientHeight, bubs = []; let spawn = .2;
   stage.addEventListener("pointerdown", e => {
-    const el = e.target.closest(".bub"); if (!el || el.dataset.dead) return;
-    el.dataset.dead = "1"; const b = bubs.find(q => q.el === el); game.streak++;
-    game.add(b.gold ? 3 : 1, b.x + b.s / 2, b.y + b.s / 2); sfx("pop", Math.min(8, game.streak)); vibrate(10);
-    if (game.streak % 5 === 0) praise(e.clientX, e.clientY - 30, `Combo ×${game.streak}`, "combo");
-    el.style.transition = "transform .15s, opacity .15s"; el.style.transform = "scale(1.5)"; el.style.opacity = "0"; setTimeout(() => el.remove(), 160); b.life = -1;
+    if (!game || game.over) return;
+    const r = stage.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top;
+    let hit = null, hd = 1e9;
+    for (const b of bubs) { if (b.dead) continue; const d = Math.hypot(px - b.cx, py - b.y); if (d < b.s / 2 + 16 && d < hd) { hit = b; hd = d; } }
+    if (!hit) return;
+    hit.dead = true; hit.el.classList.add("burst"); setTimeout(() => hit.el.remove(), 160);
+    if (hit.bad) { game.hurt(); return; }
+    game.streak++; game.add((hit.gold ? 3 : 1) * (game.streak >= 10 ? 2 : 1), hit.cx, hit.y); sfx("pop", Math.min(8, game.streak)); vibrate(10);
+    if (game.streak % 10 === 0) praise(e.clientX, e.clientY - 30, `Combo ×${game.streak}`, "combo");
   });
   game.step = dt => {
+    const lvl = Math.min(1, game.t / 50);
     spawn -= dt;
     if (spawn <= 0) {
-      spawn = Math.max(.32, .6 - (25 - game.left) * .01);
-      const s = 64 + Math.random() * 32, gold = Math.random() < .1, el = document.createElement("div");
-      el.className = "bub" + (gold ? " gold" : ""); el.style.width = el.style.height = s + "px"; stage.appendChild(el);
-      bubs.push({ el, s, gold, x: Math.random() * (W - s), y: Math.random() * (H - s), life: 1.7 });
-      const b = bubs[bubs.length - 1]; el.style.left = b.x + "px"; el.style.top = b.y + "px";
+      spawn = Math.max(.36, 1 - lvl * .6) * (.7 + Math.random() * .6);
+      const s = 60 + Math.random() * 28, r = Math.random(), gold = r < .1, bad = !gold && game.t > 6 && r < .1 + lvl * .12, el = document.createElement("div");
+      el.className = "bub" + (gold ? " gold" : bad ? " bad" : ""); el.style.width = el.style.height = s + "px"; stage.appendChild(el);
+      bubs.push({ el, s, gold, bad, x: s / 2 + Math.random() * (W - s), cx: 0, y: H + s / 2, v: 70 + lvl * 110 + Math.random() * 40, ph: Math.random() * 6 });
     }
     for (let i = bubs.length - 1; i >= 0; i--) {
-      const b = bubs[i]; b.life -= dt;
-      if (b.life <= 0) { if (!b.el.dataset.dead) { game.streak = 0; b.el.remove(); } bubs.splice(i, 1); continue; }
-      b.el.style.transform = `scale(${.6 + .4 * Math.min(1, b.life / 1.7)})`;
+      const b = bubs[i];
+      if (b.dead) { bubs.splice(i, 1); continue; }
+      b.y -= b.v * dt; b.ph += dt * 2.6; b.cx = b.x + Math.sin(b.ph) * 10;
+      b.el.style.transform = `translate(${b.cx - b.s / 2}px,${b.y - b.s / 2}px)`;
+      if (b.y < -b.s / 2) { b.el.remove(); bubs.splice(i, 1); if (!b.bad) { game.hurt(); if (!game || game.over) return; } }
     }
+  };
+}
+// Wolkensprung: own vertical jumper. Clouds on a canvas, the pet as SVG on top; steer by tilt, by holding left or right, or with the arrow keys.
+function runJump(stage) {
+  const W = stage.clientWidth, H = stage.clientHeight, dpr = Math.min(2, window.devicePixelRatio || 1), cv = document.createElement("canvas");
+  cv.width = W * dpr; cv.height = H * dpr; stage.appendChild(cv);
+  const cx = cv.getContext("2d"); cx.scale(dpr, dpr);
+  const me = document.createElement("div"); me.className = "g-pet jp"; me.innerHTML = petSVG({ size: 64, mood: "happy" }); stage.appendChild(me);
+  const P = { x: W / 2, y: H - 60, vx: 0, vy: -900 }, plats = [{ x: W / 2 - 40, y: H - 40, w: 80, type: "norm" }];
+  let topY = H - 40, camY = 0, best = 0, tilt = 0, hold = 0, face = 1;
+  const addPlat = () => {
+    const lvl = Math.min(1, best / 400), r = Math.random();
+    topY -= 58 + lvl * 62 + Math.random() * 34;
+    const type = r < .07 ? "spring" : r < .07 + lvl * .28 ? "move" : r < .07 + lvl * .46 ? "break" : "norm";
+    plats.push({ x: 8 + Math.random() * (W - 96), y: topY, w: 80 - lvl * 14, type, dir: Math.random() < .5 ? -1 : 1 });
+  };
+  while (topY > -H) addPlat();
+  const onTilt = e => { if (e.gamma != null) tilt = clamp(e.gamma / 22, -1, 1); };
+  const press = e => { const r = stage.getBoundingClientRect(); hold = e.clientX - r.left < W / 2 ? -1 : 1; };
+  const release = () => { hold = 0; }, keyUp = e => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") hold = 0; };
+  addEventListener("deviceorientation", onTilt); document.addEventListener("keyup", keyUp);
+  stage.addEventListener("pointerdown", press); stage.addEventListener("pointermove", e => { if (hold) press(e); });
+  stage.addEventListener("pointerup", release); stage.addEventListener("pointercancel", release); stage.addEventListener("pointerleave", release);
+  game.onKey = e => { if (e.key === "ArrowLeft") hold = -1; if (e.key === "ArrowRight") hold = 1; };
+  game.cleanup = () => { removeEventListener("deviceorientation", onTilt); document.removeEventListener("keyup", keyUp); };
+  const cloud = (x, y, w, type) => {
+    cx.fillStyle = type === "break" ? "#E7D8CF" : type === "move" ? "#DFF3FF" : "#fff";
+    [[.5, 4, .5, 10], [.3, -2, .22, 11], [.64, -4, .26, 13]].forEach(([fx, dy, rw, rh]) => { cx.beginPath(); cx.ellipse(x + w * fx, y + dy, w * rw, rh, 0, 0, Math.PI * 2); cx.fill(); });
+    if (type === "break") { cx.strokeStyle = "#A1887F"; cx.lineWidth = 2; cx.beginPath(); cx.moveTo(x + w * .45, y - 8); cx.lineTo(x + w * .52, y + 1); cx.lineTo(x + w * .46, y + 10); cx.stroke(); }
+    if (type === "spring") { cx.fillStyle = "#EF4462"; cx.fillRect(x + w / 2 - 10, y - 20, 20, 7); cx.strokeStyle = "#6B7280"; cx.lineWidth = 3; cx.beginPath(); cx.moveTo(x + w / 2 - 6, y - 13); cx.lineTo(x + w / 2 + 6, y - 9); cx.lineTo(x + w / 2 - 6, y - 5); cx.stroke(); }
+  };
+  game.step = dt => {
+    const inp = hold || tilt;
+    P.vx += (inp * 380 - P.vx) * Math.min(1, dt * 10); if (Math.abs(P.vx) > 30) face = P.vx < 0 ? -1 : 1;
+    P.x += P.vx * dt; if (P.x < -24) P.x += W + 48; if (P.x > W + 24) P.x -= W + 48;
+    const y0 = P.y; P.vy += 1800 * dt; P.y += P.vy * dt;
+    if (P.vy > 0) for (const p of plats) { // lands only when falling through the cloud's top edge
+      if (p.gone || y0 > p.y || P.y < p.y || P.x < p.x - 14 || P.x > p.x + p.w + 14) continue;
+      if (p.type === "break") { p.gone = true; p.fall = 0; sfx("tap"); continue; }
+      P.y = p.y; P.vy = p.type === "spring" ? -1380 : -900; p.hit = .25; sfx(p.type === "spring" ? "chirp" : "tick"); vibrate(p.type === "spring" ? 25 : 6); break;
+    }
+    if (P.y < camY + H * .42) camY = P.y - H * .42;
+    const m = Math.max(0, Math.round((H - 60 - P.y) / 20));
+    if (m > best) { best = m; game.score = m; const el = $("#gScore"); if (el) el.textContent = m; if (m % 100 === 0) praise(innerWidth / 2, innerHeight * .3, `${m} m!`, "combo"); }
+    for (const p of plats) {
+      if (p.type === "move" && !p.gone) { p.x += p.dir * (50 + Math.min(1, best / 400) * 90) * dt; if (p.x < 4 || p.x + p.w > W - 4) p.dir *= -1; }
+      if (p.gone) p.fall += dt; if (p.hit) p.hit = Math.max(0, p.hit - dt);
+    }
+    while (topY > camY - 80) addPlat();
+    for (let i = plats.length - 1; i >= 0; i--) if (plats[i].y - camY > H + 60) plats.splice(i, 1);
+    if (P.y - camY > H + 40) { endGame(false); return; }
+    cx.clearRect(0, 0, W, H);
+    for (const p of plats) {
+      const y = p.y - camY + (p.gone ? p.fall * p.fall * 700 : 0); if (y < -30 || y > H + 30) continue;
+      cx.globalAlpha = p.gone ? Math.max(0, 1 - p.fall * 2.5) : 1;
+      cloud(p.x, y + (p.hit ? Math.sin(p.hit * 30) * 3 : 0), p.w, p.type);
+    }
+    cx.globalAlpha = 1;
+    me.style.transform = `translate(${P.x - 32}px,${P.y - camY - 58}px) scaleX(${face})`;
   };
 }
 function endGame(quit) {
   const g = game; if (!g || g.over) return;
-  g.over = true; cancelAnimationFrame(g.raf); document.removeEventListener("keydown", g.key); game = null; closeSheet();
+  g.over = true; cancelAnimationFrame(g.raf); document.removeEventListener("keydown", g.key); if (g.cleanup) g.cleanup(); game = null; closeSheet();
   if (quit) { toast("Runde beendet"); render(); return; }
-  const score = g.score, coins = Math.min(40, score * 2), fun = Math.min(40, score * 2 + 10), best = state.pet.best;
-  const record = score > best[g.kind] && score > 0; if (record) best[g.kind] = score;
+  careMark("play");
+  const score = g.score, pts = g.kind === "jump" ? Math.round(score / 5) : score, coins = Math.min(40, pts * 2), fun = Math.min(40, pts * 2 + 10), best = state.pet.best;
+  const record = score > (best[g.kind] || 0) && score > 0; if (record) best[g.kind] = score;
   const p = petSettle(); p.fun = Math.min(100, p.fun + fun); addCoins(coins);
   curAct = { a: "game-end", id: g.kind, t: Date.now() };
   careBonus(); evaluateBadges(); save(); render();
   const c = record ? RAR.legend.c : RAR.epic.c, left = playsLeft();
   openModal(`<div class="rarity" style="--rc:${c};font-size:.8125rem">${record ? "Neuer Rekord!" : "Geschafft"}</div><div class="reward-orb" style="--rc:${c}"><b class="num">${score}</b></div>
-    <h2>${score} Punkte</h2><p class="muted" style="font-weight:500">+${coins} Münzen · Laune +${Math.round(fun)}</p>
+    <h2>${score} ${g.kind === "jump" ? "Meter" : "Punkte"}</h2><p class="muted" style="font-weight:500">+${coins} Münzen · Laune +${Math.round(fun)}</p>
     ${left ? `<button class="btn full" data-action="game" data-id="${g.kind}" style="margin-bottom:10px">Nochmal · ${left} frei</button>` : `<p class="muted" style="font-weight:500">Keine Runde mehr frei. Erledige Gewohnheiten für neue Runden.</p>`}
     <button class="btn gold full" data-action="close-reward" ${left ? "" : "autofocus"}>Fertig</button>`);
   burst(innerWidth / 2, innerHeight * .4, record ? 160 : 90, 1.3); if (record) bigCelebration();
@@ -3987,19 +4758,52 @@ document.addEventListener("click", e => {
   if (a.startsWith("gc-")) { challengeAction(a, b, id); return; }
   switch (a) {
     case "go": sfx("tap"); if (location.hash.slice(1) === b.dataset.view) { animateNext = true; render(); } else location.hash = b.dataset.view; break;
-    case "tap": e.stopPropagation(); tapHabit(id, b); if ($(".sheet") && b.closest(".sheet")) openDetail(id); break;
-    case "minus": { const h = state.habits.find(x => x.id === id), t = todayK(); if (h && cnt(h, t) > 0) { const wasDone = isDone(h, t); h.log[t]--; if (!h.log[t]) delete h.log[t]; if (wasDone && !isDone(h, t)) { const x = h.xp[t] || 0; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); } sfx("undo"); save(); render(); openDetail(id); } break; }
+    case "tap": { e.stopPropagation(); const inSheet = !!b.closest(".sheet"); if (!tapHabit(id, b) && inSheet && !$("#tmTime") && !$("#jForm")) openDetail(id); break; }
+    case "minus": { const h = state.habits.find(x => x.id === id), t = todayK(); if (h && cnt(h, t) > 0) { const wasDone = isDone(h, t); h.log[t] = Math.max(0, h.log[t] - (Number(b.dataset.v) || 1)); if (!h.log[t]) delete h.log[t]; if (wasDone && !isDone(h, t)) { const x = h.xp[t] || 0; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); } sfx("undo"); save(); render(); openDetail(id); } break; }
     case "detail": openDetail(id); break;
+    case "amt-q": { const h = state.habits.find(x => x.id === id); if (h) { addAmount(h, Number(b.dataset.v) || 1, b); if (state.habits.includes(h) && !$(".overlay")) openDetail(id); } break; }
+    case "amt-add": {
+      const h = state.habits.find(x => x.id === id), el = $("#amtIn"), v = Math.round(Number(el && el.value) || 0);
+      if (!h) break; if (v <= 0) { if (el) el.focus(); toast("Gib eine Zahl größer als 0 ein."); break; }
+      const inTimer = !!$("#tmTime"); addAmount(h, modeOf(h) === "timer" ? Math.min(v, 600) : v, b);
+      if (inTimer && state.timer) drawTimer(); else if (!inTimer) openDetail(id); break;
+    }
+    case "steps-set": {
+      const h = state.habits.find(x => x.id === id), el = $("#stepsIn"), v = Math.round(Number(el && el.value));
+      if (!h || !el || el.value === "" || v < 0) { if (el) el.focus(); break; }
+      setProgress(h, Math.min(v, 200000), b.getBoundingClientRect()); if (!$(".overlay")) openDetail(id); break;
+    }
+    case "h-reset": { const h = state.habits.find(x => x.id === id); if (h) { if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Wirklich zurücksetzen?"; break; } undoToday(h); openDetail(id); } break; }
+    case "tm-open": { const h = state.habits.find(x => x.id === id); if (h) openTimer(h); break; }
+    case "tm-toggle": tmToggle(); break;
+    case "tm-stop": tmFinish(false); break;
+    case "tm-discard": if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Sitzung wirklich verwerfen?"; break; } state.timer = null; save(); closeSheet(); render(); toast("Sitzung verworfen"); break;
+    case "wake-now": { const h = state.habits.find(x => x.id === id); if (h) { closeSheet(); setTimeout(() => wakeCheck(h, null), 250); } break; }
+    case "wake-alarm": { const h = state.habits.find(x => x.id === id); if (h) setPhoneAlarm(h, false).then(ok => { if (ok) openDetail(id); }); break; }
+    case "wake-ics": { const h = state.habits.find(x => x.id === id); if (h) wakeIcs(h); break; }
+    case "health-sync": healthSync(true).then(() => { const sh = $("#modalRoot .sheet"); const hid = sh && sh.querySelector('[data-action="steps-set"]'); if (hid) openDetail(hid.dataset.id); }); break;
+    case "f-alarm": syncDraft(); draft.alarm = !draft.alarm; rerenderEditor(); break;
+    case "f-health": syncDraft(); draft.health = !draft.health; rerenderEditor(); break;
     case "new": openTemplates(); break;
     case "tpl-kind": openTemplates.setKind(b.dataset.v); break;
-    case "tpl": openEditor(draftFrom(null, TEMPLATES[b.dataset.kind][Number(b.dataset.i)], b.dataset.kind)); break;
+    case "tpl": { const k = b.dataset.kind, t = TEMPLATES[k][Number(b.dataset.i)]; openTips(t, () => openEditor(draftFrom(null, t, k))); break; }
+    case "tip-go": { const f = tipNext; tipNext = null; if (f) f(); else closeSheet(); break; }
+    case "tips": { const h = state.habits.find(x => x.id === id); if (h) openTips(h, () => openDetail(h.id), true); break; }
     case "tpl-custom": openEditor(draftFrom(null, null, b.dataset.kind)); break;
     case "edit": { const h = state.habits.find(x => x.id === id); if (h) openEditor(draftFrom(h)); break; }
     case "f-icon": syncDraft(); draft.icon = b.dataset.v; rerenderEditor(); break;
     case "f-color": syncDraft(); draft.color = b.dataset.v; rerenderEditor(); break;
     case "f-day": { syncDraft(); const d = Number(b.dataset.v); draft.days = draft.days.includes(d) ? draft.days.filter(x => x !== d) : draft.days.concat(d).sort(); rerenderEditor(); break; }
     case "f-time": syncDraft(); draft.time = b.dataset.v; rerenderEditor(); break;
-    case "save-habit": if (saveHabit()) { closeSheet(); if (!state.profile.onboarded) { ob.step = 4; drawOb(); } else render(); } break;
+    case "save-habit": if (saveHabit()) { closeSheet(); if (!state.profile.onboarded) { ob.step = 4; drawOb(); } else { render(); if (draft.special === "gym" && !state.gym.setup) setTimeout(openGymSetup, 350); } } break;
+    case "gs-open": gsu = null; openGymSetup(); break;
+    case "gs-next": gsu.step++; openGymSetup(); break;
+    case "gs-back": gsu.step = Math.max(0, gsu.step - 1); openGymSetup(); break;
+    case "gs-place": gsu.place = b.dataset.v; gsu.step = 2; sfx("tap"); openGymSetup(); break;
+    case "gs-level": gsu.level = Number(b.dataset.v); gsu.step = 3; sfx("tap"); openGymSetup(); break;
+    case "gs-days": gsu.days = Number(b.dataset.v); openGymSetup(); break;
+    case "gs-take": takePlan(true); break;
+    case "gs-skip": takePlan(false); break;
     case "del-habit":
       if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Wirklich löschen?"; break; }
       state.habits = state.habits.filter(h => h.id !== id); save(); closeSheet(); render(); toast("Gewohnheit gelöscht"); break;
@@ -4014,7 +4818,7 @@ document.addEventListener("click", e => {
     case "j-habit": syncJ(); jdraft.habitId = b.dataset.v; rerenderJ(); break;
     case "j-mood": syncJ(); jdraft.mood = jdraft.mood === Number(b.dataset.v) ? 0 : Number(b.dataset.v); rerenderJ(); break;
     case "j-prompt": { syncJ(); const p = PROMPTS[Number(b.dataset.v)]; jdraft.text += (jdraft.text && !jdraft.text.endsWith("\n") ? "\n" : "") + p + "\n"; rerenderJ(); const ta = $("#jText"); if (ta) { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); } break; }
-    case "j-save": if (saveJournal()) afterJournal(); break;
+    case "j-save": { const hid = jdraft.habitId; if (saveJournal()) { afterJournal(); jCheck(hid); } break; }
     case "j-del":
       if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Wirklich löschen?"; break; }
       state.journal = state.journal.filter(q => q.id !== id); save(); toast("Eintrag gelöscht"); afterJournal(); break;
@@ -4029,6 +4833,9 @@ document.addEventListener("click", e => {
     case "v-back": if (vBack === "coll") openCollection(); else if (vBack && state.habits.some(x => x.id === vBack)) openDetail(vBack); else closeSheet(); break;
     case "tag-filter": tagFilter = b.dataset.v; softRender("#tl"); softRender("#tl2"); break;
     case "badges": openSheet(`${sheetHead("Abzeichen")}${badgesHTML()}`, { reset: true }); break;
+    case "f-look": syncDraft(); edLook = !edLook; openSheet(editorHTML(draft), { reset: true }); break;
+    case "f-more": syncDraft(); edMore = !edMore; redrawEditor(); break;
+    case "f-remind": syncDraft(); draft.remind = draft.remind ? "" : ({ morning: "08:00", noon: "12:00", evening: "20:00" }[draft.time] || "09:00"); if (draft.remind) askNotify(); redrawEditor(); break;
     case "f-gym": syncDraft(); draft.special = draft.special === "gym" ? "" : "gym"; rerenderEditor(); break;
     case "recap": playRecap(true); break;
     case "recap-view": playRecap(false); break;
@@ -4088,6 +4895,7 @@ document.addEventListener("click", e => {
     case "stab": shopTab = b.dataset.v; softRender("#shop"); break;
     case "item": buyItem(id, b); break;
     case "theme-default": state.profile.theme = "sun"; save(); render(); break;
+    case "petspecies": state.profile.species = b.dataset.v; sfx("chirp"); save(); render(); break;
     case "petcolor": state.profile.petColor = b.dataset.v; sfx("chirp"); save(); render(); break;
     case "rename":
       openModal(`<h2>Neuer Name</h2><div class="field"><input type="text" id="newName" maxlength="14" value="${esc(state.profile.petName)}" aria-label="Name" autofocus></div><button class="btn full" data-action="rename-save" style="margin-top:14px">Speichern</button>`); break;
@@ -4124,6 +4932,8 @@ document.addEventListener("click", e => {
     case "set-night": if (state.profile.nightRemind) { state.profile.nightRemind = ""; save(); render(); } else askNotify().then(ok => { if (ok) { state.profile.nightRemind = "20:00"; save(); render(); } }); break;
     case "set-infinite": state.profile.infinite = !state.profile.infinite; b.setAttribute("aria-checked", state.profile.infinite); save(); renderTopbar(); toast(state.profile.infinite ? "Münzen gehen jetzt nie aus" : "Normale Münzen"); break;
     case "set-haptics": state.profile.haptics = !state.profile.haptics; b.setAttribute("aria-checked", state.profile.haptics); save(); vibrate([30, 40, 30]); break;
+    case "set-appear": state.profile.appearance = b.dataset.v; save(); render(); break;
+    case "avatar-del": state.profile.avatar = ""; save(); render(); toast("Profilbild entfernt"); break;
     case "set-sound": state.profile.sound = !state.profile.sound; b.setAttribute("aria-checked", state.profile.sound); save(); sfx("tap"); break;
     case "onboard-again": openOnboarding(); break;
     case "install": if (installEvt) { installEvt.prompt(); installEvt.userChoice.finally(() => { installEvt = null; render(); }); } break;
@@ -4152,23 +4962,34 @@ document.addEventListener("click", e => {
       if (ob.hatched) break; const egg = $("#egg"); if (egg) egg.classList.add("crack"); sfx("shake"); vibrate([20, 60, 20, 60, 20]);
       setTimeout(() => { ob.hatched = true; drawOb(); bigCelebration(); sfx("level"); vibrate([40, 60, 120]); }, 900); break;
     }
+    case "ob-species": {
+      const typed = (($("#obName") || {}).value || "").trim(), old = SPECIES.find(q => q[0] === ob.species);
+      ob.species = b.dataset.v; ob.name = !typed || (old && typed === old[2]) ? SPECIES.find(q => q[0] === ob.species)[2] : typed; sfx("chirp"); drawOb(); break;
+    }
+    case "ob-skip":
+      state.profile.onboarded = true; if (!state.flags.welcome) { state.flags.welcome = true; addCoins(50); }
+      save(); closeSheet(); location.hash = "heute"; animateNext = true; render(); setTimeout(startTour, 700); break;
+    case "tour-next": tourI++; drawTour(); break;
+    case "tour-end": tourI = -1; drawTour(); break;
     case "ob-color": ob.name = ($("#obName") || {}).value || ob.name; ob.color = b.dataset.v; sfx("chirp"); drawOb(); break;
     case "ob-goal": { const v = b.dataset.v; ob.goals = ob.goals.includes(v) ? ob.goals.filter(x => x !== v) : ob.goals.concat(v); sfx("tap"); drawOb(); break; }
     case "ob-back": ob.step = Math.max(0, ob.step - 1); drawOb(); break;
     case "ob-next":
-      if (ob.step === 1) { ob.name = (($("#obName") || {}).value || "").trim() || "Keimi"; state.profile.petName = ob.name; state.profile.petColor = ob.color; }
+      if (ob.step === 1) { ob.name = (($("#obName") || {}).value || "").trim() || "Keimi"; state.profile.petName = ob.name; state.profile.petColor = ob.color; state.profile.species = ob.species; }
       ob.step++; sfx("tap"); drawOb(); break;
     case "ob-tpl": {
-      const all = TEMPLATES[b.dataset.kind], tpl = all.find(t => t.name === b.dataset.name);
-      const d = draftFrom(null, tpl, b.dataset.kind); d.id = uid(); d.start = todayK(); d.quitStart = Date.now();
-      state.habits.push(normHabit(d)); save(); sfx("bonus"); burst(innerWidth / 2, innerHeight * .5, 60);
-      ob.step = 4; drawOb(); break;
+      const all = TEMPLATES[b.dataset.kind], tpl = all.find(t => t.name === b.dataset.name), kind = b.dataset.kind;
+      openTips(tpl, () => {
+        const d = draftFrom(null, tpl, kind); d.id = uid(); d.start = todayK(); d.quitStart = Date.now();
+        state.habits.push(normHabit(d)); save(); sfx("bonus"); burst(innerWidth / 2, innerHeight * .5, 60);
+        ob.step = 4; drawOb();
+      }); break;
     }
     case "ob-custom": openEditor(draftFrom(null, null, "build")); break;
     case "ob-finish": {
       state.profile.onboarded = true; if (!state.flags.welcome) { state.flags.welcome = true; addCoins(50); }
       save(); closeSheet(); location.hash = "heute"; animateNext = true; render(); bigCelebration(); sfx("bonus");
-      setTimeout(() => flyCoins(innerWidth / 2, innerHeight / 2, 12), 300); break;
+      setTimeout(() => flyCoins(innerWidth / 2, innerHeight / 2, 12), 300); setTimeout(startTour, 1600); break;
     }
   }
 });
@@ -4186,6 +5007,11 @@ document.addEventListener("change", e => {
   const fr = new FileReader();
   fr.onload = () => restoreFrom(fr.result);
   fr.readAsText(e.target.files[0]);
+});
+
+document.addEventListener("input", e => {
+  if (e.target.id !== "jText" || !jdraft) return;
+  jdraft.text = e.target.value; const old = $("#jWords"); if (old) old.outerHTML = jWordsHTML();
 });
 
 /* ============ Tickers ============ */
@@ -4219,7 +5045,8 @@ function freezeNotice(fr) {
 
 /* ============ Routing & boot ============ */
 const VIEWS = ["heute", "fortschritt", "begleiter", "gruppe", "profil"];
-function route() { if (location.hash.startsWith("#join=")) { handleJoinUrl(location.hash); return; } const h = location.hash.slice(1); view = VIEWS.includes(h) ? h : "heute"; animateNext = true; if (store.mode !== "loading") render(); window.scrollTo(0, 0); }
+function route() { if (location.hash.startsWith("#join=")) { handleJoinUrl(location.hash); return; }
+  if (/^#(wake|steps=\d+)$/.test(location.hash)) { const hh = location.hash; history.replaceState(null, "", "#heute"); view = "heute"; render(); handleAppUrl(hh); return; } const h = location.hash.slice(1); view = VIEWS.includes(h) ? h : "heute"; animateNext = true; if (store.mode !== "loading") render(); window.scrollTo(0, 0); }
 addEventListener("hashchange", route);
 
 function afterLoad() {
@@ -4232,6 +5059,9 @@ function afterLoad() {
   checkQuitMilestones(false);
   evaluateBadges(); save(); syncGroup();
   if (location.hash.startsWith("#join=")) handleJoinUrl(location.hash);
+  if (/^#(wake|steps=\d+)$/.test(location.hash)) { const hh = location.hash; history.replaceState(null, "", "#heute"); view = "heute"; render(); handleAppUrl(hh); }
+  if (state.timer) tmTick();
+  setTimeout(() => healthSync(false), 1200);
 }
 function loadCached() {
   try { const v2 = localStorage.getItem(KEY); if (v2) return JSON.parse(v2); const v1 = localStorage.getItem(OLD_KEY); if (v1) return JSON.parse(v1); } catch (e) { /* ignore */ }
@@ -4260,14 +5090,21 @@ if (CapApp) CapApp.addListener("backButton", ({ canGoBack }) => {
   if (canGoBack) history.back(); else CapApp.exitApp();
 });
 if (CapApp) { // invite links that open the app: days21://join/CODE
-  CapApp.addListener("appUrlOpen", e => handleJoinUrl(e.url));
-  CapApp.getLaunchUrl().then(r => { if (r && r.url) handleJoinUrl(r.url); }).catch(() => {});
+  CapApp.addListener("appUrlOpen", e => handleAppUrl(e.url));
+  CapApp.getLaunchUrl().then(r => { if (r && r.url) handleAppUrl(r.url); }).catch(() => {});
 }
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) return;
   if ($("#wk")) wake(true); // the browser drops the wake lock whenever the app is hidden
   dayTick(); syncGroup(); deviceSync(); if (view === "gruppe" || view === "heute") loadBoard();
+  if (state.timer) tmTick(); healthSync(false);
   if (!$(".back") && !$(".overlay")) render();
+});
+const LNtap = capP("LocalNotifications");
+if (LNtap) LNtap.addListener("localNotificationActionPerformed", a => {
+  const x = (a && a.notification && a.notification.extra) || {};
+  if (x.act === "wake") setTimeout(wakeFromUrl, 500);
+  if (x.act === "timer") setTimeout(() => { if (state.timer) drawTimer(); }, 500);
 });
 const inApp = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
 if (!inApp && "serviceWorker" in navigator && location.protocol.startsWith("http")) addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
