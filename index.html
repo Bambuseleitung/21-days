@@ -938,6 +938,12 @@ input[type=text],input[type=number],input[type=search],input[type=date],textarea
 .g-pet.jp{top:0;bottom:auto;width:64px;height:64px;pointer-events:none}
 .stage canvas{position:absolute;inset:0;width:100%;height:100%}
 .stage.sky{background:linear-gradient(#7CC4F5,#CDEBFF)}
+.stat-head{display:flex;align-items:center;gap:14px;margin-top:12px}
+.sh-pet{flex:none;width:72px;height:72px;border-radius:18px;background:var(--card-2);display:grid;place-items:center}
+.sh-bars{flex:1;min-width:0}
+.sh-row{display:flex;justify-content:space-between;gap:8px;font-size:.875rem}
+.sh-row + .xpbar{margin:4px 0 8px}
+.xpbar.hap i{background:linear-gradient(90deg,#F59E0B,#22C55E)}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important} }
 @media (max-width:370px){ .shop,.badges{grid-template-columns:repeat(2,1fr)} .hero .petbox{width:100px;height:100px} }
@@ -974,6 +980,7 @@ details.how b{color:var(--ink)}
 </style>
 <script src="config.js"></script>
 <script src="vocab.js"></script>
+<script src="i18n.js"></script>
 <script src="vendor/qrcode.js"></script>
 </head>
 <body>
@@ -1009,9 +1016,9 @@ const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(
 const hash01 = s => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 100000) / 100000; };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const eur = v => v.toLocaleString("de-DE", { style: "currency", currency: "EUR" });
+const eur = v => v.toLocaleString(LOC(), { style: "currency", currency: "EUR" });
 const pick = (arr, seed) => arr[Math.floor(hash01(seed) * arr.length)];
-const fmtLong = k => parseK(k).toLocaleDateString("de-DE", { weekday: "long", day: "numeric", month: "long" });
+const fmtLong = k => parseK(k).toLocaleDateString(LOC(), { weekday: "long", day: "numeric", month: "long" });
 
 /* ============ Icons ============ */
 const sv = (p, extra = "") => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" ${extra}>${p}</svg>`;
@@ -1048,6 +1055,10 @@ const I = {
   edit: sv('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/>'),
   leaf: sv('<path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15"/><path d="M5 19l8-8"/>'),
   chev: sv('<path d="M9 5l7 7-7 7"/>'),
+  cal: sv('<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="8.5" cy="14.5" r=".6"/><circle cx="12" cy="14.5" r=".6"/><circle cx="15.5" cy="14.5" r=".6"/>'),
+  quit: sv('<circle cx="12" cy="12" r="8.5"/><path d="M6 18L18 6"/>'),
+  todo: sv('<path d="M4 7l2 2 4-4M4 16l2 2 4-4M13 7.5h7M13 16.5h7"/>'),
+  menu: sv('<path d="M4 7h16M4 12h16M4 17h16"/>'),
   dumbbell: sv('<path d="M6 7v10M18 7v10M3 9.5v5M21 9.5v5M6 12h12"/>'),
   lock: sv('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'),
   back: sv('<path d="M15 5l-7 7 7 7"/>'),
@@ -1095,14 +1106,15 @@ const TEMPLATES = {
     { name: "Wasser trinken", icon: "drop", mode: "count", target: 2000, unit: "ml", quick: [250, 500], time: "any", color: "#3B82F6" },
     { name: "Lesen", icon: "book", mode: "timer", target: 20, time: "evening", cue: "ich im Bett liege", action: "lese ich 20 Minuten", color: "#8B5CF6" },
     { name: "Seiten lesen", icon: "book", mode: "count", target: 10, unit: "Seiten", quick: [1, 5, 10], time: "evening", color: "#6366F1" },
-    { name: "Sport", icon: "dumbbell", special: "gym", time: "any", color: "#EF4462" },
+    { name: "Training", icon: "dumbbell", special: "gym", time: "any", color: "#EF4462" },
     { name: "Meditieren", icon: "lotus", mode: "timer", target: 10, time: "morning", cue: "ich aufgestanden bin", action: "meditiere ich 10 Minuten", color: "#0EA5C4" },
     { name: "Früh aufstehen", icon: "sun", mode: "wake", wakeAt: "06:30", grace: 30, alarm: true, time: "morning", color: "#F59E0B" },
     { name: "Tagebuch schreiben", icon: "pen", mode: "journal", words: 30, time: "evening", color: "#EC4899" },
     { name: "10.000 Schritte", icon: "shoe", mode: "steps", target: 10000, health: true, time: "any", color: "#1FBF8A" },
     { name: "Obst & Gemüse", icon: "apple", mode: "count", target: 5, unit: "Portionen", quick: [1], time: "any", color: "#16A34A" },
     { name: "Aufräumen", icon: "broom", mode: "timer", target: 10, time: "evening", color: "#FF6B2C" },
-    { name: "Vitamine nehmen", icon: "pill", time: "morning", color: "#F59E0B" }
+    { name: "Vitamine nehmen", icon: "pill", time: "morning", color: "#F59E0B" },
+    { name: "Handyzeit begrenzen", icon: "phone", mode: "screen", limit: 120, time: "evening", color: "#0EA5C4", isNew: true }
   ],
   break: [
     { name: "Nicht rauchen", icon: "nosmoke", money: 8, minutes: 40, replacement: "tief durchatmen und ein Glas Wasser trinken", color: "#64748B" },
@@ -1121,7 +1133,7 @@ const TIPS = {
   "Wasser trinken": { t: ["Richtwert: 6 bis 8 Gläser am Tag. Wasser, Tee und Kaffee zählen mit.", "Stell dir eine Flasche hin, die du immer siehst, und trink lieber oft kleine Schlucke.", "An heißen Tagen und nach Sport brauchst du mehr."], q: ["NHS", "https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eight-tips-for-healthy-eating/"] },
   "Lesen": { t: ["Fang klein an, etwa 15 Minuten am Tag, und steigere dich langsam.", "Häng das Lesen an etwas, das du sowieso tust, zum Beispiel ins Bett gehen.", "Leg das Handy beim Lesen weg. Ein Buch, das dich langweilt, darfst du abbrechen."], q: ["Popular Science", "https://www.popsci.com/health/how-to-rebuild-your-reading-habits/"] },
   "Seiten lesen": { t: ["Wähle Bücher, die dich wirklich interessieren. Abwechslung bei Autorinnen und Genres hält die Lust wach.", "Ein festes Plätzchen und eine feste Zeit machen den Einstieg leichter.", "Hörbücher zählen auch, etwa auf dem Weg zur Arbeit."], q: ["Popular Science", "https://www.popsci.com/health/how-to-rebuild-your-reading-habits/"] },
-  "Sport": { t: ["Fang lieber zu leicht als zu schwer an. Wer zu viel auf einmal will, ist schnell verletzt oder frustriert.", "Trag dein Training wie einen Termin in den Kalender ein.", "Ein verpasster Tag ist kein Rückschlag. Es zählt, dass du über Wochen dranbleibst."], q: ["HelpGuide", "https://www.helpguide.org/wellness/fitness/how-to-start-exercising-and-stick-to-it"] },
+  "Training": { t: ["Fang lieber zu leicht als zu schwer an. Wer zu viel auf einmal will, ist schnell verletzt oder frustriert.", "Trag dein Training wie einen Termin in den Kalender ein.", "Ein verpasster Tag ist kein Rückschlag. Es zählt, dass du über Wochen dranbleibst."], q: ["HelpGuide", "https://www.helpguide.org/wellness/fitness/how-to-start-exercising-and-stick-to-it"] },
   "Meditieren": { t: ["Starte mit 2 bis 5 Minuten. Regelmäßig ist wichtiger als lang.", "Meditiere jeden Tag zur selben Zeit, etwa direkt nach dem Aufstehen.", "Schweifen die Gedanken ab, bemerke es ohne Ärger und kehr zum Atem zurück."], q: ["Calm", "https://www.calm.com/blog/how-to-meditate-for-beginners"] },
   "Früh aufstehen": { t: ["Verschieb Schlafenszeit und Wecker in Schritten von 15 Minuten und bleib bei jeder Stufe ein paar Tage.", "Rechne von der Weckzeit rückwärts, damit du genug Schlaf bekommst, und steh auch am Wochenende ähnlich auf.", "Stell den Wecker außer Reichweite und hol dir morgens Tageslicht."], q: ["Sleep Foundation", "https://www.sleepfoundation.org/sleep-hygiene/how-to-wake-up-early"] },
   "Tagebuch schreiben": { t: ["Schon eine Minute oder ein paar Sätze reichen. Regelmäßig schlägt lang.", "Nutze die Fragen-Vorschläge, dann bleibt die Seite nicht leer.", "Schreib nicht nur an schlechten Tagen, sonst verbindest du das Tagebuch nur mit Kummer."], q: ["Lifenote", "https://blog.mylifenote.ai/how-to-start-journaling-2026/"] },
@@ -1129,6 +1141,7 @@ const TIPS = {
   "Obst & Gemüse": { t: ["Ziel sind 5 Portionen am Tag. Eine Portion ist etwa eine Handvoll (80 g).", "Leicht gemacht: Banane ins Müsli, Obst statt Snack am Vormittag.", "Tiefkühl-, Dosen- und Trockenobst zählen auch. Saft zählt höchstens einmal am Tag."], q: ["NHS", "https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eight-tips-for-healthy-eating/"] },
   "Aufräumen": { t: ["Kurz, aber täglich: 10 Minuten mit Timer fühlen sich machbar an.", "Häng es an einen festen Moment, etwa direkt nach dem Abendessen.", "Fang mit einer Fläche an, die du oft siehst, zum Beispiel dem Schreibtisch."], q: ["James Clear", "https://jamesclear.com/habit-stacking"] },
   "Vitamine nehmen": { t: ["Stell die Dose dorthin, wo du sie morgens ohnehin siehst, etwa neben die Kaffeemaschine.", "Kopple es an eine feste Gewohnheit: „Nach dem Zähneputzen nehme ich …“.", "Fragen zur Dosis klärst du am besten in der Apotheke oder bei deiner Ärztin."], q: ["James Clear", "https://jamesclear.com/habit-stacking"] },
+  "Handyzeit begrenzen": { t: ["Setz zusätzlich echte App-Limits: iPhone unter Einstellungen → Bildschirmzeit → App-Limits, Android unter Digital Wellbeing.", "Plane feste handyfreie Zeiten, etwa beim Essen und die letzte Stunde vor dem Schlafen.", "Lade das Handy nachts außerhalb des Schlafzimmers."], q: ["Sleep Foundation", "https://www.sleepfoundation.org/sleep-topics/sleep-and-social-media"] },
   "Nicht rauchen": { t: ["Ein Rauchdrang dauert meist nur ein paar Minuten. Halte eine Ablenkung bereit, zum Beispiel die SOS-Atmung in der App.", "Lerne deine Auslöser kennen und räum Zigaretten, Feuerzeuge und Aschenbecher weg.", "Rauchstopp-Mittel plus Beratung erhöhen die Chancen deutlich. Frag in der Apotheke oder Arztpraxis."], q: ["NHS", "https://www.nhs.uk/better-health/quit-smoking/staying-smoke-free/understand-your-smoking-triggers-and-cravings/"] },
   "Weniger Social Media": { t: ["Setz App-Limits in der Bildschirmzeit deines Handys.", "Plane feste handyfreie Zeiten, etwa beim Essen.", "Reduziere eine Plattform nach der anderen statt alle auf einmal."], q: ["Sleep Foundation", "https://www.sleepfoundation.org/sleep-topics/sleep-and-social-media"] },
   "Keine Süßigkeiten": { t: ["Reduziere schrittweise. Das klappt oft besser als ein harter Stopp.", "Eiweißreiche Mahlzeiten halten länger satt und dämpfen Heißhunger.", "Die ersten zwei Wochen sind am härtesten, danach gewöhnt sich der Geschmack um."], q: ["American Stroke Association", "https://stroke.org/en/healthy-living/healthy-eating/eat-smart/sugar/rethink-your-drink-reducing-sugary-drinks-in-your-diet"] },
@@ -1151,7 +1164,7 @@ function openTips(t, next, last) {
 const GOALS = [
   { id: "vocab", n: "Wortschatz erweitern", ic: "book", t: ["Vokabel-Pack", "Lesen"] },
   { id: "health", n: "Gesünder leben", ic: "apple", t: ["Wasser trinken", "Obst & Gemüse", "Keine Süßigkeiten"] },
-  { id: "fit", n: "Fitter werden", ic: "dumbbell", t: ["Sport", "10.000 Schritte", "Kein Fast Food"] },
+  { id: "fit", n: "Fitter werden", ic: "dumbbell", t: ["Training", "10.000 Schritte", "Kein Fast Food"] },
   { id: "phone", n: "Weniger Handy", ic: "phone", t: ["Weniger Social Media", "Kein Handy im Bett"] },
   { id: "smoke", n: "Rauchen aufhören", ic: "nosmoke", t: ["Nicht rauchen"] },
   { id: "calm", n: "Mehr Ruhe", ic: "lotus", t: ["Meditieren", "Tagebuch schreiben", "Lesen"] },
@@ -1199,10 +1212,42 @@ const TRIGGER_TAGS = ["Langeweile", "Stress", "Müdigkeit", "Nach dem Essen", "H
 const PRAISE = ["Stark!", "Läuft!", "Sauber!", "Boom!", "Weiter so!", "Unaufhaltsam!", "Mega!", "Top!", "Yes!"];
 const RAR = { common: { n: "Gewöhnlich", c: "#7A86A8", xp: 10 }, rare: { n: "Selten", c: "#2F7BFF", xp: 25 }, epic: { n: "Episch", c: "#8B5CF6", xp: 50 }, legend: { n: "Legendär", c: "#E9A100", xp: 100 } };
 
+/* ============ Sprache ============ */
+// Die Oberfläche ist auf Deutsch geschrieben; i18n.js übersetzt jeden sichtbaren Text, sobald er ins DOM kommt.
+const LANGS = [["de", "Deutsch"], ["en", "English"], ["tr", "Türkçe"]];
+const devLang = () => { const l = (navigator.language || "de").slice(0, 2); return l === "tr" || l === "en" ? l : "de"; };
+const LOC = () => ({ en: "en-GB", tr: "tr-TR" }[(typeof state !== "undefined" && state.profile.lang) || "de"] || "de-DE");
+let trMap = null, trPats = [], curLang = "";
+function setLang(l) {
+  curLang = l; const d = l !== "de" && (window.I18N || {})[l]; trMap = d ? new Map(Object.entries(d)) : null; trPats = [];
+  if (d) for (const [k, v] of Object.entries(d)) if (/\{\d\}/.test(k)) {
+    const parts = k.split(/\{\d\}/);
+    trPats.push({ re: new RegExp("^" + parts.map(x => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("(.+?)") + "$", "s"), v, hint: parts.reduce((a, b) => b.length > a.length ? b : a, "") });
+  }
+  document.documentElement.lang = l || "de";
+}
+function trText(s, deep) {
+  const k = s.trim(); if (!k || !trMap) return null;
+  let v = trMap.get(k);
+  if (v == null && !deep) for (const q of trPats) { if (q.hint && !k.includes(q.hint)) continue; const m = q.re.exec(k); if (m) { v = q.v.replace(/\{(\d)\}/g, (_, i) => { const raw = m[+i + 1] || ""; return trText(raw, true) ?? raw; }); break; } }
+  if (v == null && !deep && k.includes(" · ")) { const ps = k.split(" · "), out = ps.map(x => trText(x) ?? x); if (out.some((x, i) => x !== ps[i])) v = out.join(" · "); }
+  return v == null ? null : s.replace(k, v);
+}
+const T = x => (trMap && trText(String(x))) || x;
+function trDom(root) {
+  if (!trMap || !root) return;
+  if (root.nodeType === 3) { const v = trText(root.nodeValue); if (v != null && v !== root.nodeValue) root.nodeValue = v; return; }
+  if (root.nodeType !== 1 || root.closest("[data-notr]")) return;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  for (let n = w.nextNode(); n; n = w.nextNode()) { const pa = n.parentNode; if (/^(SCRIPT|STYLE|TEXTAREA)$/.test(pa.nodeName) || pa.closest("[data-notr]")) continue; const v = trText(n.nodeValue); if (v != null && v !== n.nodeValue) n.nodeValue = v; }
+  [root, ...root.querySelectorAll("[placeholder],[aria-label],[title],[alt]")].forEach(el => ["placeholder", "aria-label", "title", "alt"].forEach(a => { const o = el.getAttribute(a); if (o) { const v = trText(o); if (v != null && v !== o) el.setAttribute(a, v); } }));
+}
+new MutationObserver(ms => { if (!trMap) return; for (const m of ms) { if (m.type === "characterData") trDom(m.target); else m.addedNodes.forEach(trDom); } }).observe(document.body, { childList: true, subtree: true, characterData: true });
+
 /* ============ State ============ */
 const KEY = "21days-state-v2", OLD_KEY = "21days-state-v1";
 const freshState = () => ({
-  v: 2, profile: { petName: "Keimi", petColor: PET_COLORS[0], species: "keimi", appearance: "auto", avatar: "", theme: "sun", sound: true, haptics: true, shareBoard: true, onboarded: false, since: todayK() },
+  v: 2, profile: { petName: "Keimi", petColor: PET_COLORS[0], species: "keimi", appearance: "auto", lang: devLang(), avatar: "", theme: "sun", sound: true, haptics: true, shareBoard: true, onboarded: false, since: todayK() },
   habits: [], triggers: [], xp: 0, coins: 0, xpLog: {}, freezes: 1, freezeUsed: {}, badges: {}, chests: {}, perfect: {},
   flags: { gymLink: true }, days: {}, quests: {}, pledges: {}, inv: { owned: [], eq: {} }, rewards: [], redeemed: [], cheered: {}, lastCheerSeen: 0,
   pet: { food: 0, hunger: 80, fun: 80, clean: 80, t: Date.now(), best: { catch: 0, pop: 0, jump: 0 } },
@@ -1217,7 +1262,7 @@ function normHabit(h) {
   return Object.assign({ id: uid(), name: "Gewohnheit", kind: "build", icon: "star", color: COLORS[0], target: 1, unit: "", days: [0, 1, 2, 3, 4, 5, 6], time: "any",
     cue: "", action: "", replacement: "", reasons: [], money: 0, minutes: 0, quitStart: Date.now(), bestQuit: 0, relapses: [], quitHit: [],
     start: todayK(), log: {}, xp: {}, milestones: [], diff: 2, tag: "", special: "", capsule: null, slip: "", gc: "", remind: "",
-    mode: "", quick: [], wakeAt: "06:30", grace: 30, words: 30, alarm: false, alarmSet: "", health: false, woke: {} }, h);
+    mode: "", quick: [], wakeAt: "06:30", grace: 30, words: 30, alarm: false, alarmSet: "", alarmId: "", health: false, woke: {}, limit: 120, scr: {} }, h);
 }
 function migrate(raw) {
   const s = JSON.parse(JSON.stringify(raw || {}));
@@ -1237,6 +1282,7 @@ function migrate(raw) {
   }
   const st = Object.assign(freshState(), s);
   st.profile = Object.assign(freshState().profile, s.profile || {});
+  if (!(s.profile || {}).lang) st.profile.lang = "de"; // existing saves stay German until changed
   st.inv = Object.assign({ owned: [], eq: {} }, s.inv || {});
   st.pet = Object.assign(freshState().pet, s.pet || {});
   st.pet.best = Object.assign({ catch: 0, pop: 0, jump: 0 }, st.pet.best);
@@ -1251,6 +1297,7 @@ function migrate(raw) {
   st.habits = (s.habits || []).map(normHabit);
   // once: habits with the dumbbell icon get linked to the workout logger; unlinking in the editor sticks
   if (!st.flags.gymLink) { st.flags.gymLink = true; st.habits.forEach(h => { if (h.kind === "build" && !h.special && h.icon === "dumbbell") h.special = "gym"; }); }
+  if (!st.flags.sportRen) { st.flags.sportRen = true; st.habits.forEach(h => { if (h.special === "gym" && h.name === "Sport") h.name = "Training"; }); }
   st.flags.maxLvl = Math.max(st.flags.maxLvl || 0, levelOf(st.xp || 0));
   st.triggers = st.triggers.slice(-400);
   return st;
@@ -1375,15 +1422,18 @@ SFX.wake = [[659, 0, .12], [880, .1, .12], [1175, .2, .3]];
 function sfx(kind, combo = 1) {
   if (!state.profile.sound) return;
   try {
-    ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+    audioPlayback(); ac = ac || new (window.AudioContext || window.webkitAudioContext)();
     if (ac.state !== "running") ac.resume(); // iOS: also "interrupted" after switching apps
     const t = ac.currentTime + .01, m = Math.pow(2, Math.min(combo - 1, 7) * 2 / 12);
     (SFX[kind] || []).forEach(([f, o, d]) => tone(f * m, t + o, d, kind === "unlock" || kind === "chirp" || kind === "breathe" || kind === "gong" ? "sine" : "triangle"));
   } catch (e) { /* audio blocked */ }
 }
 // iOS only unlocks Web Audio inside a real touch; a silent one-sample buffer does that on the first tap.
+// "playback" lets iOS play the sounds with the silent switch on (Apple's default for web sounds is to stay mute).
+const audioPlayback = () => { try { if (navigator.audioSession && navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback"; } catch (e) { /* older iOS */ } };
 function audioUnlock() {
   if (!state.profile.sound || (ac && ac.state === "running")) return;
+  audioPlayback();
   try {
     ac = ac || new (window.AudioContext || window.webkitAudioContext)(); ac.resume();
     const src = ac.createBufferSource(); src.buffer = ac.createBuffer(1, 1, 22050); src.connect(ac.destination); src.start(0);
@@ -1727,7 +1777,7 @@ async function openLog() {
   const all = await logAll(), el = $("#logBody"); if (!el) return;
   el.className = "";
   el.innerHTML = `<p class="muted" style="margin:0;font-weight:500">Jede Änderung wird auf diesem Gerät (${esc(deviceId.slice(0, 6))}) gespeichert. Es wird nichts hochgeladen. Es bleiben die letzten ${LOG_MAX} Einträge.</p>
-    <div class="card" style="margin-top:12px">${all.slice(-15).reverse().map(e => `<div class="logrow"><div><b>${esc(ACT_LABEL[e.action] || e.action)}</b>${e.habits && e.habits.length ? " · " + esc(e.habits.map(h => h.name).join(", ")) : ""}<div class="muted" style="font-weight:400">${new Date(e.ts).toLocaleString("de-DE", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} · ${esc(e.changed.join(", "))}</div></div></div>`).join("") || `<p class="muted" style="margin:0;font-weight:500">Noch keine Einträge.</p>`}</div>
+    <div class="card" style="margin-top:12px">${all.slice(-15).reverse().map(e => `<div class="logrow"><div><b>${esc(ACT_LABEL[e.action] || e.action)}</b>${e.habits && e.habits.length ? " · " + esc(e.habits.map(h => h.name).join(", ")) : ""}<div class="muted" style="font-weight:400">${new Date(e.ts).toLocaleString(LOC(), { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} · ${esc(e.changed.join(", "))}</div></div></div>`).join("") || `<p class="muted" style="margin:0;font-weight:500">Noch keine Einträge.</p>`}</div>
     <div style="display:grid;gap:12px;margin-top:16px"><button class="btn full" data-action="log-export" ${all.length ? "" : "disabled"}>${all.length} Einträge exportieren</button><button class="btn danger full" data-action="log-clear" ${all.length ? "" : "disabled"}>Protokoll leeren</button></div>`;
 }
 async function exportLog() {
@@ -2124,13 +2174,13 @@ function widgetData() {
 function deviceSync() {
   clearTimeout(devT); devT = setTimeout(async () => {
     const W = capP("DaysWidget"), LN = capP("LocalNotifications");
-    if (W) { const j = JSON.stringify(widgetData()); if (j !== wLast) { wLast = j; W.update({ data: j }).catch(() => {}); } }
+    if (W) { const wd = widgetData(); ["main", "sub", "group"].forEach(k => { if (typeof wd[k] === "string") wd[k] = T(wd[k]); }); const j = JSON.stringify(wd); if (j !== wLast) { wLast = j; W.update({ data: j }).catch(() => {}); } }
     if (!LN) return;
     const plan = reminderPlan(), j = JSON.stringify(plan); if (j === remLast) return;
     try {
       if ((await LN.checkPermissions()).display !== "granted") return;
       await LN.cancelAll();
-      if (plan.length) await LN.schedule({ notifications: plan.map((n, i) => ({ id: i + 1, title: n.title, body: n.body, schedule: { at: n.at, allowWhileIdle: true }, isExactNotification: false, extra: n.extra || null })) });
+      if (plan.length) await LN.schedule({ notifications: plan.map((n, i) => ({ id: i + 1, title: T(n.title), body: T(n.body), schedule: { at: n.at, allowWhileIdle: true }, isExactNotification: false, extra: n.extra || null })) });
       remLast = j;
     } catch (e) { /* reminders are optional */ }
   }, 1500);
@@ -2139,22 +2189,24 @@ function deviceSync() {
 /* ============ Rendering: chrome ============ */
 let shownXp = null;
 function applyTheme() {
+  if (curLang !== (state.profile.lang || "de")) setLang(state.profile.lang || "de");
   const t = THEMES[state.profile.theme] || THEMES.sun, a = state.profile.appearance, el = document.documentElement; el.style.setProperty("--p0", t.p);
   if (a === "light" || a === "dark") el.dataset.theme = a; else delete el.dataset.theme;
 }
-const VTITLE = { heute: "Heute", fortschritt: "Fortschritt", gruppe: "Gruppe", profil: "Profil" };
+const VTITLE = { heute: "Täglich", abgewoehnen: "Abgewöhnen", todos: "To-Dos", fortschritt: "Fortschritt", gruppe: "Gruppe", profil: "Menü" };
+const ADD = { heute: ["new", "build", "Neue Gewohnheit"], abgewoehnen: ["new", "break", "Neue Gewohnheit zum Abgewöhnen"], todos: ["todo-new", "", "Neue Aufgabe"] };
 // Navigation bar: the section's large title, streak (opens streak and shields) and coins (opens the shop), add button on Heute.
 function renderTopbar() {
   const s = gStreak(), hot = activeDay(todayK());
   $("#topbar").innerHTML = `<h1>${esc(view === "begleiter" ? state.profile.petName : VTITLE[view] || "Heute")}</h1>
     <button class="chip flame ${hot ? "hot" : "cold"}" id="chipStreak" data-action="shield-info" aria-label="${s} Tage Serie${hot ? "" : ", heute noch nicht verlängert"}, ${state.freezes} Schutzschilde">${I.flame}<span class="num">${s}</span></button>
     <button class="chip coins" id="chipCoins" data-action="go" data-view="begleiter" aria-label="${state.profile.infinite ? "Unendlich viele" : state.coins} Münzen">${I.coin}<span class="num">${state.profile.infinite ? "∞" : state.coins}</span></button>
-    ${view === "heute" && state.profile.onboarded ? `<button class="tb-add" data-action="new" aria-label="Neue Gewohnheit">${I.plus}</button>` : ""}`;
+    ${ADD[view] && state.profile.onboarded ? `<button class="tb-add" data-action="${ADD[view][0]}" data-v="${ADD[view][1]}" aria-label="${ADD[view][2]}">${I.plus}</button>` : ""}`;
   shownXp = state.xp;
 }
 function renderNav() {
-  const tabs = [["heute", "Heute", I.home],  ["fortschritt", "Fortschritt", I.chart], ["begleiter", state.profile.petName.slice(0, 10), I.paw], ["profil", "Profil", I.user]];
-  $("#nav").innerHTML = tabs.map(([id, l, ic]) => { const need = id === "begleiter" && petNeedy(); return `<button data-action="go" data-view="${id}" ${need ? `class="dot" aria-label="${esc(l)}, braucht Pflege"` : ""} ${view === id || (id === "profil" && view === "gruppe") ? 'aria-current="page"' : ""}>${ic}<span>${esc(l)}</span></button>`; }).join("");
+  const tabs = [["heute", "Täglich", I.cal], ["abgewoehnen", "Abgewöhnen", I.quit], ["todos", "To-Dos", I.todo], ["begleiter", state.profile.petName.slice(0, 10), I.paw], ["profil", "Menü", I.menu]];
+  $("#nav").innerHTML = tabs.map(([id, l, ic]) => { const need = id === "begleiter" && petNeedy(); return `<button data-action="go" data-view="${id}" ${need ? `class="dot" aria-label="${esc(l)}, braucht Pflege"` : ""} ${view === id || (id === "profil" && (view === "gruppe" || view === "fortschritt")) ? 'aria-current="page"' : ""}>${ic}<span>${esc(l)}</span></button>`; }).join("");
 
 }
 function renderBanner() {
@@ -2165,7 +2217,7 @@ function renderBanner() {
 }
 let animateNext = true;
 // Re-renders one container of the current page (shop tabs, progress tabs, tag filter) without replaying the whole page.
-const viewHTML = () =>  view === "fortschritt" ? viewProgress() : view === "begleiter" ? viewPet() : view === "gruppe" ? viewGruppe() : view === "profil" ? viewProfile() : viewToday();
+const viewHTML = () =>  view === "abgewoehnen" ? viewBreak() : view === "todos" ? viewTodos() : view === "fortschritt" ? viewProgress() : view === "begleiter" ? viewPet() : view === "gruppe" ? viewGruppe() : view === "profil" ? viewProfile() : viewToday();
 function softRender(sel) {
   const cur = $(sel); if (!cur) { render(); return; }
   const tmp = document.createElement("div");
@@ -2243,27 +2295,42 @@ function habitCard(h, i, off) {
 function viewToday() {
   const t = todayK(), hs = habitsFor(t), n = hs.length, d = hs.filter(h => isDone(h, t)).length;
   let list = "";
-  if (!state.habits.length) {
+  if (!state.habits.some(h => h.kind !== "break")) {
     list = `<div class="card empty sec enter"><h2>Starte deine 21 Tage</h2><p>Leg deine erste Gewohnheit an, aus einer Vorlage oder ganz eigen.</p><button class="btn" data-action="new">${I.plus} Gewohnheit anlegen</button></div>`;
   } else {
     let i = 0;
     TIME_ORDER.forEach(tm => {
-      const g = hs.filter(h => !h.gc && h.time === tm && (!tagFilter || h.tag === tagFilter)); if (!g.length) return;
+      const g = hs.filter(h => !h.gc && h.kind !== "break" && h.time === tm && (!tagFilter || h.tag === tagFilter)); if (!g.length) return;
       list += `<div class="group-h">${TIMES[tm].n}</div><div class="hlist">${g.map(h => habitCard(h, i++)).join("")}</div>`;
     });
-    const off = state.habits.filter(h => !h.gc && !sched(h, t) && (!tagFilter || h.tag === tagFilter));
+    const off = state.habits.filter(h => !h.gc && h.kind !== "break" && !sched(h, t) && (!tagFilter || h.tag === tagFilter));
     if (off.length) list += `<div class="group-h">Heute frei</div><div class="hlist off-list">${off.map(h => habitCard(h, i++, true)).join("")}</div>`;
   }
   return `
   <p class="sub">${esc(fmtLong(t))}${n ? ` · ${d >= n ? "alles erledigt" : `${d} von ${n} erledigt`}` : ""}</p>
+  ${statusHead()}
   ${groupHero()}
   ${state.group ? challengeSection() : ""}
   ${weekStrip()}
   ${gymLiveCard()}
   <div id="tl">${tagBar()}${list}</div>
-  <div id="tl2">${state.profile.onboarded ? todosSection() : ""}</div>
   ${state.habits.length ? `${quickRow()}${pledgeCard()}${questCard()}${bossCard()}` : ""}`;
 }
+
+// Kopf wie bei Habitica: Begleiter, Level und Glück auf den Listen-Reitern.
+function statusHead() {
+  const L = levelOf(state.xp), b = lvlBase(L), n = lvlBase(L + 1), s = petNow(), hap = Math.round((s.hunger + s.fun + s.clean) / 3), bo = petBoost();
+  return `<section class="card stat-head enter"><button class="sh-pet" data-action="go" data-view="begleiter" aria-label="${esc(state.profile.petName)} öffnen">${petSVG({ size: 64, mood: petMood() })}</button>
+    <div class="sh-bars"><div class="sh-row"><b>Level ${L}</b><span class="muted num">${state.xp - b} / ${n - b} XP</span></div><div class="xpbar"><i style="width:${(state.xp - b) / (n - b) * 100}%"></i></div>
+    <div class="sh-row"><b>Glück</b><span class="muted num">${hap} %${bo.pct ? ` · +${bo.pct} % XP` : ""}</span></div><div class="xpbar hap"><i style="width:${hap}%"></i></div></div></section>`;
+}
+function viewBreak() {
+  const t = todayK(), hs = state.habits.filter(h => h.kind === "break" && !h.gc);
+  return `${statusHead()}
+  ${hs.length ? `<p class="sub" style="margin-top:14px">Ein Haken heißt: heute geschafft. Bei Drang hilft SOS.</p><div class="hlist">${hs.map((h, i) => habitCard(h, i, !sched(h, t))).join("")}</div>`
+    : `<div class="card empty sec enter"><h2>Was willst du loswerden?</h2><p>Rauchen, Social Media, Süßes: Starte mit einer Vorlage oder ganz eigen.</p><button class="btn" data-action="new" data-v="break">${I.plus} Abgewöhnen</button></div>`}`;
+}
+const viewTodos = () => `${statusHead()}<div id="tl2">${todosSection()}</div>`;
 
 /* ============ View: Fortschritt ============ */
 let progTab = "overview";
@@ -2302,7 +2369,7 @@ function viewProgressInner() {
     <div class="tile enter" style="--i:3"><div class="tv num">${totalChecks()}</div><span>Häkchen gesamt</span></div>
   </div>
   ${insightCard()}
-  <div class="sec-h"><h2>${now.toLocaleDateString("de-DE", { month: "long", year: "numeric" })}</h2><span class="muted">Serien-Kalender</span></div>
+  <div class="sec-h"><h2>${now.toLocaleDateString(LOC(), { month: "long", year: "numeric" })}</h2><span class="muted">Serien-Kalender</span></div>
   <div class="card enter" style="--i:4"><div class="cal">${cal}</div></div>
   <div class="sec-h"><h2>Diese Woche</h2>${best && best.p ? `<span class="muted">Bester Tag: ${WD[days.indexOf(best)]}</span>` : ""}</div>
   <div class="card enter" style="--i:5"><div class="bars">${days.map(d => `<div class="col ${d === best && d.p ? "best" : ""}"><small class="num">${d.p ? d.d + "/" + d.p : ""}</small><i style="height:${d.p ? Math.max(4, d.d / d.p * 105) : 4}px;${d.p ? "" : "opacity:.25"}"></i></div>`).join("")}</div><div class="blabels">${WD.map(w => `<span>${w}</span>`).join("")}</div></div>
@@ -2332,7 +2399,7 @@ function progTriggers() {
   return `<div class="tiles sec"><div class="tile"><div class="tv num">${Math.round(res / tr.length * 100)}%</div><span>widerstanden</span></div><div class="tile"><div class="tv num">${tr.length}</div><span>notierte Momente</span></div></div>
   <div class="sec-h"><h2>Häufigste Auslöser</h2></div><div class="card">${top.length ? top.map(([g, c]) => `<div class="hb"><span>${esc(g)}</span><div class="rbar"><i style="width:${c / mx * 100}%"></i></div><b class="num">${c}</b></div>`).join("") : `<p class="muted">Wähle beim Notieren aus, was los war.</p>`}</div>
   <div class="sec-h"><h2>Tageszeit</h2></div><div class="card">${Object.entries(tod).map(([g, c]) => `<div class="hb"><span>${g}</span><div class="rbar"><i style="width:${c / mt * 100}%"></i></div><b class="num">${c}</b></div>`).join("")}</div>
-  <div class="sec-h"><h2>Verlauf</h2></div><div class="card">${tr.slice(-15).reverse().map(x => `<div class="logrow"><span class="lb ${x.outcome === "resisted" ? "res" : "gave"} num">${x.strength || "–"}</span><div><b>${x.outcome === "resisted" ? "Widerstanden" : "Rückfall"}</b> · ${esc(hn(x.habitId))}<div class="muted" style="font-weight:400">${new Date(x.ts).toLocaleString("de-DE", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}${(x.tags || []).length ? " · " + esc(x.tags.join(", ")) : ""}</div></div></div>`).join("")}</div>`;
+  <div class="sec-h"><h2>Verlauf</h2></div><div class="card">${tr.slice(-15).reverse().map(x => `<div class="logrow"><span class="lb ${x.outcome === "resisted" ? "res" : "gave"} num">${x.strength || "–"}</span><div><b>${x.outcome === "resisted" ? "Widerstanden" : "Rückfall"}</b> · ${esc(hn(x.habitId))}<div class="muted" style="font-weight:400">${new Date(x.ts).toLocaleString(LOC(), { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}${(x.tags || []).length ? " · " + esc(x.tags.join(", ")) : ""}</div></div></div>`).join("")}</div>`;
 }
 
 /* ============ View: Begleiter ============ */
@@ -2395,11 +2462,12 @@ function viewProfile() {
   const btn = (act, t, sub, label, cls = "ghost") => `<div class="setrow"><div><b>${t}</b><small>${sub}</small></div><button class="btn sm ${cls}" data-action="${act}">${label}</button></div>`;
   return `
   <section class="card profile-head enter"><label class="avatar" title="Profilbild ändern">${state.profile.avatar ? `<img src="${esc(state.profile.avatar)}" alt="Dein Profilbild">` : `<span class="petbox">${petSVG({ size: 90, mood: petMood() })}</span>`}<span class="cam" aria-hidden="true">${I.edit}</span><input type="file" id="avatarFile" accept="image/*" aria-label="Profilbild ändern"></label>
-    <div style="flex:1;min-width:0"><h2>${esc(titleOf(L))}</h2><div class="muted">Level ${L} · dabei seit ${parseK(state.profile.since).toLocaleDateString("de-DE", { month: "short", year: "numeric" })}</div>
+    <div style="flex:1;min-width:0"><h2>${esc(titleOf(L))}</h2><div class="muted">Level ${L} · dabei seit ${parseK(state.profile.since).toLocaleDateString(LOC(), { month: "short", year: "numeric" })}</div>
     <div class="xpbar"><i style="width:${(state.xp - b) / (n - b) * 100}%"></i></div><div class="muted num" style="font-size:.8125rem;margin-top:4px">${state.xp - b} / ${n - b} XP bis Level ${L + 1}</div></div></section>
   <div class="sec-h"><h2>Gewohnheiten</h2><button class="link" data-action="new">${I.plus} Neu</button></div>
   ${state.habits.length ? `<div class="list">${state.habits.map(h => `<button class="row" data-action="edit" data-id="${h.id}"><span class="hicon" style="--hc:${esc(h.color)}">${HI[h.icon] || I.star}</span><span class="row-t"><b>${esc(h.name)}</b><small>${h.kind === "break" ? "Abgewöhnen" : h.special === "gym" ? "Training" : "Angewöhnen"} · ${h.days.length === 7 ? "täglich" : h.days.map(d => WD[d]).join(", ")}</small></span>${I.chev}</button>`).join("")}</div>` : `<div class="card"><p class="muted" style="margin:0">Noch keine Gewohnheiten.</p></div>`}
   <div class="list sec">
+    ${link('data-action="go" data-view="fortschritt"', I.chart, "#16A34A", "Fortschritt", "Serien, Kalender, Journal und Auslöser")}
     ${link('data-action="badges"', I.trophy, "#D49500", "Abzeichen", `${got} von ${BADGES.length} freigeschaltet`)}
     ${link('data-action="go" data-view="gruppe"', I.users, "#3B82F6", "Gruppe", state.group ? esc(state.group.name) : "Rangliste mit Freunden")}
   </div>
@@ -2408,6 +2476,7 @@ function viewProfile() {
   <div class="card">
     ${sw("set-sound", state.profile.sound, "Sound", "Klänge bei Häkchen, Münzen und Level")}
     ${sw("set-haptics", state.profile.haptics, "Haptik", "Vibration bei Antippen, Erfolgen und Spielen")}
+    <div class="setrow" style="flex-wrap:wrap"><div><b>Sprache</b></div><div style="flex:1 1 100%"><div class="seg" role="group" aria-label="Sprache" data-notr>${LANGS.map(([k, n]) => `<button data-action="set-lang" data-v="${k}" aria-pressed="${(state.profile.lang || "de") === k}">${n}</button>`).join("")}</div></div></div>
     <div class="setrow" style="flex-wrap:wrap"><div><b>Erscheinungsbild</b><small>„Automatisch“ folgt der Einstellung deines Handys</small></div><div class="seg" role="group" aria-label="Erscheinungsbild" style="flex:1 1 100%">${[["auto", "Automatisch"], ["light", "Hell"], ["dark", "Dunkel"]].map(([k, l]) => `<button data-action="set-appear" data-v="${k}" aria-pressed="${(state.profile.appearance || "auto") === k}">${l}</button>`).join("")}</div></div>
     ${capP("LocalNotifications") ? `${sw("set-night", state.profile.nightRemind, "Abend-Erinnerung", state.profile.nightRemind ? "Erinnert dich, wenn abends noch etwas offen ist" : "Erinnert dich abends an Offenes")}${state.profile.nightRemind ? `<div class="setrow"><div><b>Uhrzeit</b></div><input type="time" id="nightTime" value="${esc(state.profile.nightRemind)}" style="width:auto" aria-label="Uhrzeit der Abend-Erinnerung"></div>` : ""}` : ""}
     ${sw("set-infinite", state.profile.infinite, "Unendlich Münzen", "Nur zum Testen: Münzen gehen nie aus")}
@@ -2456,13 +2525,13 @@ let draft = null;
 function draftFrom(h, tpl, kind) {
   if (h) return JSON.parse(JSON.stringify(h));
   const base = normHabit({ kind: kind || "build", color: COLORS[state.habits.length % COLORS.length] });
-  if (tpl) Object.assign(base, { name: tpl.name, icon: tpl.icon, target: tpl.target || 1, unit: tpl.unit || "", time: tpl.time || "any", cue: tpl.cue || "", action: tpl.action || "", replacement: tpl.replacement || "", money: tpl.money || 0, minutes: tpl.minutes || 0, color: tpl.color || base.color, special: tpl.special || "",
-    mode: tpl.mode || "", quick: (tpl.quick || []).slice(), wakeAt: tpl.wakeAt || base.wakeAt, grace: tpl.grace ?? base.grace, words: tpl.words || base.words, alarm: !!tpl.alarm, health: !!tpl.health });
+  if (tpl) Object.assign(base, { name: T(tpl.name), icon: tpl.icon, target: tpl.target || 1, unit: tpl.unit || "", time: tpl.time || "any", cue: T(tpl.cue || ""), action: T(tpl.action || ""), replacement: T(tpl.replacement || ""), money: tpl.money || 0, minutes: tpl.minutes || 0, color: tpl.color || base.color, special: tpl.special || "",
+    mode: tpl.mode || "", quick: (tpl.quick || []).slice(), wakeAt: tpl.wakeAt || base.wakeAt, grace: tpl.grace ?? base.grace, words: tpl.words || base.words, alarm: !!tpl.alarm, health: !!tpl.health, limit: tpl.limit || base.limit });
   base.id = null;
   return base;
 }
-function openTemplates() {
-  let kind = "build";
+function openTemplates(start) {
+  let kind = start || "build";
   const render2 = () => {
     openSheet(`${sheetHead("Neue Gewohnheit")}
       <div class="seg" role="group"><button data-action="tpl-kind" data-v="build" aria-pressed="${kind === "build"}">Angewöhnen</button><button data-action="tpl-kind" data-v="break" aria-pressed="${kind === "break"}">Abgewöhnen</button></div>
@@ -2501,7 +2570,8 @@ function editorHTML(d) {
     const gym = irow("Mit Training verknüpfen", iswitch(d.special === "gym", "f-gym", "Mit Training verknüpfen"));
     main = (gc || d.special === "vocab" ? "" : d.special === "gym" ? igrp("Ziel", gym, "Wird abgehakt, sobald du ein Workout beendest.") : modeFields(d, gym))
       + igrp("Wann", days + timeSeg + remind);
-    more = plan + diffSeg; moreNames = ["Wenn-Dann-Plan", gc ? "" : "Schwierigkeit", "Tag"];
+    const gymH = d.special === "gym"; // the workout itself is the plan
+    more = (gymH ? "" : plan) + diffSeg; moreNames = [gymH ? "" : "Wenn-Dann-Plan", gc ? "" : "Schwierigkeit", "Tag"];
   }
   return `<div class="sheet-h ed-h"><button type="button" class="tbtn" data-action="close">Abbrechen</button><h2>${d.id ? "Bearbeiten" : brk ? "Abgewöhnen" : "Angewöhnen"}</h2><button type="button" class="tbtn b" data-action="save-habit">${d.id ? "Fertig" : "Starten"}</button></div>
   <form id="hForm" class="ed" novalidate>
@@ -2537,14 +2607,15 @@ function saveHabit() {
   if (draft.remind) askNotify();
   draft.diff = clamp(Number(draft.diff) || 2, 1, 3); draft.name = name; draft.money = Math.max(0, draft.money || 0); draft.minutes = Math.max(0, draft.minutes || 0);
   const md = draft.kind === "break" || draft.special || draft.gc ? "" : draft.mode || "", lim = { timer: [1, 600], steps: [100, 100000], count: [1, 100000] }[md] || [1, 50];
+  draft.limit = clamp(Math.round(Number(draft.limit) || 120), 5, 1440);
   draft.mode = md === "check" ? "check" : md;
-  draft.target = md === "wake" || md === "journal" || md === "check" ? 1 : clamp(Math.round(draft.target || 1), lim[0], lim[1]);
+  draft.target = md === "wake" || md === "journal" || md === "check" || md === "screen" ? 1 : clamp(Math.round(draft.target || 1), lim[0], lim[1]);
   draft.quick = md === "count" ? parseQuick(draft.quickTxt != null ? draft.quickTxt : (draft.quick || []).join(","), draft.unit) : []; delete draft.quickTxt;
   draft.grace = clamp(Math.round(Number(draft.grace) || 0), 0, 180); draft.words = clamp(Math.round(Number(draft.words) || 30), 1, 1000);
   if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(draft.wakeAt || "")) draft.wakeAt = "06:30";
   if (md === "count" && !draft.unit.trim()) draft.unit = "mal";
-  const alarmKey = `${draft.wakeAt}|${draft.days.join("")}`, wantAlarm = md === "wake" && draft.alarm && platform() === "android" && draft.alarmSet !== alarmKey;
-  if (md !== "wake" || !draft.alarm) draft.alarmSet = "";
+  const alarmKey = `${draft.wakeAt}|${draft.days.join("")}`, wantAlarm = md === "wake" && draft.alarm && (platform() === "android" || !!capP("DaysAlarm")) && draft.alarmSet !== alarmKey;
+  if (md !== "wake" || !draft.alarm) { draft.alarmSet = ""; if (draft.alarmId && capP("DaysAlarm")) capP("DaysAlarm").cancel({ id: draft.alarmId }).catch(() => {}); draft.alarmId = ""; }
   if (draft.id) { const i = state.habits.findIndex(h => h.id === draft.id), nh = normHabit(draft); rescaleLog(state.habits[i], nh); if (state.timer && state.timer.id === nh.id && md !== "timer") state.timer = null; state.habits[i] = nh; toast("Gespeichert"); }
   else { draft.id = uid(); draft.start = todayK(); draft.quitStart = Date.now(); state.habits.push(normHabit(draft)); toast(`Los geht's: Tag 1 von „${name}“!`); burst(innerWidth / 2, innerHeight * .4, 80); sfx("bonus"); }
   evaluateBadges(); save();
@@ -2691,7 +2762,7 @@ function obDots() { return `<div class="dots">${[0, 1, 2, 3, 4].map(i => `<i cla
 function drawOb() {
   let body = "";
   if (ob.step === 0) {
-    body = `<div class="grow">${ob.hatched ? `<div class="ob-pet">${petSVG({ size: 200, mood: "happy", color: ob.color, level: 1, eq: {} })}</div><h1>Hallo! Ich bin dein Begleiter.</h1><p>Ich wachse mit jeder Gewohnheit, die du durchziehst. Gemeinsam schaffen wir deine ersten 21 Tage.</p>`
+    body = `<div class="seg" role="group" aria-label="Sprache" data-notr>${LANGS.map(([k, n]) => `<button data-action="set-lang" data-v="${k}" aria-pressed="${(state.profile.lang || "de") === k}">${n}</button>`).join("")}</div><div class="grow">${ob.hatched ? `<div class="ob-pet">${petSVG({ size: 200, mood: "happy", color: ob.color, level: 1, eq: {} })}</div><h1>Hallo! Ich bin dein Begleiter.</h1><p>Ich wachse mit jeder Gewohnheit, die du durchziehst. Gemeinsam schaffen wir deine ersten 21 Tage.</p>`
       : `<svg class="egg" id="egg" viewBox="0 0 180 210" data-action="hatch" role="button" aria-label="Ei antippen"><ellipse cx="90" cy="200" rx="60" ry="8" fill="rgba(0,0,0,.12)"/><path d="M90 10 C140 10 165 90 165 130 C165 175 130 200 90 200 C50 200 15 175 15 130 C15 90 40 10 90 10z" fill="#FFF6E5" stroke="#F2D9A8" stroke-width="4"/><circle cx="60" cy="80" r="10" fill="${ob.color}" opacity=".6"/><circle cx="118" cy="120" r="14" fill="${ob.color}" opacity=".6"/><circle cx="70" cy="150" r="8" fill="${ob.color}" opacity=".6"/><circle cx="120" cy="60" r="6" fill="${ob.color}" opacity=".6"/></svg>
       <h1>Willkommen bei 21 Days</h1><p>Hier schlüpft gleich dein Begleiter. Tippe auf das Ei!</p>`}</div>
       <div class="foot">${ob.hatched ? `<button class="btn full" data-action="ob-next">Weiter</button>` : `<button class="btn full" data-action="hatch">Ei ausbrüten</button>`}<button class="link" data-action="ob-skip" style="margin-top:12px">Überspringen und App erkunden</button></div>`;
@@ -2727,10 +2798,12 @@ function drawOb() {
 
 // Rundgang: hebt nacheinander hervor, wo man was findet.
 const TOUR = [
-  ["#topbar .tb-add", "Hier legst du neue Gewohnheiten an: angewöhnen oder abgewöhnen, mit Vorlagen und Tipps."],
-  ['#nav [data-view="fortschritt"]', "Unter Fortschritt siehst du Serien, Kalender und dein Tagebuch."],
+  ["#topbar .tb-add", "Mit dem Plus legst du auf jedem Reiter etwas Neues an, mit Vorlagen und Tipps."],
+  ['#nav [data-view="heute"]', "Täglich: deine Gewohnheiten für heute, Quests und Challenges."],
+  ['#nav [data-view="abgewoehnen"]', "Abgewöhnen: was du loswerden willst, mit SOS-Hilfe bei Drang."],
+  ['#nav [data-view="todos"]', "To-Dos: einmalige Aufgaben mit Fälligkeit und Checkliste."],
   ['#nav [data-view="begleiter"]', "Hier wohnt dein Begleiter. Füttern, Pflegen, Minispiele und den Shop findest du hier."],
-  ['#nav [data-view="profil"]', "Im Profil: Gruppe mit Freunden, Abzeichen, dein Profilbild und die Einstellungen."]
+  ['#nav [data-view="profil"]', "Im Menü: Fortschritt, Gruppe, Abzeichen, Profilbild und Einstellungen."]
 ];
 let tourI = -1;
 function startTour() { if (view !== "heute") { location.hash = "heute"; } tourI = 0; setTimeout(drawTour, 250); }
@@ -2761,6 +2834,7 @@ function tapHabit(id, btn, plain) {
   if (md === "journal") { openJournalFor(h); return true; }
   if (md === "steps") { openDetail(h.id); healthSync(false); return true; }
   if (md === "wake") { wakeCheck(h, btn); return; }
+  if (md === "screen") { openScreen(h); return; }
   if (md === "count" && !wasDone) { addAmount(h, quickOf(h)[0], btn); return; }
   if (wasDone && h.target === 1) {
     const x = h.xp[t] || 0; delete h.log[t]; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); sfx("undo");
@@ -3070,7 +3144,7 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && pk) closeP
 const PROMPTS = ["Was hat heute geholfen?", "Was war schwierig?", "Worauf bin ich stolz?", "Was mache ich morgen anders?", "Wofür bin ich dankbar?"];
 let jdraft = null, jFilter = "";
 const jEntries = habitId => state.journal.filter(e => !habitId || e.habitId === habitId).sort((a, b) => b.ts - a.ts);
-const fmtJDay = k => k === todayK() ? "Heute" : k === addDays(todayK(), -1) ? "Gestern" : parseK(k).toLocaleDateString("de-DE", { weekday: "short", day: "numeric", month: "short" });
+const fmtJDay = k => k === todayK() ? "Heute" : k === addDays(todayK(), -1) ? "Gestern" : parseK(k).toLocaleDateString(LOC(), { weekday: "short", day: "numeric", month: "short" });
 const jRow = (e, showDay = true) => `<button class="jrow" data-action="j-open" data-id="${e.id}"><div class="jmeta muted">${showDay ? `<span>${fmtJDay(e.day)}</span>` : ""}${e.hname ? `<span class="pill">${esc(e.hname)}</span>` : ""}${e.mood ? `<span class="jmood" aria-label="Stimmung ${e.mood} von 5">${FACE(e.mood)}</span>` : ""}</div><div class="jtext">${esc(e.text)}</div></button>`;
 function journalCard(h) {
   const es = jEntries(h.id), n = es.length;
@@ -3126,11 +3200,11 @@ function saveJournal() {
 // h.mode: "" (alt: Abhaken oder Menge je nach Ziel), count (Menge mit Schnell-Buttons), timer (Minuten mit Timer),
 // wake (Aufstehen bis Uhrzeit + Puffer), journal (Tagebuch mit Mindest-Wörtern), steps (Schritte aus Health, Kurzbefehl oder Eingabe).
 // h.log[Tag] ist immer die Menge des Tages (Minuten, Schritte, ml …); erledigt = log >= target. Wake und Journal haben target 1.
-const MODES = { check: "Abhaken", count: "Menge", timer: "Timer", wake: "Aufstehen", journal: "Tagebuch", steps: "Schritte" };
+const MODES = { check: "Abhaken", count: "Menge", timer: "Timer", wake: "Aufstehen", journal: "Tagebuch", steps: "Schritte", screen: "Handyzeit" };
 const UNITS = ["Gläser", "ml", "Seiten", "Portionen", "Wdh.", "km", "Kapitel"];
 const modeOf = h => h.kind === "break" || h.special ? "check" : h.gc ? (h.target > 1 ? "count" : "check") : h.mode || (h.target > 1 ? "count" : "check");
-const fmtN = n => Math.round(n).toLocaleString("de-DE");
-const fmtK = n => n < 1000 ? String(Math.round(n)) : n < 10000 ? (Math.floor(n / 100) / 10).toLocaleString("de-DE") + "k" : Math.floor(n / 1000) + "k";
+const fmtN = n => Math.round(n).toLocaleString(LOC());
+const fmtK = n => n < 1000 ? String(Math.round(n)) : n < 10000 ? (Math.floor(n / 100) / 10).toLocaleString(LOC()) + "k" : Math.floor(n / 1000) + "k";
 const fmtClock = ms => { const s = Math.max(0, Math.round(ms / 1000)); return s >= 3600 ? `${Math.floor(s / 3600)}:${pad(Math.floor(s % 3600 / 60))}:${pad(s % 60)}` : `${Math.floor(s / 60)}:${pad(s % 60)}`; };
 const defQuick = u => u === "ml" ? [250, 500] : u === "Seiten" ? [1, 5, 10] : u === "km" ? [1] : [1];
 const quickOf = h => h.quick && h.quick.length ? h.quick : defQuick(h.unit);
@@ -3149,6 +3223,7 @@ function modeMeta(h, c) {
   if (m === "steps") return `<span class="num">${fmtN(c)}/${fmtN(h.target)} Schritte</span>`;
   if (m === "wake") return h.woke && h.woke[t] ? `<span class="num">${isDone(h, t) ? "wach um" : "zu spät:"} ${h.woke[t]}</span>` : `<span class="num">Ziel ${esc(h.wakeAt)}</span>`;
   if (m === "journal") return `<span class="num">${Math.min(jWordsToday(h), 9999)}/${h.words} Wörter</span>`;
+  if (m === "screen") { const u = (h.scr || {})[t]; return u == null ? `<span class="num">Limit ${h.limit} Min</span>` : `<span class="num ${u > h.limit ? "overdue" : ""}">${u}/${h.limit} Min</span>`; }
   return h.target > 1 ? `<span class="num">${c}/${h.target} ${esc(h.unit)}</span>` : "";
 }
 function modeInner(h, c, done) {
@@ -3159,6 +3234,7 @@ function modeInner(h, c, done) {
   if (m === "steps") return c ? `<span class="cnt num">${fmtK(c)}</span>` : HI.shoe;
   if (m === "wake") return I.alarm;
   if (m === "journal") return HI.pen;
+  if (m === "screen") { const u = (h.scr || {})[todayK()]; return u == null ? HI.phone : `<span class="cnt num">${u}</span>`; }
   return h.target > 1 ? `<span class="cnt num">${c}/${h.target}</span>` : I.check;
 }
 function modeAria(h, c, done) {
@@ -3168,6 +3244,7 @@ function modeAria(h, c, done) {
   if (m === "steps") return `${fmtN(c)} von ${fmtN(h.target)} Schritten, Schritte eintragen`;
   if (m === "wake") return done ? "erledigt, tippen zum Rückgängig machen" : "Ich bin wach";
   if (m === "journal") return done ? "erledigt, Tagebuch öffnen" : "Tagebuch schreiben";
+  if (m === "screen") return done ? "im Limit geblieben, Bildschirmzeit ansehen" : "Bildschirmzeit eintragen";
   return null;
 }
 // Sets today's amount and runs the right feedback: completion, undo or a small tick.
@@ -3274,11 +3351,20 @@ function wakeFromUrl() {
   if (view !== "heute") { location.hash = "heute"; }
   setTimeout(() => wakeCheck(h, null), 300);
 }
+// iPhone ab iOS 26: echter Wecker über AlarmKit (Plugin DaysAlarm), klingelt auch im Lautlos-Modus.
 // Android: echter Wecker in der Uhr-App (Plugin DaysWidget.setAlarm). Wochentage für AlarmClock: So=1 … Sa=7.
 async function setPhoneAlarm(h, silent) {
+  const [H, M] = h.wakeAt.split(":").map(Number), A = capP("DaysAlarm");
+  if (A && platform() === "ios") {
+    try {
+      const r = await A.set({ id: h.alarmId || "", hour: H, minute: M, days: h.days, label: h.name });
+      h.alarmId = r.id; h.alarmSet = `${h.wakeAt}|${h.days.join("")}`; save();
+      if (!silent) toast(`Wecker für ${h.wakeAt} gestellt. Er klingelt auch im Lautlos-Modus.`);
+      return true;
+    } catch (e) { if (!silent) toast(e && e.code === "denied" ? "Ohne Erlaubnis kann 21 Days keinen Wecker stellen. Erlauben unter Einstellungen → 21 Days." : "Der echte Wecker braucht iOS 26 oder neuer."); return false; }
+  }
   const W = capP("DaysWidget");
   if (!W || platform() !== "android") return false;
-  const [H, M] = h.wakeAt.split(":").map(Number);
   try {
     await W.setAlarm({ hour: H, minute: M, days: h.days.map(d => d === 6 ? 1 : d + 2), label: `21 Days: ${h.name}` });
     h.alarmSet = `${h.wakeAt}|${h.days.join("")}`; save();
@@ -3294,6 +3380,38 @@ function wakeIcs(h) {
   const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" })); a.download = "21days-wecker.ics"; document.body.appendChild(a); a.click();
   setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
   toast("Kalender-Datei geladen. Öffnen und in den Kalender übernehmen.");
+}
+
+/* ---- Handyzeit ---- */
+// h.scr[Tag] = Minuten Bildschirmzeit, h.limit = Tageslimit. Geschafft (log 1) ab 20 Uhr, wenn der Wert unter dem Limit liegt; drüber nimmt den Haken zurück.
+const SCREEN_HOUR = 20;
+function setScreen(h, min, quiet) {
+  const t = todayK(); h.scr = h.scr || {}; h.scr[t] = Math.max(0, Math.round(min));
+  const ok = h.scr[t] <= h.limit, late = new Date().getHours() >= SCREEN_HOUR;
+  if (!ok && isDone(h, t)) { setProgress(h, 0, null, true); if (!quiet) toast(`Limit überschritten: ${h.scr[t]} von ${h.limit} Min.`); return; }
+  if (ok && late && !isDone(h, t) && sched(h, t)) { setProgress(h, 1, null); return; }
+  save(); render();
+  if (!quiet) toast(ok ? (late ? "Gespeichert" : `Noch ${h.limit - h.scr[t]} Min übrig. Ab ${SCREEN_HOUR} Uhr zählt der Tag.`) : `Über dem Limit: ${h.scr[t]} von ${h.limit} Min.`);
+}
+async function screenRead(silent) {
+  const W = capP("DaysWidget"), t = todayK(), hs = state.habits.filter(h => modeOf(h) === "screen" && sched(h, t));
+  if (!hs.length || !W || platform() !== "android") return null;
+  try {
+    const r = await W.usage();
+    if (!r.granted) { if (!silent) { toast("Erlaube 21 Days den Nutzungszugriff, dann liest die App deine Bildschirmzeit."); W.openUsageSettings().catch(() => {}); } return null; }
+    hs.forEach(h => setScreen(h, r.minutes, true)); return r.minutes;
+  } catch (e) { return null; }
+}
+function openScreen(h) {
+  const t = todayK(), u = (h.scr || {})[t], over = u != null && u > h.limit, auto = platform() === "android" && capP("DaysWidget");
+  openSheet(`${sheetHead(h.name)}
+    <div class="card" style="--hc:${esc(h.color)}"><b>Heute</b><div class="big-num num" style="${over ? "color:var(--bad)" : ""}">${u == null ? "–" : u} <small>/ ${h.limit} Min</small></div>
+      <div class="mode-bar"><i style="width:${u == null ? 0 : Math.min(100, u / h.limit * 100)}%;${over ? "background:var(--bad)" : ""}"></i></div>
+      <p class="muted" style="margin:10px 0 0">${u == null ? "Noch nichts eingetragen." : over ? `${u - h.limit} Min über dem Limit.` : `Noch ${h.limit - u} Min im Limit.`} Ab ${SCREEN_HOUR} Uhr zählt der Tag als geschafft, wenn du unter dem Limit bleibst.</p>
+      ${auto ? `<div class="qbtns"><button class="btn sm" data-action="scr-read" data-id="${h.id}">${HI.phone} Bildschirmzeit lesen</button></div>` : ""}
+      <div class="row2" style="grid-template-columns:1fr auto;align-items:end;margin-top:12px"><div class="field" style="margin:0"><label for="scrIn">Minuten heute</label><input type="number" id="scrIn" min="0" max="1440" inputmode="numeric" placeholder="${u == null ? "z. B. 95" : u}"></div><button class="btn sm ghost" data-action="scr-set" data-id="${h.id}" style="height:48px">Eintragen</button></div>
+      ${platform() === "ios" ? `<details class="how"><summary>Wo finde ich meine Bildschirmzeit?</summary><ol><li>Einstellungen → <b>Bildschirmzeit</b> → <b>Alle Aktivitäten anzeigen</b>: Dort steht die Zeit von heute.</li><li>Ein echtes Limit stellst du unter <b>App-Limits</b> ein. Das iPhone sperrt die Apps dann selbst.</li></ol></details>` : ""}
+    </div>`);
 }
 
 /* ---- Schritte ---- */
@@ -3375,6 +3493,7 @@ function modePanel(h) {
       <div class="wk7" style="height:auto;align-items:center" aria-label="Aufstehzeiten der letzten 7 Tage">${times}</div>
       <div class="sec-h" style="margin-top:16px"><h2 style="font-size:1rem">Wecker</h2></div>
       ${ap === "android" && capP("DaysWidget") ? `<p class="muted" style="margin:0 0 8px;font-weight:500">${h.alarmSet ? `In der Uhr-App gestellt (${esc(h.alarmSet.split("|")[0])}).` : "Stellt einen echten Wecker in deiner Uhr-App, an deinen geplanten Tagen."}</p><button class="btn sm ghost" data-action="wake-alarm" data-id="${h.id}">${I.alarm} ${h.alarmSet ? "Erneut stellen" : "Wecker stellen"}</button>`
+      : ap === "ios" && capP("DaysAlarm") ? `<p class="muted" style="margin:0 0 8px;font-weight:500">${h.alarmSet ? `Echter Wecker für ${esc(h.alarmSet.split("|")[0])} gestellt. Er klingelt auch im Lautlos-Modus.` : "Stellt einen echten Wecker, der wie die Uhr-App klingt, auch im Lautlos-Modus."}</p><button class="btn sm ghost" data-action="wake-alarm" data-id="${h.id}">${I.alarm} ${h.alarmSet ? "Erneut stellen" : "Wecker stellen"}</button>`
       : ap === "ios" ? `<p class="muted" style="margin:0 0 6px;font-weight:500">${h.alarm ? `Du bekommst um ${esc(h.wakeAt)} eine Mitteilung. Tippst du darauf, zählt das als „Ich bin wach“.` : "Schalte im Editor „Wecker“ ein, dann kommt zur Weckzeit eine Mitteilung."} Einen lauten Wecker kann nur die Uhr-App stellen.</p>
         <details class="how"><summary>Automatisch abhaken, wenn du den Wecker ausmachst</summary><ol><li>Stelle in der Uhr-App einen Wecker für ${esc(h.wakeAt)}.</li><li>Kurzbefehle → Automation → <b>+</b> → <b>Wecker</b> → <b>Wird gestoppt</b> → <b>Sofort ausführen</b>.</li><li>Aktion <b>URL öffnen</b>: <span class="mono">days21://wake</span></li></ol></details>`
       : `<p class="muted" style="margin:0 0 8px;font-weight:500">Im Browser kann 21 Days keinen Wecker stellen. Hol dir die Weckzeit als wiederkehrenden Kalender-Termin mit Alarm.</p><button class="btn sm ghost" data-action="wake-ics" data-id="${h.id}">${I.alarm} Kalender-Wecker (.ics)</button>`}
@@ -3403,7 +3522,11 @@ function modeFields(d, gym) {
   if (m === "timer") { r += irow("Minuten pro Tag", inum("fTarget", "target", d.target, 1, 600, 1), "fTarget"); foot = "Mit eingebautem Timer und Gong am Ziel. Minuten lassen sich auch nachtragen."; }
   if (m === "wake") {
     r += irow("Aufstehen um", `<input type="time" class="it" id="fWake" data-f="wakeAt" value="${esc(d.wakeAt)}">`, "fWake") + irow("Puffer", inum("fGrace", "grace", d.grace, 0, 180, 5, "Min."), "fGrace") + irow("Wecker", iswitch(d.alarm, "f-alarm", "Wecker"));
-    foot = `Zählt, wenn du bis Weckzeit plus Puffer auf „Ich bin wach“ tippst. Wecker: ${ap === "android" && app ? "stellt einen echten Wecker in deiner Uhr-App." : ap === "ios" ? "Mitteilung zur Weckzeit, Antippen zählt als wach." : "im Browser als Kalender-Termin mit Alarm."}`;
+    foot = `Zählt, wenn du bis Weckzeit plus Puffer auf „Ich bin wach“ tippst. Wecker: ${ap === "android" && app ? "stellt einen echten Wecker in deiner Uhr-App." : ap === "ios" ? (capP("DaysAlarm") ? "ein echter Wecker, der auch im Lautlos-Modus klingelt (ab iOS 26)." : "Mitteilung zur Weckzeit, Antippen zählt als wach.") : "im Browser als Kalender-Termin mit Alarm."}`;
+  }
+  if (m === "screen") {
+    r += irow("Tageslimit", inum("fLimit", "limit", d.limit || 120, 5, 1440, 5, "Min."), "fLimit");
+    foot = ap === "android" ? "21 Days liest deine Bildschirmzeit automatisch, sobald du einmal den Nutzungszugriff erlaubst. Bleibst du abends unter dem Limit, ist der Tag geschafft." : ap === "ios" ? "Das iPhone gibt die Bildschirmzeit nicht an Apps weiter. Trag sie abends aus Einstellungen → Bildschirmzeit ein. Ein hartes Limit stellst du dort unter App-Limits ein." : "Trag deine Bildschirmzeit abends ein. Bleibst du unter dem Limit, ist der Tag geschafft.";
   }
   if (m === "journal") { r += irow("Wörter pro Tag", inum("fWords", "words", d.words, 1, 1000, 1), "fWords"); foot = "Abgehakt wird, sobald deine Tagebuch-Einträge des Tages lang genug sind."; }
   if (m === "steps") {
@@ -3449,7 +3572,7 @@ function delTag(v) {
   if (tagFilter === v) tagFilter = ""; save(); render();
 }
 const newTodo = () => ({ id: null, name: "", due: "", diff: 2, tag: "", checklist: [], done: false, doneAt: "", xp: 0, created: todayK() });
-const fmtDue = k => k === todayK() ? "heute" : k === addDays(todayK(), 1) ? "morgen" : parseK(k).toLocaleDateString("de-DE", { weekday: "short", day: "numeric", month: "short" });
+const fmtDue = k => k === todayK() ? "heute" : k === addDays(todayK(), 1) ? "morgen" : parseK(k).toLocaleDateString(LOC(), { weekday: "short", day: "numeric", month: "short" });
 function todoCard(t, i) {
   const ov = !t.done && t.due && t.due < todayK(), cd = t.checklist.filter(c => c.done).length;
   const meta = `${t.due ? `<span class="${ov ? "overdue" : ""}">${ov ? "Überfällig · " : "Fällig "}${fmtDue(t.due)}</span>` : ""}${t.checklist.length ? `<span class="num">${cd}/${t.checklist.length} erledigt</span>` : ""}${itemBadges(t)}`;
@@ -3868,7 +3991,7 @@ const exById = id => EXERCISES.find(e => e.id === id) || state.gym.custom.find(e
 const allRoutines = () => state.gym.routines.concat(ROUTINES);
 const numF = v => { const n = parseFloat(String(v).replace(",", ".")); return isFinite(n) && n > 0 ? Math.min(n, 9999) : 0; };
 const nf = v => v ? String(Math.round(v * 100) / 100).replace(".", ",") : "";
-const big = v => Math.round(v).toLocaleString("de-DE");
+const big = v => Math.round(v).toLocaleString(LOC());
 // One number per set to compare sets of the same exercise: estimated one-rep max (Epley) for weights, else reps, seconds or distance.
 const setScore = (ty, s) => ty === "t" ? s.r : ty === "c" ? (s.w || s.r / 1000) : ty === "b" ? (s.w ? 1000 + s.w * (1 + s.r / 30) : s.r) : s.w * (1 + s.r / 30);
 const setVol = (ty, s) => ty === "w" || ty === "b" ? s.w * s.r : 0;
@@ -4100,15 +4223,16 @@ function saveRoutineDraft() {
 // Exercise picker, info, custom exercises
 function exListHTML() {
   const q = exPick.q.trim().toLowerCase(), used = {}; state.gym.sessions.forEach(s => s.items.forEach(i => { used[i.ex] = (used[i.ex] || 0) + 1; }));
-  const list = allEx().filter(e => (!exPick.m || e.m === exPick.m) && (!q || e.n.toLowerCase().includes(q) || e.m.toLowerCase().includes(q) || EQUIP[e.eq].toLowerCase().includes(q))).sort((a, b) => (used[b.id] || 0) - (used[a.id] || 0) || a.n.localeCompare(b.n, "de"));
+  const bw = e => e.eq === "KG" || e.eq === "B" || !!CAL_LV[e.id], list = allEx().filter(e => (!exPick.place || e.m === "Cardio" || (exPick.place === "cali") === bw(e)) && (!exPick.m || e.m === exPick.m) && (!q || e.n.toLowerCase().includes(q) || e.m.toLowerCase().includes(q) || EQUIP[e.eq].toLowerCase().includes(q))).sort((a, b) => (used[b.id] || 0) - (used[a.id] || 0) || a.n.localeCompare(b.n, "de"));
   const inR = exPick.mode === "routine" && rdraft ? new Set(rdraft.ex) : null;
   return list.map(e => `<button class="row" data-action="gy-pick" data-id="${e.id}"><span class="row-t"><b>${esc(e.n)}</b><small>${esc(e.m)} · ${EQUIP[e.eq]}${CAL_LV[e.id] ? ` · ${LVN[CAL_LV[e.id]]}` : ""}${used[e.id] ? ` · ${used[e.id]}× trainiert` : ""}</small></span>${inR && inR.has(e.id) ? I.check : exPick.mode === "info" ? I.chev : I.plus}</button>`).join("") || `<p class="muted" style="margin:0;padding:16px">Nichts gefunden. Leg unten eine eigene Übung an.</p>`;
 }
 function openExPicker(mode, keep) {
-  if (!keep) exPick = { q: "", m: "", mode };
+  if (!keep) exPick = { q: "", m: "", mode, place: (state.gym.setup || {}).place || "" };
   const full = mode === "add";
   openSheet(`${backHead(mode === "add" ? "Übung hinzufügen" : mode === "routine" ? "Übung zur Routine" : "Übungen", mode === "add" ? "workout" : mode === "routine" ? "editor" : "panel")}
     <input type="search" id="exQ" value="${esc(exPick.q)}" placeholder="Suchen, z. B. Bankdrücken" aria-label="Übung suchen" autocomplete="off">
+    <div class="seg" role="group" aria-label="Trainingsart" style="margin-top:10px">${[["", "Alle"], ["gym", "Gym"], ["cali", "Calisthenics"]].map(([k, l]) => `<button data-action="gy-place" data-v="${k}" aria-pressed="${(exPick.place || "") === k}">${l}</button>`).join("")}</div>
     <div class="tagbar" role="group" aria-label="Nach Muskelgruppe filtern"><button class="opt" data-action="gy-m" data-v="" aria-pressed="${!exPick.m}">Alle</button>${MUSCLES.map(m => `<button class="opt" data-action="gy-m" data-v="${m}" aria-pressed="${exPick.m === m}">${m}</button>`).join("")}</div>
     <div class="list" id="exList" style="margin-top:10px">${exListHTML()}</div>
     <button class="btn ghost full sec" data-action="gy-custom">${I.plus} Eigene Übung anlegen</button>`, { full, locked: full, reset: true });
@@ -4220,6 +4344,7 @@ function gymAction(a, b, id) {
     case "gy-del-routine": if (del("Wirklich löschen?")) { state.gym.routines = state.gym.routines.filter(r => r.id !== id); rdraft = null; save(); toast("Routine gelöscht"); backToPanel(); } break;
     case "gy-lib": openExPicker("info"); break;
     case "gy-add": leaveWk(); openExPicker("add"); break;
+    case "gy-place": exPick.place = b.dataset.v; $$('[data-action="gy-place"]').forEach(x => x.setAttribute("aria-pressed", x === b)); $("#exList").innerHTML = exListHTML(); break;
     case "gy-m": exPick.m = b.dataset.v; $$('[data-action="gy-m"]').forEach(x => x.setAttribute("aria-pressed", x === b)); $("#exList").innerHTML = exListHTML(); break;
     case "gy-pick": pickExercise(id); break;
     case "gy-addex": exPick.mode = "add"; pickExercise(id); break;
@@ -4291,7 +4416,7 @@ function quickRow() {
   return q.length ? `<div class="quick enter" style="--i:1">${q.join("")}</div>` : "";
 }
 function playRecap(reward) {
-  const ws = recapWeek(), r = recapData(ws), rate = r.p ? Math.round(r.d / r.p * 100) : 0, dm = k => parseK(k).toLocaleDateString("de-DE", { day: "numeric", month: "short" });
+  const ws = recapWeek(), r = recapData(ws), rate = r.p ? Math.round(r.d / r.p * 100) : 0, dm = k => parseK(k).toLocaleDateString(LOC(), { day: "numeric", month: "short" });
   const title = rate >= 90 ? "Unaufhaltsam" : rate >= 70 ? "Dranbleiber" : rate >= 40 ? "Auf Kurs" : "Neustarter";
   pushOverlay({ kicker: `Wochenrückblick · ${dm(ws)} bis ${dm(addDays(ws, 6))}`, big: rate + "%", title: "deiner Gewohnheiten geschafft", sub: `${r.d} von ${r.p} Häkchen · ${r.perfect} ${r.perfect === 1 ? "perfekter Tag" : "perfekte Tage"}`, color: "#FFC53D", sound: "streak" });
   const extra = [r.words ? `${r.words} neue Wörter` : "", r.jr ? `${r.jr} ${r.jr === 1 ? "Tagebuch-Eintrag" : "Tagebuch-Einträge"}` : ""].filter(Boolean).join(" · ");
@@ -4779,12 +4904,14 @@ document.addEventListener("click", e => {
     case "tm-stop": tmFinish(false); break;
     case "tm-discard": if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Sitzung wirklich verwerfen?"; break; } state.timer = null; save(); closeSheet(); render(); toast("Sitzung verworfen"); break;
     case "wake-now": { const h = state.habits.find(x => x.id === id); if (h) { closeSheet(); setTimeout(() => wakeCheck(h, null), 250); } break; }
+    case "scr-set": { const h = state.habits.find(x => x.id === id), v = Number(($("#scrIn") || {}).value); if (h && $("#scrIn").value !== "" && v >= 0) { setScreen(h, v); openScreen(h); } break; }
+    case "scr-read": { const h = state.habits.find(x => x.id === id); screenRead(false).then(m => { if (m != null && h) { toast(`Bildschirmzeit heute: ${m} Min`); openScreen(h); } }); break; }
     case "wake-alarm": { const h = state.habits.find(x => x.id === id); if (h) setPhoneAlarm(h, false).then(ok => { if (ok) openDetail(id); }); break; }
     case "wake-ics": { const h = state.habits.find(x => x.id === id); if (h) wakeIcs(h); break; }
     case "health-sync": healthSync(true).then(() => { const sh = $("#modalRoot .sheet"); const hid = sh && sh.querySelector('[data-action="steps-set"]'); if (hid) openDetail(hid.dataset.id); }); break;
     case "f-alarm": syncDraft(); draft.alarm = !draft.alarm; rerenderEditor(); break;
     case "f-health": syncDraft(); draft.health = !draft.health; rerenderEditor(); break;
-    case "new": openTemplates(); break;
+    case "new": openTemplates(b.dataset.v === "break" ? "break" : "build"); break;
     case "tpl-kind": openTemplates.setKind(b.dataset.v); break;
     case "tpl": { const k = b.dataset.kind, t = TEMPLATES[k][Number(b.dataset.i)]; openTips(t, () => openEditor(draftFrom(null, t, k))); break; }
     case "tip-go": { const f = tipNext; tipNext = null; if (f) f(); else closeSheet(); break; }
@@ -4806,6 +4933,7 @@ document.addEventListener("click", e => {
     case "gs-skip": takePlan(false); break;
     case "del-habit":
       if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Wirklich löschen?"; break; }
+      { const dh = state.habits.find(h => h.id === id); if (dh && dh.alarmId && capP("DaysAlarm")) capP("DaysAlarm").cancel({ id: dh.alarmId }).catch(() => {}); }
       state.habits = state.habits.filter(h => h.id !== id); save(); closeSheet(); render(); toast("Gewohnheit gelöscht"); break;
     case "close": closeSheet(); if (!state.profile.onboarded && store.mode !== "loading") drawOb(); break;
     case "close-reward": closeSheet(); if (pendingLevel) setTimeout(showLevelUp, 200); break;
@@ -4932,6 +5060,7 @@ document.addEventListener("click", e => {
     case "set-night": if (state.profile.nightRemind) { state.profile.nightRemind = ""; save(); render(); } else askNotify().then(ok => { if (ok) { state.profile.nightRemind = "20:00"; save(); render(); } }); break;
     case "set-infinite": state.profile.infinite = !state.profile.infinite; b.setAttribute("aria-checked", state.profile.infinite); save(); renderTopbar(); toast(state.profile.infinite ? "Münzen gehen jetzt nie aus" : "Normale Münzen"); break;
     case "set-haptics": state.profile.haptics = !state.profile.haptics; b.setAttribute("aria-checked", state.profile.haptics); save(); vibrate([30, 40, 30]); break;
+    case "set-lang": state.profile.lang = b.dataset.v; setLang(b.dataset.v); save(); if ($(".ob")) drawOb(); else render(); break;
     case "set-appear": state.profile.appearance = b.dataset.v; save(); render(); break;
     case "avatar-del": state.profile.avatar = ""; save(); render(); toast("Profilbild entfernt"); break;
     case "set-sound": state.profile.sound = !state.profile.sound; b.setAttribute("aria-checked", state.profile.sound); save(); sfx("tap"); break;
@@ -5044,7 +5173,7 @@ function freezeNotice(fr) {
 }
 
 /* ============ Routing & boot ============ */
-const VIEWS = ["heute", "fortschritt", "begleiter", "gruppe", "profil"];
+const VIEWS = ["heute", "abgewoehnen", "todos", "fortschritt", "begleiter", "gruppe", "profil"];
 function route() { if (location.hash.startsWith("#join=")) { handleJoinUrl(location.hash); return; }
   if (/^#(wake|steps=\d+)$/.test(location.hash)) { const hh = location.hash; history.replaceState(null, "", "#heute"); view = "heute"; render(); handleAppUrl(hh); return; } const h = location.hash.slice(1); view = VIEWS.includes(h) ? h : "heute"; animateNext = true; if (store.mode !== "loading") render(); window.scrollTo(0, 0); }
 addEventListener("hashchange", route);
@@ -5074,7 +5203,7 @@ function startLocal(cached, notice) {
 function init() {
   render();
   startLocal(loadCached(), "");
-  deviceSync();
+  deviceSync(); screenRead(true);
 }
 let installEvt = null;
 addEventListener("beforeinstallprompt", e => { e.preventDefault(); installEvt = e; if (view === "profil") render(); });
@@ -5096,7 +5225,7 @@ if (CapApp) { // invite links that open the app: days21://join/CODE
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) return;
   if ($("#wk")) wake(true); // the browser drops the wake lock whenever the app is hidden
-  dayTick(); syncGroup(); deviceSync(); if (view === "gruppe" || view === "heute") loadBoard();
+  dayTick(); syncGroup(); deviceSync(); screenRead(true); if (view === "gruppe" || view === "heute") loadBoard();
   if (state.timer) tmTick(); healthSync(false);
   if (!$(".back") && !$(".overlay")) render();
 });
