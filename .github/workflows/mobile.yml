@@ -40,7 +40,8 @@ jobs:
           M=android/app/src/main/AndroidManifest.xml
           perl -0pi -e 's/<activity\b/<activity android:screenOrientation="portrait"/' "$M"
           perl -0pi -e 's#</activity>#<intent-filter><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.DEFAULT"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="days21"/></intent-filter></activity>#' "$M"
-          perl -0pi -e 's#<application#<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>\n    <application#' "$M"
+          perl -0pi -e 's#<application#<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>\n    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>\n    <application#' "$M"
+          grep -c 'PACKAGE_USAGE_STATS' "$M"
           grep -c 'days21' "$M"
           grep -c 'SET_ALARM' "$M"
 
@@ -121,6 +122,18 @@ jobs:
           <plist version="1.0"><dict><key>com.apple.developer.healthkit</key><true/><key>com.apple.developer.healthkit.access</key><array/></dict></plist>
           PLIST
           plutil -lint "$RUNNER_TEMP/App.entitlements"
+
+      - name: Echter Wecker (AlarmKit, native/ios) einbauen
+        run: |
+          cp native/ios/*.swift ios/App/App/
+          sudo gem install xcodeproj --no-document
+          ruby -e 'require "xcodeproj"; p = Xcodeproj::Project.open("ios/App/App.xcodeproj"); t = p.targets.find { |x| x.name == "App" }; g = p.main_group["App"]; %w[DaysAlarmPlugin.swift DaysViewController.swift].each { |f| t.add_file_references([g.new_reference(f)]) unless g.files.any? { |r| r.path == f } }; t.build_configurations.each { |c| c.build_settings["OTHER_LDFLAGS"] = [c.build_settings["OTHER_LDFLAGS"] || "$(inherited)"].flatten + ["-weak_framework", "AlarmKit"] }; p.save'
+          grep -c 'DaysAlarmPlugin.swift' ios/App/App.xcodeproj/project.pbxproj
+          perl -pi -e 's/customClass="CAPBridgeViewController" customModule="Capacitor"/customClass="DaysViewController" customModule="App" customModuleProvider="target"/' ios/App/App/Base.lproj/Main.storyboard
+          grep -c 'DaysViewController' ios/App/App/Base.lproj/Main.storyboard
+          P=ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Delete :NSAlarmKitUsageDescription" "$P" || true
+          /usr/libexec/PlistBuddy -c "Add :NSAlarmKitUsageDescription string 21 Days stellt deinen Wecker für die Gewohnheit Früh aufstehen. Er klingelt auch im Lautlos-Modus." "$P"
 
       - name: Xcode wählen
         run: |
