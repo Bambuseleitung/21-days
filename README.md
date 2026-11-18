@@ -29,7 +29,7 @@ Beides baut GitHub für dich. Auf dem PC ist dafür nichts nötig.
    - **21Days-ipa** → `21Days.ipa`. Ungesigniert. Mit **Sideloadly** und deiner Apple-ID aufs iPhone bringen. Die Signatur gilt 7 Tage, danach neu installieren.
 
 Die App ist dieselbe Weboberfläche in einer Hülle (Capacitor). Dazu kommt:
-- **Haptik** bei Antippen, Erfolgen, Minispielen und Belohnungen (in der App echt über Android und iOS, im Browser per Vibration). Abschaltbar unter **Profil → Haptik**.
+- **Haptik** bei Antippen, Erfolgen und Belohnungen (in der App echt über Android und iOS, im Browser per Vibration). Abschaltbar unter **Profil → Haptik**.
 - **Soundeffekte** bei Antippen, Öffnen von Fenstern und allen Belohnungen. Abschaltbar unter **Profil → Sound**. Auf dem iPhone folgt der Ton dem Stumm-Schalter.
 - **Erinnerungen**: pro Gewohnheit eine Uhrzeit (Bearbeiten → Erinnerung) und eine **Abend-Erinnerung** unter Profil, die nur kommt, wenn noch etwas offen ist. Erledigtes erinnert nicht mehr. Geplant wird immer eine Woche im Voraus: Wer die App eine Woche lang nicht öffnet, bekommt danach keine Erinnerungen mehr, bis er sie wieder öffnet.
 - **Widget (Android)**: lange auf den Startbildschirm drücken → Widgets → 21 Days. Es zeigt den Stand von heute, deine Serie und deinen Platz in der Gruppe samt Team-Serie. Ein iPhone-Widget gibt es nicht.
@@ -57,7 +57,7 @@ Was dazukommt:
 - **Coach**: Dein Begleiter schlägt die Routine vor, deren Muskeln am besten erholt sind, und gibt je Übung einen Tipp („Letztes Mal 60 kg × 8. Schaffst du heute 9?“).
 - **Erholung**: Unter Statistik steht für jede Muskelgruppe, ob sie bereit ist oder noch Pause braucht.
 - **Scheibenrechner** für Langhantel-Übungen (20-kg-Stange).
-- Ein Workout gibt XP und Münzen, schadet dem Wochen-Boss und hakt verknüpfte Gewohnheiten ab (z. B. „Sport“, Schalter „Mit Training verknüpfen“ beim Bearbeiten).
+- Ein Workout gibt XP und Münzen und hakt verknüpfte Gewohnheiten ab (z. B. „Sport“, Schalter „Mit Training verknüpfen“ beim Bearbeiten).
 - Der Bildschirm bleibt während des Workouts an, wenn das Gerät das unterstützt.
 
 ## Erkenntnisse, Wochenrückblick und Zeitkapsel
@@ -159,10 +159,12 @@ Alle Daten bleiben lokal auf deinem Gerät. Nur wenn du einer Gruppe beitrittst,
 
 ## Features
 
-- Begleiter-Figur, die aus einem Ei schlüpft, mit deinem Level wächst und auf deinen Tag reagiert
+- **Beweis statt Haken**: Was die App messen kann (Wecker-Mitteilung, Apple Health/Health Connect, Timer, Workout, Tagebuch, Bildschirmzeit auf Android), zählt als bewiesen und gibt volle XP. Was nur von Hand abgehakt wird, ist „selbst bezeugt“ (gestrichelt, 80 % XP).
+- **21-Tage-Reise**: Heute zeigt deinen Tag im Ring aus 21 Segmenten und den Abschnitt (Start, Das Tal, Durchbruch, Festigen). Unter **Reise** hat jede Gewohnheit ihren Weg über 21 Tage, Keimi wächst vom Samen zur Pflanze. An Tag 21 gibt es ein **Zertifikat** zum Teilen.
+- Reiter: **Heute · Beweise · Reise · Ich**
 - Globale Tages-Serie mit automatischen Schutzschilden
 - Tages-Quests mit Quest-Truhe
-- Münzen und Shop: Outfits, Farbthemen, Schutzschilde und eigene echte Belohnungen
+- Münzen für eigene echte Belohnungen und Schutzschilde (unter Ich)
 - Angewöhnen mit Mengenzielen, festen Wochentagen, Tageszeiten und Wenn-Dann-Plan
 - Abgewöhnen mit sekundengenauem Zähler, gespartem Geld und gewonnener Zeit, Meilensteinen und SOS-Atemübung
 - Morgen-Versprechen und Abend-Rückblick mit Stimmungsverlauf

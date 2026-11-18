@@ -14,9 +14,9 @@
 /* Design: calm grouped lists in the style of iOS. System type, one accent (the theme color), semantic colors with light and dark variants.
    Habits are the content; rewards and extras sit below them. Contrast on --card: --ink 16:1, --muted 5.1:1, --pb under white text 5.6:1, --bad 5.4:1. */
 :root{
-  --bg:#F2F2F7; --card:#FFFFFF; --card-2:#E9E9EE; --ink:#1C1C1E; --muted:#6C6C70; --line:#DCDCE1; --seg-on:#FFFFFF;
+  --bg:#F6F2EE; --card:#FFFFFF; --card-2:#EFE9E3; --ink:#1E1A17; --muted:#6E645C; --line:#E2DAD2; --seg-on:#FFFFFF;
   /* --p0 is the raw theme color. --pb sits behind white text (>= 4.4:1 for every theme), --p is accent text and rings. */
-  --p0:#FF6B2C; --pb:color-mix(in srgb,var(--p0) 68%,#000); --p:var(--pb); --p-dark:color-mix(in srgb,var(--p0) 48%,#000);
+  --p0:#FF7A1A; --glut:#FF7A1A; --glut2:#FFB347; --pb:color-mix(in srgb,var(--p0) 68%,#000); --p:var(--pb); --p-dark:color-mix(in srgb,var(--p0) 48%,#000);
   --hk:72%;
   --sat:env(safe-area-inset-top,var(--safe-area-inset-top,0px)); --sab:env(safe-area-inset-bottom,var(--safe-area-inset-bottom,0px));
   --p-soft:color-mix(in srgb,var(--p0) 13%,var(--card));
@@ -31,12 +31,12 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#000000; --card:#1C1C1E; --card-2:#2C2C2E; --ink:#F5F5F7; --muted:#A1A1A6; --line:#38383A; --seg-on:#636366;
+    --bg:#120F0D; --card:#1E1A17; --card-2:#2A2420; --ink:#F6F1EC; --muted:#A89E96; --line:#332C27; --seg-on:#4A413B;
     --p:color-mix(in srgb,var(--p0) 60%,#fff); --hk:100%; --gold-dark:#F5B829; --ice-dark:#64C8FF; --bad:#FF6961; --grape:#A78BFA;
     color-scheme:dark;
   }
 }
-:root[data-theme="dark"]{ --bg:#000000; --card:#1C1C1E; --card-2:#2C2C2E; --ink:#F5F5F7; --muted:#A1A1A6; --line:#38383A; --seg-on:#636366; --p:color-mix(in srgb,var(--p0) 60%,#fff); --hk:100%; --gold-dark:#F5B829; --ice-dark:#64C8FF; --bad:#FF6961; --grape:#A78BFA; color-scheme:dark; }
+:root[data-theme="dark"]{ --bg:#120F0D; --card:#1E1A17; --card-2:#2A2420; --ink:#F6F1EC; --muted:#A89E96; --line:#332C27; --seg-on:#4A413B; --p:color-mix(in srgb,var(--p0) 60%,#fff); --hk:100%; --gold-dark:#F5B829; --ice-dark:#64C8FF; --bad:#FF6961; --grape:#A78BFA; color-scheme:dark; }
 @media (prefers-contrast: more){ :root{ --line:#8A8A90; --muted:#48484C } .card,.hlist,.list,.tile,.week{outline:1px solid var(--line)} }
 @media (prefers-contrast: more) and (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --line:#8E8E93; --muted:#D1D1D6 } }
 @media (prefers-reduced-transparency: reduce){ .topbar,.nav{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--bg)} .nav{background:var(--card)} }
@@ -295,19 +295,6 @@ button.row:active{background:var(--card-2)}
 .lb.gave{background:color-mix(in srgb,var(--bad) 14%,var(--card));color:var(--bad)}
 
 /* Pet tab, shop */
-.pet-stage{position:relative;text-align:center;padding:18px 14px 16px;border-radius:28px;background:radial-gradient(circle at 50% 70%,var(--p-soft),var(--card) 70%);border:1px solid var(--line)}
-.pet-stage .petbox{width:200px;height:200px;margin:0 auto;cursor:pointer}
-.pet-stage h2{font-size:1.625rem}
-.shop{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px 12px;border-radius:18px;background:var(--card);border:1px solid var(--line);text-align:center}
-.item .iv{width:64px;height:64px;display:grid;place-items:center}
-.item .iv svg{width:64px;height:64px}
-.item b{font-size:0.8125rem;line-height:1.2}
-.item .price{display:inline-flex;align-items:center;gap:3px;font-size:0.8125rem;font-weight:700;color:var(--gold-dark)}
-.item .price svg{width:15px;height:15px}
-.item.owned .price{color:var(--ok-dark)}
-.item.on{border-color:var(--ok);background:var(--ok-soft)}
-.item.cant{opacity:.55}
 .swatches{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .sw{width:44px;height:44px;border-radius:50%;background:var(--c);border:3px solid var(--card);box-shadow:0 0 0 2px var(--line)}
 .sw[aria-pressed="true"]{box-shadow:0 0 0 3px var(--ink)}
@@ -430,49 +417,16 @@ textarea{min-height:70px;resize:vertical}
 .how svg{width:30px;height:30px;flex:none}
 
 /* Wheel of fortune: pointer stays still, only the disc turns. Labels carry the meaning, color is decoration. */
-.wheel-wrap{position:relative;width:min(300px,100%);aspect-ratio:1;margin:18px auto 8px}
-.wheel{width:100%;height:100%;transition:transform 4.4s cubic-bezier(.12,.7,.1,1)}
-.wheel svg{display:block;width:100%;height:100%}
-.wheel-ptr{position:absolute;left:50%;top:-10px;width:26px;height:30px;margin-left:-13px;color:var(--ink)}
-.wheel-prize{min-height:34px;margin:6px 0 10px;font-size:1.5rem;font-weight:700}
 .chest-btn:disabled{cursor:default}
 
 /* Care: needs, food tray, rooms, minigames */
-.scene{position:relative;border-radius:22px;overflow:hidden;padding-top:8px}
-.sc-meadow{background:linear-gradient(#BDE8FF 0 64%,#7FD66A 64%)}
-.sc-sky{background:linear-gradient(#5AA9FF,#CDEBFF)}
-.sc-night{background:radial-gradient(circle,#fff 1px,transparent 1.6px) 0 0/34px 34px,linear-gradient(#141B4D,#3B2F7A)}
-.sc-candy{background:repeating-linear-gradient(45deg,rgba(255,255,255,.4) 0 14px,transparent 14px 28px),linear-gradient(135deg,#FFD1E8,#FFF1B8)}
-.bgprev{display:block;width:64px;height:64px;border-radius:16px}
-.stats{display:grid;gap:10px}
-.stat{display:grid;grid-template-columns:64px 1fr 32px;align-items:center;gap:10px;font-size:.875rem;font-weight:600}
-.stat b{text-align:right}
-.sbar{height:14px;border-radius:99px;background:var(--card-2);border:1px solid var(--line);overflow:hidden}
-.sbar i{display:block;height:100%;border-radius:99px;background:var(--ok);transition:width .6s cubic-bezier(.2,1.2,.3,1)}
-.sbar i.low{background:var(--bad)}
-.foodline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;font-weight:600;font-size:.875rem}
-.care-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-.tray{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
-.tray .item{padding:8px 2px 10px}
-.tray .item .iv,.tray .item .iv svg{width:44px;height:44px}
-.tray-hint{margin:10px 0 0;font-size:.8125rem;font-weight:400}
-.flyfood{position:fixed;z-index:75;width:44px;height:44px;margin:-22px 0 0 -22px;pointer-events:none}
-.suds{position:fixed;z-index:75;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 30% 30%,#fff,rgba(160,220,255,.6));border:2px solid rgba(255,255,255,.85)}
 .pet.eat .body-g{animation:chomp .45s ease-in-out 2}
 @keyframes chomp{50%{transform:scale(1.1,.88)}}
 .pet.flip .body-g{transform-origin:100px 120px;animation:flip .8s ease-in-out}
 @keyframes flip{50%{transform:translateY(-46px) rotate(180deg)}100%{transform:rotate(360deg)}}
-.game-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.game-h b{font-size:1.75rem}
-.game-h .grow{margin-left:auto;font-size:1.75rem;font-weight:700}
 .stage{position:relative;height:calc(100% - 64px);min-height:320px;border-radius:22px;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;background:linear-gradient(#BDE8FF,#E8F7FF 70%,#7FD66A 70%)}
 .stage.jolt{animation:jolt .3s}
 @keyframes jolt{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-.g-pet{position:absolute;left:0;bottom:0;width:76px;height:76px}
-.g-item{position:absolute;left:0;top:0;width:40px;height:40px;pointer-events:none}
-.g-item svg{display:block;width:100%;height:100%}
-.bub{position:absolute;border-radius:50%;cursor:pointer;background:radial-gradient(circle at 30% 30%,#fff,rgba(120,200,255,.55) 60%,rgba(70,160,255,.8));border:3px solid rgba(255,255,255,.9)}
-.bub.gold{background:radial-gradient(circle at 30% 30%,#FFF6C2,#FFC21F)}
 .nav button.dot{position:relative}
 .nav button.dot::after{content:"";position:absolute;top:6px;left:calc(50% + 10px);width:11px;height:11px;border-radius:50%;background:var(--bad);border:2px solid var(--card)}
 .tpl[disabled]{opacity:.5}
@@ -580,15 +534,6 @@ mark{background:color-mix(in srgb,var(--p) 22%,transparent);color:inherit;border
 button.ck{width:44px;height:44px;flex:none;border-radius:12px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;color:#fff}
 button.ck.on{background:var(--ok-dark);border-color:var(--ok-dark)}
 button.ck svg{width:22px;height:22px}
-.boss{display:flex;align-items:center;gap:14px;border-color:color-mix(in srgb,var(--bc) 45%,var(--line))}
-.boss-art{flex:none;width:84px;height:84px}
-.boss-art svg{display:block;width:100%;height:100%}
-.boss-art.hit{animation:jolt .4s}
-.boss.won .boss-art{filter:grayscale(1);opacity:.7}
-.boss-r{flex:1;min-width:0}
-.boss-r b{font-size:1.0625rem}
-.bossbar{height:16px;border-radius:99px;background:var(--card-2);border:1px solid var(--line);overflow:hidden;margin:6px 0 4px}
-.bossbar i{display:block;height:100%;border-radius:99px;background:var(--bad);transition:width .6s cubic-bezier(.2,1.2,.3,1)}
 
 /* FX */
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:80}
@@ -788,17 +733,9 @@ input[type=text],input[type=number],input[type=search],input[type=date],textarea
 .pledge .pi svg{width:24px;height:24px}
 .pledge h3{font-size:1rem;font-weight:600}
 .pledge p{font-weight:400}
-.boss{border:0}
-.boss-art{width:64px;height:64px}
-.boss-r b{font-weight:600;font-size:1rem}
 .bossbar,.sbar,.xpbar{height:8px;border:0}
-.pet-stage{border:0;background:var(--card);border-radius:var(--r)}
-.pet-stage h2{font-size:1.375rem}
 .bubble{border:0;background:var(--card-2);font-weight:500}
 .bubble::before{display:none}
-.item{border:0;background:var(--card);border-radius:14px}
-.item b{font-weight:500}
-.item.on{background:var(--ok-soft);box-shadow:inset 0 0 0 2px var(--ok)}
 .bcard{border:0;border-radius:14px}
 .bcard b{font-weight:600}
 .bdg{width:44px;height:44px;border-radius:12px;box-shadow:none;transform:none;background:var(--rc)}
@@ -835,7 +772,6 @@ input[type=text],input[type=number],input[type=search],input[type=date],textarea
 .mtile b{font-weight:600}
 .codebox{border:0;font-weight:700}
 .seg.scroll button{padding:6px;font-size:.875rem}
-.care-actions .btn{padding:7px 8px;white-space:nowrap}
 /* Gruppe: Challenges, Team-Serie, Aktivität */
 .mavs{display:inline-flex;align-items:center}
 .mav{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;font-style:normal;font-size:.625rem;font-weight:700;color:#1A1F33;background:var(--av);box-shadow:0 0 0 2px var(--card)}
@@ -913,36 +849,61 @@ input[type=text],input[type=number],input[type=search],input[type=date],textarea
 .tour-tip{position:fixed;left:16px;right:16px;max-width:420px;margin:0 auto;background:var(--card);color:var(--ink);border-radius:16px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
 .tour-tip p{margin:0;line-height:1.4}
 .tour-tip div{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}
-.species{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
-.sp{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:14px;background:var(--card-2);font-size:.8125rem;font-weight:500;color:var(--ink)}
 .ob .sp{background:var(--card)}
-.sp[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--p)}
-.care-slots{display:flex;gap:8px;margin-top:12px}
-.care-slots span{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;min-height:36px;border-radius:10px;background:var(--card-2);font-size:.875rem;font-weight:600;color:var(--muted)}
-.care-slots span.now{color:var(--ink);box-shadow:inset 0 0 0 2px var(--p)}
-.care-slots span.ok{color:var(--ok-dark)}
-.care-slots svg{width:16px;height:16px}
 .gs-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
 .gs-q{font-size:1.25rem;margin:8px 0 12px}
 .gs-opt{display:block;width:100%;text-align:left;padding:14px 16px;border-radius:14px;background:var(--card);margin-bottom:10px}
 .gs-opt b{display:block;font-size:1.0625rem}
 .gs-opt small{color:var(--muted);font-size:.875rem}
 .gs-opt[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--p)}
-.g-lives{display:flex;gap:4px;justify-content:flex-end}
-.g-lives .heart svg{width:22px;height:22px;color:#F43F5E}
-.g-lives .heart.off{opacity:.25}
-.g-item{width:44px;height:44px}
-.bub{left:0;top:0}
-.bub.bad{background:radial-gradient(circle at 30% 30%,#FFD1D1,#EF4444)}
-.bub.burst{opacity:0;transition:opacity .15s}
-.g-pet.jp{top:0;bottom:auto;width:64px;height:64px;pointer-events:none}
 .stage canvas{position:absolute;inset:0;width:100%;height:100%}
 .stage.sky{background:linear-gradient(#7CC4F5,#CDEBFF)}
-.stat-head{display:flex;align-items:center;gap:14px;margin-top:12px}
-.sh-pet{flex:none;width:72px;height:72px;border-radius:18px;background:var(--card-2);display:grid;place-items:center}
-.sh-bars{flex:1;min-width:0}
-.sh-row{display:flex;justify-content:space-between;gap:8px;font-size:.875rem}
-.sh-row + .xpbar{margin:4px 0 8px}
+.hero21{display:flex;align-items:center;gap:16px;margin-top:12px;background:radial-gradient(120% 90% at 15% 0%,color-mix(in srgb,var(--glut) 22%,var(--card)) 0%,var(--card) 62%)}
+.h21-ring{position:relative;flex:none;width:124px;height:124px}
+.h21-c{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.h21-c small{font-size:.75rem;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.h21-c b{font:900 2.75rem/1 var(--font-r)}
+.h21-ph{font:800 1.25rem var(--font-r);color:var(--p)}
+.hero21 p{margin:4px 0 0;font-size:.9375rem}
+.h21-m{color:var(--muted);font-size:.8125rem;margin-top:8px}
+.r21-l{font:900 30px var(--font-r);fill:var(--ink)}
+.r21-s{font-size:11px;font-weight:700;letter-spacing:2px;fill:var(--p)}
+.pf{font-size:.6875rem;font-weight:700;padding:1px 7px;border-radius:99px}
+.pf.p{background:color-mix(in srgb,var(--glut) 18%,transparent);color:var(--p)}
+.pf.s{background:var(--card-2);color:var(--muted)}
+.hcheck.done:not(.self){box-shadow:0 0 16px color-mix(in srgb,var(--glut) 45%,transparent)}
+.hcheck.done.self{background:transparent !important;color:var(--muted) !important;outline:2.5px dashed var(--muted);outline-offset:-3px}
+.hcheck.done.self .ring{opacity:0}
+.keimi-row{display:flex;justify-content:space-around;align-items:flex-end;margin-top:4px}
+.keimi-row > div{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.75rem;font-weight:600;color:var(--muted)}
+.keimi-row > div.now{color:var(--p)}
+.keimi-row > div.later{opacity:.35;filter:grayscale(1)}
+.ph-h{display:flex;justify-content:space-between;align-items:baseline;margin:12px 2px 8px}
+.ph-h:first-child{margin-top:0}
+.ph-h b{font:800 1rem var(--font-r)}
+.ph-h b.now{color:var(--p)}
+.ph-h span{font-size:.8125rem;color:var(--muted)}
+.ph-d{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.d21{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font:800 .8125rem var(--font-r);background:var(--card-2);color:var(--muted)}
+.d21.p{background:linear-gradient(135deg,var(--glut2),var(--glut));color:#2a1406}
+.d21.s{background:transparent;outline:2px dashed var(--muted);outline-offset:-2px}
+.d21.m{opacity:.45}
+.d21.r{opacity:.25}
+.d21.f{background:transparent;outline:1.5px solid var(--line);outline-offset:-1.5px;opacity:.7}
+.d21.cur{outline:3px solid var(--ink);outline-offset:2px;color:var(--ink)}
+.tal{margin:10px 2px 0;padding:8px 10px;border-left:3px solid var(--glut);border-radius:8px;background:color-mix(in srgb,var(--glut) 10%,transparent);font-size:.875rem}
+.legend21{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:14px;font-size:.75rem;color:var(--muted)}
+.legend21 .d21{width:14px;height:14px;aspect-ratio:auto;margin-left:6px}
+.cert{text-align:center;border-radius:24px;padding:20px 16px;background:radial-gradient(130% 80% at 50% 0%,color-mix(in srgb,var(--glut) 28%,var(--card)) 0%,var(--card) 58%)}
+.cert .k{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--p);font-weight:800}
+.cert h3{font:900 1.75rem/1.15 var(--font-r);margin:8px 0 2px}
+.cert-ring{display:flex;justify-content:center;margin:14px 0 8px}
+.proofc .pc-top{display:flex;gap:12px}
+.proofc .pc-top div{flex:1}
+.proofc b{display:block;font:900 1.75rem var(--font-r)}
+.proofc span{font-size:.8125rem;color:var(--muted)}
+.pbar{height:10px;border-radius:99px;background:var(--card-2);overflow:hidden;margin-top:10px}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--glut2),var(--glut))}
 .xpbar.hap i{background:linear-gradient(90deg,#F59E0B,#22C55E)}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important} }
@@ -977,6 +938,21 @@ details.how b{color:var(--ink)}
 .jwords{display:flex;align-items:center;gap:8px;font-size:.8125rem;font-weight:600;color:var(--muted)}
 .jwords .mode-bar{flex:1;margin:0;height:8px}
 .jwords.ok{color:var(--ok-dark)}
+.guilt{display:flex;align-items:center;gap:12px;background:color-mix(in srgb,#7DD3FC 13%,var(--card))}
+.guilt .g-pet{flex:none;width:72px;height:72px}
+.guilt b{display:block;font-size:.9375rem}
+.guilt p{margin:4px 0 0;font-size:.8125rem;color:var(--muted)}
+.mini-b{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:6px 12px;min-height:32px;border:0;border-radius:99px;background:var(--p-soft);color:var(--p);font:inherit;font-size:.8125rem;font-weight:700;cursor:pointer;text-align:left}
+.mini-b svg{width:14px;height:14px;flex:none}
+.pf.w{background:color-mix(in srgb,#FFB400 22%,transparent);color:var(--gold-dark)}
+.bet-h{display:flex;align-items:center;justify-content:space-between}
+.bet-h svg{width:22px;height:22px}
+.bet p{margin:8px 0 0;font-size:.9375rem}
+.bet p.muted{font-size:.8125rem}
+.bet .pbar{margin-top:10px}
+.bet-row{display:flex;gap:8px;margin-top:12px}.bet-row .btn{flex:1}
+.chain{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 14px}
+.chain i{display:flex;color:var(--muted)}.chain i svg{width:20px;height:20px}
 </style>
 <script src="config.js"></script>
 <script src="vocab.js"></script>
@@ -1055,10 +1031,9 @@ const I = {
   edit: sv('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/>'),
   leaf: sv('<path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15"/><path d="M5 19l8-8"/>'),
   chev: sv('<path d="M9 5l7 7-7 7"/>'),
-  cal: sv('<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="8.5" cy="14.5" r=".6"/><circle cx="12" cy="14.5" r=".6"/><circle cx="15.5" cy="14.5" r=".6"/>'),
-  quit: sv('<circle cx="12" cy="12" r="8.5"/><path d="M6 18L18 6"/>'),
-  todo: sv('<path d="M4 7l2 2 4-4M4 16l2 2 4-4M13 7.5h7M13 16.5h7"/>'),
-  menu: sv('<path d="M4 7h16M4 12h16M4 17h16"/>'),
+  ring: sv('<circle cx="12" cy="12" r="8"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/>'),
+  proof: sv('<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>'),
+  path: sv('<path d="M4 19c4 0 4-6 8-6s4-6 8-6"/><circle cx="4" cy="19" r="1.5"/><circle cx="20" cy="7" r="1.5"/>'),
   dumbbell: sv('<path d="M6 7v10M18 7v10M3 9.5v5M21 9.5v5M6 12h12"/>'),
   lock: sv('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'),
   back: sv('<path d="M15 5l-7 7 7 7"/>'),
@@ -1095,8 +1070,6 @@ const HI_KEYS = Object.keys(HI);
 /* ============ Game data ============ */
 const COLORS = ["#FF6B2C", "#1FBF8A", "#3B82F6", "#EC4899", "#8B5CF6", "#F59E0B", "#0EA5C4", "#EF4462"];
 const PET_COLORS = ["#FF8A3D", "#2DD4A7", "#5B8CFF", "#F472B6", "#A78BFA", "#FACC15"];
-const THEMES = { sun: { n: "Sonne", p: "#FF6B2C", d: "#D24A0E" }, ocean: { n: "Ozean", p: "#2F80FF", d: "#1B5FCC" }, forest: { n: "Wald", p: "#16A34A", d: "#0F7A36" }, berry: { n: "Beere", p: "#E11D74", d: "#AE1458" }, grape: { n: "Traube", p: "#7C3AED", d: "#5B21B6" },
-  mint: { n: "Minze", p: "#0F766E", d: "#0B5F59" }, indigo: { n: "Indigo", p: "#4F46E5", d: "#3730A3" }, cherry: { n: "Kirsche", p: "#DC2626", d: "#B91C1C" } };
 const TIMES = { morning: { n: "Morgens", ic: "sun" }, noon: { n: "Mittags", ic: "noon" }, evening: { n: "Abends", ic: "moon" }, any: { n: "Jederzeit", ic: "clock" } };
 const TIME_ORDER = ["morning", "noon", "evening", "any"];
 const DIFF_XP = 15;
@@ -1170,35 +1143,7 @@ const GOALS = [
   { id: "calm", n: "Mehr Ruhe", ic: "lotus", t: ["Meditieren", "Tagebuch schreiben", "Lesen"] },
   { id: "prod", n: "Produktiver sein", ic: "sun", t: ["Früh aufstehen", "Aufräumen", "Lesen"] }
 ];
-const ITEMS = [
-  { id: "shield", n: "Schutzschild", cost: 150, slot: "consumable" },
-  { id: "beanie", n: "Mütze", cost: 120, slot: "hat" },
-  { id: "party", n: "Partyhut", cost: 150, slot: "hat" },
-  { id: "tophat", n: "Zylinder", cost: 300, slot: "hat" },
-  { id: "crown", n: "Krone", cost: 600, slot: "hat" },
-  { id: "sunglasses", n: "Sonnenbrille", cost: 200, slot: "glasses" },
-  { id: "nerd", n: "Nerdbrille", cost: 150, slot: "glasses" },
-  { id: "scarf", n: "Schal", cost: 150, slot: "neck" },
-  { id: "bow", n: "Fliege", cost: 120, slot: "neck" },
-  { id: "theme_ocean", n: "Thema Ozean", cost: 250, slot: "theme", theme: "ocean" },
-  { id: "theme_forest", n: "Thema Wald", cost: 250, slot: "theme", theme: "forest" },
-  { id: "theme_berry", n: "Thema Beere", cost: 250, slot: "theme", theme: "berry" },
-  { id: "cap", n: "Basecap", cost: 100, slot: "hat" },
-  { id: "wizard", n: "Zaubererhut", cost: 350, slot: "hat" },
-  { id: "halo", n: "Heiligenschein", cost: 450, slot: "hat" },
-  { id: "heartglasses", n: "Herzbrille", cost: 180, slot: "glasses" },
-  { id: "monocle", n: "Monokel", cost: 250, slot: "glasses" },
-  { id: "bandana", n: "Halstuch", cost: 120, slot: "neck" },
-  { id: "medal", n: "Medaille", cost: 300, slot: "neck" },
-  { id: "bg_meadow", n: "Wiese", cost: 150, slot: "bg" },
-  { id: "bg_sky", n: "Himmel", cost: 150, slot: "bg" },
-  { id: "bg_night", n: "Sternennacht", cost: 220, slot: "bg" },
-  { id: "bg_candy", n: "Zuckerland", cost: 280, slot: "bg" },
-  { id: "theme_grape", n: "Thema Traube", cost: 250, slot: "theme", theme: "grape" },
-  { id: "theme_mint", n: "Thema Minze", cost: 250, slot: "theme", theme: "mint" },
-  { id: "theme_indigo", n: "Thema Indigo", cost: 250, slot: "theme", theme: "indigo" },
-  { id: "theme_cherry", n: "Thema Kirsche", cost: 250, slot: "theme", theme: "cherry" }
-];
+const ITEMS = [{ id: "shield", n: "Schutzschild", cost: 150, slot: "consumable" }];
 const MAX_SHIELDS = 3;
 const MILESTONES = [{ d: 7, xp: 50, t: "Erste Woche geschafft" }, { d: 21, xp: 150, t: "21 Tage: Startphase geschafft" }, { d: 66, xp: 400, t: "66 Tage: Gewohnheit gefestigt" }];
 const QUIT_MS = [1, 3, 7, 14, 30, 60, 90, 180, 365];
@@ -1262,7 +1207,7 @@ function normHabit(h) {
   return Object.assign({ id: uid(), name: "Gewohnheit", kind: "build", icon: "star", color: COLORS[0], target: 1, unit: "", days: [0, 1, 2, 3, 4, 5, 6], time: "any",
     cue: "", action: "", replacement: "", reasons: [], money: 0, minutes: 0, quitStart: Date.now(), bestQuit: 0, relapses: [], quitHit: [],
     start: todayK(), log: {}, xp: {}, milestones: [], diff: 2, tag: "", special: "", capsule: null, slip: "", gc: "", remind: "",
-    mode: "", quick: [], wakeAt: "06:30", grace: 30, words: 30, alarm: false, alarmSet: "", alarmId: "", health: false, woke: {}, limit: 120, scr: {} }, h);
+    proof: {}, cert: "", mini: "", after: "", resc: {}, bet: null, mode: "", quick: [], wakeAt: "06:30", grace: 30, words: 30, alarm: false, alarmSet: "", alarmId: "", health: false, woke: {}, limit: 120, scr: {} }, h);
 }
 function migrate(raw) {
   const s = JSON.parse(JSON.stringify(raw || {}));
@@ -1333,6 +1278,10 @@ function hStreak(h) {
   const grace = sched(h, t) && !isDone(h, t) && last >= h.start && !isDone(h, last) && !state.freezeUsed[last] && prev && prev >= h.start && isDone(h, prev);
   return { c, grace };
 }
+// Rettungstag: Nach einem verpassten Tag reicht heute die Mini-Version. Nie zweimal hintereinander verpassen.
+function lastSched(h, k) { let d = addDays(k, -1), g = 0; while (d >= h.start && !sched(h, d) && g++ < 14) d = addDays(d, -1); return d >= h.start && sched(h, d) ? d : ""; }
+const canRescue = h => { const t = todayK(), l = lastSched(h, t); return h.kind === "build" && h.special !== "vocab" && sched(h, t) && !isDone(h, t) && h.slip !== t && !!l && !isDone(h, l) && !state.freezeUsed[l]; };
+const miniOf = h => h.mini || `Nur 2 Minuten: ${h.name}`;
 function hBest(h) {
   const t = todayK(); let best = 0, cur = 0, miss = 0;
   for (let d = h.start; d <= t; d = addDays(d, 1)) {
@@ -1391,7 +1340,7 @@ function fmtSince(ms) {
 /* ============ XP, coins ============ */
 let pendingLevel = 0;
 function addXP(n, k = todayK()) {
-  const b = levelOf(state.xp); state.xp = Math.max(0, state.xp + n); state.pet.food = Math.max(0, state.pet.food + n); bossHit(n); state.xpLog[k] = (state.xpLog[k] || 0) + n;
+  const b = levelOf(state.xp); state.xp = Math.max(0, state.xp + n); state.xpLog[k] = (state.xpLog[k] || 0) + n;
   const a = levelOf(state.xp), top = Math.max(state.flags.maxLvl || 0, b);
   if (a > top) { pendingLevel = a; state.coins += 50 * (a - top); state.flags.maxLvl = a; } // coins only the first time a level is reached
 }
@@ -1519,8 +1468,8 @@ function nextOverlay() {
   el.style.setProperty("--oc", o.color || "#FFC53D");
   el.innerHTML = `<div class="rays"></div><div class="ov-in"><div class="ov-k">${esc(o.kicker)}</div>${o.icon ? `<div class="ov-icon">${o.icon}</div>` : ""}<div class="ov-num num">${esc(o.big)}</div><div class="ov-t">${esc(o.title)}</div>${o.sub ? `<div class="ov-s">${esc(o.sub)}</div>` : ""}${o.extra || ""}<button class="btn gold" type="button">Weiter</button></div>`;
   document.body.appendChild(el); el.querySelector("button").focus();
-  bigCelebration(); sfx(o.sound || "level"); vibrate([40, 60, 40, 60, 140]);
-  setTimeout(() => burst(innerWidth / 2, innerHeight * .4, 110, 1.6), 450);
+  sfx(o.sound || "level");
+  if (!o.quiet) { bigCelebration(); vibrate([40, 60, 40, 60, 140]); setTimeout(() => burst(innerWidth / 2, innerHeight * .4, 110, 1.6), 450); }
   el.addEventListener("click", () => { el.classList.add("out"); setTimeout(() => { el.remove(); setTimeout(nextOverlay, 80); }, reduced ? 0 : 200); }, { once: true });
 }
 function showLevelUp() {
@@ -1578,13 +1527,7 @@ const BADGES = [
   { id: "jr1", n: "Erste Zeilen", d: "Ersten Tagebuch-Eintrag geschrieben", r: "common", ic: "edit", t: () => state.journal.length >= 1 },
   { id: "jr10", n: "Schreiber", d: "10 Tagebuch-Einträge", r: "rare", ic: "edit", t: () => state.journal.length >= 10 },
   { id: "todo1", n: "Abgehakt", d: "Erste Aufgabe erledigt", r: "common", ic: "check", t: () => (state.flags.todos || 0) >= 1 },
-  { id: "todo10", n: "Aufgaben-Held", d: "10 Aufgaben erledigt", r: "rare", ic: "target", t: () => (state.flags.todos || 0) >= 10 },
-  { id: "boss1", n: "Bossbezwinger", d: "Ersten Wochen-Boss besiegt", r: "epic", ic: "trophy", t: () => (state.flags.bosses || 0) >= 1 },
-  { id: "play1", n: "Spielkind", d: "Erstes Minispiel gespielt", r: "common", ic: "bolt", t: () => (state.flags.played || 0) >= 1 },
-  { id: "feed25", n: "Leckermaul", d: "Begleiter 25-mal gefüttert", r: "rare", ic: "heart", t: () => (state.flags.fed || 0) >= 25 },
-  { id: "rec", n: "Rekordjäger", d: "15 Punkte in einem Minispiel", r: "rare", ic: "trophy", t: () => state.pet.best.catch >= 15 || state.pet.best.pop >= 15 },
-  { id: "wheel", n: "Glücksrad", d: "Zum ersten Mal gedreht", r: "common", ic: "gift", t: () => (state.flags.spun || 0) >= 1 },
-  { id: "pet", n: "Bester Freund", d: "Begleiter 50-mal gestreichelt", r: "common", ic: "heart", t: () => (state.flags.pets || 0) >= 50 }
+  { id: "todo10", n: "Aufgaben-Held", d: "10 Aufgaben erledigt", r: "rare", ic: "target", t: () => (state.flags.todos || 0) >= 10 }
 ];
 const unlockQ = []; let unlockBusy = false;
 function evaluateBadges() {
@@ -1620,7 +1563,6 @@ const QUESTS = {
   review: { n: () => "Mach den Abend-Rückblick", goal: () => 1, prog: k => state.pledges[k] && state.pledges[k].pm ? 1 : 0, c: 10, ic: "moon", ok: () => true },
   combo: { n: () => "Erreiche Combo ×3", goal: () => 3, prog: k => day(k).maxCombo, c: 15, ic: "bolt", ok: () => schedToday() >= 3 },
   sos: { n: () => "Überstehe einen Drang", goal: () => 1, prog: k => day(k).resisted, c: 20, ic: "shield", ok: () => state.habits.some(h => h.kind === "break") },
-  pet: { n: () => `Streichle ${state.profile.petName} 3-mal`, goal: () => 3, prog: k => day(k).petted, c: 5, ic: "heart", ok: () => true },
   journal: { n: () => "Schreib einen Tagebuch-Eintrag", goal: () => 1, prog: k => day(k).journal ? 1 : 0, c: 10, ic: "edit", ok: () => true },
   gym: { n: () => "Beende ein Workout", goal: () => 1, prog: k => day(k).workouts ? 1 : 0, c: 20, ic: "dumbbell", ok: () => (state.flags.workouts || 0) >= 1 }
 };
@@ -1634,9 +1576,8 @@ function questsFor(k = todayK()) {
 }
 
 /* ============ Pet SVG ============ */
-const SPECIES = [["keimi", "Keimi", "Keimi"], ["katze", "Katze", "Mika"], ["hase", "Hase", "Hoppel"], ["baer", "Bär", "Bruno"], ["drache", "Drache", "Funki"], ["pinguin", "Pinguin", "Pino"]];
-function petSVG({ size = 128, mood = "ok", level, color, eq, cls = "", dirty = false, species } = {}) {
-  const L = level ?? levelOf(state.xp), st = stageOf(L), c = color || state.profile.petColor, e = eq || state.inv.eq || {};
+function petSVG({ size = 128, mood = "ok", level, color, cls = "", dirty = false } = {}) {
+  const L = level ?? levelOf(state.xp), st = stageOf(L), c = color || state.profile.petColor;
   const rx = 52 + st * 5, ry = 48 + st * 5, cy = 130 - st * 2, top = cy - ry;
   const light = `color-mix(in srgb, ${c} 45%, #fff)`, dark = `color-mix(in srgb, ${c} 70%, #000)`;
   const eyeY = cy - 14, eyeDX = 20 + st * 1.5;
@@ -1652,44 +1593,9 @@ function petSVG({ size = 128, mood = "ok", level, color, eq, cls = "", dirty = f
   if (st >= 1) sprout += `<path d="M102 ${top - 18} q18 -14 28 2 q-14 8 -28 -2z" fill="#3FA34D" transform="scale(${leafS})" transform-origin="102 ${top - 18}"/>`;
   if (st >= 3) sprout += `<g transform="translate(102 ${top - 26})">${[0, 72, 144, 216, 288].map(a => `<ellipse cx="0" cy="-8" rx="5" ry="8" fill="#FF7AB6" transform="rotate(${a})"/>`).join("")}<circle r="5" fill="#FFD23F"/></g>`;
   sprout += `</g>`;
-  let hat = "";
-  if (e.hat === "beanie") hat = `<path d="M${100 - rx * .72} ${top + 22} q${rx * .72} -60 ${rx * 1.44} 0 z" fill="#3B82F6"/><rect x="${100 - rx * .78}" y="${top + 16}" width="${rx * 1.56}" height="12" rx="6" fill="#1D4ED8"/><circle cx="100" cy="${top - 18}" r="9" fill="#fff"/>`;
-  if (e.hat === "party") hat = `<path d="M100 ${top - 44} L${100 - 24} ${top + 14} L${100 + 24} ${top + 14} z" fill="#EC4899"/><path d="M${100 - 15} ${top - 8} L${100 + 15} ${top - 2} M${100 - 20} ${top + 6} L${100 + 21} ${top + 10}" stroke="#FFD23F" stroke-width="4"/><circle cx="100" cy="${top - 46}" r="7" fill="#FFD23F"/>`;
-  if (e.hat === "tophat") hat = `<rect x="${100 - 40}" y="${top + 4}" width="80" height="10" rx="5" fill="#1A1F33"/><rect x="${100 - 26}" y="${top - 40}" width="52" height="46" rx="4" fill="#1A1F33"/><rect x="${100 - 26}" y="${top - 6}" width="52" height="8" fill="#EF4462"/>`;
-  if (e.hat === "crown") hat = `<path d="M${100 - 30} ${top + 8} L${100 - 30} ${top - 20} L${100 - 15} ${top - 6} L100 ${top - 28} L${100 + 15} ${top - 6} L${100 + 30} ${top - 20} L${100 + 30} ${top + 8} z" fill="#FFC21F" stroke="#D49500" stroke-width="3" stroke-linejoin="round"/><circle cx="100" cy="${top - 4}" r="4" fill="#EF4462"/>`;
-  if (e.hat === "cap") hat = `<path d="M${100 - rx * .7} ${top + 22} q${rx * .7} -50 ${rx * 1.4} 0 z" fill="#EF4462"/><path d="M${100 + rx * .25} ${top + 20} h${rx * .65} q8 0 8 7 h-${rx * .75} z" fill="#B91C1C"/><circle cx="100" cy="${top - 4}" r="4" fill="#fff"/>`;
-  if (e.hat === "wizard") hat = `<path d="M100 ${top - 54} L${100 - 30} ${top + 14} L${100 + 30} ${top + 14} z" fill="#6D28D9"/><ellipse cx="100" cy="${top + 14}" rx="44" ry="8" fill="#5B21B6"/><circle cx="96" cy="${top - 10}" r="4.5" fill="#FFD23F"/><circle cx="108" cy="${top - 28}" r="3" fill="#FFD23F"/>`;
-  if (e.hat === "halo") hat = `<ellipse cx="100" cy="${top - 10}" rx="28" ry="8" fill="none" stroke="#FFC21F" stroke-width="6"/>`;
-  let glasses = "";
-  const heart = x => `<path d="M0 9 C-16 -2 -11 -15 0 -6 C11 -15 16 -2 0 9z" fill="#F43F5E" transform="translate(${x} ${eyeY})"/>`;
-  if (e.glasses === "heartglasses") glasses = heart(100 - eyeDX) + heart(100 + eyeDX);
-  if (e.glasses === "monocle") glasses = `<circle cx="${100 + eyeDX}" cy="${eyeY}" r="15" fill="none" stroke="#D49500" stroke-width="4"/><path d="M${100 + eyeDX + 12} ${eyeY + 10} q8 22 -4 38" stroke="#D49500" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
-  if (e.glasses === "sunglasses") glasses = `<rect x="${100 - eyeDX - 16}" y="${eyeY - 10}" width="32" height="20" rx="8" fill="#1A1F33"/><rect x="${100 + eyeDX - 16}" y="${eyeY - 10}" width="32" height="20" rx="8" fill="#1A1F33"/><path d="M${100 - eyeDX + 16} ${eyeY - 3} h${eyeDX * 2 - 32}" stroke="#1A1F33" stroke-width="4"/><path d="M${100 - eyeDX - 10} ${eyeY - 5} l8 0" stroke="#fff" stroke-width="3" opacity=".5" stroke-linecap="round"/>`;
-  if (e.glasses === "nerd") glasses = `<circle cx="${100 - eyeDX}" cy="${eyeY}" r="15" fill="none" stroke="#1A1F33" stroke-width="4"/><circle cx="${100 + eyeDX}" cy="${eyeY}" r="15" fill="none" stroke="#1A1F33" stroke-width="4"/><path d="M${100 - eyeDX + 15} ${eyeY} h${eyeDX * 2 - 30}" stroke="#1A1F33" stroke-width="4"/>`;
-  let neck = "";
-  if (e.neck === "scarf") neck = `<path d="M${100 - rx * .8} ${cy + 22} q${rx * .8} 18 ${rx * 1.6} 0 l0 12 q-${rx * .8} 18 -${rx * 1.6} 0z" fill="#EF4462"/><path d="M${100 + 18} ${cy + 36} l10 30 l14 -4 l-8 -28z" fill="#DC2626"/>`;
-  if (e.neck === "bandana") neck = `<path d="M${100 - rx * .78} ${cy + 22} q${rx * .78} 16 ${rx * 1.56} 0 l-${rx * .78} 30 z" fill="#F97316"/><circle cx="100" cy="${cy + 34}" r="2.2" fill="#fff"/><circle cx="87" cy="${cy + 29}" r="2.2" fill="#fff"/><circle cx="113" cy="${cy + 29}" r="2.2" fill="#fff"/>`;
-  if (e.neck === "medal") neck = `<path d="M88 ${cy + 24} L100 ${cy + 44} L112 ${cy + 24}" stroke="#3B82F6" stroke-width="7" fill="none" stroke-linejoin="round"/><circle cx="100" cy="${cy + 50}" r="11" fill="#FFC21F" stroke="#D49500" stroke-width="3"/><circle cx="100" cy="${cy + 50}" r="4.5" fill="#FFE08A"/>`;
-  if (e.neck === "bow") neck = `<path d="M100 ${cy + 30} l-20 -11 v22z M100 ${cy + 30} l20 -11 v22z" fill="#8B5CF6"/><circle cx="100" cy="${cy + 30}" r="6" fill="#6D28D9"/>`;
   const dirt = dirty ? [[-30, -8], [26, 6], [-12, 22], [34, -26]].map(([dx, dy]) => `<circle cx="${100 + dx}" cy="${cy + dy}" r="5" fill="#6B4A2B" opacity=".55"/>`).join("") : "";
   const zzz = mood === "sleepy" ? `<text class="zzz" x="150" y="${top + 10}" font-size="22" font-weight="900" fill="var(--muted)" font-family="Nunito, sans-serif">z</text><text class="zzz" x="162" y="${top - 6}" font-size="16" font-weight="900" fill="var(--muted)" style="animation-delay:.8s" font-family="Nunito, sans-serif">z</text>` : "";
   const sparks = mood === "happy" ? [[30, top + 10], [170, top + 20], [160, cy + 40], [38, cy + 30]].map(([x, y], i) => `<path class="spark" style="animation-delay:${i * .35}s;transform-origin:${x}px ${y}px" d="M${x} ${y - 8} l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#FFC21F"/>`).join("") : "";
-  const showSprout = !e.hat || e.hat === "crown", sp = species || state.profile.species || "keimi", ink = "#1A1F33";
-  let back = "", front = ""; // back: ears, wings, tail behind the body; front: face details under eyes and mouth
-  if (sp === "katze") {
-    back = [-1, 1].map(q => `<path d="M${100 + q * rx * .8} ${top + ry * .5} L${100 + q * rx * .6} ${top - 20} L${100 + q * rx * .12} ${top + 8}z" fill="${c}"/><path d="M${100 + q * rx * .68} ${top + ry * .3} L${100 + q * rx * .57} ${top - 6} L${100 + q * rx * .3} ${top + 10}z" fill="#FF9EB5"/>`).join("")
-      + `<path d="M${100 + rx - 8} ${cy + ry * .55} q${rx * .75} 0 ${rx * .55} -${ry * 1.1}" stroke="${dark}" stroke-width="12" fill="none" stroke-linecap="round"/>`;
-    front = [-1, 1].map(q => `<path d="M${100 + q * 28} ${cy + 1} l${q * 26} -5 M${100 + q * 28} ${cy + 7} l${q * 26} 3" stroke="${ink}" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>`).join("");
-  } else if (sp === "hase") {
-    back = [-1, 1].map(q => `<g transform="rotate(${q * 12} ${100 + q * 22} ${top + 14})"><ellipse cx="${100 + q * 22}" cy="${top - 24}" rx="13" ry="38" fill="${c}"/><ellipse cx="${100 + q * 22}" cy="${top - 22}" rx="6" ry="27" fill="#FF9EB5"/></g>`).join("");
-    front = `<ellipse cx="100" cy="${cy + 2}" rx="5" ry="3.5" fill="#FF7A9C"/>`;
-  } else if (sp === "baer") {
-    back = [-1, 1].map(q => `<circle cx="${100 + q * rx * .66}" cy="${top + 14}" r="17" fill="${dark}"/><circle cx="${100 + q * rx * .66}" cy="${top + 14}" r="8" fill="${light}"/>`).join("");
-    front = `<ellipse cx="100" cy="${cy + 6}" rx="21" ry="14" fill="${light}"/><ellipse cx="100" cy="${cy - 1}" rx="7" ry="5" fill="${ink}"/>`;
-  } else if (sp === "drache") {
-    back = [-1, 1].map(q => `<path d="M${100 + q * (rx - 8)} ${cy - 4} q${q * 52} -40 ${q * 50} 12 q${-q * 14} -6 ${-q * 20} 6 q${-q * 10} -10 ${-q * 30} -18z" fill="${dark}"/>`).join("");
-    front = [-1, 1].map(q => `<path d="M${100 + q * 20} ${top + 10} q${q * 4} -20 ${q * 16} -28 q${-q * 2} 18 ${q * 2} 30z" fill="#FFE08A" stroke="#D49500" stroke-width="2"/>`).join("");
-  } else if (sp === "pinguin") front = `<path d="M90 ${cy - 4} L110 ${cy - 4} L100 ${cy + 7}z" fill="#FFB020"/>`;
   return `<svg class="pet ${mood} ${cls}" viewBox="0 0 200 200" width="${size}" height="${size}" role="img" aria-label="${esc(state.profile.petName)}">
     <ellipse cx="100" cy="190" rx="${rx * .8}" ry="7" fill="rgba(0,0,0,.12)"/>
     ${sparks}
@@ -1697,39 +1603,23 @@ function petSVG({ size = 128, mood = "ok", level, color, eq, cls = "", dirty = f
       <ellipse class="arm-l" cx="${100 - rx + 4}" cy="${cy + 6}" rx="12" ry="18" fill="${dark}" transform="rotate(20 ${100 - rx + 4} ${cy + 6})"/>
       <ellipse class="arm-r" cx="${100 + rx - 4}" cy="${cy + 6}" rx="12" ry="18" fill="${dark}" transform="rotate(-20 ${100 + rx - 4} ${cy + 6})"/>
       <ellipse cx="${100 - 22}" cy="${cy + ry - 4}" rx="16" ry="10" fill="${dark}"/><ellipse cx="${100 + 22}" cy="${cy + ry - 4}" rx="16" ry="10" fill="${dark}"/>
-      ${sp === "keimi" && showSprout && !e.hat ? sprout : ""}${back}
+      ${sprout}
       <ellipse cx="100" cy="${cy}" rx="${rx}" ry="${ry}" fill="${c}"/>
-      ${sp === "pinguin" ? `<ellipse cx="100" cy="${cy + ry * .2}" rx="${rx * .7}" ry="${ry * .72}" fill="#fff" opacity=".95"/>` : `<ellipse cx="100" cy="${cy + ry * .38}" rx="${rx * .62}" ry="${ry * .5}" fill="${light}" opacity=".75"/>`}
+      <ellipse cx="100" cy="${cy + ry * .38}" rx="${rx * .62}" ry="${ry * .5}" fill="${light}" opacity=".75"/>
       <ellipse cx="${100 - rx * .45}" cy="${cy - ry * .55}" rx="${rx * .22}" ry="${ry * .14}" fill="#fff" opacity=".35" transform="rotate(-25 ${100 - rx * .45} ${cy - ry * .55})"/>
       <circle cx="${100 - eyeDX - 14}" cy="${eyeY + 18}" r="7" fill="#FF7A9C" opacity=".55"/><circle cx="${100 + eyeDX + 14}" cy="${eyeY + 18}" r="7" fill="#FF7A9C" opacity=".55"/>
-      ${dirt}${front}${eyes}${mouth}${glasses}${neck}${hat}${e.hat === "crown" ? "" : ""}
+      ${dirt}${eyes}${mouth}
     </g>${zzz}</svg>`;
 }
 function petMood() {
   const t = todayK(), n = schedToday(), d = doneToday(t);
   if (n && d >= n) return "happy";
-  const ps = petNow(); if (Math.min(ps.hunger, ps.fun, ps.clean) < 25) return "sad";
+  if (state.habits.some(canRescue)) return "sad";
   const hr = new Date().getHours();
   if (!d && (hr >= 21 || hr < 6)) return "sleepy";
   if (!d && n && gStreak() === 0 && state.habits.length && hr >= 12) return "sleepy";
   return "ok";
 }
-function petLine() {
-  const t = todayK(), n = schedToday(), d = doneToday(t), hr = new Date().getHours(), seed = t + hr;
-  const nm = state.profile.petName;
-  if (!state.habits.length) return "Lass uns deine erste Gewohnheit anlegen! Tippe auf das Plus.";
-  const ps = petNow();
-  if (ps.hunger < 25) return pick(["Mein Bauch knurrt …", "Hast du etwas Leckeres für mich?"], seed);
-  if (ps.fun < 25) return pick(["Mir ist langweilig. Spielen wir was?", "Lass uns ein Minispiel machen!"], seed);
-  if (ps.clean < 25) return "Ich fühle mich ein bisschen schmutzig …";
-  if (careOpen()) return careSlot() === "am" ? "Guten Morgen! Zeit für meine Morgenpflege: erst Futter, dann waschen, spielen oder streicheln." : "Abendpflege? Ein bisschen Futter und eine Runde Kuscheln, dann schlaf ich gut.";
-  if (!n) return pick(["Heute ist frei. Genieß den Tag!", "Pause gehört dazu. Morgen geht's weiter!"], seed);
-  if (d >= n) return pick(["Perfekter Tag! Ich bin so stolz auf dich!", "Energie voll! Wir sind ein starkes Team.", "Alles erledigt. Zeit zum Feiern!"], seed);
-  if (!activeDay(t) && hr >= 18 && gStreak() > 0) return `Unsere ${gStreak()}-Tage-Serie ist in Gefahr! Ein Häkchen rettet sie.`;
-  if (!d) return pick(["Guten Tag! Was schaffen wir heute?", "Ich hab Hunger auf Häkchen!", "Ein kleiner Schritt reicht für den Anfang.", `${nm} glaubt an dich!`], seed);
-  return pick([`Noch ${n - d}! Du schaffst das.`, `Schon ${d} von ${n}. Weiter so!`, "Das fühlt sich gut an, oder?"], seed);
-}
-
 /* ============ Aktionsprotokoll ============ */
 // Local only: every saved change is written to IndexedDB with this device's id. Nothing leaves the device unless the person exports it.
 const LOG_MAX = 5000;
@@ -2140,7 +2030,7 @@ async function askNotify() {
 }
 let devT = 0, remLast = "", wLast = "";
 function reminderPlan() { // reminders for the next 7 days, at most 60 (iOS keeps 64 pending)
-  const out = [], now = Date.now(), t = todayK(), at = (k, hm) => { const [H, M] = hm.split(":").map(Number), d = parseK(k); d.setHours(H, M, 0, 0); return d; };
+  const out = [], now = Date.now(), t = todayK(), pn = state.profile.petName, at = (k, hm) => { const [H, M] = hm.split(":").map(Number), d = parseK(k); d.setHours(H, M, 0, 0); return d; };
   const T = state.timer, th = T && T.run && state.habits.find(x => x.id === T.id);
   if (th) { const end = T.run + Math.max(0, th.target * 60000 - cnt(th, t) * 60000 - T.acc); if (end > now) out.push({ at: new Date(end), title: "Zeit um!", body: `${th.name}: Tagesziel erreicht. Tippe zum Abhaken.`, extra: { act: "timer", id: th.id } }); }
   for (let i = 0; i < 7; i++) {
@@ -2148,7 +2038,7 @@ function reminderPlan() { // reminders for the next 7 days, at most 60 (iOS keep
     state.habits.forEach(h => {
       if (!h.remind || !sched(h, k) || (k === t && isDone(h, k))) return;
       const d = at(k, h.remind); if (d.getTime() <= now) return;
-      out.push({ at: d, title: h.name, body: h.gc ? "Gruppen-Challenge: Die Gruppe zählt auf dich." : h.kind === "break" ? "Bleib stark. Heute zählt." : "Zeit für deine Gewohnheit." });
+      out.push({ at: d, title: h.name, body: h.gc ? "Gruppen-Challenge: Die Gruppe zählt auf dich." : h.kind === "break" ? "Bleib stark. Heute zählt." : `Du hast es dir versprochen. ${pn} wartet.` });
     });
     state.habits.forEach(h => { // Aufstehen: Mitteilung zur Weckzeit (Android stellt zusätzlich einen echten Wecker)
       if (modeOf(h) !== "wake" || !h.alarm || !sched(h, k) || (k === t && (isDone(h, k) || (h.woke && h.woke[k])))) return;
@@ -2158,10 +2048,12 @@ function reminderPlan() { // reminders for the next 7 days, at most 60 (iOS keep
     const nr = state.profile.nightRemind;
     if (!nr || !habitsFor(k).length) continue;
     const d = at(k, nr); if (d.getTime() <= now) continue;
-    if (k !== t) { out.push({ at: d, title: "Schon alles abgehakt?", body: "Deine Serie zählt auf dich." }); continue; }
+    if (k !== t) { out.push({ at: d, title: `${pn} wartet noch`, body: "Du hast es dir selbst versprochen. Ein paar Minuten reichen." }); continue; }
     const open = habitsFor(t).filter(h => !isDone(h, t)), og = open.filter(h => h.gc).length;
-    if (open.length) out.push({ at: d, title: og ? `Noch ${og} ${og === 1 ? "Challenge" : "Challenges"} offen` : `Noch ${open.length} offen`, body: og ? "Die Team-Serie hängt an dir. Jetzt abhaken!" : "Ein paar Minuten reichen, damit deine Serie hält." });
+    if (open.length) out.push({ at: d, title: og ? `Noch ${og} ${og === 1 ? "Challenge" : "Challenges"} offen` : `Noch ${open.length} offen`, body: og ? "Die Team-Serie hängt an dir. Jetzt abhaken!" : `${pn} sitzt noch allein da. Ein paar Minuten reichen, damit deine Serie hält.` });
   }
+  const openT = habitsFor(t).filter(h => h.kind === "build" && !isDone(h, t)); // falls heute etwas liegen bleibt: morgen früh an den Rettungstag erinnern
+  if (openT.length && (state.profile.nightRemind || openT.some(h => h.remind))) { const d = at(addDays(t, 1), "09:00"); out.push({ at: d, title: `${pn} ist traurig`, body: "Gestern ist etwas ausgefallen. Rette deine Reise heute mit der Mini-Version." }); }
   return out.sort((a, b) => a.at - b.at).slice(0, 60);
 }
 function widgetData() {
@@ -2190,23 +2082,23 @@ function deviceSync() {
 let shownXp = null;
 function applyTheme() {
   if (curLang !== (state.profile.lang || "de")) setLang(state.profile.lang || "de");
-  const t = THEMES[state.profile.theme] || THEMES.sun, a = state.profile.appearance, el = document.documentElement; el.style.setProperty("--p0", t.p);
+  const a = state.profile.appearance, el = document.documentElement; el.style.setProperty("--p0", "#FF7A1A");
   if (a === "light" || a === "dark") el.dataset.theme = a; else delete el.dataset.theme;
 }
-const VTITLE = { heute: "Täglich", abgewoehnen: "Abgewöhnen", todos: "To-Dos", fortschritt: "Fortschritt", gruppe: "Gruppe", profil: "Menü" };
-const ADD = { heute: ["new", "build", "Neue Gewohnheit"], abgewoehnen: ["new", "break", "Neue Gewohnheit zum Abgewöhnen"], todos: ["todo-new", "", "Neue Aufgabe"] };
+const VTITLE = { heute: "Heute", fortschritt: "Beweise", reise: "Reise", gruppe: "Gruppe", profil: "Ich" };
+const ADD = { heute: ["new", "build", "Neue Gewohnheit"] };
 // Navigation bar: the section's large title, streak (opens streak and shields) and coins (opens the shop), add button on Heute.
 function renderTopbar() {
   const s = gStreak(), hot = activeDay(todayK());
-  $("#topbar").innerHTML = `<h1>${esc(view === "begleiter" ? state.profile.petName : VTITLE[view] || "Heute")}</h1>
+  $("#topbar").innerHTML = `<h1>${esc(VTITLE[view] || "Heute")}</h1>
     <button class="chip flame ${hot ? "hot" : "cold"}" id="chipStreak" data-action="shield-info" aria-label="${s} Tage Serie${hot ? "" : ", heute noch nicht verlängert"}, ${state.freezes} Schutzschilde">${I.flame}<span class="num">${s}</span></button>
-    <button class="chip coins" id="chipCoins" data-action="go" data-view="begleiter" aria-label="${state.profile.infinite ? "Unendlich viele" : state.coins} Münzen">${I.coin}<span class="num">${state.profile.infinite ? "∞" : state.coins}</span></button>
+    <button class="chip coins" id="chipCoins" data-action="go" data-view="profil" aria-label="${state.profile.infinite ? "Unendlich viele" : state.coins} Münzen">${I.coin}<span class="num">${state.profile.infinite ? "∞" : state.coins}</span></button>
     ${ADD[view] && state.profile.onboarded ? `<button class="tb-add" data-action="${ADD[view][0]}" data-v="${ADD[view][1]}" aria-label="${ADD[view][2]}">${I.plus}</button>` : ""}`;
   shownXp = state.xp;
 }
 function renderNav() {
-  const tabs = [["heute", "Täglich", I.cal], ["abgewoehnen", "Abgewöhnen", I.quit], ["todos", "To-Dos", I.todo], ["begleiter", state.profile.petName.slice(0, 10), I.paw], ["profil", "Menü", I.menu]];
-  $("#nav").innerHTML = tabs.map(([id, l, ic]) => { const need = id === "begleiter" && petNeedy(); return `<button data-action="go" data-view="${id}" ${need ? `class="dot" aria-label="${esc(l)}, braucht Pflege"` : ""} ${view === id || (id === "profil" && (view === "gruppe" || view === "fortschritt")) ? 'aria-current="page"' : ""}>${ic}<span>${esc(l)}</span></button>`; }).join("");
+  const tabs = [["heute", "Heute", I.ring], ["fortschritt", "Beweise", I.proof], ["reise", "Reise", I.path], ["profil", "Ich", I.user]];
+  $("#nav").innerHTML = tabs.map(([id, l, ic]) => { return `<button data-action="go" data-view="${id}" ${view === id || (id === "profil" && view === "gruppe") ? 'aria-current="page"' : ""}>${ic}<span>${esc(l)}</span></button>`; }).join("");
 
 }
 function renderBanner() {
@@ -2217,7 +2109,7 @@ function renderBanner() {
 }
 let animateNext = true;
 // Re-renders one container of the current page (shop tabs, progress tabs, tag filter) without replaying the whole page.
-const viewHTML = () =>  view === "abgewoehnen" ? viewBreak() : view === "todos" ? viewTodos() : view === "fortschritt" ? viewProgress() : view === "begleiter" ? viewPet() : view === "gruppe" ? viewGruppe() : view === "profil" ? viewProfile() : viewToday();
+const viewHTML = () =>  view === "reise" ? viewReise() : view === "fortschritt" ? viewProgress() : view === "gruppe" ? viewGruppe() : view === "profil" ? viewProfile() : viewToday();
 function softRender(sel) {
   const cur = $(sel); if (!cur) { render(); return; }
   const tmp = document.createElement("div");
@@ -2226,13 +2118,12 @@ function softRender(sel) {
   cur.innerHTML = nu.innerHTML; cur.classList.remove("anim"); void cur.offsetWidth; if (!reduced) cur.classList.add("anim"); updateTickers();
 }
 function render() {
-  applyTheme(); ensureBoss(); renderTopbar(); renderNav(); renderBanner();
+  applyTheme(); renderTopbar(); renderNav(); renderBanner();
   const v = $("#view");
   if (store.mode === "loading") { v.innerHTML = `<div class="loading">21 Days wird geladen …</div>`; return; }
   v.classList.toggle("anim", animateNext && !reduced); animateNext = false;
   v.innerHTML = viewHTML();
   updateTickers();
-  if (pendingBoss) setTimeout(showBossWin, 900);
   if ((view === "gruppe" || view === "heute") && state.group && Date.now() - grp.last > (view === "gruppe" ? 8000 : 20000)) loadBoard();
   wake(!!$("#wk")); restDraw();
   // a level-up from a quiet source (badge, pet, workout) still gets its moment
@@ -2280,14 +2171,15 @@ function habitCard(h, i, off) {
   } else {
     meta = `<span class="fl ${st.c ? "" : "zero"}">${I.flame}${st.c}</span>${modeMeta(h, c)}${h.cue && h.action && modeOf(h) === "check" ? `<span>Wenn ${esc(h.cue)}</span>` : ""}`;
   }
-  meta += gcBadge(h) + itemBadges(h) + vocabBadge(h) + gymBadge(h) + capBadge(h);
+  const aft = h.after && state.habits.find(x => x.id === h.after);
+  meta += (aft ? `<span>nach „${esc(aft.name)}“</span>` : "") + (h.bet ? `<span class="pf w">Wette · ${h.bet.stake}</span>` : "") + (done ? (proofOf(h, t) === "p" ? `<span class="pf p">Bewiesen</span>` : `<span class="pf s">Selbst bezeugt</span>`) : "") + gcBadge(h) + itemBadges(h) + vocabBadge(h) + gymBadge(h) + capBadge(h);
   const inner = h.special === "vocab" && !done ? I.gift : h.special === "gym" && !done ? I.dumbbell : modeInner(h, c, done), ma = modeAria(h, c, done);
   return `<article class="hcard enter ${done ? "done" : ""}" style="--hc:${esc(h.color)};--i:${i + 3}" data-card="${h.id}" data-action="detail" data-id="${h.id}">
     <div class="hicon">${HI[h.icon] || I.star}</div>
     <div class="hbody"><div class="hname">${esc(h.name)}</div><div class="hmeta">${meta}</div>
-      ${st.grace && !off ? `<div class="hwarn">Gestern verpasst: Heute erledigen hält die Serie!</div>` : ""}</div>
+      ${off ? "" : canRescue(h) ? `<div class="hwarn">Verpasst. Heute reicht die Mini-Version.</div><button class="mini-b" data-action="mini" data-id="${h.id}">${I.check}${esc(miniOf(h))}</button>` : st.grace ? `<div class="hwarn">Gestern verpasst: Heute erledigen hält die Serie!</div>` : ""}</div>
     ${h.kind === "break" && !off ? `<button class="sos" data-action="sos" data-id="${h.id}" aria-label="SOS-Hilfe bei Drang">SOS</button>` : ""}
-    ${off ? `<span class="pill">frei</span>` : `<button class="hcheck ${done ? "done" : ""}" data-action="tap" data-id="${h.id}" aria-label="${esc(h.name)}: ${h.special === "gym" ? (state.gym.active ? "Workout fortsetzen" : done ? "erledigt, Training ansehen" : "Training öffnen") : h.special === "vocab" ? (done ? "Karten von heute ansehen" : "Tages-Pack öffnen") : ma ? ma : done ? "erledigt, tippen zum Rückgängig machen" : h.target > 1 ? `${c} von ${h.target}, tippen für +1` : "als erledigt markieren"}">
+    ${off ? `<span class="pill">frei</span>` : `<button class="hcheck ${done ? "done" : ""} ${done && proofOf(h, t) !== "p" ? "self" : ""}" data-action="tap" data-id="${h.id}" aria-label="${esc(h.name)}: ${h.special === "gym" ? (state.gym.active ? "Workout fortsetzen" : done ? "erledigt, Training ansehen" : "Training öffnen") : h.special === "vocab" ? (done ? "Karten von heute ansehen" : "Tages-Pack öffnen") : ma ? ma : done ? "erledigt, tippen zum Rückgängig machen" : h.target > 1 ? `${c} von ${h.target}, tippen für +1` : "als erledigt markieren"}">
       <svg class="ring" viewBox="0 0 58 58"><circle class="t" cx="29" cy="29" r="${R}"/><circle class="v" cx="29" cy="29" r="${R}" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - frac)}"/></svg>${inner}</button>`}
   </article>`;
 }
@@ -2295,42 +2187,157 @@ function habitCard(h, i, off) {
 function viewToday() {
   const t = todayK(), hs = habitsFor(t), n = hs.length, d = hs.filter(h => isDone(h, t)).length;
   let list = "";
-  if (!state.habits.some(h => h.kind !== "break")) {
+  if (!state.habits.length) {
     list = `<div class="card empty sec enter"><h2>Starte deine 21 Tage</h2><p>Leg deine erste Gewohnheit an, aus einer Vorlage oder ganz eigen.</p><button class="btn" data-action="new">${I.plus} Gewohnheit anlegen</button></div>`;
   } else {
     let i = 0;
     TIME_ORDER.forEach(tm => {
-      const g = hs.filter(h => !h.gc && h.kind !== "break" && h.time === tm && (!tagFilter || h.tag === tagFilter)); if (!g.length) return;
+      const g = hs.filter(h => !h.gc && h.time === tm && (!tagFilter || h.tag === tagFilter)); if (!g.length) return;
       list += `<div class="group-h">${TIMES[tm].n}</div><div class="hlist">${g.map(h => habitCard(h, i++)).join("")}</div>`;
     });
-    const off = state.habits.filter(h => !h.gc && h.kind !== "break" && !sched(h, t) && (!tagFilter || h.tag === tagFilter));
+    const off = state.habits.filter(h => !h.gc && !sched(h, t) && (!tagFilter || h.tag === tagFilter));
     if (off.length) list += `<div class="group-h">Heute frei</div><div class="hlist off-list">${off.map(h => habitCard(h, i++, true)).join("")}</div>`;
   }
   return `
   <p class="sub">${esc(fmtLong(t))}${n ? ` · ${d >= n ? "alles erledigt" : `${d} von ${n} erledigt`}` : ""}</p>
-  ${statusHead()}
+  ${heroCard()}
+  ${guiltCard()}
   ${groupHero()}
   ${state.group ? challengeSection() : ""}
   ${weekStrip()}
   ${gymLiveCard()}
   <div id="tl">${tagBar()}${list}</div>
-  ${state.habits.length ? `${quickRow()}${pledgeCard()}${questCard()}${bossCard()}` : ""}`;
+  <div id="tl2">${state.profile.onboarded ? todosSection() : ""}</div>
+  ${state.habits.length ? `${quickRow()}${pledgeCard()}${questCard()}` : ""}`;
 }
 
-// Kopf wie bei Habitica: Begleiter, Level und Glück auf den Listen-Reitern.
-function statusHead() {
-  const L = levelOf(state.xp), b = lvlBase(L), n = lvlBase(L + 1), s = petNow(), hap = Math.round((s.hunger + s.fun + s.clean) / 3), bo = petBoost();
-  return `<section class="card stat-head enter"><button class="sh-pet" data-action="go" data-view="begleiter" aria-label="${esc(state.profile.petName)} öffnen">${petSVG({ size: 64, mood: petMood() })}</button>
-    <div class="sh-bars"><div class="sh-row"><b>Level ${L}</b><span class="muted num">${state.xp - b} / ${n - b} XP</span></div><div class="xpbar"><i style="width:${(state.xp - b) / (n - b) * 100}%"></i></div>
-    <div class="sh-row"><b>Glück</b><span class="muted num">${hap} %${bo.pct ? ` · +${bo.pct} % XP` : ""}</span></div><div class="xpbar hap"><i style="width:${hap}%"></i></div></div></section>`;
+// Schuldgefühle: Solange ein verpasster Tag nicht gerettet ist, sitzt der Begleiter traurig auf Heute.
+function guiltCard() {
+  const ms = state.habits.filter(canRescue); if (!ms.length) return "";
+  return `<section class="card guilt sec enter"><div class="g-pet">${petSVG({ size: 72, mood: "sad" })}</div><div><b>${esc(state.profile.petName)} hat vergeblich auf dich gewartet.</b><p>${ms.slice(0, 2).map(h => `„${esc(h.name)}“`).join(", ")}${ms.length > 2 ? " …" : ""} ${ms.length === 1 ? "ist" : "sind"} ausgefallen. Zweimal hintereinander darf nicht passieren. Heute reicht die Mini-Version.</p></div></section>`;
 }
-function viewBreak() {
-  const t = todayK(), hs = state.habits.filter(h => h.kind === "break" && !h.gc);
-  return `${statusHead()}
-  ${hs.length ? `<p class="sub" style="margin-top:14px">Ein Haken heißt: heute geschafft. Bei Drang hilft SOS.</p><div class="hlist">${hs.map((h, i) => habitCard(h, i, !sched(h, t))).join("")}</div>`
-    : `<div class="card empty sec enter"><h2>Was willst du loswerden?</h2><p>Rauchen, Social Media, Süßes: Starte mit einer Vorlage oder ganz eigen.</p><button class="btn" data-action="new" data-v="break">${I.plus} Abgewöhnen</button></div>`}`;
+function rescue(id, btn) {
+  const h = state.habits.find(x => x.id === id); if (!h || !canRescue(h)) return;
+  const t = todayK(), r = btn.getBoundingClientRect(); h.log[t] = Math.max(cnt(h, t), h.target); h.resc[t] = 1;
+  completeHabit(h, r.left + r.width / 2, r.top + r.height / 2, r);
+  setTimeout(() => toast(`Reise gerettet! ${state.profile.petName} ist erleichtert.`, "gold"), 700);
 }
-const viewTodos = () => `${statusHead()}<div id="tl2">${todosSection()}</div>`;
+
+/* ============ Wette mit dir selbst ============ */
+// Einsatz auf die nächsten 21 Tage. Nur bewiesene Tage zählen, darum nur für Gewohnheiten, die die App messen kann.
+const provable = h => h.kind === "build" && (h.special === "gym" || h.special === "vocab" || ["wake", "steps", "timer", "journal", "screen"].includes(modeOf(h)));
+function betStat(h, from = (h.bet || {}).from || todayK()) {
+  const t = todayK(); let planned = 0, proven = 0, lost = 0;
+  for (let i = 0; i < 21; i++) { const k = addDays(from, i); if (!sched(h, k)) continue; planned++; if (isDone(h, k) && proofOf(h, k) === "p") proven++; else if (k < t) lost++; }
+  return { planned, proven, lost, need: Math.ceil(planned * 6 / 7), end: addDays(from, 20) };
+}
+function betCheck() {
+  state.habits.forEach(h => {
+    if (!h.bet) return;
+    const b = h.bet, s = betStat(h);
+    if (s.proven >= s.need) { h.bet = null; addCoins(b.stake * 2); state.flags.betsWon = (state.flags.betsWon || 0) + 1; pushOverlay({ kicker: "Wette gewonnen", big: `+${b.stake * 2}`, title: "Du hast Wort gehalten", sub: `„${h.name}“ · ${s.proven} bewiesene Tage`, color: "#FF7A1A" }); }
+    else if (s.planned - s.lost < s.need || todayK() > s.end) { h.bet = null; pushOverlay({ kicker: "Wette verloren", big: `−${b.stake}`, title: "Du hast gegen dich selbst verloren", sub: `„${h.name}“: Du hattest es dir versprochen. Die ${b.stake} Münzen sind weg.`, color: "#8A817A", icon: petSVG({ size: 110, mood: "sad" }), quiet: true, sound: "undo" }); }
+  });
+}
+function betCard(h) {
+  const head = `<div class="bet-h"><b>Wette mit dir selbst</b>${I.coin}</div>`;
+  if (h.bet) {
+    const s = betStat(h), left = s.planned - s.lost - s.need;
+    return `<section class="card bet sec enter">${head}<div class="pbar"><i style="width:${Math.min(100, s.proven / s.need * 100)}%"></i></div><p class="num"><b>${s.proven}/${s.need}</b> bewiesenen Tagen · Einsatz ${h.bet.stake}</p><p class="muted">Noch ${left} ${left === 1 ? "Fehltag" : "Fehltage"} erlaubt, bis ${parseK(s.end).toLocaleDateString(LOC(), { day: "numeric", month: "long" })}. Schaffst du es, bekommst du ${h.bet.stake * 2} Münzen.</p></section>`;
+  }
+  if (!provable(h)) return `<section class="card bet sec enter">${head}<p class="muted">Wetten gehen nur mit Gewohnheiten, die 21 Days messen kann: Wecker, Timer, Schritte, Tagebuch, Bildschirmzeit, Training oder Vokabeln.</p></section>`;
+  const s = betStat(h, todayK());
+  return `<section class="card bet sec enter">${head}<p>Setz Münzen auf deine nächsten 21 Tage. Schaffst du ${s.need} bewiesene Tage, bekommst du das Doppelte. Sonst sind sie weg.</p>
+    <div class="bet-row">${[50, 100, 200].map(c => `<button class="btn sm" data-action="bet" data-id="${h.id}" data-v="${c}" ${state.coins < c ? "disabled" : ""}>${c}</button>`).join("")}</div><p class="muted num">Du hast ${state.coins} Münzen.</p></section>`;
+}
+
+/* ============ Kettenreaktion ============ */
+// Ist eine Gewohnheit geschafft, meldet sich sofort die nächste, die "danach" kommt.
+function chainPrompt(a, b) {
+  if (isDone(b, todayK())) return;
+  const ic = x => `<span class="hicon" style="--hc:${esc(x.color)}">${HI[x.icon] || I.star}</span>`;
+  openSheet(`${sheetHead("Kettenreaktion")}<div class="chain">${ic(a)}<i>${I.chev}</i>${ic(b)}</div>
+    <p style="text-align:center;margin:0"><b>„${esc(a.name)}“ ist geschafft.</b><br>Jetzt ist der beste Moment für „${esc(b.name)}“.</p>
+    <button class="btn full sec" data-action="chain-go" data-id="${b.id}">Jetzt starten</button><button class="btn ghost full" style="margin-top:10px" data-action="close">Später</button>`, { reset: true });
+}
+
+/* ============ Reise: 21 Tage, Ring, Zertifikat ============ */
+const dayNo = (from, k = todayK()) => Math.round((parseK(k) - parseK(from)) / 864e5) + 1;
+const PHASES = [[1, "Start", "Klein anfangen. Jeder Tag zählt."], [8, "Das Tal", "Hier hören die meisten auf. Du nicht."], [15, "Durchbruch", "Es wird leichter. Bleib dran."], [22, "Festigen", "Bis Tag 66 wird es zur Gewohnheit."]];
+const phaseOf = n => PHASES.filter(q => n >= q[0]).pop();
+// p bewiesen · s selbst bezeugt · m verpasst · r Ruhetag · f Zukunft · n heute offen
+const habitDay = (h, k) => k > todayK() ? "f" : !sched(h, k) || k < h.start ? "r" : isDone(h, k) ? proofOf(h, k) : k === todayK() ? "n" : "m";
+function allDay(k) {
+  if (k > todayK()) return "f";
+  const hs = habitsFor(k); if (!hs.length) return "r";
+  const done = hs.filter(h => isDone(h, k)); if (done.length < hs.length) return k === todayK() ? "n" : "m";
+  return done.some(h => proofOf(h, k) === "p") ? "p" : "s";
+}
+function ring21(sts, size, label, sub) {
+  const c = 66, r = 56, gap = 4.2, col = { p: "var(--glut)", s: "var(--muted)", m: "var(--card-2)", r: "var(--line)", f: "var(--card-2)", n: "var(--ink)" };
+  return `<svg class="ring21" viewBox="0 0 132 132" width="${size}" height="${size}" aria-hidden="true">${sts.map((st, i) => {
+    const A = d => (d - 90) * Math.PI / 180, a0 = A(i / 21 * 360 + gap / 2), a1 = A((i + 1) / 21 * 360 - gap / 2);
+    return `<path d="M${(c + r * Math.cos(a0)).toFixed(1)} ${(c + r * Math.sin(a0)).toFixed(1)} A${r} ${r} 0 0 1 ${(c + r * Math.cos(a1)).toFixed(1)} ${(c + r * Math.sin(a1)).toFixed(1)}" stroke="${col[st]}" stroke-width="10" fill="none" stroke-linecap="round"${st === "s" ? ' stroke-dasharray="3 3.5"' : ""}/>`;
+  }).join("")}${label != null ? `<text x="66" y="${sub ? 60 : 72}" text-anchor="middle" class="r21-l">${label}</text>` : ""}${sub ? `<text x="66" y="82" text-anchor="middle" class="r21-s">${sub}</text>` : ""}</svg>`;
+}
+function heroCard() {
+  if (!state.habits.length) return "";
+  const t = todayK(), start = state.habits.reduce((a, h) => h.start < a ? h.start : a, t), n = dayNo(start), ph = phaseOf(n), from = n > 21 ? addDays(t, -20) : start;
+  const sts = Array.from({ length: 21 }, (_, i) => allDay(addDays(from, i)));
+  const past = sts.slice(0, Math.min(n, 21) - 1).filter(x => x !== "r" && x !== "f"), pr = past.filter(x => x === "p").length;
+  return `<section class="card hero21 enter"><div class="h21-ring">${ring21(sts, 124)}<div class="h21-c"><small data-notr>${{ en: "Day", tr: "Gün" }[state.profile.lang] || "Tag"}</small><b class="num">${n}</b></div></div>
+    <div><div class="h21-ph">${ph[1]}</div><p>${ph[2]}</p>${past.length ? `<div class="h21-m num">${pr} von ${past.length} Tagen bewiesen</div>` : `<div class="h21-m">Dein erster Tag. Beweis ihn!</div>`}</div></section>`;
+}
+const seedSVG = s => `<svg viewBox="0 0 42 42" width="${s}" height="${s}" aria-hidden="true"><ellipse cx="21" cy="34" rx="12" ry="5" fill="var(--card-2)"/><ellipse cx="21" cy="30" rx="6" ry="5" fill="#C98A4A"/></svg>`;
+let reiseId = "";
+function viewReise() {
+  const hs = state.habits; if (!hs.length) return `<div class="card empty sec"><h2>Noch keine Reise</h2><p>Leg eine Gewohnheit an. Dann siehst du hier ihren Weg über 21 Tage.</p><button class="btn" data-action="new">${I.plus} Gewohnheit anlegen</button></div>`;
+  const h = hs.find(x => x.id === reiseId) || hs[0], t = todayK(), n = dayNo(h.start), stage = n >= 21 ? 2 : n >= 8 ? 1 : 0;
+  const pick = hs.length > 1 ? `<div class="seg scroll sec" role="group" aria-label="Gewohnheit">${hs.map(x => `<button data-action="reise-h" data-id="${x.id}" aria-pressed="${x === h}">${esc(x.name)}</button>`).join("")}</div>` : "";
+  const st = i => habitDay(h, addDays(h.start, i));
+  const row = (i0, name, sub) => `<div class="ph-h"><b class="${n >= i0 + 1 && n <= i0 + 7 ? "now" : ""}">${name}</b><span>${sub}</span></div><div class="ph-d">${Array.from({ length: 7 }, (_, j) => { const i = i0 + j, s2 = st(i); return `<span class="d21 ${s2} ${i + 1 === n ? "cur" : ""}" title="${addDays(h.start, i)}">${i + 1}</span>`; }).join("")}</div>`;
+  const stg = (k, svg, l) => `<div class="${k === stage ? "now" : k > stage ? "later" : ""}">${svg}<span>${l}</span></div>`;
+  return `${pick}<p class="sub" style="margin-top:12px">${esc(h.name)} · seit ${parseK(h.start).toLocaleDateString(LOC(), { day: "numeric", month: "long" })}</p>
+  <section class="card keimi-row enter">${stg(0, seedSVG(44), "Samen")}${stg(1, petSVG({ size: 64, mood: "happy", level: 1 }), "Keimi")}${stg(2, petSVG({ size: 64, mood: "happy", level: 12 }), "Tag 21")}</section>
+  <section class="card enter" style="margin-top:12px">
+    ${row(0, "Start", "Tag 1–7 · klein anfangen")}${row(7, "Das Tal", "Tag 8–14 · hier wird es schwer")}
+    ${n >= 8 && n <= 14 ? `<div class="tal">Die Neugier ist weg, der Erfolg noch nicht sichtbar. Halte die Gewohnheit lieber klein, als sie auszulassen.</div>` : ""}
+    ${row(14, "Durchbruch", "Tag 15–21 · es wird leichter")}
+    <div class="legend21"><span class="d21 p"></span>bewiesen <span class="d21 s"></span>selbst bezeugt <span class="d21 m"></span>verpasst</div>
+  </section>
+  ${betCard(h)}
+  ${n >= 21 ? `<button class="btn full sec" data-action="cert" data-id="${h.id}">Zertifikat ansehen</button>${n > 21 ? `<p class="muted" style="text-align:center;margin-top:8px">Tag ${n} · weiter bis Tag 66, dann läuft es von selbst.</p>` : ""}` : `<p class="muted" style="text-align:center;margin-top:14px">Noch ${21 - n} ${21 - n === 1 ? "Tag" : "Tage"} bis zum Zertifikat.</p>`}`;
+}
+function certStats(h) {
+  const sts = Array.from({ length: 21 }, (_, i) => habitDay(h, addDays(h.start, i)));
+  const planned = sts.filter(x => x !== "r" && x !== "f").length, done = sts.filter(x => x === "p" || x === "s").length, pr = sts.filter(x => x === "p").length;
+  return { sts, planned, done, pr, self: done - pr };
+}
+function openCert(id) {
+  const h = state.habits.find(x => x.id === id); if (!h) return;
+  const c = certStats(h), end = addDays(h.start, 20), dm = k => parseK(k).toLocaleDateString(LOC(), { day: "numeric", month: "long" });
+  openSheet(`${sheetHead("Geschafft")}
+    <div class="cert"><div class="k">21 Tage · ${c.pr >= c.done / 2 ? "bewiesen" : "durchgezogen"}</div><h3>${esc(h.name)}</h3><div class="muted">${dm(h.start)} bis ${dm(end)}</div>
+      <div class="cert-ring">${ring21(c.sts, 170, "21", "TAGE")}</div>
+      <div class="tiles"><div class="tile"><div class="tv num">${c.done}/${c.planned}</div><span>Tage geschafft</span></div><div class="tile"><div class="tv num">${c.pr}</div><span>davon bewiesen</span></div></div>
+    </div>
+    <button class="btn full sec" data-action="cert-share" data-id="${h.id}">Zertifikat teilen</button>
+    <p class="muted" style="font-size:.8125rem;margin-top:10px">Das Zertifikat zählt nur, was wirklich passiert ist. Bewiesen heißt: Die App hat es gemessen.</p>`, { reset: true });
+  sfx("streak"); bigCelebration();
+}
+async function shareCert(id) {
+  const h = state.habits.find(x => x.id === id); if (!h) return;
+  const c = certStats(h), text = `21 Days: „${h.name}“ · ${c.done} von ${c.planned} Tagen geschafft, ${c.pr} davon bewiesen.`, S = capP("Share");
+  try { if (S) await S.share({ text }); else if (navigator.share) await navigator.share({ text }); else { await navigator.clipboard.writeText(text); toast("Text kopiert"); } } catch (e) { /* abgebrochen */ }
+}
+function proofCard() {
+  const t = todayK(); let p = 0, sf = 0;
+  for (let i = 0; i < 30; i++) { const k = addDays(t, -i); state.habits.forEach(h => { if (isDone(h, k)) { if (proofOf(h, k) === "p") p++; else sf++; } }); }
+  const all = p + sf;
+  return `<section class="card sec enter proofc"><div class="pc-top"><div><b class="num">${p}</b><span>bewiesen</span></div><div><b class="num">${sf}</b><span>selbst bezeugt</span></div></div>
+    <div class="pbar"><i style="width:${all ? p / all * 100 : 0}%"></i></div>
+    <p class="muted" style="margin:8px 0 0;font-size:.875rem">Letzte 30 Tage. Bewiesen heißt: Wecker, Health, Timer, Workout oder Tagebuch haben es gemessen. Das gibt volle XP.</p></section>`;
+}
 
 /* ============ View: Fortschritt ============ */
 let progTab = "overview";
@@ -2361,7 +2368,7 @@ function viewProgressInner() {
   const moods = []; for (let i = 13; i >= 0; i--) { const k = addDays(t, -i); const p = state.pledges[k]; moods.push(p && p.pm ? p.pm.mood : null); }
   const mpts = moods.map((v, i) => v ? [i * (300 / 13) + 10, 110 - (v - 1) * 25] : null);
   const path = mpts.filter(Boolean).map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1]).join(" ");
-  return tabs + `
+  return proofCard() + tabs + `
   <div class="tiles sec">
     <div class="tile enter" style="--i:0"><div class="tv num">${I.flame}${gs}</div><span>Tage Serie</span></div>
     <div class="tile enter" style="--i:1"><div class="tv num">${I.trophy.replace("<svg", '<svg style="color:var(--gold-dark)"')}${gb}</div><span>beste Serie</span></div>
@@ -2402,42 +2409,6 @@ function progTriggers() {
   <div class="sec-h"><h2>Verlauf</h2></div><div class="card">${tr.slice(-15).reverse().map(x => `<div class="logrow"><span class="lb ${x.outcome === "resisted" ? "res" : "gave"} num">${x.strength || "–"}</span><div><b>${x.outcome === "resisted" ? "Widerstanden" : "Rückfall"}</b> · ${esc(hn(x.habitId))}<div class="muted" style="font-weight:400">${new Date(x.ts).toLocaleString(LOC(), { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}${(x.tags || []).length ? " · " + esc(x.tags.join(", ")) : ""}</div></div></div>`).join("")}</div>`;
 }
 
-/* ============ View: Begleiter ============ */
-let shopTab = "outfit";
-function itemIcon(it) {
-  if (it.slot === "consumable") return `<span style="width:52px;height:52px;display:block">${I.shield}</span>`;
-  if (it.slot === "bg") return `<span class="bgprev sc-${it.id.slice(3)}"></span>`;
-  if (it.slot === "theme") { const th = THEMES[it.theme]; return `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="${th.p}"/><circle cx="32" cy="32" r="12" fill="${th.d}"/></svg>`; }
-  const eq = { [it.slot]: it.id };
-  return petSVG({ size: 64, mood: "ok", eq, level: levelOf(state.xp) });
-}
-function viewPet() {
-  const L = levelOf(state.xp), st = stageOf(L), next = STAGES[st + 1], mood = petMood();
-  const owned = id => state.inv.owned.includes(id) || (id.startsWith("theme_") && state.profile.theme === id.slice(6));
-  const items = ITEMS.filter(it => shopTab === "outfit" ? ["hat", "glasses", "neck"].includes(it.slot) : shopTab === "room" ? it.slot === "bg" : shopTab === "theme" ? it.slot === "theme" : it.slot === "consumable");
-  const shopHtml = shopTab === "rewards" ? rewardsHtml() : `<div class="shop">${items.map((it, i) => {
-    const own = it.slot !== "consumable" && owned(it.id);
-    const on = own && (it.slot === "theme" ? state.profile.theme === it.theme : state.inv.eq[it.slot] === it.id);
-    const cant = !own && state.coins < it.cost;
-    const label = it.slot === "consumable" ? `${state.freezes}/${MAX_SHIELDS}` : on ? "Aktiv" : own ? "Besitzt du" : "";
-    return `<button class="item enter ${own ? "owned" : ""} ${on ? "on" : ""} ${cant ? "cant" : ""}" style="--i:${i + 2}" data-action="item" data-id="${it.id}">
-      <span class="iv">${itemIcon(it)}</span><b>${esc(it.n)}</b>
-      <span class="price num">${own ? label : `${I.coin}${it.cost}`}</span>${it.slot === "consumable" ? `<small class="muted num" style="font-weight:500">${label}</small>` : ""}</button>`;
-  }).join("")}${shopTab === "theme" ? `<button class="item ${state.profile.theme === "sun" ? "on" : "owned"}" data-action="theme-default"><span class="iv"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="#FF6B2C"/><circle cx="32" cy="32" r="12" fill="#D24A0E"/></svg></span><b>Thema Sonne</b><span class="price">${state.profile.theme === "sun" ? "Aktiv" : "Standard"}</span></button>` : ""}</div>`;
-  return `
-  <section class="pet-stage sec enter" style="--i:0">
-    <div class="scene ${state.inv.eq.bg ? "sc-" + state.inv.eq.bg.slice(3) : ""}"><div class="petbox" data-action="pet" aria-label="${esc(state.profile.petName)} streicheln">${petSVG({ size: 200, mood, dirty: petNow().clean < 35 })}</div></div>
-    <h2 style="margin-top:10px">${esc(state.profile.petName)}</h2>
-    <div class="muted" style="font-weight:600">${STAGES[st].n} · Level ${L}${next ? ` · Entwickelt sich bei Level ${next.l}` : ""}</div>
-    <div class="bubble say" id="bubble" style="margin-top:12px;text-align:left">${esc(petLine())}</div>
-  </section>
-  <section class="card sec enter" style="--i:1" id="care">${careHtml()}</section>
-  ${wheelCard(true)}
-  <div id="shop"><div class="sec-h"><h2>Shop</h2><span class="chip coins">${I.coin}<span class="num">${state.profile.infinite ? "∞" : state.coins}</span></span></div>
-  <div class="seg scroll" role="group" style="margin-bottom:12px">${[["outfit", "Outfits"], ["room", "Zimmer"], ["theme", "Themen"], ["power", "Items"], ["rewards", "Belohnungen"]].map(([k, l]) => `<button data-action="stab" data-v="${k}" aria-pressed="${shopTab === k}">${l}</button>`).join("")}</div>
-  ${shopTab === "outfit" ? `<div class="card" style="margin-bottom:12px"><div class="species" style="margin:0 0 14px">${SPECIES.map(([k, n]) => `<button class="sp" data-action="petspecies" data-v="${k}" aria-pressed="${(state.profile.species || "keimi") === k}">${petSVG({ size: 48, mood: "ok", level: 1, eq: {}, species: k })}<span>${n}</span></button>`).join("")}</div><div class="swatches">${PET_COLORS.map(c => `<button class="sw" style="--c:${c}" data-action="petcolor" data-v="${c}" aria-pressed="${state.profile.petColor === c}" aria-label="Farbe ${c}"></button>`).join("")}</div><div style="text-align:center"><button class="link" data-action="rename">Namen ändern</button></div></div>` : ""}
-  ${shopHtml}</div>`;
-}
 function rewardsHtml() {
   return `<div class="card"><p class="muted" style="margin:0 0 8px;font-weight:500">Gönn dir echte Belohnungen für deine Münzen, z. B. eine Serienfolge oder dein Lieblingsessen.</p>
     ${state.rewards.map(r => `<div class="reward-row"><span class="hicon" style="--hc:var(--gold-dark);width:40px;height:40px;border-radius:12px">${I.gift}</span><b>${esc(r.name)}</b>
@@ -2467,10 +2438,12 @@ function viewProfile() {
   <div class="sec-h"><h2>Gewohnheiten</h2><button class="link" data-action="new">${I.plus} Neu</button></div>
   ${state.habits.length ? `<div class="list">${state.habits.map(h => `<button class="row" data-action="edit" data-id="${h.id}"><span class="hicon" style="--hc:${esc(h.color)}">${HI[h.icon] || I.star}</span><span class="row-t"><b>${esc(h.name)}</b><small>${h.kind === "break" ? "Abgewöhnen" : h.special === "gym" ? "Training" : "Angewöhnen"} · ${h.days.length === 7 ? "täglich" : h.days.map(d => WD[d]).join(", ")}</small></span>${I.chev}</button>`).join("")}</div>` : `<div class="card"><p class="muted" style="margin:0">Noch keine Gewohnheiten.</p></div>`}
   <div class="list sec">
-    ${link('data-action="go" data-view="fortschritt"', I.chart, "#16A34A", "Fortschritt", "Serien, Kalender, Journal und Auslöser")}
     ${link('data-action="badges"', I.trophy, "#D49500", "Abzeichen", `${got} von ${BADGES.length} freigeschaltet`)}
     ${link('data-action="go" data-view="gruppe"', I.users, "#3B82F6", "Gruppe", state.group ? esc(state.group.name) : "Rangliste mit Freunden")}
   </div>
+  <div class="sec-h"><h2>Belohnungen</h2><span class="chip coins">${I.coin}<span class="num">${state.profile.infinite ? "∞" : state.coins}</span></span></div>
+  ${rewardsHtml()}
+  <div class="card sec"><div class="setrow" style="border:0;padding:0"><div><b>Schutzschild</b><small>Rettet deine Serie, wenn du einen Tag verpasst · ${state.freezes}/${MAX_SHIELDS}</small></div><button class="btn sm ghost" data-action="item" data-id="shield">${I.coin} 150</button></div></div>
   ${state.tags.length ? `<div class="sec-h"><h2>Tags</h2></div><div class="card">${state.tags.map(t => `<div class="setrow"><b>${esc(t)}</b><button class="x" data-action="tag-del" data-v="${esc(t)}" aria-label="Tag ${esc(t)} löschen">${I.x}</button></div>`).join("")}</div>` : ""}
   <div class="sec-h"><h2>Einstellungen</h2></div>
   <div class="card">
@@ -2555,7 +2528,7 @@ function editorHTML(d) {
   const tile = `<span class="hicon ed-tile" style="--hc:${esc(d.color)}">${HI[d.icon] || I.star}${gc ? "" : `<i>${I.edit}</i>`}</span>`;
   const seg = (act, keys, cur, name) => `<div class="seg" role="group" aria-label="${name}">${keys.map(([k, n]) => `<button type="button" data-action="${act}" data-v="${k}" aria-pressed="${cur === k}">${n}</button>`).join("")}</div>`;
   const timeSeg = `<div class="ir col"><span>Tageszeit</span>${seg("f-time", TIME_ORDER.map(k => [k, TIMES[k].n]), d.time, "Tageszeit")}</div>`;
-  const diffSeg = gc ? "" : igrp("Schwierigkeit", `<div class="ir col">${seg("f-diff", [1, 2, 3].map(k => [k, DIFFS[k].n]), d.diff || 2, "Schwierigkeit")}</div>`, "Schwere Gewohnheiten geben mehr XP und mehr Schaden am Boss.");
+  const diffSeg = gc ? "" : igrp("Schwierigkeit", `<div class="ir col">${seg("f-diff", [1, 2, 3].map(k => [k, DIFFS[k].n]), d.diff || 2, "Schwierigkeit")}</div>`, "Schwere Gewohnheiten geben mehr XP.");
   const plan = igrp("Wenn-Dann-Plan", irow("Wenn", itxt("fCue", "cue", d.cue, "Auslöser"), "fCue") + irow("Dann", itxt("fAct", "action", d.action, "Handlung"), "fAct"), "Ein fester Anker macht es leichter, die Gewohnheit nicht zu vergessen.");
   const remind = capP("LocalNotifications") ? irow("Erinnerung", `<span class="iv">${d.remind ? `<input type="time" class="it" id="fRemind" data-f="remind" value="${esc(d.remind)}" aria-label="Uhrzeit der Erinnerung">` : ""}${iswitch(d.remind, "f-remind", "Erinnerung")}</span>`) : "";
   const days = gc ? "" : `<div class="ir col"><span>Tage</span><div class="daypick">${WD.map((w, i) => `<button type="button" data-action="f-day" data-v="${i}" aria-pressed="${d.days.includes(i)}">${w}</button>`).join("")}</div></div>`;
@@ -2569,9 +2542,12 @@ function editorHTML(d) {
   } else {
     const gym = irow("Mit Training verknüpfen", iswitch(d.special === "gym", "f-gym", "Mit Training verknüpfen"));
     main = (gc || d.special === "vocab" ? "" : d.special === "gym" ? igrp("Ziel", gym, "Wird abgehakt, sobald du ein Workout beendest.") : modeFields(d, gym))
-      + igrp("Wann", days + timeSeg + remind);
+      + igrp("Wann", days + timeSeg + remind)
+      + (gc || d.special === "vocab" ? "" : igrp("Rettungstag", irow("Mini-Version", itxt("fMini", "mini", d.mini, "z. B. 2 Minuten lesen", 60), "fMini"), "Nach einem verpassten Tag reicht diese kleine Version, damit deine Reise nicht reißt."));
     const gymH = d.special === "gym"; // the workout itself is the plan
-    more = (gymH ? "" : plan) + diffSeg; moreNames = [gymH ? "" : "Wenn-Dann-Plan", gc ? "" : "Schwierigkeit", "Tag"];
+    const others = state.habits.filter(x => x.id !== d.id && x.kind === "build");
+    const chain = others.length ? igrp("Kettenreaktion", irow("Startet nach", `<span class="iv"><select id="fAfter" class="is" data-f="after"><option value="">Nichts</option>${others.map(x => `<option value="${x.id}" ${d.after === x.id ? "selected" : ""}>${esc(x.name)}</option>`).join("")}</select>${I.chev}</span>`, "fAfter"), "Sobald die andere Gewohnheit geschafft ist, meldet sich 21 Days sofort mit dieser. Am stärksten nach etwas Gemessenem wie dem Wecker.") : "";
+    more = (gymH ? "" : plan) + chain + diffSeg; moreNames = [gymH ? "" : "Wenn-Dann-Plan", chain ? "Kettenreaktion" : "", gc ? "" : "Schwierigkeit", "Tag"];
   }
   return `<div class="sheet-h ed-h"><button type="button" class="tbtn" data-action="close">Abbrechen</button><h2>${d.id ? "Bearbeiten" : brk ? "Abgewöhnen" : "Angewöhnen"}</h2><button type="button" class="tbtn b" data-action="save-habit">${d.id ? "Fertig" : "Starten"}</button></div>
   <form id="hForm" class="ed" novalidate>
@@ -2755,20 +2731,19 @@ function openChest(btn) {
 // Onboarding
 let ob = { step: 0, name: "Keimi", color: PET_COLORS[0], goals: [], hatched: false };
 function openOnboarding() {
-  ob = { step: 0, name: state.profile.petName || "Keimi", color: state.profile.petColor || PET_COLORS[0], species: state.profile.species || "keimi", goals: [], hatched: false };
+  ob = { step: 0, name: state.profile.petName || "Keimi", color: state.profile.petColor || PET_COLORS[0], goals: [], hatched: false };
   drawOb();
 }
 function obDots() { return `<div class="dots">${[0, 1, 2, 3, 4].map(i => `<i class="${i === ob.step ? "on" : ""}"></i>`).join("")}</div>`; }
 function drawOb() {
   let body = "";
   if (ob.step === 0) {
-    body = `<div class="seg" role="group" aria-label="Sprache" data-notr>${LANGS.map(([k, n]) => `<button data-action="set-lang" data-v="${k}" aria-pressed="${(state.profile.lang || "de") === k}">${n}</button>`).join("")}</div><div class="grow">${ob.hatched ? `<div class="ob-pet">${petSVG({ size: 200, mood: "happy", color: ob.color, level: 1, eq: {} })}</div><h1>Hallo! Ich bin dein Begleiter.</h1><p>Ich wachse mit jeder Gewohnheit, die du durchziehst. Gemeinsam schaffen wir deine ersten 21 Tage.</p>`
+    body = `<div class="seg" role="group" aria-label="Sprache" data-notr>${LANGS.map(([k, n]) => `<button data-action="set-lang" data-v="${k}" aria-pressed="${(state.profile.lang || "de") === k}">${n}</button>`).join("")}</div><div class="grow">${ob.hatched ? `<div class="ob-pet">${petSVG({ size: 200, mood: "happy", color: ob.color, level: 1 })}</div><h1>Hallo! Ich bin dein Begleiter.</h1><p>Ich wachse mit jeder Gewohnheit, die du durchziehst. Gemeinsam schaffen wir deine ersten 21 Tage.</p>`
       : `<svg class="egg" id="egg" viewBox="0 0 180 210" data-action="hatch" role="button" aria-label="Ei antippen"><ellipse cx="90" cy="200" rx="60" ry="8" fill="rgba(0,0,0,.12)"/><path d="M90 10 C140 10 165 90 165 130 C165 175 130 200 90 200 C50 200 15 175 15 130 C15 90 40 10 90 10z" fill="#FFF6E5" stroke="#F2D9A8" stroke-width="4"/><circle cx="60" cy="80" r="10" fill="${ob.color}" opacity=".6"/><circle cx="118" cy="120" r="14" fill="${ob.color}" opacity=".6"/><circle cx="70" cy="150" r="8" fill="${ob.color}" opacity=".6"/><circle cx="120" cy="60" r="6" fill="${ob.color}" opacity=".6"/></svg>
       <h1>Willkommen bei 21 Days</h1><p>Hier schlüpft gleich dein Begleiter. Tippe auf das Ei!</p>`}</div>
       <div class="foot">${ob.hatched ? `<button class="btn full" data-action="ob-next">Weiter</button>` : `<button class="btn full" data-action="hatch">Ei ausbrüten</button>`}<button class="link" data-action="ob-skip" style="margin-top:12px">Überspringen und App erkunden</button></div>`;
   } else if (ob.step === 1) {
-    body = `<div class="grow"><div style="width:150px;height:150px;margin:0 auto">${petSVG({ size: 150, mood: "happy", color: ob.color, level: 1, eq: {}, species: ob.species })}</div><h1>Wer bin ich?</h1>
-      <div class="species" role="group" aria-label="Art des Begleiters">${SPECIES.map(([k, n]) => `<button class="sp" data-action="ob-species" data-v="${k}" aria-pressed="${ob.species === k}">${petSVG({ size: 52, mood: "happy", color: ob.color, level: 1, eq: {}, species: k })}<span>${n}</span></button>`).join("")}</div>
+    body = `<div class="grow"><div style="width:150px;height:150px;margin:0 auto">${petSVG({ size: 150, mood: "happy", color: ob.color, level: 1 })}</div><h1>Wie soll ich heißen?</h1>
       <div class="field" style="text-align:left"><input type="text" id="obName" maxlength="14" value="${esc(ob.name)}" aria-label="Name des Begleiters"></div>
       <div class="swatches" style="margin-top:16px">${PET_COLORS.map(c => `<button class="sw" style="--c:${c}" data-action="ob-color" data-v="${c}" aria-pressed="${ob.color === c}" aria-label="Farbe ${c}"></button>`).join("")}</div></div>
       <div class="foot"><button class="btn full" data-action="ob-next">Weiter</button></div>`;
@@ -2786,10 +2761,11 @@ function drawOb() {
   } else {
     body = `<div class="grow"><h1>So funktioniert's</h1>
       <div class="how" style="margin-top:18px">
+        <div>${I.proof}<span><b>Beweis</b><br><span class="muted" style="font-weight:500">Was die App messen kann, zum Beispiel Wecker, Schritte oder Training, zählt als bewiesen und gibt volle XP.</span></span></div>
         <div>${I.flame}<span><b>Serie</b><br><span class="muted" style="font-weight:500">Ein Häkchen am Tag hält dein Feuer am Brennen.</span></span></div>
         <div>${I.shield}<span><b>Schutzschild</b><br><span class="muted" style="font-weight:500">Rettet automatisch deine Serie, wenn du einen Tag verpasst. Dein erstes ist geschenkt.</span></span></div>
         <div><span style="width:30px;height:30px;color:var(--p)">${I.target}</span><span><b>Tages-Quests</b><br><span class="muted" style="font-weight:500">Drei kleine Aufgaben am Tag. Alle geschafft? Dann wartet eine Truhe.</span></span></div>
-        <div>${I.coin}<span><b>Münzen</b><br><span class="muted" style="font-weight:500">Kauf damit Outfits für ${esc(ob.name)} oder gönn dir echte Belohnungen.</span></span></div>
+        <div>${I.coin}<span><b>Münzen</b><br><span class="muted" style="font-weight:500">Gönn dir damit echte Belohnungen oder kauf Schutzschilde.</span></span></div>
       </div></div>
       <div class="foot"><button class="btn full" data-action="ob-finish">Los geht's! · +50 ${I.coin.replace("<svg", '<svg style="width:20px;height:20px"')}</button></div>`;
   }
@@ -2798,12 +2774,11 @@ function drawOb() {
 
 // Rundgang: hebt nacheinander hervor, wo man was findet.
 const TOUR = [
-  ["#topbar .tb-add", "Mit dem Plus legst du auf jedem Reiter etwas Neues an, mit Vorlagen und Tipps."],
-  ['#nav [data-view="heute"]', "Täglich: deine Gewohnheiten für heute, Quests und Challenges."],
-  ['#nav [data-view="abgewoehnen"]', "Abgewöhnen: was du loswerden willst, mit SOS-Hilfe bei Drang."],
-  ['#nav [data-view="todos"]', "To-Dos: einmalige Aufgaben mit Fälligkeit und Checkliste."],
-  ['#nav [data-view="begleiter"]', "Hier wohnt dein Begleiter. Füttern, Pflegen, Minispiele und den Shop findest du hier."],
-  ['#nav [data-view="profil"]', "Im Menü: Fortschritt, Gruppe, Abzeichen, Profilbild und Einstellungen."]
+  ["#topbar .tb-add", "Mit dem Plus legst du neue Gewohnheiten an, mit Vorlagen und Tipps."],
+  ['#nav [data-view="heute"]', "Heute: dein Tag der 21-Tage-Reise und was du heute beweist."],
+  ['#nav [data-view="fortschritt"]', "Beweise: wie viel die App gemessen hat, Serien, Kalender und Tagebuch."],
+  ['#nav [data-view="reise"]', "Reise: der Weg jeder Gewohnheit über 21 Tage, bis zum Zertifikat."],
+  ['#nav [data-view="profil"]', "Ich: Gruppe, Belohnungen, Abzeichen und Einstellungen."]
 ];
 let tourI = -1;
 function startTour() { if (view !== "heute") { location.hash = "heute"; } tourI = 0; setTimeout(drawTour, 250); }
@@ -2822,6 +2797,11 @@ addEventListener("resize", () => { if (tourI >= 0) drawTour(); });
 /* ============ Core actions ============ */
 // Taking a check back also takes back the perfect-day bonus, so checking on and off cannot farm it.
 function unperfect(t) { if (state.perfect[t] && !habitsFor(t).every(x => isDone(x, t))) { delete state.perfect[t]; addXP(-20, t); addCoins(-10); } }
+// Beweis: Was die App selbst messen kann (Wecker-Mitteilung, Health, Timer, Workout, Tagebuch, Vokabel-Pack, Bildschirmzeit), zählt als bewiesen ("p").
+// Alles andere ist selbst bezeugt ("s") und gibt 80 % der XP. h.proof[Tag] hält, wie der Tag geschafft wurde.
+let proofCtx = "";
+const proven = fn => { proofCtx = "p"; try { return fn(); } finally { proofCtx = ""; } };
+const proofOf = (h, k) => (h.proof || {})[k] === "p" ? "p" : "s";
 function tapHabit(id, btn, plain) {
   const h = state.habits.find(x => x.id === id); if (!h) return;
   const t = todayK();
@@ -2837,7 +2817,7 @@ function tapHabit(id, btn, plain) {
   if (md === "screen") { openScreen(h); return; }
   if (md === "count" && !wasDone) { addAmount(h, quickOf(h)[0], btn); return; }
   if (wasDone && h.target === 1) {
-    const x = h.xp[t] || 0; delete h.log[t]; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); sfx("undo");
+    const x = h.xp[t] || 0; delete h.log[t]; delete h.xp[t]; if (h.proof) delete h.proof[t]; if (h.resc) delete h.resc[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); sfx("undo");
     save(); render(); return;
   }
   if (wasDone) { toast(`Ziel schon erreicht: ${h.target} ${h.unit}`); return; }
@@ -2857,7 +2837,9 @@ function completeHabit(h, bx, by, r) {
   if (firstToday) dd.first = true;
   const s = hStreak(h).c, combo = habitsFor(t).filter(x => isDone(x, t)).length;
   let xp = DIFF_XP + Math.min(s, 10) * 2 + (combo - 1) * 5;
-  xp = Math.round(xp * (DIFFS[h.diff] || DIFFS[2]).m * petBoost().m);
+  xp = Math.round(xp * (DIFFS[h.diff] || DIFFS[2]).m);
+  const pf = proofCtx || "s"; h.proof = h.proof || {}; h.proof[t] = pf; if (pf !== "p") xp = Math.max(1, Math.round(xp * .8));
+  if (h.resc && h.resc[t]) xp = Math.max(1, Math.round(xp / 2)); // Mini-Version: halbe XP
   const lucky = hash01(h.id + t) < .12; if (lucky) xp *= 2;
   const coins = Math.round(xp / 2);
   h.xp[t] = xp; addXP(xp, t); addCoins(coins);
@@ -2875,20 +2857,20 @@ function completeHabit(h, bx, by, r) {
   if (ms) { h.milestones.push(ms.d); addXP(ms.xp, t); addCoins(Math.round(ms.xp / 2)); }
   const all = habitsFor(t), perfectNow = all.length && all.every(x => isDone(x, t)) && !state.perfect[t];
   if (perfectNow) { state.perfect[t] = true; addXP(20, t); addCoins(10); }
-  const spinEarned = !!ms || (firstToday && gStreak() % 7 === 0);
-  if (spinEarned) addSpin(1);
-  dd.rolled = dd.rolled || {};
-  if (!dd.rolled[h.id] && (dd.rolled[h.id] = 1) && Math.random() < .2) { const drop = 10 + Math.floor(Math.random() * 11); state.pet.food += drop; setTimeout(() => { toast(`Leckerli-Drop! +${drop} Futter für ${state.profile.petName}`, "gold"); sfx("chirp"); }, 1500); }
+  const certNow = !h.cert && dayNo(h.start) >= 21; if (certNow) h.cert = t;
+  betCheck();
   evaluateBadges(); save(); render();
-  if (spinEarned) setTimeout(() => toast("Neue Drehung am Glücksrad!", "gold"), 1800);
+  if (certNow) setTimeout(() => openCert(h.id), 1600);
   const nb = $(`.hcheck[data-id="${h.id}"]`); if (nb) nb.classList.add("pop");
   const card = $(`[data-card="${h.id}"]`); if (card) card.classList.add("shine");
   const pet = $(".hero .pet"); if (pet) { pet.classList.remove("jump"); void pet.getBBox; pet.classList.add("jump"); }
   const bubble = $("#bubble"); if (bubble) { bubble.classList.remove("say"); void bubble.offsetWidth; bubble.classList.add("say"); }
   if (firstToday) setTimeout(() => streakOverlay(gStreak()), 900);
-  if (ms) setTimeout(() => pushOverlay({ kicker: "Meilenstein", big: String(ms.d), title: ms.t, sub: `„${h.name}“ · +${ms.xp} XP`, color: "#1FBF8A" }), 950);
+  if (ms && !certNow) setTimeout(() => pushOverlay({ kicker: "Meilenstein", big: String(ms.d), title: ms.t, sub: `„${h.name}“ · +${ms.xp} XP`, color: "#1FBF8A" }), 950);
   else if (pendingLevel && !firstToday) setTimeout(showLevelUp, 900);
   if (perfectNow) setTimeout(() => { toast("Perfekter Tag! +20 XP · +10 Münzen", "gold"); burst(innerWidth / 2, innerHeight * .3, 100, 1.3); }, firstToday ? 200 : 700);
+  const nx = state.habits.find(x => x.after === h.id && sched(x, t) && !isDone(x, t));
+  if (nx) setTimeout(() => chainPrompt(h, nx), (firstToday || ms || certNow ? 2600 : 1400) + (h.resc[t] ? 2600 : 0)); // nach dem Rettungs-Hinweis
 }
 function claimQuest(id, btn) {
   const t = todayK(), q = questsFor(t).find(x => x.id === id); if (!q || !q.done || q.claimed) return;
@@ -2899,22 +2881,6 @@ function claimQuest(id, btn) {
   evaluateBadges(); save(); render();
   if (allNow) setTimeout(() => { const c = $("#chestBtn"); if (c) { c.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" }); toast("Alle Quests erledigt! Öffne deine Truhe.", "gold"); sfx("unlock"); } }, 500);
 }
-const PET_LINES = ["Hihi, das kitzelt!", "Ich hab dich lieb!", "Mehr davon!", "Wir rocken das heute!", "Danke, dass du dich um mich kümmerst!", "*schnurr*"];
-function petPet(box) {
-  const pet = box.querySelector(".pet"); if (pet) { pet.classList.remove("jump"); void box.offsetWidth; pet.classList.add("jump"); }
-  const r = box.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height * .3, 12, .6, "heart"); praise(r.left + r.width / 2, r.top + 10, "♥", "heart");
-  sfx("chirp"); vibrate(15);
-  const t = todayK(); day(t).petted++; state.flags.pets = (state.flags.pets || 0) + 1; careMark("pet");
-  const ps = petSettle(); ps.fun = Math.min(100, ps.fun + 2);
-  if (state.flags.pets % 10 === 0) { // every 10th pat: a flip and a few coins
-    addCoins(3); if (pet) { pet.classList.remove("flip"); void box.offsetWidth; pet.classList.add("flip"); }
-    praise(r.left + r.width / 2, r.top - 10, "Salto! +3", "lucky"); burst(r.left + r.width / 2, r.top + r.height * .4, 70, 1.1); sfx("bonus"); renderTopbar();
-  }
-  const b = $("#bubble"); if (b) { b.textContent = PET_LINES[Math.floor(Math.random() * PET_LINES.length)]; b.classList.remove("say"); void b.offsetWidth; b.classList.add("say"); }
-  if (evaluateBadges()) renderTopbar();
-  save();
-  if (day(t).petted === 3 && questsFor(t).some(q => q.id === "pet")) setTimeout(() => { if (view === "heute") render(); toast("Quest erledigt! Hol dir deine Münzen."); }, 400);
-}
 function buyItem(id, btn) {
   const it = ITEMS.find(x => x.id === id); if (!it) return;
   if (it.slot === "consumable") {
@@ -2924,17 +2890,7 @@ function buyItem(id, btn) {
     const r = btn.getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 50); sfx("unlock"); toast("Schutzschild gekauft!");
     evaluateBadges(); save(); render(); return;
   }
-  const owned = state.inv.owned.includes(id);
-  if (!owned) {
-    if (state.coins < it.cost) { toast(`Dir fehlen noch ${it.cost - state.coins} Münzen.`); sfx("undo"); return; }
-    state.coins -= it.cost; state.inv.owned.push(id); state.flags.bought = (state.flags.bought || 0) + 1;
-    const r = btn.getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 70, 1.1); sfx("unlock"); vibrate([30, 40, 60]);
-    toast(`${it.n} gekauft!`, "gold");
-  }
-  if (it.slot === "theme") state.profile.theme = state.profile.theme === it.theme && owned ? "sun" : it.theme;
-  else state.inv.eq[it.slot] = owned && state.inv.eq[it.slot] === id ? null : id;
-  evaluateBadges(); save(); render();
-  const pet = $(".pet-stage .pet"); if (pet) pet.classList.add("jump");
+  return;
 }
 
 /* ============ Vokabel-Pack ============ */
@@ -3103,7 +3059,7 @@ function closePack(finish) {
 function finishVocab(h) {
   const t = todayK(); if (isDone(h, t)) return;
   h.log[t] = 1; state.flags.packs = (state.flags.packs || 0) + 1;
-  completeHabit(h, innerWidth / 2, innerHeight * .45, { top: innerHeight * .4 });
+  proven(() => completeHabit(h, innerWidth / 2, innerHeight * .45, { top: innerHeight * .4 }));
 }
 const vocabBadge = h => h.special === "vocab" ? `<span class="num">${vGot()}/${VOC.length} Wörter</span>` : "";
 function vRow(i) {
@@ -3257,7 +3213,7 @@ function setProgress(h, v, r, quiet) {
   const now = isDone(h, t); r = r || centerRect();
   const bx = r.left + r.width / 2, by = r.top + r.height / 2;
   if (!was && now) { completeHabit(h, bx, by, r); return; }
-  if (was && !now) { const x = h.xp[t] || 0; delete h.xp[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); sfx("undo"); save(); render(); return; }
+  if (was && !now) { const x = h.xp[t] || 0; delete h.xp[t]; if (h.proof) delete h.proof[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); sfx("undo"); save(); render(); return; }
   if (!quiet && v > prev) { sfx("tick", Math.min(6, Math.ceil(v / h.target * 6))); vibrate(15); burst(bx, by, 14, .6); }
   save(); render();
   if (!quiet && v > prev) { const nb = $(`.hcheck[data-id="${h.id}"]`); if (nb) nb.classList.add("tick"); }
@@ -3317,7 +3273,7 @@ function tmFinish(auto) {
   if (!h) { save(); render(); return; }
   const mins = auto ? Math.max(1, h.target - cnt(h, t)) : Math.floor(ms / 60000) + (ms % 60000 >= 30000 ? 1 : 0);
   if (auto) { sfx("gong"); vibrate([60, 80, 60, 80, 200]); }
-  if (mins > 0 && sched(h, t)) { setProgress(h, cnt(h, t) + mins, null); if (!isDone(h, t)) toast(`+${mins} Min gespeichert`); }
+  if (mins > 0 && sched(h, t)) { proven(() => setProgress(h, cnt(h, t) + mins, null)); if (!isDone(h, t)) toast(`+${mins} Min gespeichert`); }
   else { save(); render(); }
 }
 function tmTick() {
@@ -3349,7 +3305,7 @@ function wakeFromUrl() {
   const t = todayK(), h = state.habits.find(x => modeOf(x) === "wake" && sched(x, t) && !isDone(x, t));
   if (!h) { toast(state.habits.some(x => modeOf(x) === "wake") ? "Aufstehen ist für heute schon eingetragen." : "Leg zuerst eine Gewohnheit „Früh aufstehen“ an."); return; }
   if (view !== "heute") { location.hash = "heute"; }
-  setTimeout(() => wakeCheck(h, null), 300);
+  setTimeout(() => proven(() => wakeCheck(h, null)), 300);
 }
 // iPhone ab iOS 26: echter Wecker über AlarmKit (Plugin DaysAlarm), klingelt auch im Lautlos-Modus.
 // Android: echter Wecker in der Uhr-App (Plugin DaysWidget.setAlarm). Wochentage für AlarmClock: So=1 … Sa=7.
@@ -3399,7 +3355,7 @@ async function screenRead(silent) {
   try {
     const r = await W.usage();
     if (!r.granted) { if (!silent) { toast("Erlaube 21 Days den Nutzungszugriff, dann liest die App deine Bildschirmzeit."); W.openUsageSettings().catch(() => {}); } return null; }
-    hs.forEach(h => setScreen(h, r.minutes, true)); return r.minutes;
+    hs.forEach(h => proven(() => setScreen(h, r.minutes, true))); return r.minutes;
   } catch (e) { return null; }
 }
 function openScreen(h) {
@@ -3420,7 +3376,7 @@ function stepsFromUrl(n) {
   const t = todayK(), hs = state.habits.filter(x => modeOf(x) === "steps" && sched(x, t));
   if (!hs.length) { toast("Leg zuerst eine Gewohnheit „10.000 Schritte“ an."); return; }
   if (view !== "heute") location.hash = "heute";
-  setTimeout(() => { hs.forEach(h => { if (n > cnt(h, t)) setProgress(h, n, null, true); }); toast(`${fmtN(n)} Schritte übernommen`); }, 300);
+  setTimeout(() => { hs.forEach(h => { if (n > cnt(h, t)) proven(() => setProgress(h, n, null, true)); }); toast(`${fmtN(n)} Schritte übernommen`); }, 300);
 }
 let healthBusy = false;
 async function healthSync(ask) {
@@ -3436,7 +3392,7 @@ async function healthSync(ask) {
     const s = parseK(t);
     const r = await H.queryAggregated({ dataType: "steps", startDate: s.toISOString(), endDate: new Date().toISOString(), bucket: "day", aggregation: "sum" });
     const n = Math.round(((r && r.samples) || []).reduce((a, x) => a + (Number(x.value) || 0), 0));
-    hs.forEach(h => { if (n > cnt(h, t)) setProgress(h, n, null, true); });
+    hs.forEach(h => { if (n > cnt(h, t)) proven(() => setProgress(h, n, null, true)); });
     if (ask) toast(n ? `${fmtN(n)} Schritte von heute übernommen` : "Noch keine Schritte gefunden. Prüfe in den Health-Einstellungen, ob 21 Days lesen darf.");
   } catch (e) { if (ask) toast("Schritte konnten nicht gelesen werden. Prüfe die Health-Berechtigung."); }
   finally { healthBusy = false; }
@@ -3454,7 +3410,7 @@ function jCheck(hid) {
   const h = state.habits.find(x => x.id === hid); if (!h || modeOf(h) !== "journal") return;
   const t = todayK(), w = jWordsToday(h);
   if (isDone(h, t) || !sched(h, t)) return;
-  if (w >= h.words) setTimeout(() => setProgress(h, 1, null), 250);
+  if (w >= h.words) setTimeout(() => proven(() => setProgress(h, 1, null)), 250);
   else toast(`Noch ${h.words - w} Wörter bis zum Tagesziel von „${h.name}“.`);
 }
 
@@ -4169,7 +4125,7 @@ function finishWorkout() {
   if (xp) { addXP(xp, t); addCoins(coins); }
   const f = state.flags; f.workouts = (f.workouts || 0) + 1; f.gymPrs = (f.gymPrs || 0) + prs; f.gymVol = (f.gymVol || 0) + sess.vol;
   const linked = habitsFor(t).filter(h => h.special === "gym" && !isDone(h, t));
-  linked.forEach(h => { h.log[t] = h.target; completeHabit(h, innerWidth / 2, 96, { top: 110 }); }); // effects near the top, clear of the summary
+  linked.forEach(h => { h.log[t] = h.target; proven(() => completeHabit(h, innerWidth / 2, 96, { top: 110 })); }); // effects near the top, clear of the summary
   evaluateBadges(); save(); wake(false); animateNext = true; render();
   const exs = [...new Set(items.map(i => i.ex))], known = allRoutines().some(r => r.ex.join() === exs.join());
   openModal(`<div class="rarity" style="--rc:${RAR.epic.c};font-size:.8125rem">Workout geschafft</div><div class="reward-orb" style="--rc:var(--ok)"><b class="num" style="font-size:1.75rem">${fmtDur(sess.end - sess.start)}</b></div>
@@ -4410,8 +4366,6 @@ const recapReady = () => state.profile.onboarded && state.flags.recap !== recapW
 // Gift, wheel and recap share one compact row on the home page, so the habits stay on the first screen.
 function quickRow() {
   const q = [];
-  if (state.profile.onboarded && giftReady()) q.push(`<button class="qk" data-action="gift">${I.gift}<b>Geschenk</b></button>`);
-  if (spins()) q.push(`<button class="qk" data-action="wheel">${WHEEL_ICON}<b>Glücksrad · ${spins()}</b></button>`);
   if (recapReady()) q.push(`<button class="qk" data-action="recap">${I.chart}<b>Rückblick</b></button>`);
   return q.length ? `<div class="quick enter" style="--i:1">${q.join("")}</div>` : "";
 }
@@ -4420,7 +4374,7 @@ function playRecap(reward) {
   const title = rate >= 90 ? "Unaufhaltsam" : rate >= 70 ? "Dranbleiber" : rate >= 40 ? "Auf Kurs" : "Neustarter";
   pushOverlay({ kicker: `Wochenrückblick · ${dm(ws)} bis ${dm(addDays(ws, 6))}`, big: rate + "%", title: "deiner Gewohnheiten geschafft", sub: `${r.d} von ${r.p} Häkchen · ${r.perfect} ${r.perfect === 1 ? "perfekter Tag" : "perfekte Tage"}`, color: "#FFC53D", sound: "streak" });
   const extra = [r.words ? `${r.words} neue Wörter` : "", r.jr ? `${r.jr} ${r.jr === 1 ? "Tagebuch-Eintrag" : "Tagebuch-Einträge"}` : ""].filter(Boolean).join(" · ");
-  if (r.xp > 0) pushOverlay({ kicker: "Gesammelt", big: "+" + r.xp, title: "XP in einer Woche", sub: extra || "Jede XP war Schaden am Wochen-Boss.", color: "#C084FC", sound: "bonus" });
+  if (r.xp > 0) pushOverlay({ kicker: "Gesammelt", big: "+" + r.xp, title: "XP in einer Woche", sub: extra || "Jede Gewohnheit zählt.", color: "#C084FC", sound: "bonus" });
   if (r.best) pushOverlay({ kicker: "Stärkste Gewohnheit", big: `${r.best[1][1]}/${r.best[1][0]}`, title: r.best[0].name, sub: "Darauf kannst du bauen.", color: "#38B6F5", sound: "bonus" });
   if (r.gs.length) pushOverlay({ kicker: "Training", big: String(r.gs.length), title: r.gs.length === 1 ? "Workout" : "Workouts", sub: `${big(r.vol)} kg bewegt${r.prs ? ` · ${r.prs} ${r.prs === 1 ? "Rekord" : "Rekorde"}` : ""}`, color: "#FF6B6B", sound: "bonus" });
   pushOverlay({ kicker: "Dein Titel der Woche", big: "★", title, sub: reward ? "+25 Münzen. Auf eine starke neue Woche!" : "Auf eine starke neue Woche!", color: "#1FBF8A", sound: "level" });
@@ -4456,408 +4410,6 @@ function revealCapsule(id) {
   openModal(`<div class="rarity" style="--rc:${RAR.legend.c};font-size:.8125rem">Zeitkapsel · ${fmtLong(h.capsule.at)}</div><h2 style="margin:8px 0 12px">Dein Brief an dich</h2><div class="captext">${esc(h.capsule.text)}</div>
     <p class="muted" style="font-weight:500">+30 Münzen · +20 XP</p><button class="btn gold full" data-action="close-reward" autofocus>Danke, altes Ich</button>`);
 }
-/* ============ Wochen-Boss ============ */
-// Every XP point is damage, so habits, tasks, quests and badges all push the boss. A boss that escapes costs nothing.
-const BOSS_EYES = '<circle cx="46" cy="64" r="8" fill="#fff"/><circle cx="74" cy="64" r="8" fill="#fff"/><circle cx="48" cy="66" r="4" fill="#1A1F33"/><circle cx="72" cy="66" r="4" fill="#1A1F33"/><path d="M36 52 L54 58 M84 52 L66 58" stroke="#1A1F33" stroke-width="4" stroke-linecap="round"/>';
-const BOSS_DEAD = '<path d="M40 58l12 12M52 58L40 70M68 58l12 12M80 58L68 70" stroke="#1A1F33" stroke-width="4" stroke-linecap="round"/>';
-const BOSSES = [
-  { id: "drache", n: "Prokrastinations-Drache", c: "#EF4462", body: '<path d="M30 52 L22 20 L50 40z M90 52 L98 20 L70 40z" fill="#FFD23F"/><ellipse cx="60" cy="72" rx="40" ry="36" fill="#EF4462"/><path d="M40 90 l6 8 6-8 6 8 6-8 6 8 6-8" stroke="#fff" stroke-width="4" fill="none" stroke-linejoin="round"/>' },
-  { id: "gespenst", n: "Schlafmützen-Gespenst", c: "#8B5CF6", body: '<path d="M18 104 V56 a42 42 0 0 1 84 0 V104 l-14-10 -14 10 -14-10 -14 10 -14-10z" fill="#8B5CF6"/><path d="M50 90 q10 8 20 0" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>' },
-  { id: "schleim", n: "Chaos-Schleim", c: "#1FBF8A", body: '<path d="M12 100 Q8 48 60 38 Q112 48 108 100 Z" fill="#1FBF8A"/><path d="M46 90 q14 10 28 0" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>' },
-  { id: "wolke", n: "Ausreden-Wolke", c: "#64748B", body: '<circle cx="40" cy="74" r="26" fill="#64748B"/><circle cx="78" cy="70" r="30" fill="#64748B"/><circle cx="60" cy="54" r="26" fill="#64748B"/><rect x="22" y="76" width="80" height="26" rx="13" fill="#64748B"/><path d="M62 98 l-6 12 10-4-4 10" stroke="#FFD23F" stroke-width="4" fill="none" stroke-linejoin="round"/>' }
-];
-const bossSVG = (B, dead) => `<svg viewBox="0 0 120 120" aria-hidden="true">${B.body}${dead ? BOSS_DEAD : BOSS_EYES}</svg>`;
-let pendingBoss = false, lastBossHp = null;
-function ensureBoss() {
-  if (!state.profile.onboarded || !state.habits.length) return;
-  const ws = weekStart(todayK()); if (state.boss && state.boss.week === ws) return;
-  const planned = [0, 1, 2, 3, 4, 5, 6].reduce((a, i) => a + state.habits.filter(h => h.days.includes(i)).length, 0);
-  const max = Math.max(150, Math.round(planned * 25 * .75 / 10) * 10);
-  state.boss = { id: BOSSES[Math.floor(parseK(ws).getTime() / 6048e5) % BOSSES.length].id, week: ws, hp: max, max, defeated: false };
-  lastBossHp = null; save();
-}
-function bossHit(n) {
-  const b = state.boss; if (!b || !n || b.defeated) return;
-  b.hp = clamp(b.hp - n, 0, b.max); if (b.hp <= 0) { b.defeated = true; pendingBoss = true; }
-}
-function showBossWin() {
-  if (!pendingBoss) return; pendingBoss = false;
-  const B = BOSSES.find(x => x.id === state.boss.id) || BOSSES[0];
-  addCoins(100); state.pet.food += 100; addSpin(1); state.flags.bosses = (state.flags.bosses || 0) + 1;
-  evaluateBadges(); save(); renderTopbar();
-  pushOverlay({ kicker: "Boss besiegt", icon: bossSVG(B, true), big: "100", title: `${B.n} ist besiegt!`, sub: "+100 Münzen · +100 Futter · 1 Glücksrad-Drehung", color: B.c, sound: "chest" });
-}
-function bossCard() {
-  const b = state.boss; if (!b) return "";
-  const B = BOSSES.find(x => x.id === b.id) || BOSSES[0], left = 7 - wIdx(todayK());
-  const hit = lastBossHp !== null && b.hp < lastBossHp ? lastBossHp - b.hp : 0; lastBossHp = b.hp;
-  if (hit) setTimeout(() => { const el = $(".boss-art"); if (el) { const r = el.getBoundingClientRect(); floatText(r.left + r.width / 2, r.top, `-${hit}`, "#EF4462"); sfx("pop", 2); } }, 300);
-  return `<div class="sec-h"><h2>Wochen-Boss</h2><span class="muted">${b.defeated ? "Besiegt" : `Noch ${left} ${left === 1 ? "Tag" : "Tage"}`}</span></div>
-  <div class="card boss enter ${b.defeated ? "won" : ""}" style="--i:3;--bc:${B.c}">
-    <div class="boss-art ${hit ? "hit" : ""}">${bossSVG(B, b.defeated)}</div>
-    <div class="boss-r"><b>${esc(B.n)}</b>
-      <div class="bossbar" role="meter" aria-label="Leben von ${esc(B.n)}" aria-valuemin="0" aria-valuemax="${b.max}" aria-valuenow="${b.hp}"><i style="width:${b.hp / b.max * 100}%"></i></div>
-      <div class="muted num" style="font-weight:600;font-size:.875rem">${b.defeated ? "Alle Gewohnheiten haben gesiegt!" : `${b.hp} von ${b.max} Leben · jede XP macht Schaden`}</div></div></div>`;
-}
-
-/* ============ Pflege: Futter, Waschen, Spielen ============ */
-// Food is earned 1:1 with XP but spent separately, so feeding never lowers the level. Needs fade slowly and never punish: no streak loss, no death.
-const PET_RATE = { hunger: 5, fun: 4, clean: 2.5 }; // points lost per hour
-function petNow() {
-  const p = state.pet, h = Math.max(0, Date.now() - p.t) / 36e5;
-  return { hunger: clamp(p.hunger - PET_RATE.hunger * h, 0, 100), fun: clamp(p.fun - PET_RATE.fun * h, 0, 100), clean: clamp(p.clean - PET_RATE.clean * h, 0, 100) };
-}
-function petSettle() { Object.assign(state.pet, petNow(), { t: Date.now() }); return state.pet; }
-const careSlot = () => { const h = new Date().getHours(); return h >= 5 && h < 12 ? "am" : h >= 17 ? "pm" : ""; };
-const careDay = () => (day().pc = day().pc || {});
-const careOpen = () => { const sl = careSlot(); return !!sl && state.profile.onboarded && !(careDay()[sl] || {}).done; };
-const petNeedy = () => { const s = petNow(); return Math.min(s.hunger, s.fun, s.clean) < 30 || careOpen(); };
-// Happy pet, more XP: the average of the three needs sets a bonus on every habit check.
-function petBoost() { const s = petNow(), a = (s.hunger + s.fun + s.clean) / 3, pct = a >= 85 ? 30 : a >= 65 ? 20 : a >= 45 ? 10 : 0; return { pct, m: 1 + pct / 100 }; }
-// Morning (5-12) and evening (from 17): feed once plus wash, play or pet completes the care round.
-function careMark(kind) {
-  const sl = careSlot(); if (!sl) return;
-  const pc = careDay(), o = pc[sl] = pc[sl] || {}; o[kind] = 1;
-  if (o.done || !o.feed || !(o.wash || o.play || o.pet)) return;
-  o.done = 1; addXP(15); addCoins(10); save();
-  setTimeout(() => { toast(`${sl === "am" ? "Morgenpflege" : "Abendpflege"} geschafft! +15 XP · +10 Münzen`, "gold"); sfx("bonus"); renderTopbar(); renderCare(); }, 900);
-}
-const foodSVG = f => `<svg viewBox="0 0 64 64" aria-hidden="true">${f.art}</svg>`;
-const FOODS = [
-  { id: "apple", n: "Apfel", cost: 10, hunger: 15, fun: 0, art: '<circle cx="32" cy="38" r="20" fill="#EF4462"/><path d="M32 18c0-6 3-10 8-11" stroke="#6B4A2B" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="40" cy="14" rx="7" ry="4" fill="#4CC25A" transform="rotate(-25 40 14)"/><ellipse cx="24" cy="32" rx="4" ry="6" fill="#fff" opacity=".35"/>' },
-  { id: "cookie", n: "Keks", cost: 15, hunger: 10, fun: 12, art: '<circle cx="32" cy="34" r="22" fill="#D99A4E"/><circle cx="24" cy="28" r="3.5" fill="#5B3A1E"/><circle cx="38" cy="26" r="3.5" fill="#5B3A1E"/><circle cx="30" cy="40" r="3.5" fill="#5B3A1E"/><circle cx="42" cy="38" r="3" fill="#5B3A1E"/>' },
-  { id: "pizza", n: "Pizza", cost: 30, hunger: 35, fun: 5, art: '<path d="M8 20 Q32 4 56 20 L32 58z" fill="#FFC53D" stroke="#D97706" stroke-width="3" stroke-linejoin="round"/><circle cx="30" cy="26" r="4.5" fill="#EF4462"/><circle cx="40" cy="30" r="4" fill="#EF4462"/><circle cx="32" cy="38" r="3.5" fill="#EF4462"/>' },
-  { id: "cake", n: "Torte", cost: 50, hunger: 25, fun: 40, art: '<rect x="10" y="30" width="44" height="24" rx="5" fill="#F9A8D4"/><path d="M10 36q6 8 11 0t11 0 11 0 11 0v-4a5 5 0 0 0-5-5H15a5 5 0 0 0-5 5z" fill="#fff"/><rect x="30" y="16" width="4" height="12" fill="#60A5FA"/><path d="M32 8q4 5 0 8-4-3 0-8z" fill="#FFBF1F"/>' }
-];
-let careTab = null;
-const playsLeft = () => Math.max(0, 1 + doneToday() + (state.perfect[todayK()] ? 1 : 0) - (day().played || 0));
-function careHtml() {
-  const s = petNow(), p = state.pet, left = playsLeft(), food = Math.floor(p.food);
-  const bar = (label, v) => `<div class="stat"><span>${label}</span><div class="sbar" role="meter" aria-label="${label}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(v)}"><i class="${v < 25 ? "low" : ""}" style="width:${v}%"></i></div><b class="num">${Math.round(v)}</b></div>`;
-  const pc = careDay(), sl = careSlot(), bo = petBoost(), nm = esc(state.profile.petName), slot = (k, l) => { const ok = (pc[k] || {}).done; return `<span class="${ok ? "ok" : sl === k ? "now" : ""}">${ok ? I.check : ""}${l}${ok ? "" : sl === k ? " · jetzt" : ""}</span>`; };
-  return `<div class="stats">${bar("Satt", s.hunger)}${bar("Laune", s.fun)}${bar("Sauber", s.clean)}</div>
-    <div class="care-slots">${slot("am", "Morgens")}${slot("pm", "Abends")}</div>
-    <p class="muted tray-hint" style="margin-top:8px">Morgens (5 bis 12 Uhr) und abends (ab 17 Uhr): ${nm} füttern und dann waschen, streicheln oder spielen. ${bo.pct ? `Glücks-Bonus gerade: <b>+${bo.pct} % XP</b> auf Gewohnheiten.` : "Je glücklicher, desto mehr XP gibt es für Gewohnheiten, bis +30 %."}</p>
-    <div class="foodline"><span class="chip" aria-label="${food} Futter">${foodSVG(FOODS[0]).replace("<svg", '<svg style="width:20px;height:20px"')}<span class="num">${food}</span></span><span class="muted">Futter bekommst du für XP</span></div>
-    <div class="care-actions">
-      <button class="btn sm ${careTab === "feed" ? "" : "ghost"}" data-action="care-feed" aria-pressed="${careTab === "feed"}">Füttern</button>
-      <button class="btn sm ghost" data-action="care-play">Spielen · ${left}</button>
-      <button class="btn sm ghost" data-action="care-wash">Waschen</button>
-    </div>
-    ${careTab === "feed" ? `<div class="tray">${FOODS.map(f => `<button class="item ${p.food < f.cost ? "cant" : ""}" data-action="feed" data-id="${f.id}" aria-label="${f.n}, ${f.cost} Futter"><span class="iv">${foodSVG(f)}</span><b>${f.n}</b><span class="price num">${f.cost} Futter</span></button>`).join("")}</div>
-      <p class="muted tray-hint">Dein Level bleibt unberührt: Futter wird getrennt von XP ausgegeben.</p>` : ""}`;
-}
-const renderCare = () => { const el = $("#care"); if (el) el.innerHTML = careHtml(); renderNav(); };
-const refreshPet = () => { const b = $(".pet-stage .petbox"); if (b) b.innerHTML = petSVG({ size: 200, mood: petMood(), dirty: petNow().clean < 35 }); const bu = $("#bubble"); if (bu) bu.textContent = petLine(); };
-function flyFood(f, r, tx, ty, done) {
-  if (reduced) { done(); return; }
-  const x0 = r.left + r.width / 2, y0 = r.top + r.height / 2, el = document.createElement("div");
-  el.className = "flyfood"; el.innerHTML = foodSVG(f); el.style.left = x0 + "px"; el.style.top = y0 + "px"; document.body.appendChild(el);
-  el.animate([{ transform: "translate(0,0) scale(1)" }, { transform: `translate(${(tx - x0) / 2}px,${ty - y0 - 60}px) scale(1.25) rotate(20deg)`, offset: .5 }, { transform: `translate(${tx - x0}px,${ty - y0}px) scale(.4)`, opacity: .8 }], { duration: 520, easing: "ease-in-out", fill: "forwards" }).onfinish = () => { el.remove(); done(); };
-}
-function careBonus() {
-  const s = petNow(); if (Math.min(s.hunger, s.fun, s.clean) < 80 || day().care) return;
-  day().care = true; addCoins(15); addXP(10);
-  setTimeout(() => { toast("Wohlfühl-Bonus! +15 Münzen · +10 XP", "gold"); burst(innerWidth / 2, innerHeight * .35, 100, 1.2); sfx("bonus"); vibrate([30, 40, 60]); renderTopbar(); }, 700);
-}
-function feedPet(id, btn) {
-  const f = FOODS.find(x => x.id === id), box = $(".pet-stage .petbox"); if (!f || !box) return;
-  const p = petSettle();
-  if (p.hunger >= 95) { careMark("feed"); toast(`${state.profile.petName} ist satt!`); return; }
-  if (p.food < f.cost) { toast(`Dir fehlen noch ${Math.ceil(f.cost - p.food)} Futter. Hake Gewohnheiten ab!`); sfx("undo"); return; }
-  p.food -= f.cost; p.hunger = Math.min(100, p.hunger + f.hunger); p.fun = Math.min(100, p.fun + f.fun);
-  state.flags.fed = (state.flags.fed || 0) + 1; careMark("feed");
-  const r = btn.getBoundingClientRect(), pr = box.getBoundingClientRect(), fx = pr.left + pr.width / 2, fy = pr.top + pr.height * .55;
-  careBonus(); evaluateBadges(); save(); renderCare();
-  flyFood(f, r, fx, fy, () => {
-    const pet = $(".pet-stage .pet"); if (pet) { pet.classList.remove("eat"); void pet.getBoundingClientRect(); pet.classList.add("eat"); }
-    burst(fx, fy, 30, .8, "heart"); praise(fx, pr.top + 10, pick(["Mmh!", "Lecker!", "Nom nom!"], String(Date.now())), "heart"); sfx("munch"); vibrate([20, 30, 20]);
-    setTimeout(refreshPet, 1000);
-  });
-}
-function washPet() {
-  const box = $(".pet-stage .petbox"); if (!box) return;
-  const p = petSettle();
-  careMark("wash");
-  if (p.clean >= 95) { toast(`${state.profile.petName} ist schon sauber!`); return; }
-  p.clean = 100; p.fun = Math.min(100, p.fun + 5); state.flags.washed = (state.flags.washed || 0) + 1;
-  const pr = box.getBoundingClientRect();
-  if (!reduced) for (let i = 0; i < 14; i++) {
-    const b = document.createElement("div"), s = 14 + Math.random() * 22; b.className = "suds";
-    b.style.cssText = `left:${pr.left + Math.random() * pr.width}px;top:${pr.top + pr.height * .4 + Math.random() * pr.height * .5}px;width:${s}px;height:${s}px`; document.body.appendChild(b);
-    b.animate([{ transform: "translateY(0) scale(.4)", opacity: .9 }, { transform: `translateY(${-40 - Math.random() * 60}px) scale(1)`, opacity: 0 }], { duration: 800 + Math.random() * 500, delay: i * 40, fill: "forwards" }).onfinish = () => b.remove();
-  }
-  praise(pr.left + pr.width / 2, pr.top + 10, "Blitzblank!", "heart"); sfx("splash"); vibrate([15, 25, 15]);
-  careBonus(); save(); renderCare(); setTimeout(refreshPet, 900);
-}
-
-/* ============ Minispiele ============ */
-// One round per day plus one per finished habit (and one for a perfect day): fun is earned by being productive.
-const GAMES = {
-  jump: { n: "Wolkensprung", d: "Spring von Wolke zu Wolke, so hoch du kannst. Handy neigen oder links und rechts tippen.", art: '<path d="M14 46a10 10 0 0 1 1-20 14 14 0 0 1 27-4 11 11 0 0 1 8 24z" fill="#fff" stroke="#7DB9E8" stroke-width="3"/>', unit: "m" },
-  catch: { n: "Fruchtfang", d: "Wisch mit dem Finger, dein Begleiter folgt. Fang Früchte, Steine kosten ein Herz.", art: FOODS[0].art },
-  pop: { n: "Blasenjagd", d: "Tipp die aufsteigenden Blasen. Entwischt eine, kostet das ein Herz. Rote nicht antippen!", art: '<circle cx="32" cy="32" r="22" fill="#7DD3FC" opacity=".8"/><ellipse cx="24" cy="24" rx="6" ry="4" fill="#fff" opacity=".8"/>' }
-};
-function openPlay() {
-  const left = playsLeft(), b = state.pet.best;
-  openSheet(`${sheetHead("Spielen")}
-    <p class="muted" style="margin:0;font-weight:500">${left ? `${left} ${left === 1 ? "Runde" : "Runden"} frei.` : "Keine Runde frei."} Jede erledigte Gewohnheit heute schenkt dir eine weitere Runde.</p>
-    <div class="hlist" style="margin-top:14px">${Object.entries(GAMES).map(([k, g]) => `<button class="tpl" data-action="game" data-id="${k}" ${left ? "" : "disabled"}><span class="hicon" style="--hc:#3B82F6">${foodSVG(g)}</span><span><b>${g.n}</b><br><span class="muted" style="font-weight:500;font-size:.8125rem">${g.d} Rekord: ${b[k] || 0}${g.unit ? " " + g.unit : ""}</span></span></button>`).join("")}</div>`);
-}
-let game = null;
-const GITEM = { fruit: FOODS[0].art, star: '<path fill="#FFBF1F" stroke="#D49500" stroke-width="3" stroke-linejoin="round" d="M32 6l7.5 16 17 2-12.500 12 3.500 17L32 44 16.500 53l3.500-17L7.500 24l17-2z"/>', rock: '<path d="M8 52L16 24 36 12l20 16 2 24z" fill="#6B7280"/><path d="M16 24L36 12l4 18-20 5z" fill="#9CA3AF"/>' };
-function startGame(kind) {
-  if (game || !GAMES[kind] || !playsLeft()) return;
-  // iOS asks for tilt access only inside a tap; without it, tapping left and right still steers
-  if (kind === "jump" && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) DeviceOrientationEvent.requestPermission().catch(() => {});
-  day().played = (day().played || 0) + 1; state.flags.played = (state.flags.played || 0) + 1; save();
-  openSheet(`<div class="game-h"><b class="num" id="gScore">0</b><span class="muted" style="font-weight:600">${kind === "jump" ? "Meter" : "Punkte"}</span><span class="grow g-lives" id="gLives" aria-live="off"></span><button class="x" data-action="game-quit" aria-label="Spiel beenden">${I.x}</button></div><div class="stage ${kind === "jump" ? "sky" : ""}" id="gStage"></div>`, { full: true, locked: true });
-  const stage = $("#gStage");
-  game = { kind, score: 0, lives: 3, over: false, streak: 0, last: 0, t: 0 };
-  game.add = (pts, cx, cy) => { game.score = Math.max(0, game.score + pts); $("#gScore").textContent = game.score; const r = stage.getBoundingClientRect(); if (pts > 0) { burst(r.left + cx, r.top + cy, 14, .6); floatText(r.left + cx, r.top + cy - 10, `+${pts}`, "#fff"); } };
-  game.hurt = () => { if (game.over) return; game.lives--; game.streak = 0; drawLives(); sfx("undo"); vibrate(40); stage.classList.remove("jolt"); void stage.offsetWidth; stage.classList.add("jolt"); if (game.lives <= 0) endGame(false); };
-  game.key = e => { if (e.key === "Escape") endGame(true); else if (game.onKey) game.onKey(e); };
-  document.addEventListener("keydown", game.key);
-  drawLives();
-  ({ catch: runCatch, pop: runPop, jump: runJump })[kind](stage);
-  praise(innerWidth / 2, innerHeight * .3, "Los!", "lucky");
-  game.raf = requestAnimationFrame(gameLoop);
-}
-const drawLives = () => { const el = $("#gLives"); if (el && game && game.kind !== "jump") el.innerHTML = [0, 1, 2].map(i => `<span class="heart ${i < game.lives ? "" : "off"}" aria-hidden="true">${I.heart}</span>`).join("") + `<span class="sr-only">${game.lives} Herzen</span>`; };
-function gameLoop(ts) {
-  const g = game; if (!g || g.over) return;
-  const dt = Math.min(.033, g.last ? (ts - g.last) / 1000 : 0); g.last = ts; g.t += dt;
-  g.step(dt);
-  if (game === g && !g.over) g.raf = requestAnimationFrame(gameLoop);
-}
-// Fruchtfang: the pet moves by the finger's distance, so the finger never covers it; lives instead of a timer.
-function runCatch(stage) {
-  const W = stage.clientWidth, H = stage.clientHeight, pw = 84, items = [];
-  const me = document.createElement("div"); me.className = "g-pet"; me.style.width = me.style.height = pw + "px"; me.innerHTML = petSVG({ size: pw, mood: "happy" }); stage.appendChild(me);
-  let x = W / 2, shown = x, drag = null, spawn = .6;
-  stage.addEventListener("pointerdown", e => { drag = { px: e.clientX, x }; try { stage.setPointerCapture(e.pointerId); } catch (er) { /* old browsers */ } });
-  stage.addEventListener("pointermove", e => { if (drag) x = clamp(drag.x + (e.clientX - drag.px) * 1.5, pw / 2, W - pw / 2); });
-  const up = () => { drag = null; }; stage.addEventListener("pointerup", up); stage.addEventListener("pointercancel", up);
-  game.onKey = e => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") x = clamp(x + (e.key === "ArrowLeft" ? -56 : 56), pw / 2, W - pw / 2); };
-  const spawnItem = () => {
-    const lvl = Math.min(1, game.t / 60), r = Math.random(), kind = r < .1 ? "star" : r < .26 + lvl * .16 ? "rock" : "fruit", el = document.createElement("div");
-    el.className = "g-item"; el.innerHTML = `<svg viewBox="0 0 64 64" aria-hidden="true">${GITEM[kind]}</svg>`; stage.appendChild(el);
-    items.push({ el, kind, x: 26 + Math.random() * (W - 52), y: -44, v: 110 + lvl * 170 + Math.random() * 60, rot: Math.random() * 360, spin: (Math.random() - .5) * 240 });
-  };
-  game.step = dt => {
-    shown += (x - shown) * Math.min(1, dt * 22);
-    me.style.transform = `translate(${shown - pw / 2}px,0) rotate(${clamp((x - shown) * .25, -12, 12)}deg)`;
-    spawn -= dt; if (spawn <= 0) { spawn = Math.max(.34, .95 - game.t * .012); spawnItem(); }
-    const py = H - pw * .85;
-    for (const it of items) {
-      it.v += 160 * dt; it.y += it.v * dt; it.rot += it.spin * dt;
-      it.el.style.transform = `translate(${it.x - 22}px,${it.y}px) rotate(${it.rot}deg)`;
-      if (!it.dead && it.y + 40 >= py && it.y < H - 30 && Math.abs(it.x - shown) < pw * .6) {
-        it.dead = true;
-        if (it.kind === "rock") game.hurt();
-        else {
-          game.streak++; game.add((it.kind === "star" ? 3 : 1) * (game.streak >= 10 ? 2 : 1), it.x, it.y); sfx("pop", Math.min(8, game.streak)); vibrate(8);
-          const pet = me.firstElementChild; if (pet) { pet.classList.remove("eat"); void pet.getBoundingClientRect(); pet.classList.add("eat"); }
-          if (game.streak % 10 === 0) { const r = stage.getBoundingClientRect(); praise(r.left + shown, r.top + H - 120, `Combo ×${game.streak}`, "combo"); }
-        }
-      } else if (!it.dead && it.y > H) { it.dead = true; if (it.kind !== "rock") game.streak = 0; }
-      if (!game || game.over) return;
-    }
-    for (let i = items.length - 1; i >= 0; i--) if (items[i].dead) { items[i].el.remove(); items.splice(i, 1); }
-  };
-}
-// Blasenjagd: bubbles rise, a generous hit circle around each one; a missed bubble costs a heart, red ones must be left alone.
-function runPop(stage) {
-  const W = stage.clientWidth, H = stage.clientHeight, bubs = []; let spawn = .2;
-  stage.addEventListener("pointerdown", e => {
-    if (!game || game.over) return;
-    const r = stage.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top;
-    let hit = null, hd = 1e9;
-    for (const b of bubs) { if (b.dead) continue; const d = Math.hypot(px - b.cx, py - b.y); if (d < b.s / 2 + 16 && d < hd) { hit = b; hd = d; } }
-    if (!hit) return;
-    hit.dead = true; hit.el.classList.add("burst"); setTimeout(() => hit.el.remove(), 160);
-    if (hit.bad) { game.hurt(); return; }
-    game.streak++; game.add((hit.gold ? 3 : 1) * (game.streak >= 10 ? 2 : 1), hit.cx, hit.y); sfx("pop", Math.min(8, game.streak)); vibrate(10);
-    if (game.streak % 10 === 0) praise(e.clientX, e.clientY - 30, `Combo ×${game.streak}`, "combo");
-  });
-  game.step = dt => {
-    const lvl = Math.min(1, game.t / 50);
-    spawn -= dt;
-    if (spawn <= 0) {
-      spawn = Math.max(.36, 1 - lvl * .6) * (.7 + Math.random() * .6);
-      const s = 60 + Math.random() * 28, r = Math.random(), gold = r < .1, bad = !gold && game.t > 6 && r < .1 + lvl * .12, el = document.createElement("div");
-      el.className = "bub" + (gold ? " gold" : bad ? " bad" : ""); el.style.width = el.style.height = s + "px"; stage.appendChild(el);
-      bubs.push({ el, s, gold, bad, x: s / 2 + Math.random() * (W - s), cx: 0, y: H + s / 2, v: 70 + lvl * 110 + Math.random() * 40, ph: Math.random() * 6 });
-    }
-    for (let i = bubs.length - 1; i >= 0; i--) {
-      const b = bubs[i];
-      if (b.dead) { bubs.splice(i, 1); continue; }
-      b.y -= b.v * dt; b.ph += dt * 2.6; b.cx = b.x + Math.sin(b.ph) * 10;
-      b.el.style.transform = `translate(${b.cx - b.s / 2}px,${b.y - b.s / 2}px)`;
-      if (b.y < -b.s / 2) { b.el.remove(); bubs.splice(i, 1); if (!b.bad) { game.hurt(); if (!game || game.over) return; } }
-    }
-  };
-}
-// Wolkensprung: own vertical jumper. Clouds on a canvas, the pet as SVG on top; steer by tilt, by holding left or right, or with the arrow keys.
-function runJump(stage) {
-  const W = stage.clientWidth, H = stage.clientHeight, dpr = Math.min(2, window.devicePixelRatio || 1), cv = document.createElement("canvas");
-  cv.width = W * dpr; cv.height = H * dpr; stage.appendChild(cv);
-  const cx = cv.getContext("2d"); cx.scale(dpr, dpr);
-  const me = document.createElement("div"); me.className = "g-pet jp"; me.innerHTML = petSVG({ size: 64, mood: "happy" }); stage.appendChild(me);
-  const P = { x: W / 2, y: H - 60, vx: 0, vy: -900 }, plats = [{ x: W / 2 - 40, y: H - 40, w: 80, type: "norm" }];
-  let topY = H - 40, camY = 0, best = 0, tilt = 0, hold = 0, face = 1;
-  const addPlat = () => {
-    const lvl = Math.min(1, best / 400), r = Math.random();
-    topY -= 58 + lvl * 62 + Math.random() * 34;
-    const type = r < .07 ? "spring" : r < .07 + lvl * .28 ? "move" : r < .07 + lvl * .46 ? "break" : "norm";
-    plats.push({ x: 8 + Math.random() * (W - 96), y: topY, w: 80 - lvl * 14, type, dir: Math.random() < .5 ? -1 : 1 });
-  };
-  while (topY > -H) addPlat();
-  const onTilt = e => { if (e.gamma != null) tilt = clamp(e.gamma / 22, -1, 1); };
-  const press = e => { const r = stage.getBoundingClientRect(); hold = e.clientX - r.left < W / 2 ? -1 : 1; };
-  const release = () => { hold = 0; }, keyUp = e => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") hold = 0; };
-  addEventListener("deviceorientation", onTilt); document.addEventListener("keyup", keyUp);
-  stage.addEventListener("pointerdown", press); stage.addEventListener("pointermove", e => { if (hold) press(e); });
-  stage.addEventListener("pointerup", release); stage.addEventListener("pointercancel", release); stage.addEventListener("pointerleave", release);
-  game.onKey = e => { if (e.key === "ArrowLeft") hold = -1; if (e.key === "ArrowRight") hold = 1; };
-  game.cleanup = () => { removeEventListener("deviceorientation", onTilt); document.removeEventListener("keyup", keyUp); };
-  const cloud = (x, y, w, type) => {
-    cx.fillStyle = type === "break" ? "#E7D8CF" : type === "move" ? "#DFF3FF" : "#fff";
-    [[.5, 4, .5, 10], [.3, -2, .22, 11], [.64, -4, .26, 13]].forEach(([fx, dy, rw, rh]) => { cx.beginPath(); cx.ellipse(x + w * fx, y + dy, w * rw, rh, 0, 0, Math.PI * 2); cx.fill(); });
-    if (type === "break") { cx.strokeStyle = "#A1887F"; cx.lineWidth = 2; cx.beginPath(); cx.moveTo(x + w * .45, y - 8); cx.lineTo(x + w * .52, y + 1); cx.lineTo(x + w * .46, y + 10); cx.stroke(); }
-    if (type === "spring") { cx.fillStyle = "#EF4462"; cx.fillRect(x + w / 2 - 10, y - 20, 20, 7); cx.strokeStyle = "#6B7280"; cx.lineWidth = 3; cx.beginPath(); cx.moveTo(x + w / 2 - 6, y - 13); cx.lineTo(x + w / 2 + 6, y - 9); cx.lineTo(x + w / 2 - 6, y - 5); cx.stroke(); }
-  };
-  game.step = dt => {
-    const inp = hold || tilt;
-    P.vx += (inp * 380 - P.vx) * Math.min(1, dt * 10); if (Math.abs(P.vx) > 30) face = P.vx < 0 ? -1 : 1;
-    P.x += P.vx * dt; if (P.x < -24) P.x += W + 48; if (P.x > W + 24) P.x -= W + 48;
-    const y0 = P.y; P.vy += 1800 * dt; P.y += P.vy * dt;
-    if (P.vy > 0) for (const p of plats) { // lands only when falling through the cloud's top edge
-      if (p.gone || y0 > p.y || P.y < p.y || P.x < p.x - 14 || P.x > p.x + p.w + 14) continue;
-      if (p.type === "break") { p.gone = true; p.fall = 0; sfx("tap"); continue; }
-      P.y = p.y; P.vy = p.type === "spring" ? -1380 : -900; p.hit = .25; sfx(p.type === "spring" ? "chirp" : "tick"); vibrate(p.type === "spring" ? 25 : 6); break;
-    }
-    if (P.y < camY + H * .42) camY = P.y - H * .42;
-    const m = Math.max(0, Math.round((H - 60 - P.y) / 20));
-    if (m > best) { best = m; game.score = m; const el = $("#gScore"); if (el) el.textContent = m; if (m % 100 === 0) praise(innerWidth / 2, innerHeight * .3, `${m} m!`, "combo"); }
-    for (const p of plats) {
-      if (p.type === "move" && !p.gone) { p.x += p.dir * (50 + Math.min(1, best / 400) * 90) * dt; if (p.x < 4 || p.x + p.w > W - 4) p.dir *= -1; }
-      if (p.gone) p.fall += dt; if (p.hit) p.hit = Math.max(0, p.hit - dt);
-    }
-    while (topY > camY - 80) addPlat();
-    for (let i = plats.length - 1; i >= 0; i--) if (plats[i].y - camY > H + 60) plats.splice(i, 1);
-    if (P.y - camY > H + 40) { endGame(false); return; }
-    cx.clearRect(0, 0, W, H);
-    for (const p of plats) {
-      const y = p.y - camY + (p.gone ? p.fall * p.fall * 700 : 0); if (y < -30 || y > H + 30) continue;
-      cx.globalAlpha = p.gone ? Math.max(0, 1 - p.fall * 2.5) : 1;
-      cloud(p.x, y + (p.hit ? Math.sin(p.hit * 30) * 3 : 0), p.w, p.type);
-    }
-    cx.globalAlpha = 1;
-    me.style.transform = `translate(${P.x - 32}px,${P.y - camY - 58}px) scaleX(${face})`;
-  };
-}
-function endGame(quit) {
-  const g = game; if (!g || g.over) return;
-  g.over = true; cancelAnimationFrame(g.raf); document.removeEventListener("keydown", g.key); if (g.cleanup) g.cleanup(); game = null; closeSheet();
-  if (quit) { toast("Runde beendet"); render(); return; }
-  careMark("play");
-  const score = g.score, pts = g.kind === "jump" ? Math.round(score / 5) : score, coins = Math.min(40, pts * 2), fun = Math.min(40, pts * 2 + 10), best = state.pet.best;
-  const record = score > (best[g.kind] || 0) && score > 0; if (record) best[g.kind] = score;
-  const p = petSettle(); p.fun = Math.min(100, p.fun + fun); addCoins(coins);
-  curAct = { a: "game-end", id: g.kind, t: Date.now() };
-  careBonus(); evaluateBadges(); save(); render();
-  const c = record ? RAR.legend.c : RAR.epic.c, left = playsLeft();
-  openModal(`<div class="rarity" style="--rc:${c};font-size:.8125rem">${record ? "Neuer Rekord!" : "Geschafft"}</div><div class="reward-orb" style="--rc:${c}"><b class="num">${score}</b></div>
-    <h2>${score} ${g.kind === "jump" ? "Meter" : "Punkte"}</h2><p class="muted" style="font-weight:500">+${coins} Münzen · Laune +${Math.round(fun)}</p>
-    ${left ? `<button class="btn full" data-action="game" data-id="${g.kind}" style="margin-bottom:10px">Nochmal · ${left} frei</button>` : `<p class="muted" style="font-weight:500">Keine Runde mehr frei. Erledige Gewohnheiten für neue Runden.</p>`}
-    <button class="btn gold full" data-action="close-reward" ${left ? "" : "autofocus"}>Fertig</button>`);
-  burst(innerWidth / 2, innerHeight * .4, record ? 160 : 90, 1.3); if (record) bigCelebration();
-  flyCoins(innerWidth / 2, innerHeight * .4, Math.min(12, 2 + Math.round(coins / 4))); sfx(record ? "chest" : "bonus"); vibrate([40, 50, 80]);
-}
-
-/* ============ Tagesgeschenk ============ */
-const giftReady = () => (state.flags.gift || {}).last !== todayK();
-
-let giftBusy = false;
-function openGift(btn) {
-  if (giftBusy || !giftReady()) return;
-  giftBusy = true; btn.classList.add("shake"); sfx("shake"); vibrate([20, 120, 20, 120, 20]);
-  const t = todayK(), g = state.flags.gift || {}, streak = (g.last === addDays(t, -1) ? g.streak || 0 : 0) + 1, s = Math.min(streak, 7);
-  const coins = 10 + 5 * s, food = 20 + 10 * s, spin = Math.random() < .08;
-  state.flags.gift = { last: t, streak }; addCoins(coins); state.pet.food += food; if (spin) addSpin(1);
-  evaluateBadges(); save();
-  setTimeout(() => {
-    giftBusy = false; const r = btn.getBoundingClientRect(); burst(r.left + 50, r.top + r.height / 2, 120, 1.4); flyCoins(r.left + 50, r.top + r.height / 2, 10); sfx("chest"); vibrate([40, 50, 80]); render();
-    openModal(`<div class="reward-orb" style="--rc:var(--gold)"><b class="num">+${coins}</b></div><h2>Tagesgeschenk!</h2>
-      <p class="muted" style="font-weight:500">+${coins} Münzen · +${food} Futter${spin ? " · 1 Glücksrad-Drehung" : ""}</p>
-      <p class="muted" style="font-weight:500">Tag ${streak} in Folge${s < 7 ? ". Das Geschenk wächst bis Tag 7." : ". Das ist das größte Geschenk!"}</p>
-      <button class="btn gold full" data-action="close-reward" autofocus>Einsammeln</button>`);
-  }, 900);
-}
-
-/* ============ Glücksrad ============ */
-// Spins come from milestones and every 7th streak day. The prize is drawn and saved before the disc turns,
-// so closing the dialog mid-spin never loses it.
-const WHEEL = [
-  { v: 10, k: "coins", w: 20 }, { v: 25, k: "xp", w: 15 }, { v: 25, k: "coins", w: 18 }, { v: 1, k: "shield", w: 8 },
-  { v: 50, k: "coins", w: 12 }, { v: 50, k: "xp", w: 10 }, { v: 100, k: "coins", w: 3 }, { v: 15, k: "coins", w: 14 }
-];
-const spins = () => state.flags.spins || 0;
-const addSpin = n => { state.flags.spins = Math.max(0, spins() + n); };
-const wheelUnit = s => s.k === "xp" ? "XP" : s.k === "shield" ? "Schild" : "Münzen";
-const polar = (r, a) => `${(r * Math.sin(a * Math.PI / 180)).toFixed(2)} ${(-r * Math.cos(a * Math.PI / 180)).toFixed(2)}`;
-const wedge = i => `M0 0 L${polar(98, i * 45 - 22.5)} A98 98 0 0 1 ${polar(98, i * 45 + 22.5)} Z`;
-function wheelSVG() {
-  const segs = WHEEL.map((s, i) => `<path d="${wedge(i)}" style="fill:${s.k === "shield" || s.v >= 100 ? "var(--gold-soft)" : i % 2 ? "var(--p-soft)" : "var(--card-2)"};stroke:var(--line);stroke-width:1.5"/>
-    <g transform="rotate(${i * 45})" style="fill:var(--ink);font-family:var(--font);font-weight:700;text-anchor:middle"><text y="-64" font-size="17">${s.v}</text><text y="-52" font-size="8.5">${wheelUnit(s)}</text></g>`).join("");
-  const label = WHEEL.map(s => `${s.v} ${wheelUnit(s)}`).join(", ");
-  return `<svg viewBox="-100 -100 200 200" role="img" aria-label="Glücksrad mit den Feldern ${label}">${segs}<circle r="98" style="fill:none;stroke:var(--p);stroke-width:4"/><circle r="13" style="fill:var(--card);stroke:var(--p);stroke-width:4"/></svg>`;
-}
-const WHEEL_ICON = `<svg class="chest" viewBox="-100 -100 200 200" aria-hidden="true">${WHEEL.map((s, i) => `<path d="${wedge(i)}" fill="${i % 2 ? "#FF6B2C" : "#FFBF1F"}"/>`).join("")}<circle r="98" fill="none" stroke="#B87700" stroke-width="6"/><circle r="16" fill="#fff"/></svg>`;
-function wheelCard(always) {
-  const n = spins(); if (!n && !always) return "";
-  return `<div class="sec enter" style="--i:1"><button class="chest-btn ${n ? "" : "locked"}" style="margin-top:0" ${n ? 'data-action="wheel"' : "disabled"}>${WHEEL_ICON}<div><h3>Glücksrad</h3><p>${n ? `${n} ${n === 1 ? "Drehung" : "Drehungen"} bereit. Tippe zum Drehen.` : "Drehungen gibt es bei Meilensteinen und jeder 7-Tage-Serie."}</p></div></button></div>`;
-}
-function openWheel() {
-  const n = spins();
-  openModal(`<div class="sheet-h"><h2>Glücksrad</h2><button class="x" data-action="wheel-done" aria-label="Schließen">${I.x}</button></div>
-    <div class="muted" style="font-weight:500">${n} ${n === 1 ? "Drehung" : "Drehungen"} übrig</div>
-    <div class="wheel-wrap"><div class="wheel" id="wheelRot">${wheelSVG()}</div><svg class="wheel-ptr" viewBox="0 0 26 30" aria-hidden="true"><path d="M13 30 L2 6 Q13 -4 24 6 Z" fill="currentColor" stroke="var(--card)" stroke-width="2"/></svg></div>
-    <div class="wheel-prize num" id="wheelPrize" role="status"></div>
-    <div id="wheelFoot"><button class="btn gold full" id="wheelBtn" data-action="wheel-spin" ${n ? "" : "disabled"}>Drehen</button></div>`);
-}
-function rollWheel() { let x = Math.random() * WHEEL.reduce((t, q) => t + q.w, 0); return WHEEL.findIndex(q => (x -= q.w) < 0); }
-let wheelBusy = false;
-function spinWheel() {
-  if (wheelBusy || !spins()) return;
-  wheelBusy = true; addSpin(-1); state.flags.spun = (state.flags.spun || 0) + 1;
-  const i = rollWheel(), s = WHEEL[i];
-  let text;
-  if (s.k === "shield" && state.freezes >= MAX_SHIELDS) { addCoins(40); text = "+40 Münzen (Schilde sind voll)"; }
-  else if (s.k === "shield") { state.freezes++; text = "+1 Schutzschild"; }
-  else if (s.k === "xp") { addXP(s.v); text = `+${s.v} XP`; }
-  else { addCoins(s.v); text = `+${s.v} Münzen`; }
-  const hot = s.k === "shield" || s.v >= 100;
-  evaluateBadges(); save();
-  const disc = $("#wheelRot"), btn = $("#wheelBtn");
-  if (btn) { btn.disabled = true; btn.textContent = "Dreht …"; }
-  if (disc) disc.style.transform = `rotate(${360 * 5 - i * 45 + (Math.random() - .5) * 30}deg)`;
-  if (!reduced) for (let k = 0; k < 14; k++) setTimeout(() => sfx("tick", 3), 4300 * Math.pow(k / 14, 1.8));
-  setTimeout(() => {
-    wheelBusy = false;
-    const out = $("#wheelPrize");
-    if (!out) { render(); return; }
-    out.textContent = `Gewonnen: ${text}`;
-    const r = disc.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
-    burst(x, y, hot ? 150 : 90, 1.3); if (hot) bigCelebration();
-    if (s.k === "coins") flyCoins(x, y, Math.min(12, 3 + Math.round(s.v / 10))); else renderTopbar();
-    sfx(hot ? "chest" : "bonus"); vibrate([40, 50, 80]);
-    $("#wheelFoot").innerHTML = spins() ? `<button class="btn full" data-action="wheel">Nochmal drehen · ${spins()} übrig</button>` : `<button class="btn gold full" data-action="wheel-done">Einsammeln</button>`;
-    const nb = $("#wheelFoot button"); if (nb) nb.focus();
-  }, reduced ? 0 : 4500);
-}
-
 /* ============ Hold-to-confirm ============ */
 let holdTimer = 0, holdEl = null;
 document.addEventListener("pointerdown", e => {
@@ -4912,6 +4464,9 @@ document.addEventListener("click", e => {
     case "f-alarm": syncDraft(); draft.alarm = !draft.alarm; rerenderEditor(); break;
     case "f-health": syncDraft(); draft.health = !draft.health; rerenderEditor(); break;
     case "new": openTemplates(b.dataset.v === "break" ? "break" : "build"); break;
+    case "reise-h": reiseId = id; render(); break;
+    case "cert": openCert(id); break;
+    case "cert-share": shareCert(id); break;
     case "tpl-kind": openTemplates.setKind(b.dataset.v); break;
     case "tpl": { const k = b.dataset.kind, t = TEMPLATES[k][Number(b.dataset.i)]; openTips(t, () => openEditor(draftFrom(null, t, k))); break; }
     case "tip-go": { const f = tipNext; tipNext = null; if (f) f(); else closeSheet(); break; }
@@ -4986,22 +4541,12 @@ document.addEventListener("click", e => {
     case "todo-del":
       if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Wirklich löschen?"; break; }
       state.todos = state.todos.filter(q => q.id !== id); save(); closeSheet(); render(); toast("Aufgabe gelöscht"); break;
-    case "care-feed": careTab = careTab === "feed" ? null : "feed"; renderCare(); break;
-    case "care-play": openPlay(); break;
-    case "care-wash": washPet(); break;
-    case "feed": feedPet(id, b); break;
-    case "game": startGame(id); break;
-    case "game-quit": endGame(true); break;
-    case "gift": openGift(b); break;
     case "log-open": openLog(); break;
     case "log-export": exportLog().then(n => toast(`${n} Einträge exportiert`)); break;
     case "log-clear":
       if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Wirklich leeren?"; break; }
       logClear().then(() => { openLog(); toast("Protokoll geleert"); }); break;
-    case "wheel": openWheel(); break;
-    case "wheel-spin": spinWheel(); break;
     case "wheel-done": closeSheet(); render(); if (pendingLevel) setTimeout(showLevelUp, 200); break;
-    case "pet": petPet(b); break;
     case "sos": openSOS(id); break;
     case "sos-tag": { const v = b.dataset.v; sosDraft.tags = sosDraft.tags.includes(v) ? sosDraft.tags.filter(x => x !== v) : sosDraft.tags.concat(v); b.setAttribute("aria-pressed", sosDraft.tags.includes(v)); break; }
     case "sos-str": sosDraft.strength = Number(b.dataset.v); $$('[data-action="sos-str"]').forEach(x => x.setAttribute("aria-pressed", x === b)); break;
@@ -5020,11 +4565,14 @@ document.addEventListener("click", e => {
       evaluateBadges(); save(); closeSheet(); render(); toast("Danke! Gute Nacht wünscht " + state.profile.petName + "."); break;
     }
     case "ptab": progTab = b.dataset.v; softRender("#prog"); break;
-    case "stab": shopTab = b.dataset.v; softRender("#shop"); break;
     case "item": buyItem(id, b); break;
-    case "theme-default": state.profile.theme = "sun"; save(); render(); break;
-    case "petspecies": state.profile.species = b.dataset.v; sfx("chirp"); save(); render(); break;
-    case "petcolor": state.profile.petColor = b.dataset.v; sfx("chirp"); save(); render(); break;
+    case "mini": rescue(id, b); break;
+    case "bet": { const h = state.habits.find(x => x.id === id), c = Number(b.dataset.v); if (!h || h.bet || !provable(h) || ![50, 100, 200].includes(c)) break;
+      if (state.coins < c) { toast(`Dir fehlen noch ${c - state.coins} Münzen.`); break; }
+      if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = `${c} wirklich setzen?`; break; }
+      state.coins -= c; h.bet = { stake: c, from: todayK() }; sfx("unlock"); toast("Die Wette steht. Jetzt zählt jeder bewiesene Tag."); save(); render(); break; }
+    case "chain-go": closeSheet(); if (view !== "heute") location.hash = "heute";
+      setTimeout(() => { const c = $(`[data-card="${id}"]`); if (c) { c.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" }); c.classList.remove("shine"); void c.offsetWidth; c.classList.add("shine"); } }, 350); break;
     case "rename":
       openModal(`<h2>Neuer Name</h2><div class="field"><input type="text" id="newName" maxlength="14" value="${esc(state.profile.petName)}" aria-label="Name" autofocus></div><button class="btn full" data-action="rename-save" style="margin-top:14px">Speichern</button>`); break;
     case "rename-save": { const v = ($("#newName").value || "").trim(); if (v) { state.profile.petName = v; save(); } closeSheet(); render(); break; }
@@ -5056,7 +4604,7 @@ document.addEventListener("click", e => {
     case "shield-info": { const s = gStreak(); openModal(`<div style="width:64px;height:64px;margin:0 auto">${I.flame}</div><h2>${s} ${s === 1 ? "Tag" : "Tage"} Serie</h2><p class="muted">Beste Serie: ${gBest()} Tage. Ein Häkchen am Tag hält sie am Leben, Tage ohne geplante Gewohnheit zählen als Ruhetage.</p>
       <div class="card" style="background:var(--card-2);display:flex;align-items:center;gap:12px;text-align:left;margin:12px 0"><span style="width:36px;height:36px;flex:none">${I.shield}</span><span><b>${state.freezes} von ${MAX_SHIELDS} Schutzschilden</b><br><span class="muted" style="font-size:.875rem">Retten deine Serie automatisch, wenn du einen Tag verpasst.</span></span></div>
       <div class="stack"><button class="btn ghost full" data-action="close-go-shop">Schilde im Shop</button><button class="btn full" data-action="close" autofocus>Fertig</button></div>`); break; }
-    case "close-go-shop": closeSheet(); shopTab = "power"; location.hash = "begleiter"; break;
+    case "close-go-shop": closeSheet(); location.hash = "profil"; break;
     case "set-night": if (state.profile.nightRemind) { state.profile.nightRemind = ""; save(); render(); } else askNotify().then(ok => { if (ok) { state.profile.nightRemind = "20:00"; save(); render(); } }); break;
     case "set-infinite": state.profile.infinite = !state.profile.infinite; b.setAttribute("aria-checked", state.profile.infinite); save(); renderTopbar(); toast(state.profile.infinite ? "Münzen gehen jetzt nie aus" : "Normale Münzen"); break;
     case "set-haptics": state.profile.haptics = !state.profile.haptics; b.setAttribute("aria-checked", state.profile.haptics); save(); vibrate([30, 40, 30]); break;
@@ -5091,10 +4639,6 @@ document.addEventListener("click", e => {
       if (ob.hatched) break; const egg = $("#egg"); if (egg) egg.classList.add("crack"); sfx("shake"); vibrate([20, 60, 20, 60, 20]);
       setTimeout(() => { ob.hatched = true; drawOb(); bigCelebration(); sfx("level"); vibrate([40, 60, 120]); }, 900); break;
     }
-    case "ob-species": {
-      const typed = (($("#obName") || {}).value || "").trim(), old = SPECIES.find(q => q[0] === ob.species);
-      ob.species = b.dataset.v; ob.name = !typed || (old && typed === old[2]) ? SPECIES.find(q => q[0] === ob.species)[2] : typed; sfx("chirp"); drawOb(); break;
-    }
     case "ob-skip":
       state.profile.onboarded = true; if (!state.flags.welcome) { state.flags.welcome = true; addCoins(50); }
       save(); closeSheet(); location.hash = "heute"; animateNext = true; render(); setTimeout(startTour, 700); break;
@@ -5104,7 +4648,7 @@ document.addEventListener("click", e => {
     case "ob-goal": { const v = b.dataset.v; ob.goals = ob.goals.includes(v) ? ob.goals.filter(x => x !== v) : ob.goals.concat(v); sfx("tap"); drawOb(); break; }
     case "ob-back": ob.step = Math.max(0, ob.step - 1); drawOb(); break;
     case "ob-next":
-      if (ob.step === 1) { ob.name = (($("#obName") || {}).value || "").trim() || "Keimi"; state.profile.petName = ob.name; state.profile.petColor = ob.color; state.profile.species = ob.species; }
+      if (ob.step === 1) { ob.name = (($("#obName") || {}).value || "").trim() || "Keimi"; state.profile.petName = ob.name; state.profile.petColor = ob.color; }
       ob.step++; sfx("tap"); drawOb(); break;
     case "ob-tpl": {
       const all = TEMPLATES[b.dataset.kind], tpl = all.find(t => t.name === b.dataset.name), kind = b.dataset.kind;
@@ -5162,7 +4706,7 @@ function checkQuitMilestones(silent) {
 }
 let lastDay = todayK();
 // Runs on the timer and when the app comes back to the front, so a new day never shows yesterday's state.
-function dayTick() { if (todayK() === lastDay) return false; lastDay = todayK(); const fr = applyFreezes(); if (fr) freezeNotice(fr); save(); syncGroup(); return true; }
+function dayTick() { if (todayK() === lastDay) return false; lastDay = todayK(); const fr = applyFreezes(); if (fr) freezeNotice(fr); betCheck(); save(); syncGroup(); return true; }
 setInterval(() => {
   if (dayTick()) render();
   if (state.profile.onboarded) checkQuitMilestones(false);
@@ -5173,7 +4717,7 @@ function freezeNotice(fr) {
 }
 
 /* ============ Routing & boot ============ */
-const VIEWS = ["heute", "abgewoehnen", "todos", "fortschritt", "begleiter", "gruppe", "profil"];
+const VIEWS = ["heute", "fortschritt", "reise", "gruppe", "profil"];
 function route() { if (location.hash.startsWith("#join=")) { handleJoinUrl(location.hash); return; }
   if (/^#(wake|steps=\d+)$/.test(location.hash)) { const hh = location.hash; history.replaceState(null, "", "#heute"); view = "heute"; render(); handleAppUrl(hh); return; } const h = location.hash.slice(1); view = VIEWS.includes(h) ? h : "heute"; animateNext = true; if (store.mode !== "loading") render(); window.scrollTo(0, 0); }
 addEventListener("hashchange", route);
@@ -5185,7 +4729,7 @@ function afterLoad() {
   animateNext = true; render();
   if (!state.profile.onboarded) { openOnboarding(); return; }
   if (fr) freezeNotice(fr);
-  checkQuitMilestones(false);
+  checkQuitMilestones(false); betCheck();
   evaluateBadges(); save(); syncGroup();
   if (location.hash.startsWith("#join=")) handleJoinUrl(location.hash);
   if (/^#(wake|steps=\d+)$/.test(location.hash)) { const hh = location.hash; history.replaceState(null, "", "#heute"); view = "heute"; render(); handleAppUrl(hh); }
@@ -5212,7 +4756,6 @@ const CapApp = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.
 if (CapApp) CapApp.addListener("backButton", ({ canGoBack }) => {
   const ov = $(".overlay"); if (ov) { ov.click(); return; }
   if (pk) { closePack(false); return; }
-  if (game) { endGame(true); return; }
   const bk = $('#modalRoot .back:not(.closing) [data-action="gy-back"]'); if (bk) { bk.click(); return; } // workout screens step back instead of closing
   if ($("#wk")) { $('[data-action="gy-min"]').click(); return; }
   const layer = $("#modalRoot .back"); if (layer) { if (layer.dataset.back === "1") closeSheet(); return; }
