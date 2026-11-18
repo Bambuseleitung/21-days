@@ -6,6 +6,8 @@
 -- Die App darf nur die Funktionen unten aufrufen. Gespeichert wird pro Mitglied nur:
 -- Name, Farbe, Level, XP, XP dieser Woche, Serie und "erledigt heute von heute".
 -- Namen oder Inhalte von Gewohnheiten und das Tagebuch verlassen das Gerät nie.
+-- Ausnahme: eine Wette, die jemand ausdrücklich für die Gruppe freigibt (Name der Gewohnheit, Einsatz, Fortschritt).
+-- Treue-Messung (nur mit Zustimmung in der App): zufällige Geräte-ID, Tag, erster Tag, Plattform und Version.
 
 create table if not exists groups (
   id uuid primary key default gen_random_uuid(),
@@ -45,6 +47,7 @@ create table if not exists cheers (
 -- Gruppen-Challenges: Der Leader legt sie an, jedes Mitglied hakt sie täglich ab.
 alter table groups add column if not exists leader uuid;
 alter table players add column if not exists joined date not null default current_date;
+alter table players add column if not exists bet jsonb; -- freigegebene Wette
 
 create table if not exists challenges (
   id uuid primary key default gen_random_uuid(),
@@ -172,7 +175,7 @@ begin
       select json_agg(json_build_object(
         'id', p.id, 'name', p.name, 'color', p.color, 'level', p.level, 'xp', p.xp,
         'week_xp', p.week_xp, 'week_start', p.week_start, 'streak', p.streak, 'joined', p.joined,
-        'done_today', p.done_today, 'total_today', p.total_today, 'day', p.day,
+        'done_today', p.done_today, 'total_today', p.total_today, 'day', p.day, 'bet', p.bet,
         'cheers', (select count(*) from cheers c where c.to_player = p.id and c.created_at > now() - interval '7 days'),
         'cheered', exists (select 1 from cheers c where c.to_player = p.id and c.from_player = p_player and c.day = current_date)
       ) order by p.week_xp desc, p.xp desc)
@@ -272,15 +275,63 @@ begin
   end loop;
 end $$;
 
+-- Wette für die Gruppe freigeben (null = nichts zeigen).
+create or replace function set_bet(p_player uuid, p_secret text, p_bet json) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  perform _group_of(p_player, p_secret);
+  update players set bet = case when p_bet is null then null else jsonb_build_object(
+    'n', left(coalesce(p_bet->>'n', ''), 50),
+    's', least(greatest(coalesce((p_bet->>'s')::int, 0), 0), 1000),
+    'p', least(greatest(coalesce((p_bet->>'p')::int, 0), 0), 21),
+    'need', least(greatest(coalesce((p_bet->>'need')::int, 0), 0), 21),
+    'end', (p_bet->>'end')::date,
+    'res', case when p_bet->>'res' in ('won', 'lost') then p_bet->>'res' end) end
+  where id = p_player;
+end $$;
+
+-- Treue-Messung für die Beta: ein Eintrag pro Gerät und Tag.
+create table if not exists pings (
+  device text not null,
+  day date not null,
+  first_day date,
+  platform text,
+  v text,
+  primary key (device, day)
+);
+alter table pings enable row level security;
+
+create or replace function ping(p_device text, p_day date, p_first date, p_platform text, p_v text) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if length(coalesce(p_device, '')) not between 8 and 80 or p_day not between current_date - 2 and current_date + 1 then return; end if;
+  insert into pings (device, day, first_day, platform, v)
+    values (p_device, p_day, least(coalesce(p_first, p_day), p_day), left(p_platform, 10), left(p_v, 20))
+    on conflict do nothing;
+end $$;
+
+-- Auswertung im SQL Editor: select * from retention();
+-- D1 = am Tag nach dem ersten Öffnen wieder da, D7 = in Woche 2, D30 = zwischen Tag 30 und 59.
+create or replace function retention() returns table (start_week date, devices bigint, d1 numeric, d7 numeric, d30 numeric)
+language sql security definer set search_path = public as $$
+  with f as (select device, min(first_day) as f from pings group by device)
+  select date_trunc('week', f.f)::date, count(*),
+    round(100.0 * count(*) filter (where exists (select 1 from pings p where p.device = f.device and p.day = f.f + 1)) / count(*), 1),
+    round(100.0 * count(*) filter (where exists (select 1 from pings p where p.device = f.device and p.day between f.f + 7 and f.f + 13)) / count(*), 1),
+    round(100.0 * count(*) filter (where exists (select 1 from pings p where p.device = f.device and p.day between f.f + 30 and f.f + 59)) / count(*), 1)
+  from f group by 1 order by 1 desc
+$$;
+revoke all on function retention() from public, anon, authenticated;
+
 -- Nur diese Funktionen darf die App aufrufen.
 revoke all on function _group_of(uuid, text), _clean_code(text), _new_secret(), _day(date) from public, anon, authenticated;
 revoke all on function create_group(text, text, text), join_group(text, text, text),
   report(uuid, text, text, text, int, bigint, int, date, int, int, int, date),
   board(uuid, text), cheer(uuid, text, uuid), leave_group(uuid, text), claim_leader(uuid, text),
   challenge_save(uuid, text, uuid, text, text, text, text, int[], date), challenge_end(uuid, text, uuid, date),
-  set_checks(uuid, text, json) from public;
+  set_checks(uuid, text, json), set_bet(uuid, text, json), ping(text, date, date, text, text) from public;
 grant execute on function create_group(text, text, text), join_group(text, text, text),
   report(uuid, text, text, text, int, bigint, int, date, int, int, int, date),
   board(uuid, text), cheer(uuid, text, uuid), leave_group(uuid, text), claim_leader(uuid, text),
   challenge_save(uuid, text, uuid, text, text, text, text, int[], date), challenge_end(uuid, text, uuid, date),
-  set_checks(uuid, text, json) to anon, authenticated;
+  set_checks(uuid, text, json), set_bet(uuid, text, json), ping(text, date, date, text, text) to anon, authenticated;

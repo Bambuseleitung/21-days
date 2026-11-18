@@ -4,6 +4,7 @@ name: Android-APK und iPhone-IPA
 # Ergebnis (nach ein paar Minuten unter „Artifacts“):
 #   21Days-apk  → 21Days.apk  (direkt auf Android installieren)
 #   21Days-ipa  → 21Days.ipa  (ungesigniert, mit Sideloadly oder AltStore und deiner Apple-ID aufs iPhone)
+#   21Days-aab  → 21Days.aab  (signiert für den Play Store, nur wenn die Secrets aus BETA.md gesetzt sind)
 on:
   workflow_dispatch:
 
@@ -11,6 +12,8 @@ jobs:
   android:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    env:
+      HAS_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_B64 != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -35,15 +38,22 @@ jobs:
           npx @capacitor/assets generate --android
           npx cap sync android
 
-      - name: Hochformat, Links (days21://join, wake, steps) und Wecker-Berechtigung festlegen
+      - name: Hochformat, Links (days21://join, wake, steps), Wecker- und Standort-Berechtigung festlegen
         run: |
           M=android/app/src/main/AndroidManifest.xml
           perl -0pi -e 's/<activity\b/<activity android:screenOrientation="portrait"/' "$M"
           perl -0pi -e 's#</activity>#<intent-filter><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.DEFAULT"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="days21"/></intent-filter></activity>#' "$M"
-          perl -0pi -e 's#<application#<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>\n    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>\n    <application#' "$M"
+          perl -0pi -e 's#<application#<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>\n    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>\n    <application#' "$M"
           grep -c 'PACKAGE_USAGE_STATS' "$M"
           grep -c 'days21' "$M"
           grep -c 'SET_ALARM' "$M"
+          grep -c 'ACCESS_FINE_LOCATION' "$M"
+
+      - name: Versionsnummer aus der Lauf-Nummer (Play Store braucht jedes Mal eine höhere)
+        run: |
+          G=android/app/build.gradle
+          perl -pi -e 's/versionCode \d+/versionCode ${{ github.run_number }}/; s/versionName "[^"]*"/versionName "1.0.${{ github.run_number }}"/' "$G"
+          grep -E 'versionCode|versionName' "$G"
 
       - name: Health Connect braucht Android 8 (minSdk 26)
         run: |
@@ -73,6 +83,28 @@ jobs:
           name: 21Days-apk
           path: 21Days.apk
           retention-days: 14
+
+      - name: Play-Store-Paket (AAB) bauen und signieren
+        if: ${{ env.HAS_KEYSTORE == 'true' }}
+        env:
+          KS_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+          KS_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          echo "$KS_B64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+          (cd android && ./gradlew bundleRelease)
+          cp android/app/build/outputs/bundle/release/app-release.aab 21Days.aab
+          jarsigner -keystore "$RUNNER_TEMP/upload.jks" -storepass "$KS_PASS" -keypass "$KEY_PASS" 21Days.aab "$KEY_ALIAS"
+          jarsigner -verify 21Days.aab | tail -1
+          rm "$RUNNER_TEMP/upload.jks"
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ env.HAS_KEYSTORE == 'true' }}
+        with:
+          name: 21Days-aab
+          path: 21Days.aab
+          retention-days: 30
 
   ios:
     runs-on: macos-15
@@ -109,9 +141,13 @@ jobs:
           /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes array" "$P"
           /usr/libexec/PlistBuddy -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes:0 string days21" "$P"
 
-      - name: Apple Health (Schritte lesen)
+      - name: Apple Health (Schritte lesen), Kamera und Standort (Foto- und Ort-Beweis)
         run: |
           P=ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Delete :NSCameraUsageDescription" "$P" || true
+          /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string 21 Days öffnet die Kamera für den Foto-Beweis. Das Foto wird nicht gespeichert." "$P"
+          /usr/libexec/PlistBuddy -c "Delete :NSLocationWhenInUseUsageDescription" "$P" || true
+          /usr/libexec/PlistBuddy -c "Add :NSLocationWhenInUseUsageDescription string 21 Days prüft beim Antippen, ob du am gespeicherten Ort bist. Der Standort bleibt auf deinem iPhone." "$P"
           /usr/libexec/PlistBuddy -c "Delete :NSHealthShareUsageDescription" "$P" || true
           /usr/libexec/PlistBuddy -c "Add :NSHealthShareUsageDescription string 21 Days liest deine Schritte, um die Gewohnheit Schritte automatisch abzuhaken. Die Daten bleiben auf deinem iPhone." "$P"
           /usr/libexec/PlistBuddy -c "Delete :NSHealthUpdateUsageDescription" "$P" || true

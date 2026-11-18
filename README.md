@@ -2,6 +2,8 @@
 
 Eine Habit-Tracker-App zum Angewöhnen und Abgewöhnen von Gewohnheiten. Die ersten 21 Tage sind die Startphase, danach geht es weiter bis zur Automatik.
 
+**Beta, Play Store, iPhone und Premium:** siehe [BETA.md](BETA.md).
+
 ## Auf dem PC hosten
 
 1. Doppelklick auf **`start.bat`**.

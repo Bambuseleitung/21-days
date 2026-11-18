@@ -953,6 +953,15 @@ details.how b{color:var(--ink)}
 .bet-row{display:flex;gap:8px;margin-top:12px}.bet-row .btn{flex:1}
 .chain{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 14px}
 .chain i{display:flex;color:var(--muted)}.chain i svg{width:20px;height:20px}
+.guilt.soft{background:var(--card)}
+.tone-l{display:grid;gap:10px;margin-top:18px;text-align:left}
+.tone{display:block;width:100%;padding:14px 16px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.tone b{display:block;font-size:1.0625rem}.tone span{display:block;color:var(--muted);font-size:.875rem;font-weight:500;margin-top:2px}
+.tone[aria-pressed="true"]{border-color:var(--p)}
+.day1{display:flex;align-items:center;gap:12px;margin:18px 0 12px;text-align:left}
+.day1 b{display:block}.day1 span{color:var(--muted);font-size:.875rem}
+.ob .setrow{text-align:left}
+.stg-r + .stg-r{margin-top:14px}
 </style>
 <script src="config.js"></script>
 <script src="vocab.js"></script>
@@ -1048,6 +1057,8 @@ const HI = {
   lotus: sv('<path d="M12 20c-4 0-8-2-9-6 3 0 6 1 9 4 3-3 6-4 9-4-1 4-5 6-9 6z"/><path d="M12 18c-2-2-3-5-3-8 1.5.6 2.4 1.5 3 3 .6-1.5 1.5-2.4 3-3 0 3-1 6-3 8z"/>'),
   sun: sv('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
   pen: sv('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/>'),
+  camera: sv('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
+  pin: sv('<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>'),
   shoe: sv('<path d="M3 16v-5l4-1 3 3 5 1 5 2v3H4a1 1 0 0 1-1-1z"/><path d="M3 16h18"/>'),
   pill: sv('<rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="M9.5 8.5l5 7"/>'),
   broom: sv('<path d="M14 4l-4 7M7 12h7l3 8H4z"/><path d="M8 16v4M12 16v4"/>'),
@@ -1086,8 +1097,11 @@ const TEMPLATES = {
     { name: "10.000 Schritte", icon: "shoe", mode: "steps", target: 10000, health: true, time: "any", color: "#1FBF8A" },
     { name: "Obst & Gemüse", icon: "apple", mode: "count", target: 5, unit: "Portionen", quick: [1], time: "any", color: "#16A34A" },
     { name: "Aufräumen", icon: "broom", mode: "timer", target: 10, time: "evening", color: "#FF6B2C" },
-    { name: "Vitamine nehmen", icon: "pill", time: "morning", color: "#F59E0B" },
-    { name: "Handyzeit begrenzen", icon: "phone", mode: "screen", limit: 120, time: "evening", color: "#0EA5C4", isNew: true }
+    { name: "Vitamine nehmen", icon: "pill", mode: "photo", time: "morning", color: "#F59E0B" },
+    { name: "Handyzeit begrenzen", icon: "phone", mode: "screen", limit: 120, time: "evening", color: "#0EA5C4", isNew: true },
+    { name: "Bett machen", icon: "bed", mode: "photo", time: "morning", color: "#14B8A6", isNew: true },
+    { name: "Gesund kochen", icon: "apple", mode: "photo", time: "evening", color: "#16A34A", isNew: true },
+    { name: "Ins Fitnessstudio", icon: "dumbbell", mode: "place", time: "any", color: "#EF4462", isNew: true }
   ],
   break: [
     { name: "Nicht rauchen", icon: "nosmoke", money: 8, minutes: 40, replacement: "tief durchatmen und ein Glas Wasser trinken", color: "#64748B" },
@@ -1167,8 +1181,9 @@ function setLang(l) {
   curLang = l; const d = l !== "de" && (window.I18N || {})[l]; trMap = d ? new Map(Object.entries(d)) : null; trPats = [];
   if (d) for (const [k, v] of Object.entries(d)) if (/\{\d\}/.test(k)) {
     const parts = k.split(/\{\d\}/);
-    trPats.push({ re: new RegExp("^" + parts.map(x => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("(.+?)") + "$", "s"), v, hint: parts.reduce((a, b) => b.length > a.length ? b : a, "") });
+    trPats.push({ re: new RegExp("^" + parts.map(x => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("(.+?)") + "$", "s"), v, hint: parts.reduce((a, b) => b.length > a.length ? b : a, ""), lit: parts.join("").length });
   }
+  trPats.sort((a, b) => b.lit - a.lit); // das genauere Muster (mehr fester Text) gewinnt vor allgemeinen wie „Noch {0} {1}“
   document.documentElement.lang = l || "de";
 }
 function trText(s, deep) {
@@ -1192,9 +1207,9 @@ new MutationObserver(ms => { if (!trMap) return; for (const m of ms) { if (m.typ
 /* ============ State ============ */
 const KEY = "21days-state-v2", OLD_KEY = "21days-state-v1";
 const freshState = () => ({
-  v: 2, profile: { petName: "Keimi", petColor: PET_COLORS[0], species: "keimi", appearance: "auto", lang: devLang(), avatar: "", theme: "sun", sound: true, haptics: true, shareBoard: true, onboarded: false, since: todayK() },
+  v: 2, profile: { petName: "Keimi", petColor: PET_COLORS[0], species: "keimi", appearance: "auto", tone: "ehrlich", stats: false, lang: devLang(), avatar: "", theme: "sun", sound: true, haptics: true, shareBoard: true, onboarded: false, since: todayK() },
   habits: [], triggers: [], xp: 0, coins: 0, xpLog: {}, freezes: 1, freezeUsed: {}, badges: {}, chests: {}, perfect: {},
-  flags: { gymLink: true }, days: {}, quests: {}, pledges: {}, inv: { owned: [], eq: {} }, rewards: [], redeemed: [], cheered: {}, lastCheerSeen: 0,
+  flags: { gymLink: true, pv: 1 }, days: {}, quests: {}, pledges: {}, inv: { owned: [], eq: {} }, rewards: [], redeemed: [], cheered: {}, lastCheerSeen: 0,
   pet: { food: 0, hunger: 80, fun: 80, clean: 80, t: Date.now(), best: { catch: 0, pop: 0, jump: 0 } },
   todos: [], tags: [], boss: null, journal: [], group: null, vocab: { got: {}, seen: [], today: null },
   gym: { sessions: [], routines: [], custom: [], active: null, rest: 90 }
@@ -1207,7 +1222,7 @@ function normHabit(h) {
   return Object.assign({ id: uid(), name: "Gewohnheit", kind: "build", icon: "star", color: COLORS[0], target: 1, unit: "", days: [0, 1, 2, 3, 4, 5, 6], time: "any",
     cue: "", action: "", replacement: "", reasons: [], money: 0, minutes: 0, quitStart: Date.now(), bestQuit: 0, relapses: [], quitHit: [],
     start: todayK(), log: {}, xp: {}, milestones: [], diff: 2, tag: "", special: "", capsule: null, slip: "", gc: "", remind: "",
-    proof: {}, cert: "", mini: "", after: "", resc: {}, bet: null, mode: "", quick: [], wakeAt: "06:30", grace: 30, words: 30, alarm: false, alarmSet: "", alarmId: "", health: false, woke: {}, limit: 120, scr: {} }, h);
+    proof: {}, cert: "", mini: "", after: "", resc: {}, bet: null, mode: "", quick: [], wakeAt: "06:30", grace: 30, words: 30, alarm: false, alarmSet: "", alarmId: "", health: false, woke: {}, limit: 120, scr: {}, place: null, radius: 150 }, h);
 }
 function migrate(raw) {
   const s = JSON.parse(JSON.stringify(raw || {}));
@@ -1242,6 +1257,7 @@ function migrate(raw) {
   st.habits = (s.habits || []).map(normHabit);
   // once: habits with the dumbbell icon get linked to the workout logger; unlinking in the editor sticks
   if (!st.flags.gymLink) { st.flags.gymLink = true; st.habits.forEach(h => { if (h.kind === "build" && !h.special && h.icon === "dumbbell") h.special = "gym"; }); }
+  if (!st.flags.pv) { st.flags.pv = 1; if ((s.habits || []).length) st.flags.founder = true; } // wer schon vor Premium dabei war, behält alles
   if (!st.flags.sportRen) { st.flags.sportRen = true; st.habits.forEach(h => { if (h.special === "gym" && h.name === "Sport") h.name = "Training"; }); }
   st.flags.maxLvl = Math.max(st.flags.maxLvl || 0, levelOf(st.xp || 0));
   st.triggers = st.triggers.slice(-400);
@@ -1614,7 +1630,7 @@ function petSVG({ size = 128, mood = "ok", level, color, cls = "", dirty = false
 function petMood() {
   const t = todayK(), n = schedToday(), d = doneToday(t);
   if (n && d >= n) return "happy";
-  if (state.habits.some(canRescue)) return "sad";
+  if (state.profile.tone === "hart" && state.habits.some(canRescue)) return "sad";
   const hr = new Date().getHours();
   if (!d && (hr >= 21 || hr < 6)) return "sleepy";
   if (!d && n && gStreak() === 0 && state.habits.length && hr >= 12) return "sleepy";
@@ -1697,6 +1713,30 @@ const GERR = { group_not_found: "Diesen Code gibt es nicht. Prüfe die Zeichen."
 const cleanCode = c => String(c || "").toUpperCase().replace(/[^A-Z0-9]/g, "").replace(/O/g, "0").replace(/[IL]/g, "1");
 const fmtCode = c => c.length > 5 ? c.slice(0, 5) + "-" + c.slice(5) : c;
 const inviteLink = c => "days21://join/" + c;
+// Premium: aus, solange DAYS_CONFIG.premium nicht true ist (Beta: alles frei). Käufe über das RevenueCat-Plugin, sobald es eingebaut ist.
+const PREMIUM_ON = CFG.premium === true, FREE_HABITS = 3;
+const isPro = () => !PREMIUM_ON || !!state.profile.pro || !!state.flags.founder;
+function needPro(what) { if (isPro()) return false; openPaywall(what); return true; }
+function openPaywall(what) {
+  const P = capP("Purchases");
+  openSheet(`${sheetHead("21 Days Premium")}${what ? `<p class="muted" style="margin-top:0">„${esc(what)}“ ist Teil von Premium.</p>` : ""}
+    <div class="how" style="margin-top:12px">${[["Unbegrenzt viele Gewohnheiten", I.plus], ["Gruppen und Wetten mit Freunden", I.users], ["Stufen bis Tag 66 und Tag 100", I.path], ["Alle Beweise bleiben kostenlos", I.proof]].map(([t, ic]) => `<div>${ic}<span><b>${t}</b></span></div>`).join("")}</div>
+    <button class="btn full sec" data-action="pro-buy" ${P ? "" : "disabled"}>${P ? "Premium holen" : "Bald verfügbar"}</button>${P ? `<button class="btn ghost full" style="margin-top:10px" data-action="pro-restore">Käufe wiederherstellen</button>` : ""}`, { reset: true });
+}
+// shortcut: Annahmen zur RevenueCat-API (Entitlement "pro", erstes Paket des aktuellen Angebots); beim Einbau des Plugins auf echtem Gerät prüfen.
+async function proCall(fn) {
+  const P = capP("Purchases"); if (!P) return;
+  try {
+    const r = await fn(P), info = r && (r.customerInfo || r);
+    if (info && info.entitlements && info.entitlements.active && info.entitlements.active.pro) { state.profile.pro = true; save(); closeSheet(); render(); toast("Willkommen bei Premium!", "gold"); } else toast("Kein Premium gefunden.");
+  } catch (e) { if (!(e && e.userCancelled)) toast("Das hat nicht geklappt. Versuch es später noch einmal."); }
+}
+// Treue-Messung (nur mit Zustimmung): einmal am Tag zufällige Geräte-ID, Tag, erster Tag, Plattform und Version. Keine Inhalte.
+const APP_V = "1.0-beta";
+function ping() {
+  if (!state.profile.stats || !groupReady() || state.flags.pinged === todayK()) return;
+  rpc("ping", { p_device: deviceId, p_day: todayK(), p_first: state.profile.since, p_platform: platform(), p_v: APP_V }).then(() => { state.flags.pinged = todayK(); save(); }).catch(() => {});
+}
 async function rpc(fn, args) {
   const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 12000);
   try {
@@ -1717,7 +1757,7 @@ async function pushStats(force) {
   if (!force && j === gLastJSON) return;
   await rpc("report", body); gLastJSON = j;
 }
-function syncGroup() { if (!state.group || !groupReady()) return; clearTimeout(gTimer); gTimer = setTimeout(() => pushStats().then(pushChecks).catch(groupError), 1500); }
+function syncGroup() { if (!state.group || !groupReady()) return; clearTimeout(gTimer); gTimer = setTimeout(() => pushStats().then(pushChecks).then(() => pushBet().catch(() => {})).catch(groupError), 1500); }
 function groupError(e) {
   const m = e && e.message;
   if (m === "not_authorized") { state.group = null; grp.board = null; dropChallenges(); save(); toast("Du bist nicht mehr in der Gruppe."); if (view === "gruppe") render(); return; }
@@ -1750,7 +1790,7 @@ function groupInner() {
       <h2>Duelliere deine Freunde</h2><p class="muted" style="font-weight:500;margin:8px auto 16px;max-width:34ch">Erstelle eine Gruppe und lade Freunde per Link, Code oder QR ein. Wer die meisten XP der Woche sammelt, gewinnt.</p>
       <div style="display:grid;gap:10px"><button class="btn full" data-action="g-create">Gruppe erstellen</button><button class="btn ghost full" data-action="g-join">Mit Code beitreten</button></div></section>
       <section class="card sec enter" style="--i:1"><b>So bleibt es privat</b>
-        <div class="priv"><span>${I.check}</span><div><b>Die Gruppe sieht</b><br><span class="muted">Deinen Namen, Level, XP, XP der Woche, Serie und wie viele Gewohnheiten du heute geschafft hast.</span></div></div>
+        <div class="priv"><span>${I.check}</span><div><b>Die Gruppe sieht</b><br><span class="muted">Deinen Namen, Level, XP, XP der Woche, Serie und wie viele Gewohnheiten du heute geschafft hast. Wetten nur, wenn du sie freigibst.</span></div></div>
         <div class="priv no"><span>${I.x}</span><div><b>Nie sichtbar</b><br><span class="muted">Namen deiner Gewohnheiten, Rückfälle, SOS-Momente, Auslöser und dein Tagebuch.</span></div></div></section>`;
   }
   const g = state.group, b = grp.board, t = todayK(), days = 7 - wIdx(t), all = grp.sort === "all";
@@ -1765,6 +1805,7 @@ function groupInner() {
   return `<section class="card sec enter" style="--i:0"><div style="display:flex;align-items:center;gap:12px"><div style="flex:1;min-width:0"><h2 style="font-size:1.25rem;overflow-wrap:anywhere">${esc(g.name)}</h2><div class="muted num" style="font-weight:500">Code ${esc(fmtCode(g.code))}</div></div><button class="btn sm" data-action="g-invite">Einladen</button></div></section>
     ${grp.err ? `<div class="banner">${esc(grp.err)}</div>` : ""}
     ${groupChallengesHTML()}
+    ${groupBetsHTML()}
     ${duel ? `<div class="card sec enter" style="--i:1"><div class="muted" style="font-weight:600;font-size:.8125rem">${all ? "Gesamt" : `Wochen-Duell · noch ${days} ${days === 1 ? "Tag" : "Tage"}`}</div><div style="font-weight:700;font-size:1.0625rem;margin-top:2px">${duel}</div></div>` : ""}
     <div class="seg sec" role="group"><button data-action="g-sort" data-v="week" aria-pressed="${!all}">Diese Woche</button><button data-action="g-sort" data-v="all" aria-pressed="${all}">Gesamt</button></div>
     <div class="hlist sec">${b ? ps.map(row).join("") : `<div class="card muted" style="font-weight:500">Rangliste wird geladen …</div>`}</div>
@@ -2030,7 +2071,7 @@ async function askNotify() {
 }
 let devT = 0, remLast = "", wLast = "";
 function reminderPlan() { // reminders for the next 7 days, at most 60 (iOS keeps 64 pending)
-  const out = [], now = Date.now(), t = todayK(), pn = state.profile.petName, at = (k, hm) => { const [H, M] = hm.split(":").map(Number), d = parseK(k); d.setHours(H, M, 0, 0); return d; };
+  const out = [], now = Date.now(), t = todayK(), pn = state.profile.petName, tone = state.profile.tone || "ehrlich", hard = tone === "hart", at = (k, hm) => { const [H, M] = hm.split(":").map(Number), d = parseK(k); d.setHours(H, M, 0, 0); return d; };
   const T = state.timer, th = T && T.run && state.habits.find(x => x.id === T.id);
   if (th) { const end = T.run + Math.max(0, th.target * 60000 - cnt(th, t) * 60000 - T.acc); if (end > now) out.push({ at: new Date(end), title: "Zeit um!", body: `${th.name}: Tagesziel erreicht. Tippe zum Abhaken.`, extra: { act: "timer", id: th.id } }); }
   for (let i = 0; i < 7; i++) {
@@ -2038,7 +2079,7 @@ function reminderPlan() { // reminders for the next 7 days, at most 60 (iOS keep
     state.habits.forEach(h => {
       if (!h.remind || !sched(h, k) || (k === t && isDone(h, k))) return;
       const d = at(k, h.remind); if (d.getTime() <= now) return;
-      out.push({ at: d, title: h.name, body: h.gc ? "Gruppen-Challenge: Die Gruppe zählt auf dich." : h.kind === "break" ? "Bleib stark. Heute zählt." : `Du hast es dir versprochen. ${pn} wartet.` });
+      out.push({ at: d, title: h.name, body: h.gc ? "Gruppen-Challenge: Die Gruppe zählt auf dich." : h.kind === "break" ? "Bleib stark. Heute zählt." : hard ? `Du hast es dir versprochen. ${pn} wartet.` : "Zeit für deine Gewohnheit." });
     });
     state.habits.forEach(h => { // Aufstehen: Mitteilung zur Weckzeit (Android stellt zusätzlich einen echten Wecker)
       if (modeOf(h) !== "wake" || !h.alarm || !sched(h, k) || (k === t && (isDone(h, k) || (h.woke && h.woke[k])))) return;
@@ -2048,12 +2089,12 @@ function reminderPlan() { // reminders for the next 7 days, at most 60 (iOS keep
     const nr = state.profile.nightRemind;
     if (!nr || !habitsFor(k).length) continue;
     const d = at(k, nr); if (d.getTime() <= now) continue;
-    if (k !== t) { out.push({ at: d, title: `${pn} wartet noch`, body: "Du hast es dir selbst versprochen. Ein paar Minuten reichen." }); continue; }
+    if (k !== t) { out.push(hard ? { at: d, title: `${pn} wartet noch`, body: "Du hast es dir selbst versprochen. Ein paar Minuten reichen." } : { at: d, title: "Schon alles abgehakt?", body: "Deine Serie zählt auf dich." }); continue; }
     const open = habitsFor(t).filter(h => !isDone(h, t)), og = open.filter(h => h.gc).length;
-    if (open.length) out.push({ at: d, title: og ? `Noch ${og} ${og === 1 ? "Challenge" : "Challenges"} offen` : `Noch ${open.length} offen`, body: og ? "Die Team-Serie hängt an dir. Jetzt abhaken!" : `${pn} sitzt noch allein da. Ein paar Minuten reichen, damit deine Serie hält.` });
+    if (open.length) out.push({ at: d, title: og ? `Noch ${og} ${og === 1 ? "Challenge" : "Challenges"} offen` : `Noch ${open.length} offen`, body: og ? "Die Team-Serie hängt an dir. Jetzt abhaken!" : hard ? `${pn} sitzt noch allein da. Ein paar Minuten reichen, damit deine Serie hält.` : "Ein paar Minuten reichen, damit deine Serie hält." });
   }
   const openT = habitsFor(t).filter(h => h.kind === "build" && !isDone(h, t)); // falls heute etwas liegen bleibt: morgen früh an den Rettungstag erinnern
-  if (openT.length && (state.profile.nightRemind || openT.some(h => h.remind))) { const d = at(addDays(t, 1), "09:00"); out.push({ at: d, title: `${pn} ist traurig`, body: "Gestern ist etwas ausgefallen. Rette deine Reise heute mit der Mini-Version." }); }
+  if (tone !== "sanft" && openT.length && (state.profile.nightRemind || openT.some(h => h.remind))) { const d = at(addDays(t, 1), "09:00"); out.push(hard ? { at: d, title: `${pn} ist traurig`, body: "Gestern ist etwas ausgefallen. Rette deine Reise heute mit der Mini-Version." } : { at: d, title: "Neuer Tag, neue Chance", body: "Gestern ist etwas ausgefallen. Heute reicht die Mini-Version." }); }
   return out.sort((a, b) => a.at - b.at).slice(0, 60);
 }
 function widgetData() {
@@ -2213,8 +2254,9 @@ function viewToday() {
 
 // Schuldgefühle: Solange ein verpasster Tag nicht gerettet ist, sitzt der Begleiter traurig auf Heute.
 function guiltCard() {
-  const ms = state.habits.filter(canRescue); if (!ms.length) return "";
-  return `<section class="card guilt sec enter"><div class="g-pet">${petSVG({ size: 72, mood: "sad" })}</div><div><b>${esc(state.profile.petName)} hat vergeblich auf dich gewartet.</b><p>${ms.slice(0, 2).map(h => `„${esc(h.name)}“`).join(", ")}${ms.length > 2 ? " …" : ""} ${ms.length === 1 ? "ist" : "sind"} ausgefallen. Zweimal hintereinander darf nicht passieren. Heute reicht die Mini-Version.</p></div></section>`;
+  const ms = state.habits.filter(canRescue), tone = state.profile.tone || "ehrlich"; if (!ms.length || tone === "sanft") return "";
+  const names = ms.slice(0, 2).map(h => `„${esc(h.name)}“`).join(", ") + (ms.length > 2 ? " …" : ""), hard = tone === "hart";
+  return `<section class="card guilt ${hard ? "" : "soft"} sec enter"><div class="g-pet">${petSVG({ size: 72, mood: hard ? "sad" : "ok" })}</div><div><b>${hard ? `${esc(state.profile.petName)} hat vergeblich auf dich gewartet.` : "Ein Tag ist ausgefallen."}</b><p>${names} ${ms.length === 1 ? "ist" : "sind"} ausgefallen. ${hard ? "Zweimal hintereinander darf nicht passieren. Heute reicht die Mini-Version." : "Kein Drama. Heute reicht die Mini-Version."}</p></div></section>`;
 }
 function rescue(id, btn) {
   const h = state.habits.find(x => x.id === id); if (!h || !canRescue(h)) return;
@@ -2225,7 +2267,7 @@ function rescue(id, btn) {
 
 /* ============ Wette mit dir selbst ============ */
 // Einsatz auf die nächsten 21 Tage. Nur bewiesene Tage zählen, darum nur für Gewohnheiten, die die App messen kann.
-const provable = h => h.kind === "build" && (h.special === "gym" || h.special === "vocab" || ["wake", "steps", "timer", "journal", "screen"].includes(modeOf(h)));
+const provable = h => h.kind === "build" && (h.special === "gym" || h.special === "vocab" || ["wake", "steps", "timer", "journal", "screen", "photo", "place"].includes(modeOf(h)));
 function betStat(h, from = (h.bet || {}).from || todayK()) {
   const t = todayK(); let planned = 0, proven = 0, lost = 0;
   for (let i = 0; i < 21; i++) { const k = addDays(from, i); if (!sched(h, k)) continue; planned++; if (isDone(h, k) && proofOf(h, k) === "p") proven++; else if (k < t) lost++; }
@@ -2235,20 +2277,35 @@ function betCheck() {
   state.habits.forEach(h => {
     if (!h.bet) return;
     const b = h.bet, s = betStat(h);
-    if (s.proven >= s.need) { h.bet = null; addCoins(b.stake * 2); state.flags.betsWon = (state.flags.betsWon || 0) + 1; pushOverlay({ kicker: "Wette gewonnen", big: `+${b.stake * 2}`, title: "Du hast Wort gehalten", sub: `„${h.name}“ · ${s.proven} bewiesene Tage`, color: "#FF7A1A" }); }
-    else if (s.planned - s.lost < s.need || todayK() > s.end) { h.bet = null; pushOverlay({ kicker: "Wette verloren", big: `−${b.stake}`, title: "Du hast gegen dich selbst verloren", sub: `„${h.name}“: Du hattest es dir versprochen. Die ${b.stake} Münzen sind weg.`, color: "#8A817A", icon: petSVG({ size: 110, mood: "sad" }), quiet: true, sound: "undo" }); }
+    const res = s.proven >= s.need ? "won" : s.planned - s.lost < s.need || todayK() > s.end ? "lost" : "";
+    if (res) { state.lastBet = { n: h.name, s: b.stake, p: s.proven, need: s.need, end: s.end, res, day: todayK(), pub: !!b.pub }; syncGroup(); }
+    const share = `<button class="btn ghost" type="button" data-action="share-bet" style="display:block;margin:14px auto 0">Teilen</button>`;
+    if (res === "won") { h.bet = null; addCoins(b.stake * 2); state.flags.betsWon = (state.flags.betsWon || 0) + 1; pushOverlay({ kicker: "Wette gewonnen", big: `+${b.stake * 2}`, title: "Du hast Wort gehalten", sub: `„${h.name}“ · ${s.proven} bewiesene Tage`, color: "#FF7A1A", extra: share }); }
+    else if (res === "lost") { h.bet = null; pushOverlay({ kicker: "Wette verloren", big: `−${b.stake}`, title: "Du hast gegen dich selbst verloren", sub: `„${h.name}“: Du hattest es dir versprochen. Die ${b.stake} Münzen sind weg.`, color: "#8A817A", icon: petSVG({ size: 110, mood: "sad" }), quiet: true, sound: "undo", extra: share }); }
   });
+}
+let betPub = true;
+function betPayload() {
+  const h = state.habits.find(x => x.bet && x.bet.pub);
+  if (h) { const s = betStat(h); return { n: h.name, s: h.bet.stake, p: s.proven, need: s.need, end: s.end }; }
+  const l = state.lastBet; return l && l.pub && l.day >= addDays(todayK(), -3) ? { n: l.n, s: l.s, p: l.p, need: l.need, end: l.end, res: l.res } : null;
+}
+let gLastBet = "";
+async function pushBet() { if (!state.group) return; const b = betPayload(), j = JSON.stringify(b); if (j === gLastBet) return; await rpc("set_bet", Object.assign(grpAuth(), { p_bet: b })); gLastBet = j; }
+function groupBetsHTML() {
+  const ps = grp.board && (grp.board.players || []).filter(p => p.bet && p.bet.n); if (!ps || !ps.length) return "";
+  return `<section class="card sec enter"><b>Wetten in der Gruppe</b>${ps.map(p => { const x = p.bet, mine = p.id === state.group.playerId; return `<div class="setrow"><div><b>${esc(p.name)}${mine ? " (Du)" : ""}: „${esc(x.n)}“</b><small class="num">${x.res === "won" ? `Gewonnen · +${x.s * 2} Münzen` : x.res === "lost" ? `Verloren · −${x.s} Münzen` : `${x.p}/${x.need} bewiesen · Einsatz ${x.s}`}</small></div></div>`; }).join("")}</section>`;
 }
 function betCard(h) {
   const head = `<div class="bet-h"><b>Wette mit dir selbst</b>${I.coin}</div>`;
   if (h.bet) {
     const s = betStat(h), left = s.planned - s.lost - s.need;
-    return `<section class="card bet sec enter">${head}<div class="pbar"><i style="width:${Math.min(100, s.proven / s.need * 100)}%"></i></div><p class="num"><b>${s.proven}/${s.need}</b> bewiesenen Tagen · Einsatz ${h.bet.stake}</p><p class="muted">Noch ${left} ${left === 1 ? "Fehltag" : "Fehltage"} erlaubt, bis ${parseK(s.end).toLocaleDateString(LOC(), { day: "numeric", month: "long" })}. Schaffst du es, bekommst du ${h.bet.stake * 2} Münzen.</p></section>`;
+    return `<section class="card bet sec enter">${head}<div class="pbar"><i style="width:${Math.min(100, s.proven / s.need * 100)}%"></i></div><p class="num"><b>${s.proven}/${s.need}</b> bewiesenen Tagen · Einsatz ${h.bet.stake}</p><p class="muted">Noch ${left} ${left === 1 ? "Fehltag" : "Fehltage"} erlaubt, bis ${parseK(s.end).toLocaleDateString(LOC(), { day: "numeric", month: "long" })}. Schaffst du es, bekommst du ${h.bet.stake * 2} Münzen.</p>${h.bet.pub ? `<p class="muted">Deine Gruppe schaut zu.</p>` : state.group ? "" : `<button class="btn sm ghost" style="margin-top:10px" data-action="go" data-view="gruppe">Freunde zuschauen lassen</button>`}</section>`;
   }
   if (!provable(h)) return `<section class="card bet sec enter">${head}<p class="muted">Wetten gehen nur mit Gewohnheiten, die 21 Days messen kann: Wecker, Timer, Schritte, Tagebuch, Bildschirmzeit, Training oder Vokabeln.</p></section>`;
   const s = betStat(h, todayK());
   return `<section class="card bet sec enter">${head}<p>Setz Münzen auf deine nächsten 21 Tage. Schaffst du ${s.need} bewiesene Tage, bekommst du das Doppelte. Sonst sind sie weg.</p>
-    <div class="bet-row">${[50, 100, 200].map(c => `<button class="btn sm" data-action="bet" data-id="${h.id}" data-v="${c}" ${state.coins < c ? "disabled" : ""}>${c}</button>`).join("")}</div><p class="muted num">Du hast ${state.coins} Münzen.</p></section>`;
+    <div class="bet-row">${[50, 100, 200].map(c => `<button class="btn sm" data-action="bet" data-id="${h.id}" data-v="${c}" ${state.coins < c ? "disabled" : ""}>${c}</button>`).join("")}</div><p class="muted num">Du hast ${state.coins} Münzen.</p>${state.group ? `<div class="setrow" style="padding-bottom:0;border:0"><div><b>Gruppe schaut zu</b><small>Deine Gruppe sieht Name, Einsatz und Fortschritt dieser Wette</small></div>${iswitch(betPub, "bet-pub", "Gruppe schaut zu")}</div>` : ""}</section>`;
 }
 
 /* ============ Kettenreaktion ============ */
@@ -2305,7 +2362,7 @@ function viewReise() {
     ${row(14, "Durchbruch", "Tag 15–21 · es wird leichter")}
     <div class="legend21"><span class="d21 p"></span>bewiesen <span class="d21 s"></span>selbst bezeugt <span class="d21 m"></span>verpasst</div>
   </section>
-  ${betCard(h)}
+  ${stagesCard(h)}${betCard(h)}
   ${n >= 21 ? `<button class="btn full sec" data-action="cert" data-id="${h.id}">Zertifikat ansehen</button>${n > 21 ? `<p class="muted" style="text-align:center;margin-top:8px">Tag ${n} · weiter bis Tag 66, dann läuft es von selbst.</p>` : ""}` : `<p class="muted" style="text-align:center;margin-top:14px">Noch ${21 - n} ${21 - n === 1 ? "Tag" : "Tage"} bis zum Zertifikat.</p>`}`;
 }
 function certStats(h) {
@@ -2325,10 +2382,51 @@ function openCert(id) {
     <p class="muted" style="font-size:.8125rem;margin-top:10px">Das Zertifikat zählt nur, was wirklich passiert ist. Bewiesen heißt: Die App hat es gemessen.</p>`, { reset: true });
   sfx("streak"); bigCelebration();
 }
-async function shareCert(id) {
+// Teilbare Bildkarte im Story-Format (1080 × 1920). Canvas-Text läuft nicht durchs DOM, darum T() für die Übersetzung.
+function cardPNG(o) {
+  const c = document.createElement("canvas"); c.width = 1080; c.height = 1920; const x = c.getContext("2d");
+  const g = x.createRadialGradient(540, 760, 40, 540, 760, 1150); g.addColorStop(0, "#3A2214"); g.addColorStop(1, "#120F0D"); x.fillStyle = g; x.fillRect(0, 0, 1080, 1920);
+  const F = (w, z) => `${w} ${z}px -apple-system, "Segoe UI", Roboto, sans-serif`;
+  const wrap = (txt, y, lh, max) => { let line = ""; String(txt).split(" ").forEach(w => { const t2 = line ? line + " " + w : w; if (x.measureText(t2).width > max && line) { x.fillText(line, 540, y); y += lh; line = w; } else line = t2; }); if (line) x.fillText(line, 540, y); return y + lh; };
+  x.textAlign = "center"; x.fillStyle = "#FF7A1A"; x.font = F(800, 46); x.fillText(T(o.kicker).toUpperCase(), 540, 300);
+  if (o.sts) {
+    const col = { p: "#FF7A1A", s: "#A89E96", m: "#2A2420", r: "#332C27", f: "#2A2420", n: "#4A413B" }; x.lineWidth = 48;
+    o.sts.forEach((st, i) => { const a0 = (i / 21 * 360 + 3 - 90) * Math.PI / 180, a1 = ((i + 1) / 21 * 360 - 3 - 90) * Math.PI / 180; x.strokeStyle = col[st] || col.f; x.beginPath(); x.arc(540, 800, 320, a0, a1); x.stroke(); });
+  }
+  x.fillStyle = "#F6F1EC"; x.font = F(900, o.sts ? 230 : 300); x.fillText(o.big, 540, o.sts ? 880 : 960);
+  x.font = F(800, 76); let y = wrap(T(o.title), 1330, 92, 920);
+  x.fillStyle = "#A89E96"; x.font = F(500, 48); wrap(T(o.sub || ""), y + 10, 64, 900);
+  x.fillStyle = "#F6F1EC"; x.font = F(900, 60); x.fillText("21 Days", 540, 1760); x.fillStyle = "#FF7A1A"; x.font = F(700, 42); x.fillText(T("prüft nach"), 540, 1820);
+  return c.toDataURL("image/png");
+}
+async function shareCard(o, text) {
+  const url = cardPNG(o), S = capP("Share"), Fs = capP("Filesystem"); text = T(text);
+  try {
+    if (S && Fs) { const r = await Fs.writeFile({ path: `21days-${Date.now()}.png`, data: url.split(",")[1], directory: "CACHE" }); await S.share({ text, files: [r.uri] }); return; }
+    const file = new File([await (await fetch(url)).blob()], "21days.png", { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text }); return; }
+    const a = document.createElement("a"); a.href = url; a.download = "21days.png"; document.body.appendChild(a); a.click(); a.remove(); toast("Bild gespeichert");
+  } catch (e) { /* abgebrochen */ }
+}
+function shareCert(id) {
   const h = state.habits.find(x => x.id === id); if (!h) return;
-  const c = certStats(h), text = `21 Days: „${h.name}“ · ${c.done} von ${c.planned} Tagen geschafft, ${c.pr} davon bewiesen.`, S = capP("Share");
-  try { if (S) await S.share({ text }); else if (navigator.share) await navigator.share({ text }); else { await navigator.clipboard.writeText(text); toast("Text kopiert"); } } catch (e) { /* abgebrochen */ }
+  const c = certStats(h);
+  shareCard({ kicker: "21 Tage geschafft", big: "21", title: h.name, sub: `${c.done} von ${c.planned} Tagen geschafft, ${c.pr} davon bewiesen`, sts: c.sts }, `21 Days: „${h.name}“ · ${c.done} von ${c.planned} Tagen geschafft, ${c.pr} davon bewiesen.`);
+}
+function shareWeek() {
+  const t = todayK(), sts = Array.from({ length: 21 }, (_, i) => allDay(addDays(t, i - 20))), pr = sts.filter(x => x === "p").length, d = sts.filter(x => x === "p" || x === "s").length;
+  shareCard({ kicker: "Meine letzten 21 Tage", big: String(pr), title: "Tage bewiesen", sub: `${d} von 21 Tagen geschafft · Serie ${gStreak()}`, sts }, `21 Days: ${pr} von 21 Tagen bewiesen.`);
+}
+function shareBet(l) {
+  const won = l.res === "won";
+  shareCard({ kicker: won ? "Wette gewonnen" : "Wette verloren", big: won ? `+${l.s * 2}` : `−${l.s}`, title: l.n, sub: won ? `${l.p} bewiesene Tage. Wort gehalten.` : "Ehrlich verloren. Nächste Runde." }, won ? `21 Days: Wette gewonnen, „${l.n}“ mit ${l.p} bewiesenen Tagen.` : `21 Days: Wette verloren bei „${l.n}“. Nächste Runde.`);
+}
+function stagesCard(h) {
+  const n = dayNo(h.start); if (n <= 21) return "";
+  if (!isPro()) return `<section class="card sec enter"><b>Stufe 2 und 3</b><p class="muted" style="margin:6px 0 10px;font-size:.875rem">Nach 21 Tagen ist es eine Routine. Mit 66 Tagen wird es zur Gewohnheit, mit 100 zu einem Teil von dir.</p><button class="btn sm" data-action="pro" data-v="Stufen bis Tag 66 und 100">${I.lock} Freischalten</button></section>`;
+  const done = Object.keys(h.log).filter(k => k >= h.start && isDone(h, k)).length;
+  const bar = (goal, name) => `<div class="stg-r"><div class="bet-h"><b>${name}</b><span class="num muted">Tag ${Math.min(n, goal)} von ${goal}</span></div><div class="pbar" style="margin-top:8px"><i style="width:${Math.min(100, n / goal * 100)}%"></i></div></div>`;
+  return `<section class="card sec enter">${bar(66, "Stufe 2 · Gewohnheit")}${bar(100, "Stufe 3 · Teil von dir")}<p class="muted num" style="margin:10px 0 0;font-size:.8125rem">${done} Tage geschafft seit dem Start.</p></section>`;
 }
 function proofCard() {
   const t = todayK(); let p = 0, sf = 0;
@@ -2336,7 +2434,7 @@ function proofCard() {
   const all = p + sf;
   return `<section class="card sec enter proofc"><div class="pc-top"><div><b class="num">${p}</b><span>bewiesen</span></div><div><b class="num">${sf}</b><span>selbst bezeugt</span></div></div>
     <div class="pbar"><i style="width:${all ? p / all * 100 : 0}%"></i></div>
-    <p class="muted" style="margin:8px 0 0;font-size:.875rem">Letzte 30 Tage. Bewiesen heißt: Wecker, Health, Timer, Workout oder Tagebuch haben es gemessen. Das gibt volle XP.</p></section>`;
+    <p class="muted" style="margin:8px 0 0;font-size:.875rem">Letzte 30 Tage. Bewiesen heißt: Wecker, Health, Timer, Workout oder Tagebuch haben es gemessen. Das gibt volle XP.</p><button class="btn sm ghost" data-action="share-week" style="margin-top:12px">Meine 21 Tage teilen</button></section>`;
 }
 
 /* ============ View: Fortschritt ============ */
@@ -2451,8 +2549,11 @@ function viewProfile() {
     ${sw("set-haptics", state.profile.haptics, "Haptik", "Vibration bei Antippen, Erfolgen und Spielen")}
     <div class="setrow" style="flex-wrap:wrap"><div><b>Sprache</b></div><div style="flex:1 1 100%"><div class="seg" role="group" aria-label="Sprache" data-notr>${LANGS.map(([k, n]) => `<button data-action="set-lang" data-v="${k}" aria-pressed="${(state.profile.lang || "de") === k}">${n}</button>`).join("")}</div></div></div>
     <div class="setrow" style="flex-wrap:wrap"><div><b>Erscheinungsbild</b><small>„Automatisch“ folgt der Einstellung deines Handys</small></div><div class="seg" role="group" aria-label="Erscheinungsbild" style="flex:1 1 100%">${[["auto", "Automatisch"], ["light", "Hell"], ["dark", "Dunkel"]].map(([k, l]) => `<button data-action="set-appear" data-v="${k}" aria-pressed="${(state.profile.appearance || "auto") === k}">${l}</button>`).join("")}</div></div>
+    <div class="setrow" style="flex-wrap:wrap"><div><b>Ton bei Fehltagen</b><small>Wie direkt ${esc(state.profile.petName)} mit dir redet, wenn du einen Tag verpasst</small></div><div class="seg" role="group" aria-label="Ton bei Fehltagen" style="flex:1 1 100%">${[["sanft", "Sanft"], ["ehrlich", "Ehrlich"], ["hart", "Hart"]].map(([k, l]) => `<button data-action="set-tone" data-v="${k}" aria-pressed="${(state.profile.tone || "ehrlich") === k}">${l}</button>`).join("")}</div></div>
+    ${sw("set-stats", state.profile.stats, "Anonym beim Verbessern helfen", "Einmal am Tag: zufällige Geräte-ID und Datum, sonst nichts")}
+    ${PREMIUM_ON ? btn("pro", "Premium", isPro() ? "Aktiv" : "Mehr Gewohnheiten, Gruppen und Stufen", isPro() ? "Ansehen" : "Holen") : ""}
     ${capP("LocalNotifications") ? `${sw("set-night", state.profile.nightRemind, "Abend-Erinnerung", state.profile.nightRemind ? "Erinnert dich, wenn abends noch etwas offen ist" : "Erinnert dich abends an Offenes")}${state.profile.nightRemind ? `<div class="setrow"><div><b>Uhrzeit</b></div><input type="time" id="nightTime" value="${esc(state.profile.nightRemind)}" style="width:auto" aria-label="Uhrzeit der Abend-Erinnerung"></div>` : ""}` : ""}
-    ${sw("set-infinite", state.profile.infinite, "Unendlich Münzen", "Nur zum Testen: Münzen gehen nie aus")}
+    ${PREMIUM_ON ? "" : sw("set-infinite", state.profile.infinite, "Unendlich Münzen", "Nur zum Testen: Münzen gehen nie aus")}
     ${installEvt ? btn("install", "Als App installieren", "21 Days als eigenes Fenster, auch offline", "Installieren", "") : ""}
     ${state.profile.avatar ? btn("avatar-del", "Profilbild", "Eigenes Bild entfernen", "Entfernen") : ""}
     ${btn("backup", "Backup", "Daten sichern oder wiederherstellen", "Öffnen")}
@@ -2579,13 +2680,14 @@ function saveHabit() {
   const name = (draft.name || "").trim();
   if (!name) { $("#fErr").textContent = "Gib deiner Gewohnheit einen Namen."; $("#fName").focus(); return false; }
   if (!draft.days.length) { $("#fErr").textContent = "Wähle mindestens einen Tag."; return false; }
+  if (draft.mode === "place" && draft.kind !== "break" && !draft.special && !draft.gc && !draft.place) { $("#fErr").textContent = "Speichere zuerst den Ort mit „Hier speichern“."; return false; }
   if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(draft.remind || "")) draft.remind = "";
   if (draft.remind) askNotify();
   draft.diff = clamp(Number(draft.diff) || 2, 1, 3); draft.name = name; draft.money = Math.max(0, draft.money || 0); draft.minutes = Math.max(0, draft.minutes || 0);
   const md = draft.kind === "break" || draft.special || draft.gc ? "" : draft.mode || "", lim = { timer: [1, 600], steps: [100, 100000], count: [1, 100000] }[md] || [1, 50];
   draft.limit = clamp(Math.round(Number(draft.limit) || 120), 5, 1440);
   draft.mode = md === "check" ? "check" : md;
-  draft.target = md === "wake" || md === "journal" || md === "check" || md === "screen" ? 1 : clamp(Math.round(draft.target || 1), lim[0], lim[1]);
+  draft.target = md === "wake" || md === "journal" || md === "check" || md === "screen" || md === "photo" || md === "place" ? 1 : clamp(Math.round(draft.target || 1), lim[0], lim[1]);
   draft.quick = md === "count" ? parseQuick(draft.quickTxt != null ? draft.quickTxt : (draft.quick || []).join(","), draft.unit) : []; delete draft.quickTxt;
   draft.grace = clamp(Math.round(Number(draft.grace) || 0), 0, 180); draft.words = clamp(Math.round(Number(draft.words) || 30), 1, 1000);
   if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(draft.wakeAt || "")) draft.wakeAt = "06:30";
@@ -2730,11 +2832,12 @@ function openChest(btn) {
 
 // Onboarding
 let ob = { step: 0, name: "Keimi", color: PET_COLORS[0], goals: [], hatched: false };
+let obDay1 = "";
 function openOnboarding() {
   ob = { step: 0, name: state.profile.petName || "Keimi", color: state.profile.petColor || PET_COLORS[0], goals: [], hatched: false };
   drawOb();
 }
-function obDots() { return `<div class="dots">${[0, 1, 2, 3, 4].map(i => `<i class="${i === ob.step ? "on" : ""}"></i>`).join("")}</div>`; }
+function obDots() { return `<div class="dots">${[0, 1, 2, 3, 4, 5, 6].map(i => `<i class="${i === ob.step ? "on" : ""}"></i>`).join("")}</div>`; }
 function drawOb() {
   let body = "";
   if (ob.step === 0) {
@@ -2758,7 +2861,11 @@ function drawOb() {
     body = `<div class="grow"><h1>Deine erste Gewohnheit</h1><p>Starte mit einer. Weitere kannst du jederzeit hinzufügen.</p>
       <div class="tpl-grid" style="margin-top:18px">${sug.map(t => `<button class="tpl ${t.isNew ? "is-new" : ""}" style="--hc:${t.color}" data-action="ob-tpl" data-kind="${t.kind}" data-name="${esc(t.name)}"><span class="hicon">${HI[t.icon]}</span>${esc(t.name)}${t.isNew ? '<span class="newtag">Neu</span>' : ""}</button>`).join("")}</div></div>
       <div class="foot"><button class="btn ghost full" data-action="ob-custom">Eigene Gewohnheit anlegen</button></div>`;
-  } else {
+  } else if (ob.step === 4) {
+    const ex = { sanft: "„Morgen ist ein neuer Tag.“", ehrlich: "„Ein Tag ist ausgefallen. Heute reicht die Mini-Version.“", hart: `„${esc(ob.name)} hat vergeblich auf dich gewartet.“` };
+    body = `<div class="grow"><h1>Wie soll ich mit dir reden?</h1><p>Wenn du mal einen Tag verpasst. Du kannst das später ändern.</p>
+      <div class="tone-l">${[["sanft", "Sanft"], ["ehrlich", "Ehrlich"], ["hart", "Hart"]].map(([k, l]) => `<button class="tone" data-action="ob-tone" data-v="${k}" aria-pressed="${(state.profile.tone || "ehrlich") === k}"><b>${l}</b><span>${ex[k]}</span></button>`).join("")}</div></div>`;
+  } else if (ob.step === 5) {
     body = `<div class="grow"><h1>So funktioniert's</h1>
       <div class="how" style="margin-top:18px">
         <div>${I.proof}<span><b>Beweis</b><br><span class="muted" style="font-weight:500">Was die App messen kann, zum Beispiel Wecker, Schritte oder Training, zählt als bewiesen und gibt volle XP.</span></span></div>
@@ -2767,7 +2874,11 @@ function drawOb() {
         <div><span style="width:30px;height:30px;color:var(--p)">${I.target}</span><span><b>Tages-Quests</b><br><span class="muted" style="font-weight:500">Drei kleine Aufgaben am Tag. Alle geschafft? Dann wartet eine Truhe.</span></span></div>
         <div>${I.coin}<span><b>Münzen</b><br><span class="muted" style="font-weight:500">Gönn dir damit echte Belohnungen oder kauf Schutzschilde.</span></span></div>
       </div></div>
-      <div class="foot"><button class="btn full" data-action="ob-finish">Los geht's! · +50 ${I.coin.replace("<svg", '<svg style="width:20px;height:20px"')}</button></div>`;
+      <div class="foot"><div class="setrow"><div><b>Anonym beim Verbessern helfen</b><small>Einmal am Tag: zufällige Geräte-ID und Datum, sonst nichts</small></div>${iswitch(state.profile.stats, "set-stats", "Anonym beim Verbessern helfen")}</div><button class="btn full" data-action="ob-next">Weiter</button></div>`;
+  } else {
+    const h = state.habits.find(x => x.kind === "build" && !x.special && sched(x, todayK()) && !isDone(x, todayK()));
+    body = `<div class="grow"><h1>Tag 1 beginnt jetzt</h1>${h ? `<p>Fang klein an und beweis dir sofort, dass du es ernst meinst.</p><div class="card day1"><span class="hicon" style="--hc:${esc(h.color)}">${HI[h.icon] || I.star}</span><div><b>${esc(h.name)}</b><span>${esc(miniOf(h))}</span></div></div><p>Wer am ersten Tag startet, bleibt viel öfter dran.</p>` : `<p>Deine Reise läuft. Ab heute zählt jeder Tag.</p>`}</div>
+      <div class="foot">${h ? `<button class="btn full" data-action="ob-day1" data-id="${h.id}">Erledigt</button><button class="link" data-action="ob-finish" style="justify-self:center">Später</button>` : `<button class="btn full" data-action="ob-finish">Los geht's! · +50 ${I.coin.replace("<svg", '<svg style="width:20px;height:20px"')}</button>`}</div>`;
   }
   openSheet(`<div class="ob">${obDots()}${ob.step > 0 && ob.step < 4 ? `<button class="link" data-action="ob-back" style="align-self:flex-start;margin-top:6px">Zurück</button>` : ""}${body}</div>`, { full: true, locked: true });
 }
@@ -2815,6 +2926,8 @@ function tapHabit(id, btn, plain) {
   if (md === "steps") { openDetail(h.id); healthSync(false); return true; }
   if (md === "wake") { wakeCheck(h, btn); return; }
   if (md === "screen") { openScreen(h); return; }
+  if (md === "photo" && !wasDone) { photoProof(h); return true; }
+  if (md === "place" && !wasDone) { placeProof(h); return true; }
   if (md === "count" && !wasDone) { addAmount(h, quickOf(h)[0], btn); return; }
   if (wasDone && h.target === 1) {
     const x = h.xp[t] || 0; delete h.log[t]; delete h.xp[t]; if (h.proof) delete h.proof[t]; if (h.resc) delete h.resc[t]; addXP(-x, t); addCoins(-Math.round(x / 2)); unperfect(t); sfx("undo");
@@ -3156,7 +3269,7 @@ function saveJournal() {
 // h.mode: "" (alt: Abhaken oder Menge je nach Ziel), count (Menge mit Schnell-Buttons), timer (Minuten mit Timer),
 // wake (Aufstehen bis Uhrzeit + Puffer), journal (Tagebuch mit Mindest-Wörtern), steps (Schritte aus Health, Kurzbefehl oder Eingabe).
 // h.log[Tag] ist immer die Menge des Tages (Minuten, Schritte, ml …); erledigt = log >= target. Wake und Journal haben target 1.
-const MODES = { check: "Abhaken", count: "Menge", timer: "Timer", wake: "Aufstehen", journal: "Tagebuch", steps: "Schritte", screen: "Handyzeit" };
+const MODES = { check: "Abhaken", count: "Menge", timer: "Timer", wake: "Aufstehen", journal: "Tagebuch", steps: "Schritte", screen: "Handyzeit", photo: "Foto-Beweis", place: "Ort-Beweis" };
 const UNITS = ["Gläser", "ml", "Seiten", "Portionen", "Wdh.", "km", "Kapitel"];
 const modeOf = h => h.kind === "break" || h.special ? "check" : h.gc ? (h.target > 1 ? "count" : "check") : h.mode || (h.target > 1 ? "count" : "check");
 const fmtN = n => Math.round(n).toLocaleString(LOC());
@@ -3179,6 +3292,7 @@ function modeMeta(h, c) {
   if (m === "steps") return `<span class="num">${fmtN(c)}/${fmtN(h.target)} Schritte</span>`;
   if (m === "wake") return h.woke && h.woke[t] ? `<span class="num">${isDone(h, t) ? "wach um" : "zu spät:"} ${h.woke[t]}</span>` : `<span class="num">Ziel ${esc(h.wakeAt)}</span>`;
   if (m === "journal") return `<span class="num">${Math.min(jWordsToday(h), 9999)}/${h.words} Wörter</span>`;
+  if (m === "place" && !h.place) return `<span class="overdue">Ort fehlt</span>`;
   if (m === "screen") { const u = (h.scr || {})[t]; return u == null ? `<span class="num">Limit ${h.limit} Min</span>` : `<span class="num ${u > h.limit ? "overdue" : ""}">${u}/${h.limit} Min</span>`; }
   return h.target > 1 ? `<span class="num">${c}/${h.target} ${esc(h.unit)}</span>` : "";
 }
@@ -3190,6 +3304,8 @@ function modeInner(h, c, done) {
   if (m === "steps") return c ? `<span class="cnt num">${fmtK(c)}</span>` : HI.shoe;
   if (m === "wake") return I.alarm;
   if (m === "journal") return HI.pen;
+  if (m === "photo") return HI.camera;
+  if (m === "place") return HI.pin;
   if (m === "screen") { const u = (h.scr || {})[todayK()]; return u == null ? HI.phone : `<span class="cnt num">${u}</span>`; }
   return h.target > 1 ? `<span class="cnt num">${c}/${h.target}</span>` : I.check;
 }
@@ -3200,6 +3316,8 @@ function modeAria(h, c, done) {
   if (m === "steps") return `${fmtN(c)} von ${fmtN(h.target)} Schritten, Schritte eintragen`;
   if (m === "wake") return done ? "erledigt, tippen zum Rückgängig machen" : "Ich bin wach";
   if (m === "journal") return done ? "erledigt, Tagebuch öffnen" : "Tagebuch schreiben";
+  if (m === "photo") return done ? "erledigt, tippen zum Rückgängig machen" : "Foto-Beweis aufnehmen";
+  if (m === "place") return done ? "erledigt, tippen zum Rückgängig machen" : "Ort prüfen";
   if (m === "screen") return done ? "im Limit geblieben, Bildschirmzeit ansehen" : "Bildschirmzeit eintragen";
   return null;
 }
@@ -3489,7 +3607,35 @@ function modeFields(d, gym) {
     r += irow("Schritte pro Tag", inum("fTarget", "target", d.target, 100, 100000, 500), "fTarget") + irow("Automatisch übernehmen", iswitch(d.health, "f-health", "Automatisch übernehmen"));
     foot = ap === "ios" ? "Schritte kommen aus Apple Health (iPhone, Apple Watch, Apple Fitness)." : ap === "android" ? "Schritte kommen aus Health Connect (Google Fit, Samsung Health, Fitbit …)." : "Automatisch nur in der Handy-App. Hier per Eingabe oder Link.";
   }
+  if (m === "photo") foot = "Tippe auf den Kreis, dann öffnet sich die Kamera. Nur ein frisch aufgenommenes Foto zählt als Beweis. Das Foto wird nicht gespeichert.";
+  if (m === "place") {
+    r += irow("Ort", `<button type="button" class="btn sm ${d.place ? "ghost" : ""}" data-action="f-place">${HI.pin} ${d.place ? "Neu speichern" : "Hier speichern"}</button>`);
+    foot = `${d.place ? "Ort ist gespeichert." : "Stell dich an den Ort und tippe auf „Hier speichern“."} Bist du dort (150 m Umkreis), zählt der Tag als bewiesen. Der Ort bleibt auf deinem Gerät.`;
+  }
   return igrp("Ziel", r, foot);
+}
+// Beweis per Foto: Kamera öffnen, nur ein frisches Foto zählt. Beweis per Ort: GPS innerhalb des Umkreises.
+const distM = (a, b) => { const r = x => x * Math.PI / 180, q = Math.sin(r(b.lat - a.lat) / 2) ** 2 + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.sin(r(b.lon - a.lon) / 2) ** 2; return 2 * 6371e3 * Math.asin(Math.sqrt(q)); };
+const getPos = () => new Promise((res, rej) => navigator.geolocation ? navigator.geolocation.getCurrentPosition(q => res({ lat: q.coords.latitude, lon: q.coords.longitude, acc: q.coords.accuracy }), rej, { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 }) : rej(new Error("no_geo")));
+function proveNow(h) { if (isDone(h, todayK())) return; h.log[todayK()] = h.target; const r = centerRect(); proven(() => completeHabit(h, r.left + 29, r.top + 29, r)); }
+function photoProof(h) {
+  const inp = document.createElement("input"); inp.type = "file"; inp.accept = "image/*"; inp.setAttribute("capture", "environment"); inp.hidden = true;
+  inp.onchange = () => {
+    const f = inp.files && inp.files[0]; inp.remove(); if (!f) return;
+    // shortcut: "frisch" heißt nur Dateizeit jünger als 10 Minuten; für eine echte Prüfung die EXIF-Aufnahmezeit lesen.
+    if (Date.now() - f.lastModified > 10 * 60000) { toast("Nur ein frisch aufgenommenes Foto zählt als Beweis."); return; }
+    proveNow(h);
+  };
+  document.body.appendChild(inp); inp.click();
+}
+async function placeProof(h) {
+  if (!h.place) { toast("Speichere zuerst den Ort: Gewohnheit bearbeiten, dann „Hier speichern“."); return; }
+  toast("Standort wird geprüft …");
+  try {
+    const q = await getPos(), d = distM(q, h.place);
+    if (d > (h.radius || 150) + Math.min(q.acc || 0, 100)) { toast(`Noch ${fmtN(d)} m entfernt. Geh hin, dann zählt es.`); return; }
+    proveNow(h);
+  } catch (e) { toast("Kein Standort. Erlaube ihn für 21 Days in den Einstellungen."); }
 }
 function setMode(v) {
   syncDraft(); draft.mode = v;
@@ -4463,7 +4609,7 @@ document.addEventListener("click", e => {
     case "health-sync": healthSync(true).then(() => { const sh = $("#modalRoot .sheet"); const hid = sh && sh.querySelector('[data-action="steps-set"]'); if (hid) openDetail(hid.dataset.id); }); break;
     case "f-alarm": syncDraft(); draft.alarm = !draft.alarm; rerenderEditor(); break;
     case "f-health": syncDraft(); draft.health = !draft.health; rerenderEditor(); break;
-    case "new": openTemplates(b.dataset.v === "break" ? "break" : "build"); break;
+    case "new": if (state.habits.filter(h => !h.gc).length >= FREE_HABITS && needPro("Mehr als 3 Gewohnheiten")) break; openTemplates(b.dataset.v === "break" ? "break" : "build"); break;
     case "reise-h": reiseId = id; render(); break;
     case "cert": openCert(id); break;
     case "cert-share": shareCert(id); break;
@@ -4570,7 +4716,8 @@ document.addEventListener("click", e => {
     case "bet": { const h = state.habits.find(x => x.id === id), c = Number(b.dataset.v); if (!h || h.bet || !provable(h) || ![50, 100, 200].includes(c)) break;
       if (state.coins < c) { toast(`Dir fehlen noch ${c - state.coins} Münzen.`); break; }
       if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = `${c} wirklich setzen?`; break; }
-      state.coins -= c; h.bet = { stake: c, from: todayK() }; sfx("unlock"); toast("Die Wette steht. Jetzt zählt jeder bewiesene Tag."); save(); render(); break; }
+      const pub = !!state.group && betPub; if (pub && needPro("Wetten mit Freunden")) break;
+      state.coins -= c; h.bet = { stake: c, from: todayK(), pub }; syncGroup(); sfx("unlock"); toast("Die Wette steht. Jetzt zählt jeder bewiesene Tag."); save(); render(); break; }
     case "chain-go": closeSheet(); if (view !== "heute") location.hash = "heute";
       setTimeout(() => { const c = $(`[data-card="${id}"]`); if (c) { c.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" }); c.classList.remove("shine"); void c.offsetWidth; c.classList.add("shine"); } }, 350); break;
     case "rename":
@@ -4589,7 +4736,7 @@ document.addEventListener("click", e => {
       openModal(`<div class="reward-orb" style="--rc:var(--gold)"><b>${I.gift.replace("<svg", '<svg width="70" height="70" style="color:#fff"')}</b></div><h2>Gönn dir: ${esc(rw.name)}</h2><p class="muted" style="font-weight:500">Verdient! Du hast hart dafür gearbeitet.</p><button class="btn gold full" data-action="close" autofocus>Genießen</button>`);
       break;
     }
-    case "g-create": openGroupForm("create"); break;
+    case "g-create": if (needPro("Gruppen")) break; openGroupForm("create"); break;
     case "g-join": openGroupForm("join"); break;
     case "g-do-create": submitGroup(false); break;
     case "g-do-join": submitGroup(true); break;
@@ -4659,11 +4806,26 @@ document.addEventListener("click", e => {
       }); break;
     }
     case "ob-custom": openEditor(draftFrom(null, null, "build")); break;
+    case "ob-tone": state.profile.tone = b.dataset.v; ob.step = 5; sfx("tap"); drawOb(); break;
+    case "ob-day1": obDay1 = id; // weiter wie ob-finish, danach zählt der erste Tag
     case "ob-finish": {
       state.profile.onboarded = true; if (!state.flags.welcome) { state.flags.welcome = true; addCoins(50); }
       save(); closeSheet(); location.hash = "heute"; animateNext = true; render(); bigCelebration(); sfx("bonus");
-      setTimeout(() => flyCoins(innerWidth / 2, innerHeight / 2, 12), 300); setTimeout(startTour, 1600); break;
+      setTimeout(() => flyCoins(innerWidth / 2, innerHeight / 2, 12), 300);
+      const h1 = obDay1 && state.habits.find(x => x.id === obDay1); obDay1 = "";
+      if (h1) setTimeout(() => { if (isDone(h1, todayK())) return; h1.log[todayK()] = h1.target; const r = centerRect(); completeHabit(h1, r.left + 29, r.top + 29, r); }, 900);
+      setTimeout(startTour, h1 ? 4200 : 1600); break;
     }
+    case "set-tone": state.profile.tone = b.dataset.v; save(); render(); break;
+    case "set-stats": state.profile.stats = !state.profile.stats; save(); if (state.profile.stats) ping(); if ($(".ob")) drawOb(); else render(); break;
+    case "share-week": shareWeek(); break;
+    case "share-bet": if (state.lastBet) shareBet(state.lastBet); break;
+    case "bet-pub": betPub = !betPub; render(); break;
+    case "pro": openPaywall(b.dataset.v || ""); break;
+    case "pro-buy": proCall(async P => { const o = await P.getOfferings(), pk = o.current && o.current.availablePackages[0]; if (!pk) throw new Error("no_offer"); return P.purchasePackage({ aPackage: pk }); }); break;
+    case "pro-restore": proCall(P => P.restorePurchases()); break;
+    case "f-place": syncDraft(); toast("Standort wird bestimmt …");
+      getPos().then(q => { draft.place = { lat: +q.lat.toFixed(5), lon: +q.lon.toFixed(5) }; toast("Ort gespeichert"); if ($("#hForm")) redrawEditor(); }).catch(() => toast("Kein Standort. Erlaube ihn für 21 Days in den Einstellungen.")); break;
   }
 });
 document.addEventListener("keydown", e => {
@@ -4706,7 +4868,7 @@ function checkQuitMilestones(silent) {
 }
 let lastDay = todayK();
 // Runs on the timer and when the app comes back to the front, so a new day never shows yesterday's state.
-function dayTick() { if (todayK() === lastDay) return false; lastDay = todayK(); const fr = applyFreezes(); if (fr) freezeNotice(fr); betCheck(); save(); syncGroup(); return true; }
+function dayTick() { if (todayK() === lastDay) return false; lastDay = todayK(); const fr = applyFreezes(); if (fr) freezeNotice(fr); betCheck(); ping(); save(); syncGroup(); return true; }
 setInterval(() => {
   if (dayTick()) render();
   if (state.profile.onboarded) checkQuitMilestones(false);
@@ -4735,6 +4897,7 @@ function afterLoad() {
   if (/^#(wake|steps=\d+)$/.test(location.hash)) { const hh = location.hash; history.replaceState(null, "", "#heute"); view = "heute"; render(); handleAppUrl(hh); }
   if (state.timer) tmTick();
   setTimeout(() => healthSync(false), 1200);
+  ping(); const P = capP("Purchases"); if (P && CFG.revenuecatKey) P.configure({ apiKey: CFG.revenuecatKey }).catch(() => {});
 }
 function loadCached() {
   try { const v2 = localStorage.getItem(KEY); if (v2) return JSON.parse(v2); const v1 = localStorage.getItem(OLD_KEY); if (v1) return JSON.parse(v1); } catch (e) { /* ignore */ }
