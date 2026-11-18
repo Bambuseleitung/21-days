@@ -39,7 +39,14 @@ public class DaysAlarmPlugin: CAPPlugin, CAPBridgedPlugin {
                 let weekdays = days.filter { $0 >= 0 && $0 < 7 }.map { map[$0] }
                 let time = Alarm.Schedule.Relative.Time(hour: hour, minute: minute)
                 let schedule = Alarm.Schedule.relative(Alarm.Schedule.Relative(time: time, repeats: weekdays.isEmpty ? .never : .weekly(weekdays)))
-                let alert = AlarmPresentation.Alert(title: LocalizedStringResource("\(label)"), secondaryButton: nil, secondaryButtonBehavior: nil)
+                // Ab iOS 26.1 gibt es den Stopp-Knopf vom System; unter 26.0 muss er noch mitgegeben werden.
+                let title = LocalizedStringResource("\(label)")
+                let alert: AlarmPresentation.Alert
+                if #available(iOS 26.1, *) {
+                    alert = AlarmPresentation.Alert(title: title, secondaryButton: nil, secondaryButtonBehavior: nil)
+                } else {
+                    alert = AlarmPresentation.Alert(title: title, stopButton: AlarmButton(text: "Stopp", textColor: .white, systemImageName: "stop.circle"), secondaryButton: nil, secondaryButtonBehavior: nil)
+                }
                 let attributes = AlarmAttributes<DaysAlarmMeta>(presentation: AlarmPresentation(alert: alert), metadata: nil, tintColor: .orange)
                 let config = AlarmManager.AlarmConfiguration<DaysAlarmMeta>(countdownDuration: nil, schedule: schedule, attributes: attributes, sound: .default)
                 let id = UUID()
